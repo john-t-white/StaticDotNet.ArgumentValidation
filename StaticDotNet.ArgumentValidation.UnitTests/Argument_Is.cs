@@ -1,6 +1,6 @@
 namespace StaticDotNet.ArgumentValidation.UnitTests;
 
-public class Argument_Is {
+public sealed class Argument_Is {
 
 	[Fact]
 	public void ReturnsSameInstance() {
