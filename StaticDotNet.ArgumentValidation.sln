@@ -10,6 +10,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StaticDotNet.ArgumentValidation.UnitTests", "StaticDotNet.ArgumentValidation.UnitTests\StaticDotNet.ArgumentValidation.UnitTests.csproj", "{42F0533A-520F-46DA-A618-ACA43B64E246}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StaticDotNet.ArgumentValidation.Benchmarks", "StaticDotNet.ArgumentValidation.Benchmarks\StaticDotNet.ArgumentValidation.Benchmarks.csproj", "{368E54C2-9584-480A-A8B7-367FD25C7FAC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -24,5 +26,9 @@ Global
 		{42F0533A-520F-46DA-A618-ACA43B64E246}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{42F0533A-520F-46DA-A618-ACA43B64E246}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{42F0533A-520F-46DA-A618-ACA43B64E246}.Release|Any CPU.Build.0 = Release|Any CPU
+		{368E54C2-9584-480A-A8B7-367FD25C7FAC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{368E54C2-9584-480A-A8B7-367FD25C7FAC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{368E54C2-9584-480A-A8B7-367FD25C7FAC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{368E54C2-9584-480A-A8B7-367FD25C7FAC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
