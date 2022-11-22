@@ -10,22 +10,14 @@ public class NotNullStructBenchmarks {
 	public int? value = new();
 
 	[Benchmark( Baseline = true )]
-	public int Baseline() {
-		return this.value ?? throw new ArgumentNullException( nameof( this.value ) );
-	}
+	public int Baseline() => this.value ?? throw new ArgumentNullException( nameof( this.value ) );
 
 	[Benchmark]
-	public int Argument_Is_NotNull() {
-		return Argument.Is.NotNull( this.value );
-	}
+	public int Argument_Is() => Argument.Is.NotNull( this.value );
 
 	[Benchmark]
-	public int Dawn_Guard_NotNull() {
-		return Dawn.Guard.Argument( this.value ).NotNull();
-	}
+	public int Dawn_Guard() => Dawn.Guard.Argument( this.value ).NotNull();
 
 	[Benchmark]
-	public int Ardalis_Guard_NotNull() {
-		return Ardalis.GuardClauses.Guard.Against.Null( this.value ).Value;
-	}
+	public int Ardalis_Guard() => Ardalis.GuardClauses.Guard.Against.Null( this.value )!.Value;
 }

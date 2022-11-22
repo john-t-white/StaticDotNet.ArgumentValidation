@@ -11,21 +11,11 @@ public class NullBenchmarks {
 	public object? value = null;
 
 	[Benchmark( Baseline = true )]
-	public object? Baseline() {
-		if( this.value == null ) {
-			return this.value;
-		}
-
-		throw new ArgumentException( "Value cannot be non null.", nameof( this.value ) );
-	}
+	public object? Baseline() => this.value == null ? this.value : throw new ArgumentException( "Value cannot be non null.", nameof( this.value ) );
 
 	[Benchmark]
-	public object? Argument_Is_NotNull() {
-		return Argument.Is.Null( this.value );
-	}
+	public object? Argument_Is() => Argument.Is.Null( this.value );
 
 	[Benchmark]
-	public object? Dawn_Guard_NotNull() {
-		return Dawn.Guard.Argument( this.value ).Null();
-	}
+	public object? Dawn_Guard() => Dawn.Guard.Argument( this.value ).Null();
 }

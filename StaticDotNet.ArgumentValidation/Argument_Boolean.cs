@@ -1,5 +1,8 @@
 ﻿namespace StaticDotNet.ArgumentValidation;
 
+/// <summary>
+/// Validation methods for <see cref="bool"/>.
+/// </summary>
 public static class Argument_Boolean {
 
 	private const string VALUE_MUST_BE_TRUE = "Value must be true.";
@@ -33,7 +36,7 @@ public static class Argument_Boolean {
 	/// <summary>
 	/// Validates <paramref name="value"/> is not null -AND- true, otherwise an <see cref="ArgumentNullException"/> -OR- <see cref="ArgumentException"/> is thrown.
 	/// </summary>
-	/// <param name="_">The <see cref="Argument"/>.</param>
+	/// <param name="argument">The <see cref="Argument"/>.</param>
 	/// <param name="value">The value of the argument.</param>
 	/// <param name="name">With C# 10, defaults to the expression of <paramref name="value"/>; otherwise specify the argument name.</param>
 	/// <param name="message">The exception message.  Null for for default message.</param>
@@ -71,7 +74,7 @@ public static class Argument_Boolean {
 	/// <summary>
 	/// Validates <paramref name="value"/> is not null -AND- false, otherwise an <see cref="ArgumentNullException"/> -OR- <see cref="ArgumentException"/> is thrown.
 	/// </summary>
-	/// <param name="_">The <see cref="Argument"/>.</param>
+	/// <param name="argument">The <see cref="Argument"/>.</param>
 	/// <param name="value">The value of the argument.</param>
 	/// <param name="name">With C# 10, defaults to the expression of <paramref name="value"/>; otherwise specify the argument name.</param>
 	/// <param name="message">The exception message.  Null for for default message.</param>

@@ -10,17 +10,11 @@ public class NullableTrueBenchmarks {
 	public bool? value = true;
 
 	[Benchmark( Baseline = true )]
-	public bool? Baseline() {
-		return this.value.HasValue && this.value == true  ? true : throw new ArgumentException( "Value must be true.", nameof( this.value ) );
-	}
+	public bool? Baseline() => this.value.HasValue && this.value == true ? true : throw new ArgumentException( "Value must be true.", nameof( this.value ) );
 
 	[Benchmark]
-	public bool? Argument_Is_True() {
-		return Argument.Is.True( this.value );
-	}
+	public bool? Argument_Is() => Argument.Is.True( this.value );
 
 	[Benchmark]
-	public bool? Dawn_Guard_True() {
-		return Dawn.Guard.Argument( this.value ).True();
-	}
+	public bool? Dawn_Guard() => Dawn.Guard.Argument( this.value ).True();
 }
