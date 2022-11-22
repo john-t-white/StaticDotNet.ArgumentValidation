@@ -3,8 +3,7 @@
 public sealed class Argument_Object_NotNull {
 
 	[Fact]
-	public void WithNotNullValueReturnsCorrectly()
-	{
+	public void WithNotNullValueReturnsCorrectly() {
 		object value = new();
 
 		object result = Argument.Is.NotNull( value );
@@ -13,16 +12,14 @@ public sealed class Argument_Object_NotNull {
 	}
 
 	[Fact]
-	public void WithNullValueThrowsArgumentNullException()
-	{
+	public void WithNullValueThrowsArgumentNullException() {
 		object? value = null;
 
 		_ = Assert.Throws<ArgumentNullException>( nameof( value ), () => Argument.Is.NotNull( value ) );
 	}
-	
+
 	[Fact]
-	public void WithNullValueAndNameThrowsArgumentNullException()
-	{
+	public void WithNullValueAndNameThrowsArgumentNullException() {
 		object? value = null;
 		const string name = "Name";
 
@@ -30,8 +27,7 @@ public sealed class Argument_Object_NotNull {
 	}
 
 	[Fact]
-	public void WithNullValueAndMessageThrowsArgumentNullException()
-	{
+	public void WithNullValueAndMessageThrowsArgumentNullException() {
 		object? value = null;
 		const string message = "Message";
 

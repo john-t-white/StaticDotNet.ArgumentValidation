@@ -12,13 +12,12 @@ public static class Argument_Object {
 	/// <typeparam name="T">The type of <paramref name="value"/>.</typeparam>
 	/// <returns>Non null <paramref name="value"/>.</returns>
 	/// <exception cref="ArgumentNullException">Thrown when <paramref name="value"/> is null.</exception>
-	public static T NotNull<T>( this Argument _,
-								[NotNull] T? value,
-								[CallerArgumentExpression( "value" )] string? name = null,
-								string? message = null )
-	{
-		if (value != null) return value;
-		
+	public static T NotNull<T>( this Argument _, [NotNull] T? value, [CallerArgumentExpression( "value" )] string? name = null, string? message = null ) {
+
+		if( value != null ) {
+			return value;
+		}
+
 		ArgumentNullException exception = message == null
 			? new ArgumentNullException( name )
 			: new ArgumentNullException( name, message );
@@ -36,9 +35,6 @@ public static class Argument_Object {
 	/// <typeparam name="T">The type of <paramref name="value"/>.</typeparam>
 	/// <returns>null</returns>
 	/// <exception cref="ArgumentException">Thrown when <paramref name="value"/> is not null.</exception>
-	public static T? Null<T>( this Argument _,
-							  T? value,
-							  [CallerArgumentExpression( "value" )] string? name = null,
-							  string? message = null ) =>
+	public static T? Null<T>( this Argument _, T? value, [CallerArgumentExpression( "value" )] string? name = null, string? message = null ) =>
 		value != null ? throw new ArgumentException( message ?? "Value must be null.", name ) : value;
 }

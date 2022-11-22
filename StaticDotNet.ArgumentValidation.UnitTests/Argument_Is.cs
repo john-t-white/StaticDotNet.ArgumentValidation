@@ -1,10 +1,9 @@
 namespace StaticDotNet.ArgumentValidation.UnitTests;
 
-public class Argument_Is
-{
+public class Argument_Is {
+
 	[Fact]
-	public void ReturnsSameInstance()
-	{
+	public void ReturnsSameInstance() {
 		Argument result1 = Argument.Is;
 		Argument result2 = Argument.Is;
 

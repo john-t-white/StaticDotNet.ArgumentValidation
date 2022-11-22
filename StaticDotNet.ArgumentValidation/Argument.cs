@@ -2,8 +2,7 @@
 
 public sealed class Argument {
 
-	private Argument()
-	{
+	private Argument() {
 	}
 
 	public static readonly Argument Is = new();
