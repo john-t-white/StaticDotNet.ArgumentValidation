@@ -9,4 +9,5 @@ using StaticDotNet.ArgumentValidation.Benchmarks;
 //_ = BenchmarkRunner.Run<NotNullTrueBenchmarks>();
 //_ = BenchmarkRunner.Run<NotNullOrWhiteSpaceBenchmarks>();
 //_ = BenchmarkRunner.Run<NotNullOrEmptyArrayBenchmarks>();
-_ = BenchmarkRunner.Run<NotNullOrEmptyListBenchmarks>();
+//_ = BenchmarkRunner.Run<NotNullOrEmptyIListBenchmarks>();
+_ = BenchmarkRunner.Run<NotNullOrEmptyICollectionBenchmarks>();
