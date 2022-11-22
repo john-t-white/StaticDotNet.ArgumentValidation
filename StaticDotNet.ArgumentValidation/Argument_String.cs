@@ -5,7 +5,7 @@
 /// </summary>
 public static class Argument_String {
 
-	private const string VALUE_CANNOT_BE_WHITE_SPACE = "Value cannot be whitespace.";
+	private const string VALUE_CANNOT_BE_WHITE_SPACE = "Value cannot be white space.";
 	private const string VALUE_CANNOT_BE_EMPTY = "Value cannot be empty.";
 
 	/// <summary>
