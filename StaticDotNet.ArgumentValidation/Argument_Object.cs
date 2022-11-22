@@ -15,8 +15,7 @@ public static class Argument_Object {
 	/// <typeparam name="T">The type of <paramref name="value"/>.</typeparam>
 	/// <returns>Non null <paramref name="value"/>.</returns>
 	/// <exception cref="ArgumentNullException">Thrown when <paramref name="value"/> is null.</exception>
-	public static T NotNull<T>( this Argument _, [NotNull] T? value, [CallerArgumentExpression( nameof( value ) )] string? name = null, string? message = null )
-		where T : class {
+	public static T NotNull<T>( this Argument _, [NotNull] T? value, [CallerArgumentExpression( nameof( value ) )] string? name = null, string? message = null ) {
 
 		if( value != null ) {
 			return value;

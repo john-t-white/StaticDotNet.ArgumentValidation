@@ -31,7 +31,9 @@ public static class Argument_String {
 	/// <exception cref="ArgumentException">Thrown when <paramref name="value"/> is empty or white space.</exception>
 	[return: NotNullIfNotNull( nameof( value ) )]
 	public static string? NotWhiteSpace( this Argument _, string? value, [CallerArgumentExpression( nameof( value ) )] string? name = null, string? message = null )
-		=> value?.Trim().Length == 0 ? throw new ArgumentException( message ?? Constants.VALUE_CANNOT_BE_WHITE_SPACE, name ) : value;
+		=> value?.Trim().Length == 0
+			? throw new ArgumentException( message ?? Constants.VALUE_CANNOT_BE_WHITE_SPACE, name )
+			: value;
 
 	/// <summary>
 	/// Validates <paramref name="value"/> is not null or empty, otherwise an <see cref="ArgumentNullException"/> or <see cref="ArgumentException"/> is thrown.
@@ -59,5 +61,7 @@ public static class Argument_String {
 	/// <exception cref="ArgumentException">Thrown when <paramref name="value"/> is empty.</exception>
 	[return: NotNullIfNotNull( nameof( value ) )]
 	public static string? NotEmpty( this Argument _, string? value, [CallerArgumentExpression( nameof( value ) )] string? name = null, string? message = null )
-		=> value?.Length == 0 ? throw new ArgumentException( message ?? Constants.VALUE_CANNOT_BE_EMPTY, name ) : value;
+		=> value?.Length == 0
+			? throw new ArgumentException( message ?? Constants.VALUE_CANNOT_BE_EMPTY, name )
+			: value;
 }
