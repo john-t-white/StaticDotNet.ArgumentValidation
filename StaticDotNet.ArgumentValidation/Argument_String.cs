@@ -5,9 +5,6 @@
 /// </summary>
 public static class Argument_String {
 
-	private const string VALUE_CANNOT_BE_WHITE_SPACE = "Value cannot be white space.";
-	private const string VALUE_CANNOT_BE_EMPTY = "Value cannot be empty.";
-
 	/// <summary>
 	/// Validates <paramref name="value"/> is not null, empty or white space, otherwise an <see cref="ArgumentNullException"/> or <see cref="ArgumentException"/> is thrown.
 	/// </summary>
@@ -20,7 +17,7 @@ public static class Argument_String {
 	/// <exception cref="ArgumentException">Thrown when <paramref name="value"/> is empty or white space.</exception>
 	public static string NotNullOrWhiteSpace( this Argument argument, [NotNull] string? value, [CallerArgumentExpression( nameof( value ) )] string? name = null, string? message = null )
 		=> string.IsNullOrWhiteSpace( argument.NotNull( value, name, message ) )
-			? throw new ArgumentException( message ?? VALUE_CANNOT_BE_WHITE_SPACE, name )
+			? throw new ArgumentException( message ?? Constants.VALUE_CANNOT_BE_WHITE_SPACE, name )
 			: value;
 
 	/// <summary>
@@ -34,7 +31,7 @@ public static class Argument_String {
 	/// <exception cref="ArgumentException">Thrown when <paramref name="value"/> is empty or white space.</exception>
 	[return: NotNullIfNotNull( nameof( value ) )]
 	public static string? NotWhiteSpace( this Argument _, string? value, [CallerArgumentExpression( nameof( value ) )] string? name = null, string? message = null )
-		=> value?.Trim().Length == 0 ? throw new ArgumentException( message ?? VALUE_CANNOT_BE_WHITE_SPACE, name ) : value;
+		=> value?.Trim().Length == 0 ? throw new ArgumentException( message ?? Constants.VALUE_CANNOT_BE_WHITE_SPACE, name ) : value;
 
 	/// <summary>
 	/// Validates <paramref name="value"/> is not null or empty, otherwise an <see cref="ArgumentNullException"/> or <see cref="ArgumentException"/> is thrown.
@@ -48,7 +45,7 @@ public static class Argument_String {
 	/// <exception cref="ArgumentException">Thrown when <paramref name="value"/> is empty.</exception>
 	public static string NotNullOrEmpty( this Argument argument, [NotNull] string? value, [CallerArgumentExpression( nameof( value ) )] string? name = null, string? message = null )
 		=> string.IsNullOrEmpty( argument.NotNull( value, name, message ) )
-			? throw new ArgumentException( message ?? VALUE_CANNOT_BE_EMPTY, name )
+			? throw new ArgumentException( message ?? Constants.VALUE_CANNOT_BE_EMPTY, name )
 			: value;
 
 	/// <summary>
@@ -62,5 +59,5 @@ public static class Argument_String {
 	/// <exception cref="ArgumentException">Thrown when <paramref name="value"/> is empty.</exception>
 	[return: NotNullIfNotNull( nameof( value ) )]
 	public static string? NotEmpty( this Argument _, string? value, [CallerArgumentExpression( nameof( value ) )] string? name = null, string? message = null )
-		=> value?.Length == 0 ? throw new ArgumentException( message ?? VALUE_CANNOT_BE_EMPTY, name ) : value;
+		=> value?.Length == 0 ? throw new ArgumentException( message ?? Constants.VALUE_CANNOT_BE_EMPTY, name ) : value;
 }

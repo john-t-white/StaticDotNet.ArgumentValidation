@@ -5,8 +5,6 @@
 /// </summary>
 public static class Argument_Object {
 
-	private const string VALUE_MUST_BE_NULL = "Value must be null.";
-
 	/// <summary>
 	///  Validates <paramref name="value"/> is not null, otherwise an <see cref="ArgumentNullException"/> is thrown.
 	/// </summary>
@@ -66,5 +64,5 @@ public static class Argument_Object {
 	/// <returns>null</returns>
 	/// <exception cref="ArgumentException">Thrown when <paramref name="value"/> is not null.</exception>
 	public static T? Null<T>( this Argument _, T? value, [CallerArgumentExpression( nameof( value ) )] string? name = null, string? message = null )
-		=> value != null ? throw new ArgumentException( message ?? VALUE_MUST_BE_NULL, name ) : value;
+		=> value != null ? throw new ArgumentException( message ?? Constants.VALUE_MUST_BE_NULL, name ) : value;
 }

@@ -5,9 +5,6 @@
 /// </summary>
 public static class Argument_Boolean {
 
-	private const string VALUE_MUST_BE_TRUE = "Value must be true.";
-	private const string VALUE_MUST_BE_FALSE = "Value must be false.";
-
 	/// <summary>
 	/// Validates <paramref name="value"/> is true, otherwise an <see cref="ArgumentException"/> is thrown.
 	/// </summary>
@@ -18,7 +15,7 @@ public static class Argument_Boolean {
 	/// <returns>Returns <paramref name="value"/>.</returns>
 	/// <exception cref="ArgumentException">Thrown when <paramref name="value"/> is not true.</exception>
 	public static bool True( this Argument _, bool value, [CallerArgumentExpression( nameof( value ) )] string? name = null, string? message = null )
-		=> value != true ? throw new ArgumentException( message ?? VALUE_MUST_BE_TRUE, name ) : true;
+		=> value != true ? throw new ArgumentException( message ?? Constants.VALUE_MUST_BE_TRUE, name ) : true;
 
 	/// <summary>
 	/// Validates <paramref name="value"/> is true -OR- ignores if null, otherwise an <see cref="ArgumentException"/> is thrown.
@@ -31,7 +28,7 @@ public static class Argument_Boolean {
 	/// <exception cref="ArgumentException">Thrown when <paramref name="value"/> is not true.</exception>
 	[return: NotNullIfNotNull( nameof( value ) )]
 	public static bool? True( this Argument _, bool? value, [CallerArgumentExpression( nameof( value ) )] string? name = null, string? message = null )
-		=> value.HasValue && value != true ? throw new ArgumentException( message ?? VALUE_MUST_BE_TRUE, name ) : value;
+		=> value.HasValue && value != true ? throw new ArgumentException( message ?? Constants.VALUE_MUST_BE_TRUE, name ) : value;
 
 	/// <summary>
 	/// Validates <paramref name="value"/> is not null -AND- true, otherwise an <see cref="ArgumentNullException"/> -OR- <see cref="ArgumentException"/> is thrown.
@@ -56,7 +53,7 @@ public static class Argument_Boolean {
 	/// <returns>Returns <paramref name="value"/>.</returns>
 	/// <exception cref="ArgumentException">Thrown when <paramref name="value"/> is not false.</exception>
 	public static bool False( this Argument _, bool value, [CallerArgumentExpression( nameof( value ) )] string? name = null, string? message = null )
-		=> value != false ? throw new ArgumentException( message ?? VALUE_MUST_BE_FALSE, name ) : false;
+		=> value != false ? throw new ArgumentException( message ?? Constants.VALUE_MUST_BE_FALSE, name ) : false;
 
 	/// <summary>
 	/// Validates <paramref name="value"/> is false -OR- ignores if null, otherwise an <see cref="ArgumentException"/> is thrown.
@@ -69,7 +66,7 @@ public static class Argument_Boolean {
 	/// <exception cref="ArgumentException">Thrown when <paramref name="value"/> is not fakse.</exception>
 	[return: NotNullIfNotNull( nameof( value ) )]
 	public static bool? False( this Argument _, bool? value, [CallerArgumentExpression( nameof( value ) )] string? name = null, string? message = null )
-		=> value.HasValue && value != false ? throw new ArgumentException( message ?? VALUE_MUST_BE_FALSE, name ) : value;
+		=> value.HasValue && value != false ? throw new ArgumentException( message ?? Constants.VALUE_MUST_BE_FALSE, name ) : value;
 
 	/// <summary>
 	/// Validates <paramref name="value"/> is not null -AND- false, otherwise an <see cref="ArgumentNullException"/> -OR- <see cref="ArgumentException"/> is thrown.
