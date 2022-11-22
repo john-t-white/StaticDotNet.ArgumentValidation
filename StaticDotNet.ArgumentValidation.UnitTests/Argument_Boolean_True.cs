@@ -61,7 +61,7 @@ public sealed class Argument_Boolean_True {
 	}
 
 	[Fact]
-	public void WithNullableTrueNullValueReturnsCorrectly() {
+	public void WithNullValueReturnsCorrectly() {
 
 		bool? value = null;
 
