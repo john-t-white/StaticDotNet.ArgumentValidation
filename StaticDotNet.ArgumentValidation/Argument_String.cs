@@ -62,5 +62,5 @@ public static class Argument_String {
 	/// <exception cref="ArgumentException">Thrown when <paramref name="value"/> is empty.</exception>
 	[return: NotNullIfNotNull( nameof( value ) )]
 	public static string? NotEmpty( this Argument _, string? value, [CallerArgumentExpression( nameof( value ) )] string? name = null, string? message = null )
-		=> value?.Length == 0 ? throw new ArgumentException( message ?? VALUE_CANNOT_BE_WHITE_SPACE, name ) : value;
+		=> value?.Length == 0 ? throw new ArgumentException( message ?? VALUE_CANNOT_BE_EMPTY, name ) : value;
 }
