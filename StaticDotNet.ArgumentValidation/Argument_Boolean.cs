@@ -53,7 +53,7 @@ public static class Argument_Boolean {
 	/// <returns>Returns <paramref name="value"/>.</returns>
 	/// <exception cref="ArgumentException">Thrown when <paramref name="value"/> is not false.</exception>
 	public static bool False( this Argument _, bool value, [CallerArgumentExpression( nameof( value ) )] string? name = null, string? message = null )
-		=> value != false ? throw new ArgumentException( message ?? VALUE_MUST_BE_FALSE, name ) : true;
+		=> value != false ? throw new ArgumentException( message ?? VALUE_MUST_BE_FALSE, name ) : false;
 
 	/// <summary>
 	/// Validates <paramref name="value"/> is false -OR- ignores if null, otherwise an <see cref="ArgumentException"/> is thrown.

@@ -32,7 +32,11 @@ public sealed class Argument_Boolean_True {
 		bool value = false;
 		const string name = "Name";
 
-		_ = Assert.Throws<ArgumentException>( name, () => Argument.Is.True( value, name ) );
+		ArgumentException exception = Assert.Throws<ArgumentException>( name, () => Argument.Is.True( value, name ) );
+
+		const string expectedMessage = "Value must be true.";
+
+		Assert.StartsWith( expectedMessage, exception.Message );
 	}
 
 	[Fact]
@@ -71,7 +75,11 @@ public sealed class Argument_Boolean_True {
 
 		bool? value = false;
 
-		_ = Assert.Throws<ArgumentException>( nameof( value ), () => Argument.Is.True( value ) );
+		ArgumentException exception = Assert.Throws<ArgumentException>( nameof( value ), () => Argument.Is.True( value ) );
+
+		const string expectedMessage = "Value must be true.";
+
+		Assert.StartsWith( expectedMessage, exception.Message );
 	}
 
 	[Fact]
