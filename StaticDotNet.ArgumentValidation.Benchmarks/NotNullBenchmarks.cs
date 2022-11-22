@@ -12,7 +12,7 @@ public class NotNullBenchmarks {
 	[Benchmark(Baseline = true)]
 	public object Baseline()
 	{
-		return this.value ?? new ArgumentNullException( nameof( this.value ) );
+		return this.value ?? throw new ArgumentNullException( nameof( this.value ) );
 	}
 
 	[Benchmark]
