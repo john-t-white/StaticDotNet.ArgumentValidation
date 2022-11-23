@@ -3,7 +3,7 @@
 /// <summary>
 /// Validation methods for <see cref="string"/>.
 /// </summary>
-public static class Argument_String {
+public static class StringExtensions {
 
 	/// <summary>
 	/// Validates <paramref name="value"/> is not null, empty or white space, otherwise an <see cref="ArgumentNullException"/> or <see cref="ArgumentException"/> is thrown.

@@ -1,9 +1,9 @@
 ﻿namespace StaticDotNet.ArgumentValidation;
 
 /// <summary>
-/// Validation methods for <see cref="string"/>.
+/// Validation methods for <see cref="Array"/>.
 /// </summary>
-public static class Argument_Array {
+public static class ArrayExtensions {
 
 	/// <summary>
 	/// Validates <paramref name="value"/> is not null or empty, otherwise an <see cref="ArgumentNullException"/> or <see cref="ArgumentException"/> is thrown.

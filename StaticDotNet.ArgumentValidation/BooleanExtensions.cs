@@ -3,7 +3,7 @@
 /// <summary>
 /// Validation methods for <see cref="bool"/>.
 /// </summary>
-public static class Argument_Boolean {
+public static class BooleanExtensions {
 
 	/// <summary>
 	/// Validates <paramref name="value"/> is true, otherwise an <see cref="ArgumentException"/> is thrown.

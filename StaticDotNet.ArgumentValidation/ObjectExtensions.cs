@@ -1,9 +1,11 @@
-﻿namespace StaticDotNet.ArgumentValidation;
+﻿using System.Globalization;
+
+namespace StaticDotNet.ArgumentValidation;
 
 /// <summary>
 /// Validation methods for <see cref="object"/>.
 /// </summary>
-public static class Argument_Object {
+public static class ObjectExtensions {
 
 	/// <summary>
 	///  Validates <paramref name="value"/> is not null, otherwise an <see cref="ArgumentNullException"/> is thrown.
@@ -15,7 +17,9 @@ public static class Argument_Object {
 	/// <typeparam name="T">The type of <paramref name="value"/>.</typeparam>
 	/// <returns>Non null <paramref name="value"/>.</returns>
 	/// <exception cref="ArgumentNullException">Thrown when <paramref name="value"/> is null.</exception>
-	public static T NotNull<T>( this Argument _, [NotNull] T? value, [CallerArgumentExpression( nameof( value ) )] string? name = null, string? message = null ) {
+	[return: NotNull]
+	public static T NotNull<T>( this Argument _, [NotNull] T? value, [CallerArgumentExpression( nameof( value ) )] string? name = null, string? message = null )
+		where T : class {
 
 		if( value != null ) {
 			return value;
@@ -62,6 +66,7 @@ public static class Argument_Object {
 	/// <typeparam name="T">The type of <paramref name="value"/>.</typeparam>
 	/// <returns>null</returns>
 	/// <exception cref="ArgumentException">Thrown when <paramref name="value"/> is not null.</exception>
+	[return: MaybeNull]
 	public static T? Null<T>( this Argument _, T? value, [CallerArgumentExpression( nameof( value ) )] string? name = null, string? message = null )
 		=> value != null ? throw new ArgumentException( message ?? Constants.VALUE_MUST_BE_NULL, name ) : value;
 }

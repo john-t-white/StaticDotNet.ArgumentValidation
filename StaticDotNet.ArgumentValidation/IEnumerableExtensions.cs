@@ -6,7 +6,7 @@ namespace StaticDotNet.ArgumentValidation;
 /// <summary>
 /// Validation methods for <see cref="string"/>.
 /// </summary>
-public static class Argument_IEnumerable {
+public static class IEnumerableExtensions {
 
 	/// <summary>
 	/// Validates <paramref name="value"/> is not null or empty, otherwise an <see cref="ArgumentNullException"/> or <see cref="ArgumentException"/> is thrown.
@@ -18,8 +18,9 @@ public static class Argument_IEnumerable {
 	/// <returns>Returns <paramref name="value"/>.</returns>
 	/// <exception cref="ArgumentNullException">Thrown when <paramref name="value"/> is null.</exception>
 	/// <exception cref="ArgumentException">Thrown when <paramref name="value"/> is empty.</exception>
+	[return: NotNull]
 	public static T NotNullOrEmpty<T>( this Argument argument, [NotNull] T? value, [CallerArgumentExpression( nameof( value ) )] string? name = null, string? message = null )
-		where T : IEnumerable {
+		where T : class, IEnumerable {
 
 		_ = argument.NotNull( value, name, message );
 
