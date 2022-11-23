@@ -3,9 +3,9 @@
 namespace StaticDotNet.ArgumentValidation;
 
 /// <summary>
-/// Validation methods for <see cref="object"/>.
+/// Validation methods for checking null.
 /// </summary>
-public static class ObjectExtensions {
+public static class NullExtensions {
 
 	/// <summary>
 	///  Validates <paramref name="value"/> is not null, otherwise an <see cref="ArgumentNullException"/> is thrown.

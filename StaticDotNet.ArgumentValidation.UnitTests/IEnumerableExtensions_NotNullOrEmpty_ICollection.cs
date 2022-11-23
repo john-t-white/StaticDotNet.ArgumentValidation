@@ -1,29 +1,28 @@
-﻿using System.Collections;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 
 namespace StaticDotNet.ArgumentValidation.UnitTests;
 
-public sealed class IEnumerableExtensions_Array_NotNullOrEmpty {
+public sealed class IEnumerableExtensions_NotNullOrEmpty_ICollection {
 
 	[Fact]
 	public void WithValueReturnsCorrectly() {
-		IEnumerable value = new string[] { "Value" };
+		ICollection<string> value = new Collection<string>() { "Value" };
 
-		IEnumerable result = Argument.Is.NotNullOrEmpty( value );
+		ICollection<string> result = Argument.Is.NotNullOrEmpty( value );
 
 		Assert.Same( value, result );
 	}
 
 	[Fact]
 	public void WithNullValueThrowsArgumentNullException() {
-		IEnumerable? value = null;
+		ICollection<string>? value = null;
 
 		_ = Assert.Throws<ArgumentNullException>( nameof( value ), () => Argument.Is.NotNullOrEmpty( value ) );
 	}
 
 	[Fact]
 	public void WithEmptyValueThrowsArgumentException() {
-		IEnumerable value = Array.Empty<string>();
+		ICollection<string> value = new Collection<string>() { };
 
 		ArgumentException exception = Assert.Throws<ArgumentException>( nameof( value ), () => Argument.Is.NotNullOrEmpty( value ) );
 
@@ -34,7 +33,7 @@ public sealed class IEnumerableExtensions_Array_NotNullOrEmpty {
 
 	[Fact]
 	public void WithNullValueAndNameThrowsArgumentNullException() {
-		IEnumerable? value = null;
+		ICollection<string>? value = null;
 		const string name = "Name";
 
 		_ = Assert.Throws<ArgumentNullException>( name, () => Argument.Is.NotNullOrEmpty( value, name ) );
@@ -42,7 +41,7 @@ public sealed class IEnumerableExtensions_Array_NotNullOrEmpty {
 
 	[Fact]
 	public void WithNullValueAndMessageThrowsArgumentNullException() {
-		IEnumerable? value = null;
+		ICollection<string>? value = null;
 		const string message = "Message";
 
 		ArgumentNullException exception = Assert.Throws<ArgumentNullException>( nameof( value ), () => Argument.Is.NotNullOrEmpty( value, message: message ) );

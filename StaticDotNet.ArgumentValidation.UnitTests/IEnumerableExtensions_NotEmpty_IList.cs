@@ -1,30 +1,29 @@
-﻿using System.Collections.ObjectModel;
-
+﻿
 namespace StaticDotNet.ArgumentValidation.UnitTests;
 
-public sealed class IEnumerableExtensions_ICollection_NotEmpty {
+public sealed class IEnumerableExtensions_NotEmpty_IList {
 
 	[Fact]
 	public void WithValueReturnsCorrectly() {
-		ICollection<string> value = new Collection<string>() { "Value" };
+		IList<string> value = new List<string>() { "Value" };
 
-		ICollection<string> result = Argument.Is.NotEmpty( value );
+		IList<string> result = Argument.Is.NotEmpty( value );
 
 		Assert.Same( value, result );
 	}
 
 	[Fact]
-	public void WithNullValueThrowsArgumentNullException() {
-		ICollection<string>? value = null;
+	public void WithNullValueReturnsCorrectly() {
+		IList<string>? value = null;
 
-		ICollection<string>? result = Argument.Is.NotEmpty( value );
+		IList<string>? result = Argument.Is.NotEmpty( value );
 
 		Assert.Null( result );
 	}
 
 	[Fact]
 	public void WithEmptyValueThrowsArgumentException() {
-		ICollection<string> value = new Collection<string>() { };
+		IList<string> value = new List<string>() { };
 
 		ArgumentException exception = Assert.Throws<ArgumentException>( nameof( value ), () => Argument.Is.NotEmpty( value ) );
 
@@ -35,7 +34,7 @@ public sealed class IEnumerableExtensions_ICollection_NotEmpty {
 
 	[Fact]
 	public void WithNullValueAndNameThrowsArgumentException() {
-		ICollection<string> value = new Collection<string>() { };
+		IList<string> value = new List<string>() { };
 		const string name = "Name";
 
 		_ = Assert.Throws<ArgumentException>( name, () => Argument.Is.NotEmpty( value, name ) );
@@ -43,7 +42,7 @@ public sealed class IEnumerableExtensions_ICollection_NotEmpty {
 
 	[Fact]
 	public void WithNullValueAndMessageThrowsArgumentException() {
-		ICollection<string> value = new Collection<string>() { };
+		IList<string> value = new List<string>() { };
 		const string message = "Message";
 
 		ArgumentException exception = Assert.Throws<ArgumentException>( nameof( value ), () => Argument.Is.NotEmpty( value, message: message ) );

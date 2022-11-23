@@ -1,31 +1,30 @@
-﻿using System.Collections;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 
 namespace StaticDotNet.ArgumentValidation.UnitTests;
 
-public sealed class IEnumerableExtensions_Array_NotEmpty {
+public sealed class IEnumerableExtensions_NotEmpty_ICollection {
 
 	[Fact]
 	public void WithValueReturnsCorrectly() {
-		IEnumerable value = new string[] { "Value" };
+		ICollection<string> value = new Collection<string>() { "Value" };
 
-		IEnumerable result = Argument.Is.NotEmpty( value );
+		ICollection<string> result = Argument.Is.NotEmpty( value );
 
 		Assert.Same( value, result );
 	}
 
 	[Fact]
 	public void WithNullValueThrowsArgumentNullException() {
-		IEnumerable? value = null;
+		ICollection<string>? value = null;
 
-		IEnumerable? result = Argument.Is.NotEmpty( value );
+		ICollection<string>? result = Argument.Is.NotEmpty( value );
 
 		Assert.Null( result );
 	}
 
 	[Fact]
 	public void WithEmptyValueThrowsArgumentException() {
-		IEnumerable value = Array.Empty<string>();
+		ICollection<string> value = new Collection<string>() { };
 
 		ArgumentException exception = Assert.Throws<ArgumentException>( nameof( value ), () => Argument.Is.NotEmpty( value ) );
 
@@ -35,16 +34,16 @@ public sealed class IEnumerableExtensions_Array_NotEmpty {
 	}
 
 	[Fact]
-	public void WithEmptyValueAndNameThrowsArgumentException() {
-		IEnumerable? value = Array.Empty<string>();
+	public void WithNullValueAndNameThrowsArgumentException() {
+		ICollection<string> value = new Collection<string>() { };
 		const string name = "Name";
 
 		_ = Assert.Throws<ArgumentException>( name, () => Argument.Is.NotEmpty( value, name ) );
 	}
 
 	[Fact]
-	public void WithEmptyValueAndMessageThrowsArgumentException() {
-		IEnumerable? value = Array.Empty<string>();
+	public void WithNullValueAndMessageThrowsArgumentException() {
+		ICollection<string> value = new Collection<string>() { };
 		const string message = "Message";
 
 		ArgumentException exception = Assert.Throws<ArgumentException>( nameof( value ), () => Argument.Is.NotEmpty( value, message: message ) );

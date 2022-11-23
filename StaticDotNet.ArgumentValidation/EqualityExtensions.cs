@@ -3,7 +3,7 @@
 namespace StaticDotNet.ArgumentValidation;
 
 /// <summary>
-/// Validation methods for <see cref="object"/>.
+/// Validation methods for equality.
 /// </summary>
 public static class EqualityExtensions {
 
@@ -35,5 +35,5 @@ public static class EqualityExtensions {
 			? default
 			: comparisonValue != null && ( comparer ?? EqualityComparer<T>.Default ).Equals( value, comparisonValue )
 				? value
-				: throw new ArgumentOutOfRangeException( name, message ?? string.Format( CultureInfo.InvariantCulture, Constants.VALUE_MUST_BE_EQUAL_TO, comparisonValue?.ToString() ?? Constants.NULL ) );
+				: throw new ArgumentException( message ?? string.Format( CultureInfo.InvariantCulture, Constants.VALUE_MUST_BE_EQUAL_TO, comparisonValue?.ToString() ?? Constants.NULL ), name );
 }
