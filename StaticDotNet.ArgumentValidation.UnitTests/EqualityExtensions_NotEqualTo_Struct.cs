@@ -102,6 +102,19 @@ public sealed class EqualityExtensions_NotEqualTo_Struct {
 	}
 
 	[Fact]
+	public void WithValueAndNullComparisonValueThrowsArgumentException() {
+
+		int? value = 1;
+		int? comparisonValue = null;
+
+		ArgumentException exception = Assert.Throws<ArgumentException>( nameof( value ), () => Argument.Is.NotEqualTo( value, comparisonValue ) );
+
+		string expectedMessage = $"Value must not be equal to <null>.";
+
+		Assert.StartsWith( expectedMessage, exception.Message );
+	}
+
+	[Fact]
 	public void WithNullableNullValueReturnsCorrectly() {
 
 		int? value = null;

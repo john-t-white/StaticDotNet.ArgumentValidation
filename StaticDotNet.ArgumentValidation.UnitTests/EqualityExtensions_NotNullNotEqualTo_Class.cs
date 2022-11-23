@@ -40,6 +40,20 @@ public sealed class EqualityExtensions_NotNullNotEqualTo_Class {
 
 		_ = Assert.Throws<ArgumentNullException>( nameof(value), () => Argument.Is.NotNullNotEqualTo( value, comparisonValue ) );
 	}
+
+	[Fact]
+	public void WithValueAndNullComparisonValueThrowsArgumentException() {
+
+		string? value = "Value";
+		string comparisonValue = null!;
+
+		ArgumentException exception = Assert.Throws<ArgumentException>( nameof( value ), () => Argument.Is.NotNullNotEqualTo( value, comparisonValue ) );
+
+		string expectedMessage = $"Value must not be equal to <null>.";
+
+		Assert.StartsWith( expectedMessage, exception.Message );
+	}
+
 	[Fact]
 	public void WithValueEqualToComparisonValueAndNameThrowsArgumentException() {
 

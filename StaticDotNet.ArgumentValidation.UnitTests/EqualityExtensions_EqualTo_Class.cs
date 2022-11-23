@@ -32,6 +32,19 @@ public sealed class EqualityExtensions_EqualTo_Class {
 	}
 
 	[Fact]
+	public void WithValueAndNullComparisonValueThrowsArgumentException() {
+
+		string value = "Value";
+		string comparisonValue = null!;
+
+		ArgumentException exception = Assert.Throws<ArgumentException>( nameof( value ), () => Argument.Is.EqualTo( value, comparisonValue ) );
+
+		string expectedMessage = $"Value must be equal to <null>.";
+
+		Assert.StartsWith( expectedMessage, exception.Message );
+	}
+
+	[Fact]
 	public void WithValueNotEqualToComparisonValueAndNameThrowsArgumentException() {
 
 		string value = "Value";
@@ -97,6 +110,19 @@ public sealed class EqualityExtensions_EqualTo_Class {
 		ArgumentException exception = Assert.Throws<ArgumentException>( nameof( value ), () => Argument.Is.EqualTo( value, comparisonValue ) );
 
 		string expectedMessage = $"Value must be equal to {comparisonValue}.";
+
+		Assert.StartsWith( expectedMessage, exception.Message );
+	}
+
+	[Fact]
+	public void WithNullableValueAndNullComparisonValueThrowsArgumentException() {
+
+		string? value = "Value";
+		string comparisonValue = null!;
+
+		ArgumentException exception = Assert.Throws<ArgumentException>( nameof( value ), () => Argument.Is.EqualTo( value, comparisonValue ) );
+
+		string expectedMessage = $"Value must be equal to <null>.";
 
 		Assert.StartsWith( expectedMessage, exception.Message );
 	}

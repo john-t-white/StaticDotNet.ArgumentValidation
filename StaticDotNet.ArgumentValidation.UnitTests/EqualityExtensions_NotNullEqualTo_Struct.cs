@@ -40,6 +40,7 @@ public sealed class EqualityExtensions_NotNullEqualTo_Struct {
 
 		_ = Assert.Throws<ArgumentNullException>( nameof(value), () => Argument.Is.NotNullEqualTo( value, comparisonValue ) );
 	}
+
 	[Fact]
 	public void WithValueNotEqualToComparisonValueAndNameThrowsArgumentException() {
 
