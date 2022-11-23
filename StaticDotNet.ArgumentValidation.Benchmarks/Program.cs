@@ -13,4 +13,5 @@ using StaticDotNet.ArgumentValidation.Benchmarks;
 //_ = BenchmarkRunner.Run<NotNullOrEmptyICollectionBenchmarks>();
 //_ = BenchmarkRunner.Run<EqualToStructBenchmarks>();
 //_ = BenchmarkRunner.Run<NotNullEqualToStructBenchmarks>();
-_ = BenchmarkRunner.Run<NotNullNotEqualToStructBenchmarks>();
+//_ = BenchmarkRunner.Run<NotNullNotEqualToStructBenchmarks>();
+_ = BenchmarkRunner.Run<GreaterThanClassBenchmarks>();
