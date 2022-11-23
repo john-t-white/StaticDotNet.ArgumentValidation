@@ -19,7 +19,7 @@ public sealed class EqualityExtensions_EqualTo_Struct {
 	}
 
 	[Fact]
-	public void WithValueNotToComparisonValueThrowsArgumentException() {
+	public void WithValueNotEqualToComparisonValueThrowsArgumentException() {
 
 		int value = 1;
 		int comparisonValue = 2;
@@ -32,7 +32,7 @@ public sealed class EqualityExtensions_EqualTo_Struct {
 	}
 
 	[Fact]
-	public void WithValueNotToComparisonValueAndNameThrowsArgumentException() {
+	public void WithValueNotEqualToComparisonValueAndNameThrowsArgumentException() {
 
 		int value = 1;
 		int comparisonValue = 2;
@@ -42,7 +42,7 @@ public sealed class EqualityExtensions_EqualTo_Struct {
 	}
 
 	[Fact]
-	public void WithValueNotToComparisonValueAndMessageThrowsArgumentException() {
+	public void WithValueNotEqualToComparisonValueAndMessageThrowsArgumentException() {
 
 		int value = 1;
 		int comparisonValue = 2;
@@ -78,7 +78,7 @@ public sealed class EqualityExtensions_EqualTo_Struct {
 	}
 
 	[Fact]
-	public void WithNullableValueToComparisonValueReturnsCorrectly() {
+	public void WithNullableValueEqualToComparisonValueReturnsCorrectly() {
 
 		int? value = 1;
 		int comparisonValue = 1;
@@ -89,7 +89,7 @@ public sealed class EqualityExtensions_EqualTo_Struct {
 	}
 
 	[Fact]
-	public void WithNullableValueNotToComparisonValueThrowsArgumentException() {
+	public void WithNullableValueNotEqualToComparisonValueThrowsArgumentException() {
 
 		int? value = 1;
 		int comparisonValue = 2;
@@ -113,7 +113,7 @@ public sealed class EqualityExtensions_EqualTo_Struct {
 	}
 
 	[Fact]
-	public void WithNullableValueNotToComparisonValueAndNameThrowsArgumentException() {
+	public void WithNullableValueNotEqualToComparisonValueAndNameThrowsArgumentException() {
 
 		int? value = 1;
 		int comparisonValue = 2;
@@ -123,7 +123,7 @@ public sealed class EqualityExtensions_EqualTo_Struct {
 	}
 
 	[Fact]
-	public void WithNullableValueNotToComparisonValueAndMessageThrowsArgumentException() {
+	public void WithNullableValueNotEqualToComparisonValueAndMessageThrowsArgumentException() {
 
 		int? value = 1;
 		int comparisonValue = 2;

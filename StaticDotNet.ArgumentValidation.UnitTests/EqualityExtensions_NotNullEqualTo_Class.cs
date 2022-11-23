@@ -20,7 +20,7 @@ public sealed class EqualityExtensions_NotNullEqualTo_Class {
 	}
 
 	[Fact]
-	public void WithValueNotToComparisonValueThrowsArgumentException() {
+	public void WithValueNotEqualToComparisonValueThrowsArgumentException() {
 
 		string? value = "Value";
 		string comparisonValue = "Not Value";
@@ -41,7 +41,7 @@ public sealed class EqualityExtensions_NotNullEqualTo_Class {
 		_ = Assert.Throws<ArgumentNullException>( nameof(value), () => Argument.Is.NotNullEqualTo( value, comparisonValue ) );
 	}
 	[Fact]
-	public void WithValueNotToComparisonValueAndNameThrowsArgumentException() {
+	public void WithValueNotEqualToComparisonValueAndNameThrowsArgumentException() {
 
 		string? value = "Value";
 		string comparisonValue = "Not Value";
@@ -51,7 +51,7 @@ public sealed class EqualityExtensions_NotNullEqualTo_Class {
 	}
 
 	[Fact]
-	public void WithValueNotToComparisonValueAndMessageThrowsArgumentException() {
+	public void WithValueNotEqualToComparisonValueAndMessageThrowsArgumentException() {
 
 		string? value = "Value";
 		string comparisonValue = "Not Value";

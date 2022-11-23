@@ -20,7 +20,7 @@ public sealed class EqualityExtensions_NotNullEqualTo_Struct {
 	}
 
 	[Fact]
-	public void WithValueNotToComparisonValueThrowsArgumentException() {
+	public void WithValueNotEqualToComparisonValueThrowsArgumentException() {
 
 		int? value = 1;
 		int comparisonValue = 2;
@@ -41,7 +41,7 @@ public sealed class EqualityExtensions_NotNullEqualTo_Struct {
 		_ = Assert.Throws<ArgumentNullException>( nameof(value), () => Argument.Is.NotNullEqualTo( value, comparisonValue ) );
 	}
 	[Fact]
-	public void WithValueNotToComparisonValueAndNameThrowsArgumentException() {
+	public void WithValueNotEqualToComparisonValueAndNameThrowsArgumentException() {
 
 		int? value = 1;
 		int comparisonValue = 2;
@@ -51,7 +51,7 @@ public sealed class EqualityExtensions_NotNullEqualTo_Struct {
 	}
 
 	[Fact]
-	public void WithValueNotToComparisonValueAndMessageThrowsArgumentException() {
+	public void WithValueNotEqualToComparisonValueAndMessageThrowsArgumentException() {
 
 		int? value = 1;
 		int comparisonValue = 2;

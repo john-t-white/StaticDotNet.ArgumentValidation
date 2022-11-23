@@ -13,19 +13,13 @@ public class NotNullEqualToStructBenchmarks {
 	public int comparisonValue = 1;
 
 	[Benchmark( Baseline = true )]
-	public int Baseline() {
-		if( this.value == null ) {
-			throw new ArgumentNullException( nameof( this.value ) );
-		}
-
-		return this.value.Value == this.comparisonValue ? this.value.Value : throw new ArgumentException( string.Format( CultureInfo.InvariantCulture, "Value must be equal to {0}.", this.comparisonValue ), nameof( this.value ) );
-	}
+	public int Baseline() 
+		=> this.value == null
+			? throw new ArgumentNullException( nameof( this.value ) )
+			: this.value.Value == this.comparisonValue ? this.value.Value : throw new ArgumentException( string.Format( CultureInfo.InvariantCulture, "Value must be equal to {0}.", this.comparisonValue ), nameof( this.value ) );
 
 	[Benchmark]
-	public int Argument_Is() {
-
-		return Argument.Is.NotNullEqualTo( this.value, this.comparisonValue );
-	}
+	public int Argument_Is() => Argument.Is.NotNullEqualTo( this.value, this.comparisonValue );
 
 	[Benchmark]
 	public int Dawn_Guard() => Dawn.Guard.Argument( this.value ).NotNull().Equal( this.comparisonValue );
