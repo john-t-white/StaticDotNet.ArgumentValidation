@@ -8,14 +8,14 @@ namespace StaticDotNet.ArgumentValidation;
 public static class NullExtensions {
 
 	/// <summary>
-	///  Validates <paramref name="value"/> is not null, otherwise an <see cref="ArgumentNullException"/> is thrown.
+	/// Validates <paramref name="value"/> is not null, otherwise an <see cref="ArgumentNullException"/> is thrown.
 	/// </summary>
+	/// <typeparam name="T">The type of <paramref name="value"/>.</typeparam>
 	/// <param name="_">The <see cref="Argument"/>.</param>
 	/// <param name="value">The value of the argument.</param>
 	/// <param name="name">With C# 10, defaults to the expression of <paramref name="value"/>; otherwise specify the argument name.</param>
 	/// <param name="message">The exception message.  Null for for default message.</param>
-	/// <typeparam name="T">The type of <paramref name="value"/>.</typeparam>
-	/// <returns>Non null <paramref name="value"/>.</returns>
+	/// <returns>Returns <paramref name="value"/>.</returns>
 	/// <exception cref="ArgumentNullException">Thrown when <paramref name="value"/> is null.</exception>
 	[return: NotNull]
 	public static T NotNull<T>( this Argument _, [NotNull] T? value, [CallerArgumentExpression( nameof( value ) )] string? name = null, string? message = null )
@@ -40,7 +40,7 @@ public static class NullExtensions {
 	/// <param name="name">With C# 10, defaults to the expression of <paramref name="value"/>; otherwise specify the argument name.</param>
 	/// <param name="message">The exception message.  Null for for default message.</param>
 	/// <typeparam name="T">The type of <paramref name="value"/>.</typeparam>
-	/// <returns>Non null <paramref name="value"/>.</returns>
+	/// <returns>Returns <paramref name="value"/>.</returns>
 	/// <exception cref="ArgumentNullException">Thrown when <paramref name="value"/> is null.</exception>
 	public static T NotNull<T>( this Argument _, [NotNull] T? value, [CallerArgumentExpression( nameof( value ) )] string? name = null, string? message = null )
 		where T : struct {

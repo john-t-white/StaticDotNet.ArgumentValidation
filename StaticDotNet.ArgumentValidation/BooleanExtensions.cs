@@ -20,7 +20,7 @@ public static class BooleanExtensions {
 			: true;
 
 	/// <summary>
-	/// Validates <paramref name="value"/> is true -OR- ignores if null, otherwise an <see cref="ArgumentException"/> is thrown.
+	/// Validates <paramref name="value"/> is true, otherwise an <see cref="ArgumentException"/> is thrown.
 	/// </summary>
 	/// <param name="_">The <see cref="Argument"/>.</param>
 	/// <param name="value">The value of the argument.</param>
@@ -35,7 +35,7 @@ public static class BooleanExtensions {
 			: value;
 
 	/// <summary>
-	/// Validates <paramref name="value"/> is not null -AND- true, otherwise an <see cref="ArgumentNullException"/> -OR- <see cref="ArgumentException"/> is thrown.
+	/// Validates <paramref name="value"/> is not null and true, otherwise an <see cref="ArgumentNullException"/> -OR- <see cref="ArgumentException"/> is thrown.
 	/// </summary>
 	/// <param name="argument">The <see cref="Argument"/>.</param>
 	/// <param name="value">The value of the argument.</param>
@@ -62,7 +62,7 @@ public static class BooleanExtensions {
 			: false;
 
 	/// <summary>
-	/// Validates <paramref name="value"/> is false -OR- ignores if null, otherwise an <see cref="ArgumentException"/> is thrown.
+	/// Validates <paramref name="value"/> is false, otherwise an <see cref="ArgumentException"/> is thrown.
 	/// </summary>
 	/// <param name="_">The <see cref="Argument"/>.</param>
 	/// <param name="value">The value of the argument.</param>
@@ -77,7 +77,7 @@ public static class BooleanExtensions {
 			: value;
 
 	/// <summary>
-	/// Validates <paramref name="value"/> is not null -AND- false, otherwise an <see cref="ArgumentNullException"/> -OR- <see cref="ArgumentException"/> is thrown.
+	/// Validates <paramref name="value"/> is not null and false, otherwise an <see cref="ArgumentNullException"/> -OR- <see cref="ArgumentException"/> is thrown.
 	/// </summary>
 	/// <param name="argument">The <see cref="Argument"/>.</param>
 	/// <param name="value">The value of the argument.</param>
