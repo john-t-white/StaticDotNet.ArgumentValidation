@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace StaticDotNet.ArgumentValidation.UnitTests;
-public sealed class Argument_Object_EqualTo {
+public sealed class EqualityExtensions_EqualTo {
 
 	[Fact]
 	public void WithStructValueReturnsCorrectly() {

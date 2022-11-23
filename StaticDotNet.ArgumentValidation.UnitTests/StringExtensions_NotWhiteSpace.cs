@@ -1,6 +1,6 @@
 ﻿namespace StaticDotNet.ArgumentValidation.UnitTests;
 
-public sealed class Argument_String_NotWhiteSpace {
+public sealed class StringExtensions_NotWhiteSpace {
 
 	[Fact]
 	public void WithValueReturnsCorrectly() {

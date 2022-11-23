@@ -1,29 +1,26 @@
-﻿using System.Collections;
-using System.Collections.ObjectModel;
+﻿namespace StaticDotNet.ArgumentValidation.UnitTests;
 
-namespace StaticDotNet.ArgumentValidation.UnitTests;
-
-public sealed class Argument_IEnumerableArray_NotNullOrEmpty {
+public sealed class StringExtensions_NotNullOrEmpty {
 
 	[Fact]
 	public void WithValueReturnsCorrectly() {
-		IEnumerable value = new string[] { "Value" };
+		string value = "Value";
 
-		IEnumerable result = Argument.Is.NotNullOrEmpty( value );
+		string result = Argument.Is.NotNullOrEmpty( value );
 
-		Assert.Same( value, result );
+		Assert.Equal( value, result );
 	}
 
 	[Fact]
 	public void WithNullValueThrowsArgumentNullException() {
-		IEnumerable? value = null;
+		string? value = null;
 
 		_ = Assert.Throws<ArgumentNullException>( nameof( value ), () => Argument.Is.NotNullOrEmpty( value ) );
 	}
 
 	[Fact]
 	public void WithEmptyValueThrowsArgumentException() {
-		IEnumerable value = Array.Empty<string>();
+		string value = string.Empty;
 
 		ArgumentException exception = Assert.Throws<ArgumentException>( nameof( value ), () => Argument.Is.NotNullOrEmpty( value ) );
 
@@ -33,8 +30,17 @@ public sealed class Argument_IEnumerableArray_NotNullOrEmpty {
 	}
 
 	[Fact]
+	public void WithWhiteSpaceValueReturnsCorrectly() {
+		string value = " ";
+
+		string result = Argument.Is.NotNullOrEmpty( value );
+
+		Assert.Equal( value, result );
+	}
+
+	[Fact]
 	public void WithNullValueAndNameThrowsArgumentNullException() {
-		IEnumerable? value = null;
+		string? value = null;
 		const string name = "Name";
 
 		_ = Assert.Throws<ArgumentNullException>( name, () => Argument.Is.NotNullOrEmpty( value, name ) );
@@ -42,7 +48,7 @@ public sealed class Argument_IEnumerableArray_NotNullOrEmpty {
 
 	[Fact]
 	public void WithNullValueAndMessageThrowsArgumentNullException() {
-		IEnumerable? value = null;
+		string? value = null;
 		const string message = "Message";
 
 		ArgumentNullException exception = Assert.Throws<ArgumentNullException>( nameof( value ), () => Argument.Is.NotNullOrEmpty( value, message: message ) );

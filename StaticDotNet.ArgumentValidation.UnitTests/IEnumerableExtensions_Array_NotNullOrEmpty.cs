@@ -1,26 +1,29 @@
-﻿namespace StaticDotNet.ArgumentValidation.UnitTests;
+﻿using System.Collections;
+using System.Collections.ObjectModel;
 
-public sealed class Argument_String_NotNullOrEmpty {
+namespace StaticDotNet.ArgumentValidation.UnitTests;
+
+public sealed class IEnumerableExtensions_Array_NotNullOrEmpty {
 
 	[Fact]
 	public void WithValueReturnsCorrectly() {
-		string value = "Value";
+		IEnumerable value = new string[] { "Value" };
 
-		string result = Argument.Is.NotNullOrEmpty( value );
+		IEnumerable result = Argument.Is.NotNullOrEmpty( value );
 
-		Assert.Equal( value, result );
+		Assert.Same( value, result );
 	}
 
 	[Fact]
 	public void WithNullValueThrowsArgumentNullException() {
-		string? value = null;
+		IEnumerable? value = null;
 
 		_ = Assert.Throws<ArgumentNullException>( nameof( value ), () => Argument.Is.NotNullOrEmpty( value ) );
 	}
 
 	[Fact]
 	public void WithEmptyValueThrowsArgumentException() {
-		string value = string.Empty;
+		IEnumerable value = Array.Empty<string>();
 
 		ArgumentException exception = Assert.Throws<ArgumentException>( nameof( value ), () => Argument.Is.NotNullOrEmpty( value ) );
 
@@ -30,17 +33,8 @@ public sealed class Argument_String_NotNullOrEmpty {
 	}
 
 	[Fact]
-	public void WithWhiteSpaceValueReturnsCorrectly() {
-		string value = " ";
-
-		string result = Argument.Is.NotNullOrEmpty( value );
-
-		Assert.Equal( value, result );
-	}
-
-	[Fact]
 	public void WithNullValueAndNameThrowsArgumentNullException() {
-		string? value = null;
+		IEnumerable? value = null;
 		const string name = "Name";
 
 		_ = Assert.Throws<ArgumentNullException>( name, () => Argument.Is.NotNullOrEmpty( value, name ) );
@@ -48,7 +42,7 @@ public sealed class Argument_String_NotNullOrEmpty {
 
 	[Fact]
 	public void WithNullValueAndMessageThrowsArgumentNullException() {
-		string? value = null;
+		IEnumerable? value = null;
 		const string message = "Message";
 
 		ArgumentNullException exception = Assert.Throws<ArgumentNullException>( nameof( value ), () => Argument.Is.NotNullOrEmpty( value, message: message ) );

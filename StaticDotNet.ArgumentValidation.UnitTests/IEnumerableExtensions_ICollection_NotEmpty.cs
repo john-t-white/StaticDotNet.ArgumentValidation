@@ -1,28 +1,30 @@
-﻿namespace StaticDotNet.ArgumentValidation.UnitTests;
+﻿using System.Collections.ObjectModel;
 
-public sealed class Argument_String_NotEmpty {
+namespace StaticDotNet.ArgumentValidation.UnitTests;
+
+public sealed class IEnumerableExtensions_ICollection_NotEmpty {
 
 	[Fact]
 	public void WithValueReturnsCorrectly() {
-		string value = "Value";
+		ICollection<string> value = new Collection<string>() { "Value" };
 
-		string result = Argument.Is.NotEmpty( value );
+		ICollection<string> result = Argument.Is.NotEmpty( value );
 
-		Assert.Equal( value, result );
+		Assert.Same( value, result );
 	}
 
 	[Fact]
 	public void WithNullValueThrowsArgumentNullException() {
-		string? value = null;
+		ICollection<string>? value = null;
 
-		string? result = Argument.Is.NotEmpty( value );
+		ICollection<string>? result = Argument.Is.NotEmpty( value );
 
-		Assert.Equal( value, result );
+		Assert.Null( result );
 	}
 
 	[Fact]
 	public void WithEmptyValueThrowsArgumentException() {
-		string value = string.Empty;
+		ICollection<string> value = new Collection<string>() { };
 
 		ArgumentException exception = Assert.Throws<ArgumentException>( nameof( value ), () => Argument.Is.NotEmpty( value ) );
 
@@ -32,25 +34,16 @@ public sealed class Argument_String_NotEmpty {
 	}
 
 	[Fact]
-	public void WithWhiteSpaceValueReturnsCorrectly() {
-		string value = " ";
-
-		string result = Argument.Is.NotEmpty( value );
-
-		Assert.Equal( value, result );
-	}
-
-	[Fact]
-	public void WithEmptyValueAndNameThrowsArgumentException() {
-		string value = string.Empty;
+	public void WithNullValueAndNameThrowsArgumentException() {
+		ICollection<string> value = new Collection<string>() { };
 		const string name = "Name";
 
 		_ = Assert.Throws<ArgumentException>( name, () => Argument.Is.NotEmpty( value, name ) );
 	}
 
 	[Fact]
-	public void WithEmptyValueAndMessageThrowsArgumentException() {
-		string value = string.Empty;
+	public void WithNullValueAndMessageThrowsArgumentException() {
+		ICollection<string> value = new Collection<string>() { };
 		const string message = "Message";
 
 		ArgumentException exception = Assert.Throws<ArgumentException>( nameof( value ), () => Argument.Is.NotEmpty( value, message: message ) );

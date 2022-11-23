@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace StaticDotNet.ArgumentValidation.UnitTests;
-public sealed class Argument_Boolean_True {
+public sealed class BooleanExtensions_True {
 
 	[Fact]
 	public void WithTrueValueReturnsCorrectly() {

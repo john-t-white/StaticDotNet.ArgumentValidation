@@ -1,6 +1,6 @@
 ﻿namespace StaticDotNet.ArgumentValidation.UnitTests;
 
-public sealed class Argument_Array_NotNullOrEmpty {
+public sealed class ArrayExtensions_NotNullOrEmpty {
 
 	[Fact]
 	public void WithValueReturnsCorrectly() {

@@ -1,7 +1,7 @@
 ﻿
 namespace StaticDotNet.ArgumentValidation.UnitTests;
 
-public sealed class Argument_IList_NotEmpty {
+public sealed class IEnumerableExtensions_IList_NotEmpty {
 
 	[Fact]
 	public void WithValueReturnsCorrectly() {

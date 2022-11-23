@@ -1,6 +1,6 @@
 ﻿namespace StaticDotNet.ArgumentValidation.UnitTests;
 
-public sealed class Argument_Object_Null {
+public sealed class ObjectExtensions_Null {
 
 	[Fact]
 	public void WithNullValueReturnsCorrectly() {

@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace StaticDotNet.ArgumentValidation.UnitTests;
-public sealed class Argument_Boolean_NotNullFalse {
+public sealed class BooleanExtensions_NotNullFalse {
 
 	[Fact]
 	public void WithNullableFalseValueReturnsCorrectly() {

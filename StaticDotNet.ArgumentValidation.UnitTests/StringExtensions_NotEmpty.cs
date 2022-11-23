@@ -1,31 +1,28 @@
-﻿using System.Collections;
-using System.Collections.ObjectModel;
+﻿namespace StaticDotNet.ArgumentValidation.UnitTests;
 
-namespace StaticDotNet.ArgumentValidation.UnitTests;
-
-public sealed class Argument_IEnumerableArray_NotEmpty {
+public sealed class StringExtensions_NotEmpty {
 
 	[Fact]
 	public void WithValueReturnsCorrectly() {
-		IEnumerable value = new string[] { "Value" };
+		string value = "Value";
 
-		IEnumerable result = Argument.Is.NotEmpty( value );
+		string result = Argument.Is.NotEmpty( value );
 
-		Assert.Same( value, result );
+		Assert.Equal( value, result );
 	}
 
 	[Fact]
 	public void WithNullValueThrowsArgumentNullException() {
-		IEnumerable? value = null;
+		string? value = null;
 
-		IEnumerable? result = Argument.Is.NotEmpty( value );
+		string? result = Argument.Is.NotEmpty( value );
 
-		Assert.Null( result );
+		Assert.Equal( value, result );
 	}
 
 	[Fact]
 	public void WithEmptyValueThrowsArgumentException() {
-		IEnumerable value = Array.Empty<string>();
+		string value = string.Empty;
 
 		ArgumentException exception = Assert.Throws<ArgumentException>( nameof( value ), () => Argument.Is.NotEmpty( value ) );
 
@@ -35,8 +32,17 @@ public sealed class Argument_IEnumerableArray_NotEmpty {
 	}
 
 	[Fact]
+	public void WithWhiteSpaceValueReturnsCorrectly() {
+		string value = " ";
+
+		string result = Argument.Is.NotEmpty( value );
+
+		Assert.Equal( value, result );
+	}
+
+	[Fact]
 	public void WithEmptyValueAndNameThrowsArgumentException() {
-		IEnumerable? value = Array.Empty<string>();
+		string value = string.Empty;
 		const string name = "Name";
 
 		_ = Assert.Throws<ArgumentException>( name, () => Argument.Is.NotEmpty( value, name ) );
@@ -44,7 +50,7 @@ public sealed class Argument_IEnumerableArray_NotEmpty {
 
 	[Fact]
 	public void WithEmptyValueAndMessageThrowsArgumentException() {
-		IEnumerable? value = Array.Empty<string>();
+		string value = string.Empty;
 		const string message = "Message";
 
 		ArgumentException exception = Assert.Throws<ArgumentException>( nameof( value ), () => Argument.Is.NotEmpty( value, message: message ) );

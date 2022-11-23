@@ -2,7 +2,7 @@
 
 namespace StaticDotNet.ArgumentValidation.UnitTests;
 
-public sealed class Argument_ICollection_NotNullOrEmpty {
+public sealed class IEnumerableExtensions_ICollection_NotNullOrEmpty {
 
 	[Fact]
 	public void WithValueReturnsCorrectly() {
