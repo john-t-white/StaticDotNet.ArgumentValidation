@@ -20,6 +20,8 @@ internal class Constants {
 
 	internal const string VALUE_MUST_BE_GREATER_THAN = "Value must be greater than {0}.";
 
+	internal const string VALUE_MUST_BE_GREATER_THAN_OR_EQUAL_TO = "Value must be greater than or equal to {0}.";
+
 	internal const string VALUE_MUST_BE_NULL = "Value must be null.";
 
 	internal const string VALUE_MUST_BE_TRUE = "Value must be true.";
