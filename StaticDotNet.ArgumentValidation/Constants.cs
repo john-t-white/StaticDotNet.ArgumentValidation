@@ -14,6 +14,8 @@ internal class Constants {
 
 	internal const string VALUE_CANNOT_BE_WHITE_SPACE = "Value cannot be white space.";
 
+	internal const string VALUE_MUST_BE_BETWEEN = "Value must be between {0} and {1}.";
+
 	internal const string VALUE_MUST_BE_EQUAL_TO = "Value must be equal to {0}.";
 
 	internal const string VALUE_MUST_BE_FALSE = "Value must be false.";
