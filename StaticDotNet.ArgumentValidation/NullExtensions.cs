@@ -18,18 +18,15 @@ public static class NullExtensions {
 	/// <returns>Returns <paramref name="value"/>.</returns>
 	/// <exception cref="ArgumentNullException">Thrown when <paramref name="value"/> is null.</exception>
 	[return: NotNull]
-	public static T NotNull<T>( this Argument _, [NotNull] T? value, [CallerArgumentExpression( nameof( value ) )] string? name = null, string? message = null )
-		where T : class {
+	public static T NotNull<T>( this Argument _, [NotNull] T? value, [CallerArgumentExpression( nameof( value ) )] string? name = null, string? message = null ) {
 
 		if( value != null ) {
 			return value;
 		}
 
-		ArgumentNullException exception = message == null
+		throw message == null
 			? new ArgumentNullException( name )
 			: new ArgumentNullException( name, message );
-
-		throw exception;
 	}
 
 	/// <summary>
@@ -49,11 +46,9 @@ public static class NullExtensions {
 			return value.Value;
 		}
 
-		ArgumentNullException exception = message == null
+		throw message == null
 			? new ArgumentNullException( name )
 			: new ArgumentNullException( name, message );
-
-		throw exception;
 	}
 
 	/// <summary>

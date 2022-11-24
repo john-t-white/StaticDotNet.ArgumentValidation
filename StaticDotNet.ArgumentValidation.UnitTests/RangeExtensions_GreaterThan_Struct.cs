@@ -33,19 +33,6 @@ public sealed class RangeExtensions_GreaterThan_Struct {
 	}
 
 	[Fact]
-	public void WithValueAndNullComparisonValueThrowsArgumentOutOfRangeException() {
-
-		int value = 1;
-		int? comparisonValue = null;
-
-		ArgumentException exception = Assert.Throws<ArgumentOutOfRangeException>( nameof( value ), () => Argument.Is.GreaterThan( value, comparisonValue ) );
-
-		string expectedMessage = $"Value must be greater than <null>.";
-
-		Assert.StartsWith( expectedMessage, exception.Message );
-	}
-
-	[Fact]
 	public void WithValueNotGreaterThanComparisonValueAndNameThrowsArgumentOutOfRangeException() {
 
 		int value = 2;
@@ -112,19 +99,6 @@ public sealed class RangeExtensions_GreaterThan_Struct {
 		ArgumentOutOfRangeException exception = Assert.Throws<ArgumentOutOfRangeException>( nameof( value ), () => Argument.Is.GreaterThan( value, comparisonValue ) );
 
 		string expectedMessage = $"Value must be greater than {comparisonValue}.";
-
-		Assert.StartsWith( expectedMessage, exception.Message );
-	}
-
-	[Fact]
-	public void WithNullableValueAndNullComparisonValueThrowsArgumentOutOfRangeException() {
-
-		int? value = 1;
-		int? comparisonValue = null;
-
-		ArgumentOutOfRangeException exception = Assert.Throws<ArgumentOutOfRangeException>( nameof( value ), () => Argument.Is.GreaterThan( value, comparisonValue ) );
-
-		string expectedMessage = $"Value must be greater than <null>.";
 
 		Assert.StartsWith( expectedMessage, exception.Message );
 	}
