@@ -33,19 +33,6 @@ public sealed class RangeExtensions_LessThanOrEqualTo_Struct {
 	}
 
 	[Fact]
-	public void WithValueAndNullComparisonValueThrowsArgumentOutOfRangeException() {
-
-		int value = 1;
-		int? comparisonValue = null;
-
-		ArgumentException exception = Assert.Throws<ArgumentOutOfRangeException>( nameof( value ), () => Argument.Is.LessThanOrEqualTo( value, comparisonValue ) );
-
-		string expectedMessage = $"Value must be less than or equal to <null>.";
-
-		Assert.StartsWith( expectedMessage, exception.Message );
-	}
-
-	[Fact]
 	public void WithValueNotLessThanOrEqualToComparisonValueAndNameThrowsArgumentOutOfRangeException() {
 
 		int value = 3;
@@ -112,19 +99,6 @@ public sealed class RangeExtensions_LessThanOrEqualTo_Struct {
 		ArgumentOutOfRangeException exception = Assert.Throws<ArgumentOutOfRangeException>( nameof( value ), () => Argument.Is.LessThanOrEqualTo( value, comparisonValue ) );
 
 		string expectedMessage = $"Value must be less than or equal to {comparisonValue}.";
-
-		Assert.StartsWith( expectedMessage, exception.Message );
-	}
-
-	[Fact]
-	public void WithNullableValueAndNullComparisonValueThrowsArgumentOutOfRangeException() {
-
-		int? value = 1;
-		int? comparisonValue = null;
-
-		ArgumentOutOfRangeException exception = Assert.Throws<ArgumentOutOfRangeException>( nameof( value ), () => Argument.Is.LessThanOrEqualTo( value, comparisonValue ) );
-
-		string expectedMessage = $"Value must be less than or equal to <null>.";
 
 		Assert.StartsWith( expectedMessage, exception.Message );
 	}
