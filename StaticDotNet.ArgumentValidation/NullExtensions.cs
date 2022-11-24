@@ -18,16 +18,12 @@ public static class NullExtensions {
 	/// <returns>Returns <paramref name="value"/>.</returns>
 	/// <exception cref="ArgumentNullException">Thrown when <paramref name="value"/> is null.</exception>
 	[return: NotNull]
-	public static T NotNull<T>( this Argument _, [NotNull] T? value, [CallerArgumentExpression( nameof( value ) )] string? name = null, string? message = null ) {
-
-		if( value != null ) {
-			return value;
-		}
-
-		throw message == null
-			? new ArgumentNullException( name )
-			: new ArgumentNullException( name, message );
-	}
+	public static T NotNull<T>( this Argument _, [NotNull] T? value, [CallerArgumentExpression( nameof( value ) )] string? name = null, string? message = null )
+		=> value != null
+			? value
+			: throw ( message == null
+				? new ArgumentNullException( name )
+				: new ArgumentNullException( name, message ) );
 
 	/// <summary>
 	///  Validates <paramref name="value"/> is not null, otherwise an <see cref="ArgumentNullException"/> is thrown.
@@ -40,16 +36,12 @@ public static class NullExtensions {
 	/// <returns>Returns <paramref name="value"/>.</returns>
 	/// <exception cref="ArgumentNullException">Thrown when <paramref name="value"/> is null.</exception>
 	public static T NotNull<T>( this Argument _, [NotNull] T? value, [CallerArgumentExpression( nameof( value ) )] string? name = null, string? message = null )
-		where T : struct {
-
-		if( value != null ) {
-			return value.Value;
-		}
-
-		throw message == null
-			? new ArgumentNullException( name )
-			: new ArgumentNullException( name, message );
-	}
+		where T : struct
+		=> value != null
+			? value.Value
+			: throw ( message == null
+				? new ArgumentNullException( name )
+				: new ArgumentNullException( name, message ) );
 
 	/// <summary>
 	///  Validates <paramref name="value"/> is not null, otherwise an <see cref="ArgumentNullException"/> is thrown.
