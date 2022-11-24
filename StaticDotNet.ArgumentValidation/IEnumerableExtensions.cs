@@ -20,12 +20,8 @@ public static class IEnumerableExtensions {
 	/// <exception cref="ArgumentException">Thrown when <paramref name="value"/> is empty.</exception>
 	[return: NotNull]
 	public static T NotNullOrEmpty<T>( this Argument argument, [NotNull] T? value, [CallerArgumentExpression( nameof( value ) )] string? name = null, string? message = null )
-		where T : class, IEnumerable {
-
-		_ = argument.NotNull( value, name, message );
-
-		return ValidateIfEmpty( value, name, message );
-	}
+		where T : class, IEnumerable
+		=> ValidateIfEmpty( argument.NotNull( value, name, message ), name, message );
 
 	/// <summary>
 	/// Validates <paramref name="value"/> is null or empty, otherwise an <see cref="ArgumentException"/> is thrown.
