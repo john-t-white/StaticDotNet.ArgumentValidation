@@ -21,4 +21,8 @@ public class BetweenStructBenchmarks {
 
 	[Benchmark]
 	public int Dawn_Guard() => Dawn.Guard.Argument( this.value ).InRange( this.minValue, this.maxValue );
+
+
+	[Benchmark]
+	public int Ardalis_Guard() => Ardalis.GuardClauses.Guard.Against.OutOfRange( this.value, nameof( this.value ), this.minValue, this.maxValue );
 }

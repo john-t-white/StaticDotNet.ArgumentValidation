@@ -37,34 +37,6 @@ public sealed class RangeExtensions_Between_Struct {
 	}
 
 	[Fact]
-	public void WithValueAndNullMinValueThrowsArgumentOutOfRangeException() {
-
-		int value = 1;
-		int? minValue = null;
-		int? maxValue = 3;
-
-		ArgumentException exception = Assert.Throws<ArgumentOutOfRangeException>( nameof( value ), () => Argument.Is.Between( value, minValue, maxValue ) );
-
-		string expectedMessage = $"Value must be between <null> and {maxValue}.";
-
-		Assert.StartsWith( expectedMessage, exception.Message );
-	}
-
-	[Fact]
-	public void WithValueAndNullMaxValueThrowsArgumentOutOfRangeException() {
-
-		int value = 1;
-		int? minValue = 1;
-		int? maxValue = null;
-
-		ArgumentException exception = Assert.Throws<ArgumentOutOfRangeException>( nameof( value ), () => Argument.Is.Between( value, minValue, maxValue ) );
-
-		string expectedMessage = $"Value must be between {minValue} and <null>.";
-
-		Assert.StartsWith( expectedMessage, exception.Message );
-	}
-
-	[Fact]
 	public void WithValueNotBetweenMinValueAndMaxValueAndNameThrowsArgumentOutOfRangeException() {
 
 		int value = 0;
@@ -139,34 +111,6 @@ public sealed class RangeExtensions_Between_Struct {
 		ArgumentOutOfRangeException exception = Assert.Throws<ArgumentOutOfRangeException>( nameof( value ), () => Argument.Is.Between( value, minValue, maxValue ) );
 
 		string expectedMessage = $"Value must be between {minValue} and {maxValue}.";
-
-		Assert.StartsWith( expectedMessage, exception.Message );
-	}
-
-	[Fact]
-	public void WithNullableValueAndNullMinValueThrowsArgumentOutOfRangeException() {
-
-		int? value = 1;
-		int? minValue = null;
-		int maxValue = 3;
-
-		ArgumentOutOfRangeException exception = Assert.Throws<ArgumentOutOfRangeException>( nameof( value ), () => Argument.Is.Between( value, minValue, maxValue ) );
-
-		string expectedMessage = $"Value must be between <null> and {maxValue}.";
-
-		Assert.StartsWith( expectedMessage, exception.Message );
-	}
-
-	[Fact]
-	public void WithNullableValueAndNullMaxValueThrowsArgumentOutOfRangeException() {
-
-		int? value = 1;
-		int minValue = 1;
-		int? maxValue = null;
-
-		ArgumentOutOfRangeException exception = Assert.Throws<ArgumentOutOfRangeException>( nameof( value ), () => Argument.Is.Between( value, minValue, maxValue ) );
-
-		string expectedMessage = $"Value must be between {minValue} and <null>.";
 
 		Assert.StartsWith( expectedMessage, exception.Message );
 	}

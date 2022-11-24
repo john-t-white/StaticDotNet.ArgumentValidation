@@ -1,7 +1,7 @@
 ﻿using BenchmarkDotNet.Running;
 using StaticDotNet.ArgumentValidation.Benchmarks;
 
-_ = BenchmarkRunner.Run<NotNullClassBenchmarks>();
+//_ = BenchmarkRunner.Run<NotNullClassBenchmarks>();
 //_ = BenchmarkRunner.Run<NotNullStructBenchmarks>();
 //_ = BenchmarkRunner.Run<NullBenchmarks>();
 //_ = BenchmarkRunner.Run<TrueBenchmarks>();
@@ -17,4 +17,4 @@ _ = BenchmarkRunner.Run<NotNullClassBenchmarks>();
 //_ = BenchmarkRunner.Run<NotNullNotEqualToStructBenchmarks>();
 //_ = BenchmarkRunner.Run<GreaterThanClassBenchmarks>();
 //_ = BenchmarkRunner.Run<GreaterThanStructBenchmarks>();
-//_ = BenchmarkRunner.Run<BetweenStructBenchmarks>();
+_ = BenchmarkRunner.Run<BetweenStructBenchmarks>();
