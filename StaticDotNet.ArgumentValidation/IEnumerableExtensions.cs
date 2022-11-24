@@ -51,6 +51,10 @@ public static class IEnumerableExtensions {
 					? throw new ArgumentException( message ?? Constants.VALUE_CANNOT_BE_EMPTY, name )
 					: value,
 
+				IDictionary dictionaryValue => dictionaryValue.Count == 0
+					? throw new ArgumentException( message ?? Constants.VALUE_CANNOT_BE_EMPTY, name )
+					: value,
+
 				IList listValue => listValue.Count == 0
 					? throw new ArgumentException( message ?? Constants.VALUE_CANNOT_BE_EMPTY, name )
 					: value,
