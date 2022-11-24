@@ -30,7 +30,11 @@ internal class Constants {
 
 	internal const string VALUE_MUST_BE_NULL = "Value must be null.";
 
+	internal const string VALUE_MUST_BE_READABLE = "Value must be readable.";
+
 	internal const string VALUE_MUST_BE_TRUE = "Value must be true.";
+
+	internal const string VALUE_MUST_BE_WRITEABLE = "Value must be writable.";
 
 	internal const string VALUE_MUST_NOT_BE_EQUAL_TO = "Value must not be equal to {0}.";
 }
