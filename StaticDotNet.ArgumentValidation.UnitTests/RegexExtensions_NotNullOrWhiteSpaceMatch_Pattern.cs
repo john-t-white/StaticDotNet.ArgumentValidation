@@ -69,6 +69,28 @@ public class RegexExtensions_NotNullOrWhiteSpaceMatch_Pattern {
 	}
 
 	[Fact]
+	public void WithValueNotMatchAndNameThrowsArgumentException() {
+
+		string value = "a";
+		string pattern = @"\d";
+		string name = "Name";
+
+		_ = Assert.Throws<ArgumentException>( name, () => Argument.Is.NotNullOrWhiteSpaceMatch( value, pattern, name ) );
+	}
+
+	[Fact]
+	public void WithValueNotMatchAndMessageThrowsArgumentException() {
+
+		string value = "a";
+		string pattern = @"\d";
+		string message = "Message";
+
+		ArgumentException exception = Assert.Throws<ArgumentException>( nameof( value ), () => Argument.Is.NotNullOrWhiteSpaceMatch( value, pattern, message: message ) );
+
+		Assert.StartsWith( message, exception.Message );
+	}
+
+	[Fact]
 	public void WithValueAndOutMatchAndOutMatchReturnsCorrectly() {
 
 		string? value = "1";
@@ -131,5 +153,27 @@ public class RegexExtensions_NotNullOrWhiteSpaceMatch_Pattern {
 		string expectedMessage = $"Value must match the regex <null>.";
 
 		Assert.StartsWith( expectedMessage, exception.Message );
+	}
+
+	[Fact]
+	public void WithValueNotMatchAndNameAndOutMatchThrowsArgumentException() {
+
+		string value = "a";
+		string pattern = @"\d";
+		string name = "Name";
+
+		_ = Assert.Throws<ArgumentException>( name, () => Argument.Is.NotNullOrWhiteSpaceMatch( value, pattern, out Match _, name ) );
+	}
+
+	[Fact]
+	public void WithValueNotMatchAndMessageAndOutMatchThrowsArgumentException() {
+
+		string value = "a";
+		string pattern = @"\d";
+		string message = "Message";
+
+		ArgumentException exception = Assert.Throws<ArgumentException>( nameof( value ), () => Argument.Is.NotNullOrWhiteSpaceMatch( value, pattern, out Match _, message: message ) );
+
+		Assert.StartsWith( message, exception.Message );
 	}
 }
