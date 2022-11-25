@@ -33,4 +33,26 @@ public sealed class StreamExtensions_Readable {
 
 		Assert.StartsWith( expectedMessage, exception.Message );
 	}
+
+	[Fact]
+	public void WithNonReadableValueAndNameThrowsArgumentException() {
+		Stream? value = Substitute.For<Stream>();
+		_ = value.CanRead.Returns( false );
+
+		string name = "Name";
+
+		_ = Assert.Throws<ArgumentException>( name, () => Argument.Is.Readable( value, name ) );
+	}
+
+	[Fact]
+	public void WithNonReadableValueAndMessageThrowsArgumentException() {
+		Stream? value = Substitute.For<Stream>();
+		_ = value.CanRead.Returns( false );
+
+		string message = "Message";
+
+		ArgumentException exception = Assert.Throws<ArgumentException>( nameof( value ), () => Argument.Is.Readable( value, message: message ) );
+
+		Assert.StartsWith( message, exception.Message );
+	}
 }

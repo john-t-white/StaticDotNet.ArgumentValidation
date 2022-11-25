@@ -38,7 +38,7 @@ public static partial class RegexExtensions {
 			? null
 			: pattern != null && Regex.IsMatch( value, pattern )
 				? value
-				: throw new ArgumentException( message ?? string.Format( CultureInfo.InvariantCulture, Constants.VALUE_MUST_NOT_BE_NULL_AND_MATCH, pattern ?? Constants.NULL ), name );
+				: throw new ArgumentException( message ?? string.Format( CultureInfo.InvariantCulture, Constants.VALUE_MUST_MATCH_REGEX, pattern ?? Constants.NULL ), name );
 
 	/// <summary>
 	/// Validates <paramref name="value"/> is not null, empty, white space and matches <paramref name="pattern"/>, otherwise an <see cref="ArgumentNullException"/> or <see cref="ArgumentException"/> is thrown.
@@ -80,7 +80,7 @@ public static partial class RegexExtensions {
 
 		return match.Success
 			? value
-			: throw new ArgumentException( message ?? string.Format( CultureInfo.InvariantCulture, Constants.VALUE_MUST_NOT_BE_NULL_AND_MATCH, pattern ?? Constants.NULL ), name );
+			: throw new ArgumentException( message ?? string.Format( CultureInfo.InvariantCulture, Constants.VALUE_MUST_MATCH_REGEX, pattern ?? Constants.NULL ), name );
 	}
 
 	/// <summary>
@@ -113,7 +113,7 @@ public static partial class RegexExtensions {
 			? null
 			: regex?.IsMatch( value ) == true
 				? value
-				: throw new ArgumentException( message ?? string.Format( CultureInfo.InvariantCulture, Constants.VALUE_MUST_NOT_BE_NULL_AND_MATCH, regex?.ToString() ?? Constants.NULL ), name );
+				: throw new ArgumentException( message ?? string.Format( CultureInfo.InvariantCulture, Constants.VALUE_MUST_MATCH_REGEX, regex?.ToString() ?? Constants.NULL ), name );
 
 	/// <summary>
 	/// Validates <paramref name="value"/> is not null, empty, white space and matches <paramref name="regex"/>, otherwise an <see cref="ArgumentNullException"/> or <see cref="ArgumentException"/> is thrown.
@@ -153,6 +153,6 @@ public static partial class RegexExtensions {
 
 		return match.Success
 			? value
-			: throw new ArgumentException( message ?? string.Format( CultureInfo.InvariantCulture, Constants.VALUE_MUST_NOT_BE_NULL_AND_MATCH, regex?.ToString() ?? Constants.NULL ), name );
+			: throw new ArgumentException( message ?? string.Format( CultureInfo.InvariantCulture, Constants.VALUE_MUST_MATCH_REGEX, regex?.ToString() ?? Constants.NULL ), name );
 	}
 }

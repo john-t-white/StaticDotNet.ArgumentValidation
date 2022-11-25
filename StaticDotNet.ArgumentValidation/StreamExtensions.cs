@@ -39,7 +39,7 @@ public static class StreamExtensions {
 	public static T? Readable<T>( this Argument _, T? value, [CallerArgumentExpression( nameof( value ) )] string? name = null, string? message = null )
 		where T : Stream
 			=> value?.CanRead == false
-				? throw new ArgumentException( Constants.VALUE_MUST_BE_READABLE, name )
+				? throw new ArgumentException( message ?? Constants.VALUE_MUST_BE_READABLE, name )
 				: value;
 
 	/// <summary>
@@ -70,7 +70,7 @@ public static class StreamExtensions {
 	public static T? Writeable<T>( this Argument _, T? value, [CallerArgumentExpression( nameof( value ) )] string? name = null, string? message = null )
 		where T : Stream
 			=> value?.CanWrite == false
-				? throw new ArgumentException( Constants.VALUE_MUST_BE_WRITEABLE, name )
+				? throw new ArgumentException( message ?? Constants.VALUE_MUST_BE_WRITEABLE, name )
 				: value;
 }
 
