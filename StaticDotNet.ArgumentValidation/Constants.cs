@@ -37,4 +37,6 @@ internal class Constants {
 	internal const string VALUE_MUST_BE_WRITEABLE = "Value must be writable.";
 
 	internal const string VALUE_MUST_NOT_BE_EQUAL_TO = "Value must not be equal to {0}.";
+
+	internal const string VALUE_MUST_NOT_BE_NULL_AND_MATCH = "Value must not be null and match the regular expression {0}.";
 }

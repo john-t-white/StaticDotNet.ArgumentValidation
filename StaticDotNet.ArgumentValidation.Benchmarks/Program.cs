@@ -17,4 +17,5 @@ using StaticDotNet.ArgumentValidation.Benchmarks;
 //_ = BenchmarkRunner.Run<NotNullNotEqualToStructBenchmarks>();
 //_ = BenchmarkRunner.Run<GreaterThanClassBenchmarks>();
 //_ = BenchmarkRunner.Run<GreaterThanStructBenchmarks>();
-_ = BenchmarkRunner.Run<BetweenStructBenchmarks>();
+//_ = BenchmarkRunner.Run<BetweenStructBenchmarks>();
+_ = BenchmarkRunner.Run<RegexBenchmarks>();
