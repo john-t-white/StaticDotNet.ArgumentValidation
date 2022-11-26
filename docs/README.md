@@ -1,6 +1,6 @@
 # Why should I use this
 
-StaticDotNet.ArgumentValiation is a guard library with performance and ease of use in mind.  Guard clauses should be clean and focus on performance when exceptions don't happen. In a perfect application, which we all know developers write 100% of the time, guard clauses take up CPU time, which is why they should be focused on being fast.
+StaticDotNet.ArgumentValiation is a guard library with performance, extensibility and ease of use in mind.  Guard clauses should be clean and focus on performance when exceptions don't happen. In a perfect application, which we all know developers write 100% of the time, guard clauses take up CPU time, which is why they should be focused on being fast.
 
 ## This is what validation is for
 
