@@ -10,6 +10,18 @@
 		<AnalysisMode>All</AnalysisMode>
 		<EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
 		<NeutralLanguage>en-US</NeutralLanguage>
+		<PackageReadmeFile>README.md</PackageReadmeFile>
+		<Description>A guard library with performance, extensibility and ease of use in mind.</Description>
+		<PackageProjectUrl>https://github.com/staticdotnet/StaticDotNet.ArgumentValidation</PackageProjectUrl>
+		<RepositoryUrl>https://github.com/staticdotnet/StaticDotNet.ArgumentValidation</RepositoryUrl>
+		<PackageTags>argument, parameter, guard</PackageTags>
     </PropertyGroup>
+
+    <ItemGroup>
+      <None Include="..\..\docs\README.md">
+        <Pack>True</Pack>
+        <PackagePath>\</PackagePath>
+      </None>
+    </ItemGroup>
 
 </Project>
