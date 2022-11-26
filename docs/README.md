@@ -16,7 +16,7 @@ While nullability annontations is a huge step forward in help us developers writ
 
 ## They are ugly
 
-Yes, writing guard clauses are ugly and they take up a lot of space.  That is why this library exists. We all agree they are important but they take up too many lines of code and are ugly.  Ok, maybe you don't agree, yet, but drink the Kool-Aid and I promise not space ships are involved.  That is one of the key points of this library is so they aren't so ugly and take up lines of code. One of the things I have learned with coding is that developers want to do the right thing, but if it involves a lot of boiler plate code, they skip it.  This library is built with developers in mind to make it quick and easy to write simple performant guard clauses.
+Yes, writing guard clauses are ugly and they take up a lot of space.  That is why this library exists. We all agree they are important but they take up too many lines of code and are ugly.  Ok, maybe you don't agree, yet, but drink the Kool-Aid and I promise not space ships are involved.  That is one of the key points of this library is so they aren't so ugly and take up lines of code. One of the things I have learned with coding is that developers want to do the right thing, but if it involves a lot of boiler plate code, they skip it.  This library is built with developers in mind to make it quick and easy to write simple, performant guard clauses.
 
 ## It's not fluent, so it's not cool
 
