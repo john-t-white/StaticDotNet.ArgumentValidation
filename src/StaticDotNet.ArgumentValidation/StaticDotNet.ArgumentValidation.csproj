@@ -8,6 +8,8 @@
 		<IsTrimmable>true</IsTrimmable>
 		<EnableTrimAnalyzer>true</EnableTrimAnalyzer>
 		<AnalysisMode>All</AnalysisMode>
+		<EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
+		<NeutralLanguage>en-US</NeutralLanguage>
     </PropertyGroup>
 
 </Project>

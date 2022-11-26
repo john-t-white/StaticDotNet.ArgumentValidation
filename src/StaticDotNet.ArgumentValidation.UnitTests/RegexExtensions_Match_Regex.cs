@@ -138,7 +138,7 @@ public partial class RegexExtensions_Match_Regex {
 		string? value = null;
 		Regex regex = TestRegex();
 
-		string? result = Argument.Is.Match( value, regex, out Match match );
+		string? result = Argument.Is.Match( value, regex, out Match _ );
 
 		Assert.Null( result );
 	}
