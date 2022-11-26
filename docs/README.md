@@ -22,6 +22,4 @@ Yes, writing guard clauses are ugly and they take up a lot of space.  That is wh
 
 Fluent code is awesome, as long as it is used appropriately. It is very descriptive and allows for a lot of customization on how developers write coide. With it comes a loss of performance.  This is why you see a lot of fluent code used during configuratino, but not used during the actual excution.  Guard clauses are aren't supposed to throw exceptions if everything is working as it should.  Yes, yes we developers write code 100% perfect all of the time.  If you have made it this far, maybe you realized the 1% we don't get it right the 1st time.  But the second, 100%!
 
-# Show me the code, you talk to much
-
 
