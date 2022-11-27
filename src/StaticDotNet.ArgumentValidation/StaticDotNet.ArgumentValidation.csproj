@@ -17,11 +17,4 @@
 		<PackageTags>argument, parameter, guard</PackageTags>
     </PropertyGroup>
 
-    <ItemGroup>
-      <None Include="..\..\docs\README.md">
-        <Pack>True</Pack>
-        <PackagePath>\</PackagePath>
-      </None>
-    </ItemGroup>
-
 </Project>
