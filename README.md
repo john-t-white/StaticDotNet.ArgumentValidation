@@ -2,7 +2,7 @@
 
 StaticDotNet.ArgumentValidation is a guard library focused on performance, extensibility, ease of use and nullability support.
 
-[Documentation](../../docs/README.md)
+[Documentation](docs/README.md)
 
 ## Performance
 
