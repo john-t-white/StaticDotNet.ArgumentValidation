@@ -1,3 +1,29 @@
+# Overview
+
+StaticDotNet.ArgumentValidation is a guard library focused on performance, extensibility, ease of use and nullability support.
+
+## Performance
+
+Every guard claus is benchmarked against the same code you would write without using this library, as well as other popular guard libraries to show the difference in performance.
+
+The library also fully supports trimming so applications can choose to only include the parts of the library they use.
+
+## Extensibility
+
+You can easily add your own guard methods by adding an extension method off of the Argument class.
+
+## Ease of Use
+
+The point of using a library like this is to make it easier to use as well as removing boiler plate code that takes space away from the application.
+
+## Nullability
+
+All of the guard clauses support the nullability attributes.
+
+# Example
+
+
+
 # Why should I use this
 
 StaticDotNet.ArgumentValiation is a guard library with performance, extensibility and ease of use in mind.  Guard clauses should be clean and focus on performance when exceptions don't happen. In a perfect application, which we all know developers write 100% of the time, guard clauses take up CPU time, which is why they should be focused on being fast.
