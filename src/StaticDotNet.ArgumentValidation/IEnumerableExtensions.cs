@@ -20,7 +20,7 @@ public static class IEnumerableExtensions {
 	/// <exception cref="ArgumentException">Thrown when <paramref name="value"/> is empty.</exception>
 	[return: NotNull]
 	public static T NotNullOrEmpty<T>( this Argument argument, [NotNull] T? value, [CallerArgumentExpression( nameof( value ) )] string? name = null, string? message = null )
-		where T : class, IEnumerable
+		where T : IEnumerable
 		=> ValidateIfEmpty( argument.NotNull( value, name, message ), name, message );
 
 	/// <summary>
@@ -34,7 +34,7 @@ public static class IEnumerableExtensions {
 	/// <exception cref="ArgumentException">Thrown when <paramref name="value"/> is empty.</exception>
 	[return: NotNullIfNotNull( nameof( value ) )]
 	public static T? NotEmpty<T>( this Argument _, T? value, [CallerArgumentExpression( nameof( value ) )] string? name = null, string? message = null )
-		where T : class, IEnumerable
+		where T : IEnumerable
 		=> value == null
 			? value
 			: ValidateIfEmpty( value, name, message );
