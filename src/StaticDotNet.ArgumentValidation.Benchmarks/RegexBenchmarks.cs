@@ -30,7 +30,7 @@ public partial class RegexBenchmarks {
 	}
 
 	[Benchmark]
-	public string Argument_Is() {
+	public string Arg_Is() {
 		_ = Arg.Is.NotNullOrWhiteSpace( this.value );
 		return Arg.Is.Match( this.value, DigitRegex() );
 	}

@@ -23,7 +23,7 @@ public class NotNullOrWhiteSpaceBenchmarks {
 	}
 
 	[Benchmark]
-	public string Argument_Is() => Arg.Is.NotNullOrWhiteSpace( this.value );
+	public string Arg_Is() => Arg.Is.NotNullOrWhiteSpace( this.value );
 
 	[Benchmark]
 	public string Dawn_Guard() => Dawn.Guard.Argument( this.value ).NotNull().NotWhiteSpace();

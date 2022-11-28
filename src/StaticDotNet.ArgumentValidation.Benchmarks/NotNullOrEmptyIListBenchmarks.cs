@@ -16,7 +16,7 @@ public class NotNullOrEmptyIListBenchmarks {
 			: this.value.Count == 0 ? throw new ArgumentException( "Message", nameof( this.value ) ) : this.value;
 
 	[Benchmark]
-	public IList<string> Argument_Is() => Arg.Is.NotNullOrEmpty( this.value );
+	public IList<string> Arg_Is() => Arg.Is.NotNullOrEmpty( this.value );
 
 	[Benchmark]
 	public IList<string> Dawn_Guard() => Dawn.Guard.Argument( this.value ).NotNull().NotEmpty().Value;
