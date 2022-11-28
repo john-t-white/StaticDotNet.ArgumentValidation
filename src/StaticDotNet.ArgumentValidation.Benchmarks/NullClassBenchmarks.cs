@@ -6,7 +6,7 @@ namespace StaticDotNet.ArgumentValidation.Benchmarks;
 
 [MemoryDiagnoser]
 [SimpleJob( RuntimeMoniker.Net70 )]
-public class NullBenchmarks {
+public class NullClassBenchmarks {
 
 	public object? value = null;
 
