@@ -1,7 +1,7 @@
 ﻿using BenchmarkDotNet.Running;
 using StaticDotNet.ArgumentValidation.Benchmarks;
 
-_ = BenchmarkRunner.Run<NotNullClassBenchmarks>();
+//_ = BenchmarkRunner.Run<NotNullClassBenchmarks>();
 //_ = BenchmarkRunner.Run<NotNullStructBenchmarks>();
 //_ = BenchmarkRunner.Run<NullClassBenchmarks>();
 //_ = BenchmarkRunner.Run<NullStructBenchmarks>();
@@ -19,4 +19,4 @@ _ = BenchmarkRunner.Run<NotNullClassBenchmarks>();
 //_ = BenchmarkRunner.Run<GreaterThanClassBenchmarks>();
 //_ = BenchmarkRunner.Run<GreaterThanStructBenchmarks>();
 //_ = BenchmarkRunner.Run<BetweenStructBenchmarks>();
-//_ = BenchmarkRunner.Run<RegexBenchmarks>();
+_ = BenchmarkRunner.Run<RegexBenchmarks>();
