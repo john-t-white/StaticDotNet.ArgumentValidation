@@ -6,7 +6,7 @@ public sealed class StringExtensions_NotEmpty {
 	public void WithValueReturnsCorrectly() {
 		string value = "Value";
 
-		string result = Argument.Is.NotEmpty( value );
+		string result = Arg.Is.NotEmpty( value );
 
 		Assert.Equal( value, result );
 	}
@@ -15,7 +15,7 @@ public sealed class StringExtensions_NotEmpty {
 	public void WithNullValueThrowsArgumentNullException() {
 		string? value = null;
 
-		string? result = Argument.Is.NotEmpty( value );
+		string? result = Arg.Is.NotEmpty( value );
 
 		Assert.Equal( value, result );
 	}
@@ -24,7 +24,7 @@ public sealed class StringExtensions_NotEmpty {
 	public void WithEmptyValueThrowsArgumentException() {
 		string value = string.Empty;
 
-		ArgumentException exception = Assert.Throws<ArgumentException>( nameof( value ), () => Argument.Is.NotEmpty( value ) );
+		ArgumentException exception = Assert.Throws<ArgumentException>( nameof( value ), () => Arg.Is.NotEmpty( value ) );
 
 		string expectedMessage = "Value cannot be empty.";
 
@@ -35,7 +35,7 @@ public sealed class StringExtensions_NotEmpty {
 	public void WithWhiteSpaceValueReturnsCorrectly() {
 		string value = " ";
 
-		string result = Argument.Is.NotEmpty( value );
+		string result = Arg.Is.NotEmpty( value );
 
 		Assert.Equal( value, result );
 	}
@@ -45,7 +45,7 @@ public sealed class StringExtensions_NotEmpty {
 		string value = string.Empty;
 		const string name = "Name";
 
-		_ = Assert.Throws<ArgumentException>( name, () => Argument.Is.NotEmpty( value, name ) );
+		_ = Assert.Throws<ArgumentException>( name, () => Arg.Is.NotEmpty( value, name ) );
 	}
 
 	[Fact]
@@ -53,7 +53,7 @@ public sealed class StringExtensions_NotEmpty {
 		string value = string.Empty;
 		const string message = "Message";
 
-		ArgumentException exception = Assert.Throws<ArgumentException>( nameof( value ), () => Argument.Is.NotEmpty( value, message: message ) );
+		ArgumentException exception = Assert.Throws<ArgumentException>( nameof( value ), () => Arg.Is.NotEmpty( value, message: message ) );
 
 		Assert.StartsWith( message, exception.Message );
 	}

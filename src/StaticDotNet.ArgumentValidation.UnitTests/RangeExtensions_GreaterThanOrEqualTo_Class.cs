@@ -14,7 +14,7 @@ public sealed class RangeExtensions_GreaterThanOrEqualTo_Class {
 
 		string comparisonValue = "b";
 
-		string result = Argument.Is.GreaterThanOrEqualTo( value, comparisonValue );
+		string result = Arg.Is.GreaterThanOrEqualTo( value, comparisonValue );
 
 		Assert.Equal( value, result );
 	}
@@ -25,7 +25,7 @@ public sealed class RangeExtensions_GreaterThanOrEqualTo_Class {
 		string value = "a";
 		string comparisonValue = "b";
 
-		ArgumentOutOfRangeException exception = Assert.Throws<ArgumentOutOfRangeException>( nameof( value ), () => Argument.Is.GreaterThanOrEqualTo( value, comparisonValue ) );
+		ArgumentOutOfRangeException exception = Assert.Throws<ArgumentOutOfRangeException>( nameof( value ), () => Arg.Is.GreaterThanOrEqualTo( value, comparisonValue ) );
 
 		string expectedMessage = $"Value must be greater than or equal to {comparisonValue}.";
 
@@ -38,7 +38,7 @@ public sealed class RangeExtensions_GreaterThanOrEqualTo_Class {
 		string value = "a";
 		string comparisonValue = null!;
 
-		ArgumentOutOfRangeException exception = Assert.Throws<ArgumentOutOfRangeException>( nameof( value ), () => Argument.Is.GreaterThanOrEqualTo( value, comparisonValue ) );
+		ArgumentOutOfRangeException exception = Assert.Throws<ArgumentOutOfRangeException>( nameof( value ), () => Arg.Is.GreaterThanOrEqualTo( value, comparisonValue ) );
 
 		string expectedMessage = $"Value must be greater than or equal to <null>.";
 
@@ -52,7 +52,7 @@ public sealed class RangeExtensions_GreaterThanOrEqualTo_Class {
 		string comparisonValue = "b";
 		string name = "Name";
 
-		_ = Assert.Throws<ArgumentOutOfRangeException>( name, () => Argument.Is.GreaterThanOrEqualTo( value, comparisonValue, name ) );
+		_ = Assert.Throws<ArgumentOutOfRangeException>( name, () => Arg.Is.GreaterThanOrEqualTo( value, comparisonValue, name ) );
 	}
 
 	[Fact]
@@ -62,7 +62,7 @@ public sealed class RangeExtensions_GreaterThanOrEqualTo_Class {
 		string comparisonValue = "b";
 		string message = "Message";
 
-		ArgumentOutOfRangeException exception = Assert.Throws<ArgumentOutOfRangeException>( nameof(value), () => Argument.Is.GreaterThanOrEqualTo( value, comparisonValue, message: message ) );
+		ArgumentOutOfRangeException exception = Assert.Throws<ArgumentOutOfRangeException>( nameof(value), () => Arg.Is.GreaterThanOrEqualTo( value, comparisonValue, message: message ) );
 
 		Assert.StartsWith(message, exception.Message );
 	}
@@ -74,7 +74,7 @@ public sealed class RangeExtensions_GreaterThanOrEqualTo_Class {
 		string comparisonValue = "b";
 		IComparer<string> comparer = Comparer<string>.Default;
 
-		string result = Argument.Is.GreaterThanOrEqualTo( value, comparisonValue, comparer );
+		string result = Arg.Is.GreaterThanOrEqualTo( value, comparisonValue, comparer );
 
 		Assert.Equal( value, result );
 	}
@@ -86,7 +86,7 @@ public sealed class RangeExtensions_GreaterThanOrEqualTo_Class {
 		string comparisonValue = "b";
 		IComparer<string> comparer = null!;
 
-		string result = Argument.Is.GreaterThanOrEqualTo( value, comparisonValue, comparer );
+		string result = Arg.Is.GreaterThanOrEqualTo( value, comparisonValue, comparer );
 
 		Assert.Equal( value, result );
 	}
@@ -98,7 +98,7 @@ public sealed class RangeExtensions_GreaterThanOrEqualTo_Class {
 
 		string comparisonValue = "b";
 
-		string? result = Argument.Is.GreaterThanOrEqualTo( value, comparisonValue );
+		string? result = Arg.Is.GreaterThanOrEqualTo( value, comparisonValue );
 
 		Assert.Equal( value, result );
 	}
@@ -109,7 +109,7 @@ public sealed class RangeExtensions_GreaterThanOrEqualTo_Class {
 		string? value = "a";
 		string comparisonValue = "b";
 
-		ArgumentOutOfRangeException exception = Assert.Throws<ArgumentOutOfRangeException>( nameof( value ), () => Argument.Is.GreaterThanOrEqualTo( value, comparisonValue ) );
+		ArgumentOutOfRangeException exception = Assert.Throws<ArgumentOutOfRangeException>( nameof( value ), () => Arg.Is.GreaterThanOrEqualTo( value, comparisonValue ) );
 
 		string expectedMessage = $"Value must be greater than or equal to {comparisonValue}.";
 
@@ -122,7 +122,7 @@ public sealed class RangeExtensions_GreaterThanOrEqualTo_Class {
 		string? value = "b";
 		string comparisonValue = null!;
 
-		ArgumentOutOfRangeException exception = Assert.Throws<ArgumentOutOfRangeException>( nameof( value ), () => Argument.Is.GreaterThanOrEqualTo( value, comparisonValue ) );
+		ArgumentOutOfRangeException exception = Assert.Throws<ArgumentOutOfRangeException>( nameof( value ), () => Arg.Is.GreaterThanOrEqualTo( value, comparisonValue ) );
 
 		string expectedMessage = $"Value must be greater than or equal to <null>.";
 
@@ -135,7 +135,7 @@ public sealed class RangeExtensions_GreaterThanOrEqualTo_Class {
 		string? value = null;
 		string comparisonValue = "b";
 
-		string? result = Argument.Is.GreaterThanOrEqualTo( value, comparisonValue );
+		string? result = Arg.Is.GreaterThanOrEqualTo( value, comparisonValue );
 
 		Assert.Null( result );
 	}
@@ -147,7 +147,7 @@ public sealed class RangeExtensions_GreaterThanOrEqualTo_Class {
 		string comparisonValue = "b";
 		string name = "Name";
 
-		_ = Assert.Throws<ArgumentOutOfRangeException>( name, () => Argument.Is.GreaterThanOrEqualTo( value, comparisonValue, name ) );
+		_ = Assert.Throws<ArgumentOutOfRangeException>( name, () => Arg.Is.GreaterThanOrEqualTo( value, comparisonValue, name ) );
 	}
 
 	[Fact]
@@ -157,7 +157,7 @@ public sealed class RangeExtensions_GreaterThanOrEqualTo_Class {
 		string comparisonValue = "b";
 		string message = "Message";
 
-		ArgumentOutOfRangeException exception = Assert.Throws<ArgumentOutOfRangeException>( nameof( value ), () => Argument.Is.GreaterThanOrEqualTo( value, comparisonValue, message: message ) );
+		ArgumentOutOfRangeException exception = Assert.Throws<ArgumentOutOfRangeException>( nameof( value ), () => Arg.Is.GreaterThanOrEqualTo( value, comparisonValue, message: message ) );
 
 		Assert.StartsWith( message, exception.Message );
 	}

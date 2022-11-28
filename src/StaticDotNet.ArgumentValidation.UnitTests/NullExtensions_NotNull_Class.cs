@@ -6,7 +6,7 @@ public sealed class NullExtensions_NotNull_Class {
 	public void WithNotNullValueReturnsCorrectly() {
 		object value = new();
 
-		object result = Argument.Is.NotNull( value );
+		object result = Arg.Is.NotNull( value );
 
 		Assert.Same( value, result );
 	}
@@ -15,7 +15,7 @@ public sealed class NullExtensions_NotNull_Class {
 	public void WithNullValueThrowsArgumentNullException() {
 		object? value = null;
 
-		_ = Assert.Throws<ArgumentNullException>( nameof( value ), () => Argument.Is.NotNull( value ) );
+		_ = Assert.Throws<ArgumentNullException>( nameof( value ), () => Arg.Is.NotNull( value ) );
 	}
 
 	[Fact]
@@ -23,7 +23,7 @@ public sealed class NullExtensions_NotNull_Class {
 		object? value = null;
 		const string name = "Name";
 
-		_ = Assert.Throws<ArgumentNullException>( name, () => Argument.Is.NotNull( value, name ) );
+		_ = Assert.Throws<ArgumentNullException>( name, () => Arg.Is.NotNull( value, name ) );
 	}
 
 	[Fact]
@@ -32,7 +32,7 @@ public sealed class NullExtensions_NotNull_Class {
 		const string message = "Message";
 
 		ArgumentNullException exception = Assert.Throws<ArgumentNullException>( nameof( value ),
-			() => Argument.Is.NotNull( value, message: message ) );
+			() => Arg.Is.NotNull( value, message: message ) );
 
 		Assert.StartsWith( message, exception.Message );
 	}

@@ -8,7 +8,7 @@ public sealed class IEnumerableExtensions_NotEmpty_ICollection {
 	public void WithValueReturnsCorrectly() {
 		ICollection<string> value = new Collection<string>() { "Value" };
 
-		ICollection<string> result = Argument.Is.NotEmpty( value );
+		ICollection<string> result = Arg.Is.NotEmpty( value );
 
 		Assert.Same( value, result );
 	}
@@ -17,7 +17,7 @@ public sealed class IEnumerableExtensions_NotEmpty_ICollection {
 	public void WithNullValueThrowsArgumentNullException() {
 		ICollection<string>? value = null;
 
-		ICollection<string>? result = Argument.Is.NotEmpty( value );
+		ICollection<string>? result = Arg.Is.NotEmpty( value );
 
 		Assert.Null( result );
 	}
@@ -26,7 +26,7 @@ public sealed class IEnumerableExtensions_NotEmpty_ICollection {
 	public void WithEmptyValueThrowsArgumentException() {
 		ICollection<string> value = new Collection<string>() { };
 
-		ArgumentException exception = Assert.Throws<ArgumentException>( nameof( value ), () => Argument.Is.NotEmpty( value ) );
+		ArgumentException exception = Assert.Throws<ArgumentException>( nameof( value ), () => Arg.Is.NotEmpty( value ) );
 
 		string expectedMessage = "Value cannot be empty.";
 
@@ -38,7 +38,7 @@ public sealed class IEnumerableExtensions_NotEmpty_ICollection {
 		ICollection<string> value = new Collection<string>() { };
 		const string name = "Name";
 
-		_ = Assert.Throws<ArgumentException>( name, () => Argument.Is.NotEmpty( value, name ) );
+		_ = Assert.Throws<ArgumentException>( name, () => Arg.Is.NotEmpty( value, name ) );
 	}
 
 	[Fact]
@@ -46,7 +46,7 @@ public sealed class IEnumerableExtensions_NotEmpty_ICollection {
 		ICollection<string> value = new Collection<string>() { };
 		const string message = "Message";
 
-		ArgumentException exception = Assert.Throws<ArgumentException>( nameof( value ), () => Argument.Is.NotEmpty( value, message: message ) );
+		ArgumentException exception = Assert.Throws<ArgumentException>( nameof( value ), () => Arg.Is.NotEmpty( value, message: message ) );
 
 		Assert.StartsWith( message, exception.Message );
 	}

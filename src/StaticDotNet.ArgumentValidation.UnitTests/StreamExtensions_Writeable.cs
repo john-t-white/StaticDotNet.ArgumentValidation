@@ -8,7 +8,7 @@ public sealed class StreamExtensions_Writeable {
 	public void WithValueReturnsCorrectly() {
 		MemoryStream value = new();
 
-		MemoryStream result = Argument.Is.Writeable( value );
+		MemoryStream result = Arg.Is.Writeable( value );
 
 		Assert.Same( value, result );
 	}
@@ -17,7 +17,7 @@ public sealed class StreamExtensions_Writeable {
 	public void WithNullValueReturnsCorrectly() {
 		Stream? value = null;
 
-		Stream? result = Argument.Is.Writeable( value );
+		Stream? result = Arg.Is.Writeable( value );
 
 		Assert.Null( result );
 	}
@@ -27,7 +27,7 @@ public sealed class StreamExtensions_Writeable {
 		Stream? value = Substitute.For<Stream>();
 		_ = value.CanWrite.Returns( false );
 
-		ArgumentException exception = Assert.Throws<ArgumentException>( nameof( value ), () => Argument.Is.Writeable( value ) );
+		ArgumentException exception = Assert.Throws<ArgumentException>( nameof( value ), () => Arg.Is.Writeable( value ) );
 
 		string expectedMessage = "Value must be writable.";
 
@@ -41,7 +41,7 @@ public sealed class StreamExtensions_Writeable {
 
 		string name = "Name";
 
-		_ = Assert.Throws<ArgumentException>( name, () => Argument.Is.Writeable( value, name ) );
+		_ = Assert.Throws<ArgumentException>( name, () => Arg.Is.Writeable( value, name ) );
 	}
 
 	[Fact]
@@ -51,7 +51,7 @@ public sealed class StreamExtensions_Writeable {
 
 		string message = "Message";
 
-		ArgumentException exception = Assert.Throws<ArgumentException>( nameof( value ), () => Argument.Is.Writeable( value, message: message ) );
+		ArgumentException exception = Assert.Throws<ArgumentException>( nameof( value ), () => Arg.Is.Writeable( value, message: message ) );
 
 		Assert.StartsWith( message, exception.Message );
 	}

@@ -14,7 +14,7 @@ public sealed class EqualityExtensions_NotNullEqualTo_Class {
 		string? value = "Value";
 		string comparisonValue = "Value";
 
-		string result = Argument.Is.NotNullEqualTo( value, comparisonValue );
+		string result = Arg.Is.NotNullEqualTo( value, comparisonValue );
 
 		Assert.Equal( value, result );
 	}
@@ -25,7 +25,7 @@ public sealed class EqualityExtensions_NotNullEqualTo_Class {
 		string? value = "Value";
 		string comparisonValue = "Not Value";
 
-		ArgumentException exception = Assert.Throws<ArgumentException>( nameof( value ), () => Argument.Is.NotNullEqualTo( value, comparisonValue ) );
+		ArgumentException exception = Assert.Throws<ArgumentException>( nameof( value ), () => Arg.Is.NotNullEqualTo( value, comparisonValue ) );
 
 		string expectedMessage = $"Value must be equal to {comparisonValue}.";
 
@@ -38,7 +38,7 @@ public sealed class EqualityExtensions_NotNullEqualTo_Class {
 		string? value = null;
 		string comparisonValue = "Value";
 
-		_ = Assert.Throws<ArgumentNullException>( nameof(value), () => Argument.Is.NotNullEqualTo( value, comparisonValue ) );
+		_ = Assert.Throws<ArgumentNullException>( nameof(value), () => Arg.Is.NotNullEqualTo( value, comparisonValue ) );
 	}
 
 	[Fact]
@@ -47,7 +47,7 @@ public sealed class EqualityExtensions_NotNullEqualTo_Class {
 		string? value = "Value";
 		string comparisonValue = null!;
 
-		ArgumentException exception = Assert.Throws<ArgumentException>( nameof( value ), () => Argument.Is.NotNullEqualTo( value, comparisonValue ) );
+		ArgumentException exception = Assert.Throws<ArgumentException>( nameof( value ), () => Arg.Is.NotNullEqualTo( value, comparisonValue ) );
 
 		string expectedMessage = $"Value must be equal to <null>.";
 
@@ -61,7 +61,7 @@ public sealed class EqualityExtensions_NotNullEqualTo_Class {
 		string comparisonValue = "Not Value";
 		string name = "Name";
 
-		_ = Assert.Throws<ArgumentException>( name, () => Argument.Is.NotNullEqualTo( value, comparisonValue, name ) );
+		_ = Assert.Throws<ArgumentException>( name, () => Arg.Is.NotNullEqualTo( value, comparisonValue, name ) );
 	}
 
 	[Fact]
@@ -71,7 +71,7 @@ public sealed class EqualityExtensions_NotNullEqualTo_Class {
 		string comparisonValue = "Not Value";
 		string message = "Message";
 
-		ArgumentException exception = Assert.Throws<ArgumentException>( nameof(value), () => Argument.Is.NotNullEqualTo( value, comparisonValue, message: message ) );
+		ArgumentException exception = Assert.Throws<ArgumentException>( nameof(value), () => Arg.Is.NotNullEqualTo( value, comparisonValue, message: message ) );
 
 		Assert.StartsWith(message, exception.Message );
 	}
@@ -83,7 +83,7 @@ public sealed class EqualityExtensions_NotNullEqualTo_Class {
 		string comparisonValue = "Value";
 		IEqualityComparer<string> comparer = EqualityComparer<string>.Default;
 
-		string result = Argument.Is.NotNullEqualTo( value, comparisonValue, comparer );
+		string result = Arg.Is.NotNullEqualTo( value, comparisonValue, comparer );
 
 		Assert.Equal( value, result );
 	}
@@ -95,7 +95,7 @@ public sealed class EqualityExtensions_NotNullEqualTo_Class {
 		string comparisonValue = "Value";
 		IEqualityComparer<string> comparer = null!;
 
-		string result = Argument.Is.NotNullEqualTo( value, comparisonValue, comparer );
+		string result = Arg.Is.NotNullEqualTo( value, comparisonValue, comparer );
 
 		Assert.Equal( value, result );
 	}

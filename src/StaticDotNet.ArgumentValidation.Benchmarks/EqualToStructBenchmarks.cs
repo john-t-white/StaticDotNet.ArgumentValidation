@@ -16,7 +16,7 @@ public class EqualToStructBenchmarks {
 	public int Baseline() => this.value == this.comparisonValue ? this.value : throw new ArgumentException( string.Format( CultureInfo.InvariantCulture, "Value must be equal to {0}.", this.comparisonValue ), nameof( this.value ) );
 
 	[Benchmark]
-	public int Argument_Is() => Argument.Is.EqualTo( this.value, this.comparisonValue );
+	public int Argument_Is() => Arg.Is.EqualTo( this.value, this.comparisonValue );
 
 	[Benchmark]
 	public int Dawn_Guard() => Dawn.Guard.Argument( this.value ).Equal( this.comparisonValue );

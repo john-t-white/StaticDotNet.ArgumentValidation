@@ -16,7 +16,7 @@ public static partial class RangeExtensions {
 	/// Validates <paramref name="value"/> is not null and between inclusive <paramref name="minValue"/> and <paramref name="maxValue"/>, otherwise an <see cref="ArgumentNullException"/> or <see cref="ArgumentException"/> is thrown.
 	/// </summary>
 	/// <typeparam name="T">The type of <paramref name="value"/>.</typeparam>
-	/// <param name="argument">The <see cref="Argument"/>.</param>
+	/// <param name="argument">The <see cref="Arg"/>.</param>
 	/// <param name="value">The value of the argument.</param>
 	/// <param name="minValue">The minimum value.</param>
 	/// <param name="maxValue">The maximum value.</param>
@@ -25,7 +25,7 @@ public static partial class RangeExtensions {
 	/// <returns>Returns <paramref name="value"/>.</returns>
 	/// <exception cref="ArgumentNullException">Thrown when <paramref name="value"/> is null.</exception>
 	/// <exception cref="ArgumentException">Thrown when <paramref name="value"/> is not between inclusive <paramref name="minValue"/> and <paramref name="maxValue"/>.</exception>
-	public static T NotNullBetween<T>( this Argument argument, [NotNull] T? value, T minValue, T maxValue, [CallerArgumentExpression( nameof( value ) )] string? name = null, string? message = null )
+	public static T NotNullBetween<T>( this Arg argument, [NotNull] T? value, T minValue, T maxValue, [CallerArgumentExpression( nameof( value ) )] string? name = null, string? message = null )
 		where T : struct, IComparable<T>
 		=> argument.Between( argument.NotNull( value, name, message ), minValue, maxValue, name, message );
 
@@ -33,7 +33,7 @@ public static partial class RangeExtensions {
 	/// Validates <paramref name="value"/> is not null and between inclusive <paramref name="minValue"/> and <paramref name="maxValue"/>, otherwise an <see cref="ArgumentNullException"/> or <see cref="ArgumentException"/> is thrown.
 	/// </summary>
 	/// <typeparam name="T">The type of <paramref name="value"/>.</typeparam>
-	/// <param name="argument">The <see cref="Argument"/>.</param>
+	/// <param name="argument">The <see cref="Arg"/>.</param>
 	/// <param name="value">The value of the argument.</param>
 	/// <param name="minValue">The minimum value.</param>
 	/// <param name="maxValue">The maximum value.</param>
@@ -43,7 +43,7 @@ public static partial class RangeExtensions {
 	/// <exception cref="ArgumentNullException">Thrown when <paramref name="value"/> is null.</exception>
 	/// <exception cref="ArgumentException">Thrown when <paramref name="value"/> is not between inclusive <paramref name="minValue"/> and <paramref name="maxValue"/>.</exception>
 	[return: NotNull]
-	public static T NotNullBetween<T>( this Argument argument, [NotNull] T? value, T minValue, T maxValue, [CallerArgumentExpression( nameof( value ) )] string? name = null, string? message = null )
+	public static T NotNullBetween<T>( this Arg argument, [NotNull] T? value, T minValue, T maxValue, [CallerArgumentExpression( nameof( value ) )] string? name = null, string? message = null )
 		where T : IComparable<T>
 		=> argument.Between( argument.NotNull( value, name, message ), minValue, maxValue, name, message );
 
@@ -51,7 +51,7 @@ public static partial class RangeExtensions {
 	/// Validates <paramref name="value"/> is not null and between inclusive <paramref name="minValue"/> and <paramref name="maxValue"/>, otherwise an <see cref="ArgumentNullException"/> or <see cref="ArgumentException"/> is thrown.
 	/// </summary>
 	/// <typeparam name="T">The type of <paramref name="value"/>.</typeparam>
-	/// <param name="argument">The <see cref="Argument"/>.</param>
+	/// <param name="argument">The <see cref="Arg"/>.</param>
 	/// <param name="value">The value of the argument.</param>
 	/// <param name="minValue">The minimum value.</param>
 	/// <param name="maxValue">The maximum value.</param>
@@ -62,14 +62,14 @@ public static partial class RangeExtensions {
 	/// <exception cref="ArgumentNullException">Thrown when <paramref name="value"/> is null.</exception>
 	/// <exception cref="ArgumentException">Thrown when <paramref name="value"/> is not between inclusive <paramref name="minValue"/> and <paramref name="maxValue"/>.</exception>
 	[return: NotNull]
-	public static T NotNullBetween<T>( this Argument argument, [NotNull] T? value, T minValue, T maxValue, IComparer<T> comparer, [CallerArgumentExpression( nameof( value ) )] string? name = null, string? message = null )
+	public static T NotNullBetween<T>( this Arg argument, [NotNull] T? value, T minValue, T maxValue, IComparer<T> comparer, [CallerArgumentExpression( nameof( value ) )] string? name = null, string? message = null )
 		=> argument.Between( argument.NotNull( value, name, message ), minValue, maxValue, comparer, name, message );
 
 	/// <summary>
 	/// Validates <paramref name="value"/> is between inclusive <paramref name="minValue"/> and <paramref name="maxValue"/>, otherwise an <see cref="ArgumentException"/> is thrown.
 	/// </summary>
 	/// <typeparam name="T">The type of <paramref name="value"/>.</typeparam>
-	/// <param name="_">The <see cref="Argument"/>.</param>
+	/// <param name="_">The <see cref="Arg"/>.</param>
 	/// <param name="value">The value of the argument.</param>
 	/// <param name="minValue">The minimum value.</param>
 	/// <param name="maxValue">The maximum value.</param>
@@ -78,7 +78,7 @@ public static partial class RangeExtensions {
 	/// <returns>Returns <paramref name="value"/>.</returns>
 	/// <exception cref="ArgumentException">Thrown when <paramref name="value"/> is not between inclusive <paramref name="minValue"/> and <paramref name="maxValue"/>.</exception>
 	[return: NotNullIfNotNull( nameof( value ) )]
-	public static T? Between<T>( this Argument _, T? value, T minValue, T maxValue, [CallerArgumentExpression( nameof( value ) )] string? name = null, string? message = null )
+	public static T? Between<T>( this Arg _, T? value, T minValue, T maxValue, [CallerArgumentExpression( nameof( value ) )] string? name = null, string? message = null )
 		where T : struct, IComparable<T>
 		=> !( value?.CompareTo( minValue ) < 0) && !(value?.CompareTo( maxValue ) > 0 )
 			? value
@@ -88,7 +88,7 @@ public static partial class RangeExtensions {
 	/// Validates <paramref name="value"/> is between inclusive <paramref name="minValue"/> and <paramref name="maxValue"/>, otherwise an <see cref="ArgumentException"/> is thrown.
 	/// </summary>
 	/// <typeparam name="T">The type of <paramref name="value"/>.</typeparam>
-	/// <param name="_">The <see cref="Argument"/>.</param>
+	/// <param name="_">The <see cref="Arg"/>.</param>
 	/// <param name="value">The value of the argument.</param>
 	/// <param name="minValue">The minimum value.</param>
 	/// <param name="maxValue">The maximum value.</param>
@@ -97,7 +97,7 @@ public static partial class RangeExtensions {
 	/// <returns>Returns <paramref name="value"/>.</returns>
 	/// <exception cref="ArgumentException">Thrown when <paramref name="value"/> is not between inclusive <paramref name="minValue"/> and <paramref name="maxValue"/>.</exception>
 	[return: NotNullIfNotNull( nameof( value ) )]
-	public static T Between<T>( this Argument _, T value, T minValue, T maxValue, [CallerArgumentExpression( nameof( value ) )] string? name = null, string? message = null )
+	public static T Between<T>( this Arg _, T value, T minValue, T maxValue, [CallerArgumentExpression( nameof( value ) )] string? name = null, string? message = null )
 		where T : IComparable<T>?
 		=> minValue != null && maxValue != null && !( value?.CompareTo( minValue ) < 0 ) && !( value?.CompareTo( maxValue ) > 0 )
 			? value
@@ -107,7 +107,7 @@ public static partial class RangeExtensions {
 	/// Validates <paramref name="value"/> is between inclusive <paramref name="minValue"/> and <paramref name="maxValue"/>, otherwise an <see cref="ArgumentException"/> is thrown.
 	/// </summary>
 	/// <typeparam name="T">The type of <paramref name="value"/>.</typeparam>
-	/// <param name="_">The <see cref="Argument"/>.</param>
+	/// <param name="_">The <see cref="Arg"/>.</param>
 	/// <param name="value">The value of the argument.</param>
 	/// <param name="minValue">The minimum value.</param>
 	/// <param name="maxValue">The maximum value.</param>
@@ -117,7 +117,7 @@ public static partial class RangeExtensions {
 	/// <returns>Returns <paramref name="value"/>.</returns>
 	/// <exception cref="ArgumentException">Thrown when <paramref name="value"/> is not between inclusive <paramref name="minValue"/> and <paramref name="maxValue"/>.</exception>
 	[return: NotNullIfNotNull( nameof( value ) )]
-	public static T Between<T>( this Argument _, T value, T minValue, T maxValue, IComparer<T> comparer, [CallerArgumentExpression( nameof( value ) )] string? name = null, string? message = null ) {
+	public static T Between<T>( this Arg _, T value, T minValue, T maxValue, IComparer<T> comparer, [CallerArgumentExpression( nameof( value ) )] string? name = null, string? message = null ) {
 
 		comparer ??= Comparer<T>.Default;
 

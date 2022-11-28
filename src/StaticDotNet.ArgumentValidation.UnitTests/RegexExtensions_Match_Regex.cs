@@ -17,7 +17,7 @@ public partial class RegexExtensions_Match_Regex {
 		string? value = "1";
 		Regex regex = TestRegex();
 
-		string result = Argument.Is.Match( value, regex );
+		string result = Arg.Is.Match( value, regex );
 
 		Assert.Equal( value, result );
 	}
@@ -28,7 +28,7 @@ public partial class RegexExtensions_Match_Regex {
 		string value = "a";
 		Regex regex = TestRegex();
 
-		ArgumentException exception = Assert.Throws<ArgumentException>( nameof( value ), () => Argument.Is.Match( value, regex ) );
+		ArgumentException exception = Assert.Throws<ArgumentException>( nameof( value ), () => Arg.Is.Match( value, regex ) );
 
 		string expectedMessage = $"Value must match the regex {regex}.";
 
@@ -41,7 +41,7 @@ public partial class RegexExtensions_Match_Regex {
 		string? value = null;
 		Regex regex = TestRegex();
 
-		string? result = Argument.Is.Match( value, regex );
+		string? result = Arg.Is.Match( value, regex );
 
 		Assert.Null( result );
 	}
@@ -52,7 +52,7 @@ public partial class RegexExtensions_Match_Regex {
 		string? value = string.Empty;
 		Regex regex = TestRegex();
 
-		ArgumentException exception = Assert.Throws<ArgumentException>( nameof( value ), () => Argument.Is.Match( value, regex ) );
+		ArgumentException exception = Assert.Throws<ArgumentException>( nameof( value ), () => Arg.Is.Match( value, regex ) );
 
 		string expectedMessage = $"Value must match the regex {regex}.";
 
@@ -65,7 +65,7 @@ public partial class RegexExtensions_Match_Regex {
 		string? value = " ";
 		Regex regex = TestRegex();
 
-		ArgumentException exception = Assert.Throws<ArgumentException>( nameof( value ), () => Argument.Is.Match( value, regex ) );
+		ArgumentException exception = Assert.Throws<ArgumentException>( nameof( value ), () => Arg.Is.Match( value, regex ) );
 
 		string expectedMessage = $"Value must match the regex {regex}.";
 
@@ -78,7 +78,7 @@ public partial class RegexExtensions_Match_Regex {
 		string value = "1";
 		Regex regex = null!;
 
-		ArgumentException exception = Assert.Throws<ArgumentException>( nameof( value ), () => Argument.Is.Match( value, regex ) );
+		ArgumentException exception = Assert.Throws<ArgumentException>( nameof( value ), () => Arg.Is.Match( value, regex ) );
 
 		string expectedMessage = $"Value must match the regex <null>.";
 
@@ -92,7 +92,7 @@ public partial class RegexExtensions_Match_Regex {
 		Regex regex = TestRegex();
 		string name = "Name";
 
-		_ = Assert.Throws<ArgumentException>( name, () => Argument.Is.Match( value, regex, name ) );
+		_ = Assert.Throws<ArgumentException>( name, () => Arg.Is.Match( value, regex, name ) );
 	}
 
 	[Fact]
@@ -102,7 +102,7 @@ public partial class RegexExtensions_Match_Regex {
 		Regex regex = TestRegex();
 		string message = "Message";
 
-		ArgumentException exception = Assert.Throws<ArgumentException>( nameof( value ), () => Argument.Is.Match( value, regex, message: message ) );
+		ArgumentException exception = Assert.Throws<ArgumentException>( nameof( value ), () => Arg.Is.Match( value, regex, message: message ) );
 
 		Assert.StartsWith( message, exception.Message );
 	}
@@ -113,7 +113,7 @@ public partial class RegexExtensions_Match_Regex {
 		string? value = "1";
 		Regex regex = TestRegex();
 
-		string result = Argument.Is.Match( value, regex, out Match match );
+		string result = Arg.Is.Match( value, regex, out Match match );
 
 		Assert.Equal( value, result );
 		Assert.NotNull( match );
@@ -125,7 +125,7 @@ public partial class RegexExtensions_Match_Regex {
 		string value = "a";
 		Regex regex = TestRegex();
 
-		ArgumentException exception = Assert.Throws<ArgumentException>( nameof( value ), () => Argument.Is.Match( value, regex, out Match _ ) );
+		ArgumentException exception = Assert.Throws<ArgumentException>( nameof( value ), () => Arg.Is.Match( value, regex, out Match _ ) );
 
 		string expectedMessage = $"Value must match the regex {regex}.";
 
@@ -138,7 +138,7 @@ public partial class RegexExtensions_Match_Regex {
 		string? value = null;
 		Regex regex = TestRegex();
 
-		string? result = Argument.Is.Match( value, regex, out Match _ );
+		string? result = Arg.Is.Match( value, regex, out Match _ );
 
 		Assert.Null( result );
 	}
@@ -149,7 +149,7 @@ public partial class RegexExtensions_Match_Regex {
 		string? value = string.Empty;
 		Regex regex = TestRegex();
 
-		ArgumentException exception = Assert.Throws<ArgumentException>( nameof( value ), () => Argument.Is.Match( value, regex, out Match _ ) );
+		ArgumentException exception = Assert.Throws<ArgumentException>( nameof( value ), () => Arg.Is.Match( value, regex, out Match _ ) );
 
 		string expectedMessage = $"Value must match the regex {regex}.";
 
@@ -162,7 +162,7 @@ public partial class RegexExtensions_Match_Regex {
 		string? value = " ";
 		Regex regex = TestRegex();
 
-		ArgumentException exception = Assert.Throws<ArgumentException>( nameof( value ), () => Argument.Is.Match( value, regex, out Match _ ) );
+		ArgumentException exception = Assert.Throws<ArgumentException>( nameof( value ), () => Arg.Is.Match( value, regex, out Match _ ) );
 
 		string expectedMessage = $"Value must match the regex {regex}.";
 
@@ -175,7 +175,7 @@ public partial class RegexExtensions_Match_Regex {
 		string value = "1";
 		Regex regex = null!;
 
-		ArgumentException exception = Assert.Throws<ArgumentException>( nameof( value ), () => Argument.Is.Match( value, regex, out Match _ ) );
+		ArgumentException exception = Assert.Throws<ArgumentException>( nameof( value ), () => Arg.Is.Match( value, regex, out Match _ ) );
 
 		string expectedMessage = $"Value must match the regex <null>.";
 
@@ -189,7 +189,7 @@ public partial class RegexExtensions_Match_Regex {
 		Regex regex = TestRegex();
 		string name = "Name";
 
-		_ = Assert.Throws<ArgumentException>( name, () => Argument.Is.Match( value, regex, out Match _, name ) );
+		_ = Assert.Throws<ArgumentException>( name, () => Arg.Is.Match( value, regex, out Match _, name ) );
 	}
 
 	[Fact]
@@ -199,7 +199,7 @@ public partial class RegexExtensions_Match_Regex {
 		Regex regex = TestRegex();
 		string message = "Message";
 
-		ArgumentException exception = Assert.Throws<ArgumentException>( nameof( value ), () => Argument.Is.Match( value, regex, out Match _, message: message ) );
+		ArgumentException exception = Assert.Throws<ArgumentException>( nameof( value ), () => Arg.Is.Match( value, regex, out Match _, message: message ) );
 
 		Assert.StartsWith( message, exception.Message );
 	}

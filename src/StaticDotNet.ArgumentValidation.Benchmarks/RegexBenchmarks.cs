@@ -31,8 +31,8 @@ public partial class RegexBenchmarks {
 
 	[Benchmark]
 	public string Argument_Is() {
-		_ = Argument.Is.NotNullOrWhiteSpace( this.value );
-		return Argument.Is.Match( this.value, DigitRegex() );
+		_ = Arg.Is.NotNullOrWhiteSpace( this.value );
+		return Arg.Is.Match( this.value, DigitRegex() );
 	}
 
 	[Benchmark]

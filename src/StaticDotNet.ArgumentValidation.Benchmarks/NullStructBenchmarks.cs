@@ -14,7 +14,7 @@ public class NullStructBenchmarks {
 	public int? Baseline() => this.value == null ? this.value : throw new ArgumentException( "Value cannot be non null.", nameof( this.value ) );
 
 	[Benchmark]
-	public int? Argument_Is() => Argument.Is.Null( this.value );
+	public int? Argument_Is() => Arg.Is.Null( this.value );
 
 	[Benchmark]
 	public int? Dawn_Guard() => Dawn.Guard.Argument( this.value ).Null();

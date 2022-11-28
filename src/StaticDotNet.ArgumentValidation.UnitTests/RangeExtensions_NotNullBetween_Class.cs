@@ -16,7 +16,7 @@ public sealed class RangeExtensions_NotNullBetween_Class {
 		string minValue = "b";
 		string maxValue = "d";
 
-		string result = Argument.Is.NotNullBetween( value, minValue, maxValue );
+		string result = Arg.Is.NotNullBetween( value, minValue, maxValue );
 
 		Assert.Equal( value, result );
 	}
@@ -29,7 +29,7 @@ public sealed class RangeExtensions_NotNullBetween_Class {
 		string minValue = "b";
 		string maxValue = "d";
 
-		ArgumentOutOfRangeException exception = Assert.Throws<ArgumentOutOfRangeException>( nameof( value ), () => Argument.Is.NotNullBetween( value, minValue, maxValue ) );
+		ArgumentOutOfRangeException exception = Assert.Throws<ArgumentOutOfRangeException>( nameof( value ), () => Arg.Is.NotNullBetween( value, minValue, maxValue ) );
 
 		string expectedMessage = $"Value must be between {minValue} and {maxValue}.";
 
@@ -43,7 +43,7 @@ public sealed class RangeExtensions_NotNullBetween_Class {
 		string minValue = null!;
 		string maxValue = "b";
 
-		ArgumentOutOfRangeException exception = Assert.Throws<ArgumentOutOfRangeException>( nameof( value ), () => Argument.Is.NotNullBetween( value, minValue, maxValue ) );
+		ArgumentOutOfRangeException exception = Assert.Throws<ArgumentOutOfRangeException>( nameof( value ), () => Arg.Is.NotNullBetween( value, minValue, maxValue ) );
 
 		string expectedMessage = $"Value must be between <null> and {maxValue}.";
 
@@ -57,7 +57,7 @@ public sealed class RangeExtensions_NotNullBetween_Class {
 		string minValue = "b";
 		string maxValue = null!;
 
-		ArgumentOutOfRangeException exception = Assert.Throws<ArgumentOutOfRangeException>( nameof( value ), () => Argument.Is.NotNullBetween( value, minValue, maxValue ) );
+		ArgumentOutOfRangeException exception = Assert.Throws<ArgumentOutOfRangeException>( nameof( value ), () => Arg.Is.NotNullBetween( value, minValue, maxValue ) );
 
 		string expectedMessage = $"Value must be between {minValue} and <null>.";
 
@@ -71,7 +71,7 @@ public sealed class RangeExtensions_NotNullBetween_Class {
 		string comparisonValue = "b";
 		string name = "Name";
 
-		_ = Assert.Throws<ArgumentNullException>( nameof(value), () => Argument.Is.NotNullBetween( value, comparisonValue, name ) );
+		_ = Assert.Throws<ArgumentNullException>( nameof(value), () => Arg.Is.NotNullBetween( value, comparisonValue, name ) );
 	}
 
 	[Fact]
@@ -82,7 +82,7 @@ public sealed class RangeExtensions_NotNullBetween_Class {
 		string maxValue = "d";
 		string name = "Name";
 
-		_ = Assert.Throws<ArgumentOutOfRangeException>( name, () => Argument.Is.NotNullBetween( value, minValue, maxValue, name ) );
+		_ = Assert.Throws<ArgumentOutOfRangeException>( name, () => Arg.Is.NotNullBetween( value, minValue, maxValue, name ) );
 	}
 
 	[Fact]
@@ -93,7 +93,7 @@ public sealed class RangeExtensions_NotNullBetween_Class {
 		string maxValue = "d";
 		string message = "Message";
 
-		ArgumentOutOfRangeException exception = Assert.Throws<ArgumentOutOfRangeException>( nameof( value ), () => Argument.Is.NotNullBetween( value, minValue, maxValue, message: message ) );
+		ArgumentOutOfRangeException exception = Assert.Throws<ArgumentOutOfRangeException>( nameof( value ), () => Arg.Is.NotNullBetween( value, minValue, maxValue, message: message ) );
 
 		Assert.StartsWith( message, exception.Message );
 	}
@@ -106,7 +106,7 @@ public sealed class RangeExtensions_NotNullBetween_Class {
 		string maxValue = "d";
 		IComparer<string> comparer = Comparer<string>.Default;
 
-		string result = Argument.Is.NotNullBetween( value, minValue, maxValue, comparer );
+		string result = Arg.Is.NotNullBetween( value, minValue, maxValue, comparer );
 
 		Assert.Equal( value, result );
 	}
@@ -119,7 +119,7 @@ public sealed class RangeExtensions_NotNullBetween_Class {
 		string maxValue = "d";
 		IComparer<string> comparer = null!;
 
-		string result = Argument.Is.NotNullBetween( value, minValue, maxValue, comparer );
+		string result = Arg.Is.NotNullBetween( value, minValue, maxValue, comparer );
 
 		Assert.Equal( value, result );
 	}
@@ -133,7 +133,7 @@ public sealed class RangeExtensions_NotNullBetween_Class {
 		string minValue = "b";
 		string maxValue = "d";
 
-		string? result = Argument.Is.NotNullBetween( value, minValue, maxValue );
+		string? result = Arg.Is.NotNullBetween( value, minValue, maxValue );
 
 		Assert.Equal( value, result );
 	}
@@ -146,7 +146,7 @@ public sealed class RangeExtensions_NotNullBetween_Class {
 		string minValue = "b";
 		string maxValue = "d";
 
-		ArgumentOutOfRangeException exception = Assert.Throws<ArgumentOutOfRangeException>( nameof( value ), () => Argument.Is.NotNullBetween( value, minValue, maxValue ) );
+		ArgumentOutOfRangeException exception = Assert.Throws<ArgumentOutOfRangeException>( nameof( value ), () => Arg.Is.NotNullBetween( value, minValue, maxValue ) );
 
 		string expectedMessage = $"Value must be between {minValue} and {maxValue}.";
 
@@ -160,7 +160,7 @@ public sealed class RangeExtensions_NotNullBetween_Class {
 		string minValue = null!;
 		string maxValue = "d";
 
-		ArgumentOutOfRangeException exception = Assert.Throws<ArgumentOutOfRangeException>( nameof( value ), () => Argument.Is.NotNullBetween( value, minValue, maxValue ) );
+		ArgumentOutOfRangeException exception = Assert.Throws<ArgumentOutOfRangeException>( nameof( value ), () => Arg.Is.NotNullBetween( value, minValue, maxValue ) );
 
 		string expectedMessage = $"Value must be between <null> and {maxValue}.";
 
@@ -174,7 +174,7 @@ public sealed class RangeExtensions_NotNullBetween_Class {
 		string minValue = "b";
 		string maxValue = null!;
 
-		ArgumentOutOfRangeException exception = Assert.Throws<ArgumentOutOfRangeException>( nameof( value ), () => Argument.Is.NotNullBetween( value, minValue, maxValue ) );
+		ArgumentOutOfRangeException exception = Assert.Throws<ArgumentOutOfRangeException>( nameof( value ), () => Arg.Is.NotNullBetween( value, minValue, maxValue ) );
 
 		string expectedMessage = $"Value must be between {minValue} and <null>.";
 
@@ -188,7 +188,7 @@ public sealed class RangeExtensions_NotNullBetween_Class {
 		string minValue = "b";
 		string maxValue = "d";
 
-		_ = Assert.Throws<ArgumentNullException>( nameof( value ), () => Argument.Is.NotNullBetween( value, minValue, maxValue ) );
+		_ = Assert.Throws<ArgumentNullException>( nameof( value ), () => Arg.Is.NotNullBetween( value, minValue, maxValue ) );
 	}
 
 	[Fact]
@@ -199,7 +199,7 @@ public sealed class RangeExtensions_NotNullBetween_Class {
 		string maxValue = "d";
 		string name = "Name";
 
-		_ = Assert.Throws<ArgumentOutOfRangeException>( name, () => Argument.Is.NotNullBetween( value, minValue, maxValue, name ) );
+		_ = Assert.Throws<ArgumentOutOfRangeException>( name, () => Arg.Is.NotNullBetween( value, minValue, maxValue, name ) );
 	}
 
 	[Fact]
@@ -210,7 +210,7 @@ public sealed class RangeExtensions_NotNullBetween_Class {
 		string maxValue = "d";
 		string message = "Message";
 
-		ArgumentOutOfRangeException exception = Assert.Throws<ArgumentOutOfRangeException>( nameof( value ), () => Argument.Is.NotNullBetween( value, minValue, maxValue, message: message ) );
+		ArgumentOutOfRangeException exception = Assert.Throws<ArgumentOutOfRangeException>( nameof( value ), () => Arg.Is.NotNullBetween( value, minValue, maxValue, message: message ) );
 
 		Assert.StartsWith( message, exception.Message );
 	}

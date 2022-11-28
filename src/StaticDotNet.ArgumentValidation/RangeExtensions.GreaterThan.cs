@@ -17,7 +17,7 @@ public static partial class RangeExtensions {
 	/// Validates <paramref name="value"/> is not null and greater than <paramref name="comparisonValue"/>, otherwise an <see cref="ArgumentNullException"/> or <see cref="ArgumentException"/> is thrown.
 	/// </summary>
 	/// <typeparam name="T">The type of <paramref name="value"/>.</typeparam>
-	/// <param name="argument">The <see cref="Argument"/>.</param>
+	/// <param name="argument">The <see cref="Arg"/>.</param>
 	/// <param name="value">The value of the argument.</param>
 	/// <param name="comparisonValue">The value to compare against.</param>
 	/// <param name="name">With C# 10, defaults to the expression of <paramref name="value"/>; otherwise specify the argument name.</param>
@@ -25,7 +25,7 @@ public static partial class RangeExtensions {
 	/// <returns>Returns <paramref name="value"/>.</returns>
 	/// <exception cref="ArgumentNullException">Thrown when <paramref name="value"/> is null.</exception>
 	/// <exception cref="ArgumentException">Thrown when <paramref name="value"/> is not greater than <paramref name="comparisonValue"/>.</exception>
-	public static T NotNullGreaterThan<T>( this Argument argument, [NotNull] T? value, T comparisonValue, [CallerArgumentExpression( nameof( value ) )] string? name = null, string? message = null )
+	public static T NotNullGreaterThan<T>( this Arg argument, [NotNull] T? value, T comparisonValue, [CallerArgumentExpression( nameof( value ) )] string? name = null, string? message = null )
 		where T : struct, IComparable<T>
 		=> argument.GreaterThan( argument.NotNull( value, name, message ), comparisonValue, name, message );
 
@@ -33,7 +33,7 @@ public static partial class RangeExtensions {
 	/// Validates <paramref name="value"/> is not null and greater than <paramref name="comparisonValue"/>, otherwise an <see cref="ArgumentNullException"/> or <see cref="ArgumentException"/> is thrown.
 	/// </summary>
 	/// <typeparam name="T">The type of <paramref name="value"/>.</typeparam>
-	/// <param name="argument">The <see cref="Argument"/>.</param>
+	/// <param name="argument">The <see cref="Arg"/>.</param>
 	/// <param name="value">The value of the argument.</param>
 	/// <param name="comparisonValue">The value to compare against.</param>
 	/// <param name="name">With C# 10, defaults to the expression of <paramref name="value"/>; otherwise specify the argument name.</param>
@@ -42,7 +42,7 @@ public static partial class RangeExtensions {
 	/// <exception cref="ArgumentNullException">Thrown when <paramref name="value"/> is null.</exception>
 	/// <exception cref="ArgumentException">Thrown when <paramref name="value"/> is not greater than <paramref name="comparisonValue"/>.</exception>
 	[return: NotNull]
-	public static T NotNullGreaterThan<T>( this Argument argument, [NotNull] T? value, T comparisonValue, [CallerArgumentExpression( nameof( value ) )] string? name = null, string? message = null )
+	public static T NotNullGreaterThan<T>( this Arg argument, [NotNull] T? value, T comparisonValue, [CallerArgumentExpression( nameof( value ) )] string? name = null, string? message = null )
 		where T : IComparable<T>
 		=> argument.GreaterThan( argument.NotNull( value, name, message ), comparisonValue, name, message );
 
@@ -50,7 +50,7 @@ public static partial class RangeExtensions {
 	/// Validates <paramref name="value"/> is not null and greater than <paramref name="comparisonValue"/>, otherwise an <see cref="ArgumentNullException"/> or <see cref="ArgumentException"/> is thrown.
 	/// </summary>
 	/// <typeparam name="T">The type of <paramref name="value"/>.</typeparam>
-	/// <param name="argument">The <see cref="Argument"/>.</param>
+	/// <param name="argument">The <see cref="Arg"/>.</param>
 	/// <param name="value">The value of the argument.</param>
 	/// <param name="comparisonValue">The value to compare against.</param>
 	/// <param name="comparer">The <see cref="IComparer{T}"/> to use.</param>
@@ -60,14 +60,14 @@ public static partial class RangeExtensions {
 	/// <exception cref="ArgumentNullException">Thrown when <paramref name="value"/> is null.</exception>
 	/// <exception cref="ArgumentException">Thrown when <paramref name="value"/> is not greater than <paramref name="comparisonValue"/>.</exception>
 	[return: NotNull]
-	public static T NotNullGreaterThan<T>( this Argument argument, [NotNull] T? value, T comparisonValue, IComparer<T> comparer, [CallerArgumentExpression( nameof( value ) )] string? name = null, string? message = null )
+	public static T NotNullGreaterThan<T>( this Arg argument, [NotNull] T? value, T comparisonValue, IComparer<T> comparer, [CallerArgumentExpression( nameof( value ) )] string? name = null, string? message = null )
 		=> argument.GreaterThan( argument.NotNull( value, name, message ), comparisonValue, comparer, name, message );
 
 	/// <summary>
 	/// Validates <paramref name="value"/> is greater than <paramref name="comparisonValue"/>, otherwise an <see cref="ArgumentException"/> is thrown.
 	/// </summary>
 	/// <typeparam name="T">The type of <paramref name="value"/>.</typeparam>
-	/// <param name="_">The <see cref="Argument"/>.</param>
+	/// <param name="_">The <see cref="Arg"/>.</param>
 	/// <param name="value">The value of the argument.</param>
 	/// <param name="comparisonValue">The value to compare against.</param>
 	/// <param name="name">With C# 10, defaults to the expression of <paramref name="value"/>; otherwise specify the argument name.</param>
@@ -75,7 +75,7 @@ public static partial class RangeExtensions {
 	/// <returns>Returns <paramref name="value"/>.</returns>
 	/// <exception cref="ArgumentException">Thrown when <paramref name="value"/> is not greater than <paramref name="comparisonValue"/>.</exception>
 	[return: NotNullIfNotNull( nameof( value ) )]
-	public static T? GreaterThan<T>( this Argument _, T? value, T comparisonValue, [CallerArgumentExpression( nameof( value ) )] string? name = null, string? message = null )
+	public static T? GreaterThan<T>( this Arg _, T? value, T comparisonValue, [CallerArgumentExpression( nameof( value ) )] string? name = null, string? message = null )
 		where T : struct, IComparable<T>
 		=> !( value?.CompareTo( comparisonValue ) <= 0 )
 			? value
@@ -85,7 +85,7 @@ public static partial class RangeExtensions {
 	/// Validates <paramref name="value"/> is greater than <paramref name="comparisonValue"/>, otherwise an <see cref="ArgumentException"/> is thrown.
 	/// </summary>
 	/// <typeparam name="T">The type of <paramref name="value"/>.</typeparam>
-	/// <param name="_">The <see cref="Argument"/>.</param>
+	/// <param name="_">The <see cref="Arg"/>.</param>
 	/// <param name="value">The value of the argument.</param>
 	/// <param name="comparisonValue">The value to compare against.</param>
 	/// <param name="name">With C# 10, defaults to the expression of <paramref name="value"/>; otherwise specify the argument name.</param>
@@ -93,7 +93,7 @@ public static partial class RangeExtensions {
 	/// <returns>Returns <paramref name="value"/>.</returns>
 	/// <exception cref="ArgumentException">Thrown when <paramref name="value"/> is not greater than <paramref name="comparisonValue"/>.</exception>
 	[return: NotNullIfNotNull( nameof( value ) )]
-	public static T GreaterThan<T>( this Argument _, T value, T comparisonValue, [CallerArgumentExpression( nameof( value ) )] string? name = null, string? message = null )
+	public static T GreaterThan<T>( this Arg _, T value, T comparisonValue, [CallerArgumentExpression( nameof( value ) )] string? name = null, string? message = null )
 		where T : IComparable<T>?
 		=> comparisonValue != null && !( value?.CompareTo( comparisonValue ) <= 0 )
 			? value
@@ -103,7 +103,7 @@ public static partial class RangeExtensions {
 	/// Validates <paramref name="value"/> is greater than <paramref name="comparisonValue"/>, otherwise an <see cref="ArgumentException"/> is thrown.
 	/// </summary>
 	/// <typeparam name="T">The type of <paramref name="value"/>.</typeparam>
-	/// <param name="_">The <see cref="Argument"/>.</param>
+	/// <param name="_">The <see cref="Arg"/>.</param>
 	/// <param name="value">The value of the argument.</param>
 	/// <param name="comparisonValue">The value to compare against.</param>
 	/// <param name="comparer">The <see cref="IComparer{T}"/> to use.</param>
@@ -112,7 +112,7 @@ public static partial class RangeExtensions {
 	/// <returns>Returns <paramref name="value"/>.</returns>
 	/// <exception cref="ArgumentException">Thrown when <paramref name="value"/> is not greater than <paramref name="comparisonValue"/>.</exception>
 	[return: NotNullIfNotNull( nameof( value ) )]
-	public static T GreaterThan<T>( this Argument _, T value, T comparisonValue, IComparer<T> comparer, [CallerArgumentExpression( nameof( value ) )] string? name = null, string? message = null )
+	public static T GreaterThan<T>( this Arg _, T value, T comparisonValue, IComparer<T> comparer, [CallerArgumentExpression( nameof( value ) )] string? name = null, string? message = null )
 		=> ( comparer ?? Comparer<T>.Default ).Compare( value, comparisonValue ) > 0
 			? value
 			: throw new ArgumentOutOfRangeException( name, message ?? string.Format( CultureInfo.InvariantCulture, Constants.VALUE_MUST_BE_GREATER_THAN, comparisonValue?.ToString() ) );

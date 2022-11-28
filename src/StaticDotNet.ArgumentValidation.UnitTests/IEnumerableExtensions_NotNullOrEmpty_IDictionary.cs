@@ -7,7 +7,7 @@ public sealed class IEnumerableExtensions_NotNullOrEmpty_IDicationary {
 	public void WithValueReturnsCorrectly() {
 		IDictionary<string, string> value = new Dictionary<string, string>() { { "Key", "Value" } };
 
-		IDictionary<string, string> result = Argument.Is.NotNullOrEmpty( value );
+		IDictionary<string, string> result = Arg.Is.NotNullOrEmpty( value );
 
 		Assert.Same( value, result );
 	}
@@ -16,14 +16,14 @@ public sealed class IEnumerableExtensions_NotNullOrEmpty_IDicationary {
 	public void WithNullValueThrowsArgumentNullException() {
 		IDictionary<string, string>? value = null;
 
-		_ = Assert.Throws<ArgumentNullException>( nameof( value ), () => Argument.Is.NotNullOrEmpty( value ) );
+		_ = Assert.Throws<ArgumentNullException>( nameof( value ), () => Arg.Is.NotNullOrEmpty( value ) );
 	}
 
 	[Fact]
 	public void WithEmptyValueThrowsArgumentException() {
 		IDictionary<string, string> value = new Dictionary<string, string>();
 
-		ArgumentException exception = Assert.Throws<ArgumentException>( nameof( value ), () => Argument.Is.NotNullOrEmpty( value ) );
+		ArgumentException exception = Assert.Throws<ArgumentException>( nameof( value ), () => Arg.Is.NotNullOrEmpty( value ) );
 
 		string expectedMessage = "Value cannot be empty.";
 
@@ -35,7 +35,7 @@ public sealed class IEnumerableExtensions_NotNullOrEmpty_IDicationary {
 		IDictionary<string, string>? value = null;
 		const string name = "Name";
 
-		_ = Assert.Throws<ArgumentNullException>( name, () => Argument.Is.NotNullOrEmpty( value, name ) );
+		_ = Assert.Throws<ArgumentNullException>( name, () => Arg.Is.NotNullOrEmpty( value, name ) );
 	}
 
 	[Fact]
@@ -43,7 +43,7 @@ public sealed class IEnumerableExtensions_NotNullOrEmpty_IDicationary {
 		IDictionary<string, string>? value = null;
 		const string message = "Message";
 
-		ArgumentNullException exception = Assert.Throws<ArgumentNullException>( nameof( value ), () => Argument.Is.NotNullOrEmpty( value, message: message ) );
+		ArgumentNullException exception = Assert.Throws<ArgumentNullException>( nameof( value ), () => Arg.Is.NotNullOrEmpty( value, message: message ) );
 
 		Assert.StartsWith( message, exception.Message );
 	}

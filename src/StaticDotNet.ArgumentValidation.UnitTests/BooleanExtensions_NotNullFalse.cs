@@ -13,7 +13,7 @@ public sealed class BooleanExtensions_NotNullFalse {
 
 		bool? value = false;
 
-		bool? result = Argument.Is.NotNullFalse( value );
+		bool? result = Arg.Is.NotNullFalse( value );
 
 		Assert.Equal( value, result );
 	}
@@ -23,7 +23,7 @@ public sealed class BooleanExtensions_NotNullFalse {
 
 		bool? value = null;
 
-		_ = Assert.Throws<ArgumentNullException>( nameof( value ), () => Argument.Is.NotNullFalse( value ) );
+		_ = Assert.Throws<ArgumentNullException>( nameof( value ), () => Arg.Is.NotNullFalse( value ) );
 	}
 
 	[Fact]
@@ -31,7 +31,7 @@ public sealed class BooleanExtensions_NotNullFalse {
 
 		bool? value = true;
 
-		ArgumentException exception = Assert.Throws<ArgumentException>( nameof( value ), () => Argument.Is.NotNullFalse( value ) );
+		ArgumentException exception = Assert.Throws<ArgumentException>( nameof( value ), () => Arg.Is.NotNullFalse( value ) );
 
 		const string expectedMessage = "Value must be false.";
 
@@ -44,7 +44,7 @@ public sealed class BooleanExtensions_NotNullFalse {
 		bool? value = true;
 		const string name = "Name";
 
-		_ = Assert.Throws<ArgumentException>( name, () => Argument.Is.NotNullFalse( value, name ) );
+		_ = Assert.Throws<ArgumentException>( name, () => Arg.Is.NotNullFalse( value, name ) );
 	}
 
 	[Fact]
@@ -53,7 +53,7 @@ public sealed class BooleanExtensions_NotNullFalse {
 		bool? value = true;
 		const string message = "Message";
 
-		ArgumentException exception = Assert.Throws<ArgumentException>( nameof( value ), () => Argument.Is.NotNullFalse( value, message: message ) );
+		ArgumentException exception = Assert.Throws<ArgumentException>( nameof( value ), () => Arg.Is.NotNullFalse( value, message: message ) );
 
 		Assert.StartsWith( message, exception.Message );
 	}

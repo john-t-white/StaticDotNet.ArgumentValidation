@@ -8,7 +8,7 @@ public sealed class StreamExtensions_NotNullReadable {
 	public void WithValueReturnsCorrectly() {
 		MemoryStream value = new();
 
-		MemoryStream result = Argument.Is.NotNullReadable( value );
+		MemoryStream result = Arg.Is.NotNullReadable( value );
 
 		Assert.Same( value, result );
 	}
@@ -17,7 +17,7 @@ public sealed class StreamExtensions_NotNullReadable {
 	public void WithNullValueThrowsArgumentNullException() {
 		Stream? value = null;
 
-		_ = Assert.Throws<ArgumentNullException>( nameof( value ), () => Argument.Is.NotNullReadable( value ) );
+		_ = Assert.Throws<ArgumentNullException>( nameof( value ), () => Arg.Is.NotNullReadable( value ) );
 	}
 
 	[Fact]
@@ -25,7 +25,7 @@ public sealed class StreamExtensions_NotNullReadable {
 		Stream? value = Substitute.For<Stream>();
 		_ = value.CanRead.Returns( false );
 
-		ArgumentException exception = Assert.Throws<ArgumentException>( nameof( value ), () => Argument.Is.NotNullReadable( value ) );
+		ArgumentException exception = Assert.Throws<ArgumentException>( nameof( value ), () => Arg.Is.NotNullReadable( value ) );
 
 		string expectedMessage = "Value must be readable.";
 

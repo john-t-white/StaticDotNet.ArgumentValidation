@@ -6,7 +6,7 @@ public sealed class ArrayExtensions_NotNullOrEmpty {
 	public void WithValueReturnsCorrectly() {
 		string[] value = { "Value" };
 
-		string[] result = Argument.Is.NotNullOrEmpty( value );
+		string[] result = Arg.Is.NotNullOrEmpty( value );
 
 		Assert.Same( value, result );
 	}
@@ -15,14 +15,14 @@ public sealed class ArrayExtensions_NotNullOrEmpty {
 	public void WithNullValueThrowsArgumentNullException() {
 		string[]? value = null;
 
-		_ = Assert.Throws<ArgumentNullException>( nameof( value ), () => Argument.Is.NotNullOrEmpty( value ) );
+		_ = Assert.Throws<ArgumentNullException>( nameof( value ), () => Arg.Is.NotNullOrEmpty( value ) );
 	}
 
 	[Fact]
 	public void WithEmptyValueThrowsArgumentException() {
 		string[] value = Array.Empty<string>();
 
-		ArgumentException exception = Assert.Throws<ArgumentException>( nameof( value ), () => Argument.Is.NotNullOrEmpty( value ) );
+		ArgumentException exception = Assert.Throws<ArgumentException>( nameof( value ), () => Arg.Is.NotNullOrEmpty( value ) );
 
 		string expectedMessage = "Value cannot be empty.";
 
@@ -34,7 +34,7 @@ public sealed class ArrayExtensions_NotNullOrEmpty {
 		string[]? value = null;
 		const string name = "Name";
 
-		_ = Assert.Throws<ArgumentNullException>( name, () => Argument.Is.NotNullOrEmpty( value, name ) );
+		_ = Assert.Throws<ArgumentNullException>( name, () => Arg.Is.NotNullOrEmpty( value, name ) );
 	}
 
 	[Fact]
@@ -42,7 +42,7 @@ public sealed class ArrayExtensions_NotNullOrEmpty {
 		string[]? value = null;
 		const string message = "Message";
 
-		ArgumentNullException exception = Assert.Throws<ArgumentNullException>( nameof( value ), () => Argument.Is.NotNullOrEmpty( value, message: message ) );
+		ArgumentNullException exception = Assert.Throws<ArgumentNullException>( nameof( value ), () => Arg.Is.NotNullOrEmpty( value, message: message ) );
 
 		Assert.StartsWith( message, exception.Message );
 	}
@@ -51,7 +51,7 @@ public sealed class ArrayExtensions_NotNullOrEmpty {
 	public void WithArrayValueReturnsCorrectly() {
 		Array value = new string[] { "Value" };
 
-		Array result = Argument.Is.NotNullOrEmpty( value );
+		Array result = Arg.Is.NotNullOrEmpty( value );
 
 		Assert.Same( value, result );
 	}
@@ -60,14 +60,14 @@ public sealed class ArrayExtensions_NotNullOrEmpty {
 	public void WithNullArrayValueThrowsArgumentNullException() {
 		Array? value = null;
 
-		_ = Assert.Throws<ArgumentNullException>( nameof( value ), () => Argument.Is.NotNullOrEmpty( value ) );
+		_ = Assert.Throws<ArgumentNullException>( nameof( value ), () => Arg.Is.NotNullOrEmpty( value ) );
 	}
 
 	[Fact]
 	public void WithEmptyArrayValueThrowsArgumentException() {
 		Array value = Array.Empty<string>();
 
-		ArgumentException exception = Assert.Throws<ArgumentException>( nameof( value ), () => Argument.Is.NotNullOrEmpty( value ) );
+		ArgumentException exception = Assert.Throws<ArgumentException>( nameof( value ), () => Arg.Is.NotNullOrEmpty( value ) );
 
 		string expectedMessage = "Value cannot be empty.";
 
@@ -79,7 +79,7 @@ public sealed class ArrayExtensions_NotNullOrEmpty {
 		Array? value = null;
 		const string name = "Name";
 
-		_ = Assert.Throws<ArgumentNullException>( name, () => Argument.Is.NotNullOrEmpty( value, name ) );
+		_ = Assert.Throws<ArgumentNullException>( name, () => Arg.Is.NotNullOrEmpty( value, name ) );
 	}
 
 	[Fact]
@@ -87,7 +87,7 @@ public sealed class ArrayExtensions_NotNullOrEmpty {
 		Array? value = null;
 		const string message = "Message";
 
-		ArgumentNullException exception = Assert.Throws<ArgumentNullException>( nameof( value ), () => Argument.Is.NotNullOrEmpty( value, message: message ) );
+		ArgumentNullException exception = Assert.Throws<ArgumentNullException>( nameof( value ), () => Arg.Is.NotNullOrEmpty( value, message: message ) );
 
 		Assert.StartsWith( message, exception.Message );
 	}

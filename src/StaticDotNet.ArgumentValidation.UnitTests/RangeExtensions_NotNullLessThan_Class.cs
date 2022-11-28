@@ -13,7 +13,7 @@ public sealed class RangeExtensions_NotNullLessThan_Class {
 		string value = "a";
 		string comparisonValue = "b";
 
-		string result = Argument.Is.NotNullLessThan( value, comparisonValue );
+		string result = Arg.Is.NotNullLessThan( value, comparisonValue );
 
 		Assert.Equal( value, result );
 	}
@@ -25,7 +25,7 @@ public sealed class RangeExtensions_NotNullLessThan_Class {
 
 		string comparisonValue = "b";
 
-		ArgumentOutOfRangeException exception = Assert.Throws<ArgumentOutOfRangeException>( nameof( value ), () => Argument.Is.NotNullLessThan( value, comparisonValue ) );
+		ArgumentOutOfRangeException exception = Assert.Throws<ArgumentOutOfRangeException>( nameof( value ), () => Arg.Is.NotNullLessThan( value, comparisonValue ) );
 
 		string expectedMessage = $"Value must be less than {comparisonValue}.";
 
@@ -38,7 +38,7 @@ public sealed class RangeExtensions_NotNullLessThan_Class {
 		string value = "a";
 		string comparisonValue = null!;
 
-		ArgumentOutOfRangeException exception = Assert.Throws<ArgumentOutOfRangeException>( nameof( value ), () => Argument.Is.NotNullLessThan( value, comparisonValue ) );
+		ArgumentOutOfRangeException exception = Assert.Throws<ArgumentOutOfRangeException>( nameof( value ), () => Arg.Is.NotNullLessThan( value, comparisonValue ) );
 
 		string expectedMessage = $"Value must be less than <null>.";
 
@@ -52,7 +52,7 @@ public sealed class RangeExtensions_NotNullLessThan_Class {
 		string comparisonValue = "b";
 		string name = "Name";
 
-		_ = Assert.Throws<ArgumentNullException>( name, () => Argument.Is.NotNullLessThan( value, comparisonValue, name ) );
+		_ = Assert.Throws<ArgumentNullException>( name, () => Arg.Is.NotNullLessThan( value, comparisonValue, name ) );
 	}
 
 	[Fact]
@@ -62,7 +62,7 @@ public sealed class RangeExtensions_NotNullLessThan_Class {
 		string comparisonValue = "b";
 		string name = "Name";
 
-		_ = Assert.Throws<ArgumentOutOfRangeException>( name, () => Argument.Is.NotNullLessThan( value, comparisonValue, name ) );
+		_ = Assert.Throws<ArgumentOutOfRangeException>( name, () => Arg.Is.NotNullLessThan( value, comparisonValue, name ) );
 	}
 
 	[Fact]
@@ -72,7 +72,7 @@ public sealed class RangeExtensions_NotNullLessThan_Class {
 		string comparisonValue = "b";
 		string message = "Message";
 
-		ArgumentOutOfRangeException exception = Assert.Throws<ArgumentOutOfRangeException>( nameof(value), () => Argument.Is.NotNullLessThan( value, comparisonValue, message: message ) );
+		ArgumentOutOfRangeException exception = Assert.Throws<ArgumentOutOfRangeException>( nameof(value), () => Arg.Is.NotNullLessThan( value, comparisonValue, message: message ) );
 
 		Assert.StartsWith(message, exception.Message );
 	}
@@ -84,7 +84,7 @@ public sealed class RangeExtensions_NotNullLessThan_Class {
 		string comparisonValue = "b";
 		IComparer<string> comparer = Comparer<string>.Default;
 
-		string result = Argument.Is.NotNullLessThan( value, comparisonValue, comparer );
+		string result = Arg.Is.NotNullLessThan( value, comparisonValue, comparer );
 
 		Assert.Equal( value, result );
 	}
@@ -96,7 +96,7 @@ public sealed class RangeExtensions_NotNullLessThan_Class {
 		string comparisonValue = "b";
 		IComparer<string> comparer = null!;
 
-		string result = Argument.Is.NotNullLessThan( value, comparisonValue, comparer );
+		string result = Arg.Is.NotNullLessThan( value, comparisonValue, comparer );
 
 		Assert.Equal( value, result );
 	}
@@ -107,7 +107,7 @@ public sealed class RangeExtensions_NotNullLessThan_Class {
 		string? value = "a";
 		string comparisonValue = "b";
 
-		string? result = Argument.Is.NotNullLessThan( value, comparisonValue );
+		string? result = Arg.Is.NotNullLessThan( value, comparisonValue );
 
 		Assert.Equal( value, result );
 	}
@@ -119,7 +119,7 @@ public sealed class RangeExtensions_NotNullLessThan_Class {
 
 		string comparisonValue = "b";
 
-		ArgumentOutOfRangeException exception = Assert.Throws<ArgumentOutOfRangeException>( nameof( value ), () => Argument.Is.NotNullLessThan( value, comparisonValue ) );
+		ArgumentOutOfRangeException exception = Assert.Throws<ArgumentOutOfRangeException>( nameof( value ), () => Arg.Is.NotNullLessThan( value, comparisonValue ) );
 
 		string expectedMessage = $"Value must be less than {comparisonValue}.";
 
@@ -132,7 +132,7 @@ public sealed class RangeExtensions_NotNullLessThan_Class {
 		string? value = "b";
 		string comparisonValue = null!;
 
-		ArgumentOutOfRangeException exception = Assert.Throws<ArgumentOutOfRangeException>( nameof( value ), () => Argument.Is.NotNullLessThan( value, comparisonValue ) );
+		ArgumentOutOfRangeException exception = Assert.Throws<ArgumentOutOfRangeException>( nameof( value ), () => Arg.Is.NotNullLessThan( value, comparisonValue ) );
 
 		string expectedMessage = $"Value must be less than <null>.";
 
@@ -145,7 +145,7 @@ public sealed class RangeExtensions_NotNullLessThan_Class {
 		string? value = null;
 		string comparisonValue = "b";
 
-		_ = Assert.Throws<ArgumentNullException>( nameof(value), () => Argument.Is.NotNullLessThan( value, comparisonValue ) );
+		_ = Assert.Throws<ArgumentNullException>( nameof(value), () => Arg.Is.NotNullLessThan( value, comparisonValue ) );
 	}
 
 	[Fact]
@@ -155,7 +155,7 @@ public sealed class RangeExtensions_NotNullLessThan_Class {
 		string comparisonValue = "b";
 		string name = "Name";
 
-		_ = Assert.Throws<ArgumentOutOfRangeException>( name, () => Argument.Is.NotNullLessThan( value, comparisonValue, name ) );
+		_ = Assert.Throws<ArgumentOutOfRangeException>( name, () => Arg.Is.NotNullLessThan( value, comparisonValue, name ) );
 	}
 
 	[Fact]
@@ -165,7 +165,7 @@ public sealed class RangeExtensions_NotNullLessThan_Class {
 		string comparisonValue = "b";
 		string message = "Message";
 
-		ArgumentOutOfRangeException exception = Assert.Throws<ArgumentOutOfRangeException>( nameof( value ), () => Argument.Is.NotNullLessThan( value, comparisonValue, message: message ) );
+		ArgumentOutOfRangeException exception = Assert.Throws<ArgumentOutOfRangeException>( nameof( value ), () => Arg.Is.NotNullLessThan( value, comparisonValue, message: message ) );
 
 		Assert.StartsWith( message, exception.Message );
 	}

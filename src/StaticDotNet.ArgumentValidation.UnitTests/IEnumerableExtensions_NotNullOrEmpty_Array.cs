@@ -9,7 +9,7 @@ public sealed class IEnumerableExtensions_NotNullOrEmpty_Array {
 	public void WithValueReturnsCorrectly() {
 		IEnumerable value = new string[] { "Value" };
 
-		IEnumerable result = Argument.Is.NotNullOrEmpty( value );
+		IEnumerable result = Arg.Is.NotNullOrEmpty( value );
 
 		Assert.Same( value, result );
 	}
@@ -18,14 +18,14 @@ public sealed class IEnumerableExtensions_NotNullOrEmpty_Array {
 	public void WithNullValueThrowsArgumentNullException() {
 		IEnumerable? value = null;
 
-		_ = Assert.Throws<ArgumentNullException>( nameof( value ), () => Argument.Is.NotNullOrEmpty( value ) );
+		_ = Assert.Throws<ArgumentNullException>( nameof( value ), () => Arg.Is.NotNullOrEmpty( value ) );
 	}
 
 	[Fact]
 	public void WithEmptyValueThrowsArgumentException() {
 		IEnumerable value = Array.Empty<string>();
 
-		ArgumentException exception = Assert.Throws<ArgumentException>( nameof( value ), () => Argument.Is.NotNullOrEmpty( value ) );
+		ArgumentException exception = Assert.Throws<ArgumentException>( nameof( value ), () => Arg.Is.NotNullOrEmpty( value ) );
 
 		string expectedMessage = "Value cannot be empty.";
 
@@ -37,7 +37,7 @@ public sealed class IEnumerableExtensions_NotNullOrEmpty_Array {
 		IEnumerable? value = null;
 		const string name = "Name";
 
-		_ = Assert.Throws<ArgumentNullException>( name, () => Argument.Is.NotNullOrEmpty( value, name ) );
+		_ = Assert.Throws<ArgumentNullException>( name, () => Arg.Is.NotNullOrEmpty( value, name ) );
 	}
 
 	[Fact]
@@ -45,7 +45,7 @@ public sealed class IEnumerableExtensions_NotNullOrEmpty_Array {
 		IEnumerable? value = null;
 		const string message = "Message";
 
-		ArgumentNullException exception = Assert.Throws<ArgumentNullException>( nameof( value ), () => Argument.Is.NotNullOrEmpty( value, message: message ) );
+		ArgumentNullException exception = Assert.Throws<ArgumentNullException>( nameof( value ), () => Arg.Is.NotNullOrEmpty( value, message: message ) );
 
 		Assert.StartsWith( message, exception.Message );
 	}

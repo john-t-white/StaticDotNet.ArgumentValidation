@@ -8,7 +8,7 @@ public sealed class StreamExtensions_Readable {
 	public void WithValueReturnsCorrectly() {
 		MemoryStream value = new();
 
-		MemoryStream result = Argument.Is.Readable( value );
+		MemoryStream result = Arg.Is.Readable( value );
 
 		Assert.Same( value, result );
 	}
@@ -17,7 +17,7 @@ public sealed class StreamExtensions_Readable {
 	public void WithNullValueReturnsCorrectly() {
 		Stream? value = null;
 
-		Stream? result = Argument.Is.Readable( value );
+		Stream? result = Arg.Is.Readable( value );
 
 		Assert.Null( result );
 	}
@@ -27,7 +27,7 @@ public sealed class StreamExtensions_Readable {
 		Stream? value = Substitute.For<Stream>();
 		_ = value.CanRead.Returns( false );
 
-		ArgumentException exception = Assert.Throws<ArgumentException>( nameof( value ), () => Argument.Is.Readable( value ) );
+		ArgumentException exception = Assert.Throws<ArgumentException>( nameof( value ), () => Arg.Is.Readable( value ) );
 
 		string expectedMessage = "Value must be readable.";
 
@@ -41,7 +41,7 @@ public sealed class StreamExtensions_Readable {
 
 		string name = "Name";
 
-		_ = Assert.Throws<ArgumentException>( name, () => Argument.Is.Readable( value, name ) );
+		_ = Assert.Throws<ArgumentException>( name, () => Arg.Is.Readable( value, name ) );
 	}
 
 	[Fact]
@@ -51,7 +51,7 @@ public sealed class StreamExtensions_Readable {
 
 		string message = "Message";
 
-		ArgumentException exception = Assert.Throws<ArgumentException>( nameof( value ), () => Argument.Is.Readable( value, message: message ) );
+		ArgumentException exception = Assert.Throws<ArgumentException>( nameof( value ), () => Arg.Is.Readable( value, message: message ) );
 
 		Assert.StartsWith( message, exception.Message );
 	}

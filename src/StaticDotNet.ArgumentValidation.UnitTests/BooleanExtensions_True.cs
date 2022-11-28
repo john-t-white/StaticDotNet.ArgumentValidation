@@ -13,7 +13,7 @@ public sealed class BooleanExtensions_True {
 
 		bool value = true;
 
-		bool result = Argument.Is.True( value );
+		bool result = Arg.Is.True( value );
 
 		Assert.Equal( value, result );
 	}
@@ -23,7 +23,7 @@ public sealed class BooleanExtensions_True {
 
 		bool value = false;
 
-		_ = Assert.Throws<ArgumentException>( nameof( value ), () => Argument.Is.True( value ) );
+		_ = Assert.Throws<ArgumentException>( nameof( value ), () => Arg.Is.True( value ) );
 	}
 
 	[Fact]
@@ -32,7 +32,7 @@ public sealed class BooleanExtensions_True {
 		bool value = false;
 		const string name = "Name";
 
-		ArgumentException exception = Assert.Throws<ArgumentException>( name, () => Argument.Is.True( value, name ) );
+		ArgumentException exception = Assert.Throws<ArgumentException>( name, () => Arg.Is.True( value, name ) );
 
 		const string expectedMessage = "Value must be true.";
 
@@ -45,7 +45,7 @@ public sealed class BooleanExtensions_True {
 		bool value = false;
 		const string message = "Message";
 
-		ArgumentException exception = Assert.Throws<ArgumentException>( nameof( value ), () => Argument.Is.True( value, message: message ) );
+		ArgumentException exception = Assert.Throws<ArgumentException>( nameof( value ), () => Arg.Is.True( value, message: message ) );
 
 		Assert.StartsWith(message, exception.Message );
 	}
@@ -55,7 +55,7 @@ public sealed class BooleanExtensions_True {
 
 		bool? value = true;
 
-		bool? result = Argument.Is.True( value );
+		bool? result = Arg.Is.True( value );
 
 		Assert.Equal( value, result );
 	}
@@ -65,7 +65,7 @@ public sealed class BooleanExtensions_True {
 
 		bool? value = null;
 
-		bool? result = Argument.Is.True( value );
+		bool? result = Arg.Is.True( value );
 
 		Assert.Null( result );
 	}
@@ -75,7 +75,7 @@ public sealed class BooleanExtensions_True {
 
 		bool? value = false;
 
-		ArgumentException exception = Assert.Throws<ArgumentException>( nameof( value ), () => Argument.Is.True( value ) );
+		ArgumentException exception = Assert.Throws<ArgumentException>( nameof( value ), () => Arg.Is.True( value ) );
 
 		const string expectedMessage = "Value must be true.";
 
@@ -88,7 +88,7 @@ public sealed class BooleanExtensions_True {
 		bool? value = false;
 		const string name = "Name";
 
-		_ = Assert.Throws<ArgumentException>( name, () => Argument.Is.True( value, name ) );
+		_ = Assert.Throws<ArgumentException>( name, () => Arg.Is.True( value, name ) );
 	}
 
 	[Fact]
@@ -97,7 +97,7 @@ public sealed class BooleanExtensions_True {
 		bool? value = false;
 		const string message = "Message";
 
-		ArgumentException exception = Assert.Throws<ArgumentException>( nameof( value ), () => Argument.Is.True( value, message: message ) );
+		ArgumentException exception = Assert.Throws<ArgumentException>( nameof( value ), () => Arg.Is.True( value, message: message ) );
 
 		Assert.StartsWith( message, exception.Message );
 	}

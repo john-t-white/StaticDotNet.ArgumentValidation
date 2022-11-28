@@ -6,7 +6,7 @@ public sealed class StringExtensions_NotWhiteSpace {
 	public void WithValueReturnsCorrectly() {
 		string value = "Value";
 
-		string result = Argument.Is.NotWhiteSpace( value );
+		string result = Arg.Is.NotWhiteSpace( value );
 
 		Assert.Equal( value, result );
 	}
@@ -15,7 +15,7 @@ public sealed class StringExtensions_NotWhiteSpace {
 	public void WithNullValueThrowsArgumentNullException() {
 		string? value = null;
 
-		string? result = Argument.Is.NotWhiteSpace( value );
+		string? result = Arg.Is.NotWhiteSpace( value );
 
 		Assert.Null( result );
 	}
@@ -24,7 +24,7 @@ public sealed class StringExtensions_NotWhiteSpace {
 	public void WithEmptyValueThrowsArgumentException() {
 		string value = string.Empty;
 
-		ArgumentException exception = Assert.Throws<ArgumentException>( nameof( value ), () => Argument.Is.NotWhiteSpace( value ) );
+		ArgumentException exception = Assert.Throws<ArgumentException>( nameof( value ), () => Arg.Is.NotWhiteSpace( value ) );
 
 		string expectedMessage = "Value cannot be white space.";
 
@@ -35,7 +35,7 @@ public sealed class StringExtensions_NotWhiteSpace {
 	public void WithWhiteSpaceValueThrowsArgumentException() {
 		string value = " ";
 
-		ArgumentException exception = Assert.Throws<ArgumentException>( nameof( value ), () => Argument.Is.NotWhiteSpace( value ) );
+		ArgumentException exception = Assert.Throws<ArgumentException>( nameof( value ), () => Arg.Is.NotWhiteSpace( value ) );
 
 		string expectedMessage = "Value cannot be white space.";
 
@@ -47,7 +47,7 @@ public sealed class StringExtensions_NotWhiteSpace {
 		string? value = string.Empty;
 		const string name = "Name";
 
-		_ = Assert.Throws<ArgumentException>( name, () => Argument.Is.NotWhiteSpace( value, name ) );
+		_ = Assert.Throws<ArgumentException>( name, () => Arg.Is.NotWhiteSpace( value, name ) );
 	}
 
 	[Fact]
@@ -55,7 +55,7 @@ public sealed class StringExtensions_NotWhiteSpace {
 		string? value = string.Empty;
 		const string message = "Message";
 
-		ArgumentException exception = Assert.Throws<ArgumentException>( nameof( value ), () => Argument.Is.NotWhiteSpace( value, message: message ) );
+		ArgumentException exception = Assert.Throws<ArgumentException>( nameof( value ), () => Arg.Is.NotWhiteSpace( value, message: message ) );
 
 		Assert.StartsWith( message, exception.Message );
 	}

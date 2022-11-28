@@ -8,7 +8,7 @@ public sealed class StreamExtensions_NotNullWritable {
 	public void WithValueReturnsCorrectly() {
 		MemoryStream value = new();
 
-		MemoryStream result = Argument.Is.NotNullWriteable( value );
+		MemoryStream result = Arg.Is.NotNullWriteable( value );
 
 		Assert.Same( value, result );
 	}
@@ -17,7 +17,7 @@ public sealed class StreamExtensions_NotNullWritable {
 	public void WithNullValueThrowsArgumentNullException() {
 		Stream? value = null;
 
-		_ = Assert.Throws<ArgumentNullException>( nameof( value ), () => Argument.Is.NotNullWriteable( value ) );
+		_ = Assert.Throws<ArgumentNullException>( nameof( value ), () => Arg.Is.NotNullWriteable( value ) );
 	}
 
 	[Fact]
@@ -25,7 +25,7 @@ public sealed class StreamExtensions_NotNullWritable {
 		Stream? value = Substitute.For<Stream>();
 		_ = value.CanWrite.Returns( false );
 
-		ArgumentException exception = Assert.Throws<ArgumentException>( nameof( value ), () => Argument.Is.NotNullWriteable( value ) );
+		ArgumentException exception = Assert.Throws<ArgumentException>( nameof( value ), () => Arg.Is.NotNullWriteable( value ) );
 
 		string expectedMessage = "Value must be writable.";
 
