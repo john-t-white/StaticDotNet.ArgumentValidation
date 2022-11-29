@@ -9,7 +9,7 @@ namespace StaticDotNet.ArgumentValidation.Benchmarks;
 [SimpleJob( RuntimeMoniker.Net70 )]
 public class NotNullOrEmptyICollectionBenchmarks {
 
-	public ICollection<string> value = new Collection<string>() { "Value" };
+	public Collection<string> value = new Collection<string>() { "Value" };
 
 	[Benchmark( Baseline = true )]
 	public ICollection<string> Baseline()
@@ -18,16 +18,16 @@ public class NotNullOrEmptyICollectionBenchmarks {
 			: this.value.Count == 0 ? throw new ArgumentException( "Message", nameof( this.value ) ) : this.value;
 
 	[Benchmark]
-	public ICollection<string> Arg_Is() => Arg.Is.NotNullOrEmpty( this.value );
+	public Collection<string> Arg_Is() => Arg.Is.NotNullOrEmpty( this.value );
 
 	[Benchmark]
-	public ICollection<string> Dawn_Guard() => Dawn.Guard.Argument( this.value ).NotNull().NotEmpty().Value;
+	public Collection<string> Dawn_Guard() => Dawn.Guard.Argument( this.value ).NotNull().NotEmpty().Value;
 
 	[Benchmark]
-	public ICollection<string> Ardalis_Guard() => Ardalis.GuardClauses.Guard.Against.NullOrEmpty( this.value ).ToList();
+	public Collection<string> Ardalis_Guard() => ( Collection<string> )Ardalis.GuardClauses.Guard.Against.NullOrEmpty( this.value );
 
 	[Benchmark]
-	public ICollection<string> Ensure_That() {
+	public Collection<string> Ensure_That() {
 		EnsureThat.Ensure.That( this.value, nameof( this.value ) ).IsNotNull();
 		EnsureThat.Ensure.That( this.value, nameof( this.value ) ).HasItems();
 

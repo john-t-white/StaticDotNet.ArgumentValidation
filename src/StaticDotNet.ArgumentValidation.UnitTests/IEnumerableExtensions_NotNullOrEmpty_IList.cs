@@ -5,7 +5,7 @@ public sealed class IEnumerableExtensions_NotNullOrEmpty_IList {
 
 	[Fact]
 	public void WithValueReturnsCorrectly() {
-		IList<string> value = new List<string>() { "Value" };
+		List<string> value = new List<string>() { "Value" };
 
 		IList<string> result = Arg.Is.NotNullOrEmpty( value );
 
