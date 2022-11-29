@@ -1,5 +1,6 @@
 ﻿using Ardalis.GuardClauses;
 using Dawn;
+using EnsureThat;
 
 namespace StaticDotNet.ArgumentValidation.Benchmarks;
 
@@ -30,4 +31,11 @@ public class NotNullOrWhiteSpaceBenchmarks {
 
 	[Benchmark]
 	public string Ardalis_Guard() => Ardalis.GuardClauses.Guard.Against.NullOrWhiteSpace( this.value );
+
+	[Benchmark]
+	public string Ensure_That() {
+		EnsureThat.Ensure.That( this.value, nameof( this.value ) ).IsNotNullOrWhiteSpace();
+
+		return this.value!;
+	}
 }

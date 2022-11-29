@@ -1,5 +1,6 @@
 ﻿using Ardalis.GuardClauses;
 using Dawn;
+using EnsureThat;
 
 namespace StaticDotNet.ArgumentValidation.Benchmarks;
 
@@ -23,4 +24,12 @@ public class NotNullOrEmptyIListBenchmarks {
 
 	[Benchmark]
 	public IList<string> Ardalis_Guard() => Ardalis.GuardClauses.Guard.Against.NullOrEmpty( this.value ).ToList();
+
+	[Benchmark]
+	public IList<string> Ensure_That() {
+		EnsureThat.Ensure.That( this.value, nameof( this.value ) ).IsNotNull();
+		EnsureThat.Ensure.That( this.value, nameof( this.value ) ).HasItems();
+
+		return this.value;
+	}
 }

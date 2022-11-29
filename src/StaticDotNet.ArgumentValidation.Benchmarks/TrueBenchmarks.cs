@@ -1,5 +1,6 @@
 ﻿using Ardalis.GuardClauses;
 using Dawn;
+using EnsureThat;
 
 namespace StaticDotNet.ArgumentValidation.Benchmarks;
 
@@ -17,4 +18,12 @@ public class TrueBenchmarks {
 
 	[Benchmark]
 	public bool Dawn_Guard() => Dawn.Guard.Argument( this.value ).True();
+
+	[Benchmark]
+	public bool Ensure_That() {
+
+		EnsureThat.Ensure.That( this.value, nameof( this.value ) ).IsTrue();
+
+		return this.value;
+	}
 }

@@ -1,5 +1,6 @@
 ﻿using Ardalis.GuardClauses;
 using Dawn;
+using EnsureThat;
 using JetBrains.Annotations;
 using System.Globalization;
 
@@ -20,4 +21,11 @@ public class GreaterThanClassBenchmarks {
 
 	[Benchmark]
 	public string Dawn_Guard() => Dawn.Guard.Argument( this.value ).GreaterThan( this.comparisonValue );
+
+	[Benchmark]
+	public string Ensure_That() {
+		EnsureThat.Ensure.That( this.value, nameof( this.value ) ).IsGt( this.comparisonValue, StringComparison.OrdinalIgnoreCase );
+
+		return this.value;
+	}
 }

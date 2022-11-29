@@ -1,5 +1,6 @@
 ﻿using Ardalis.GuardClauses;
 using Dawn;
+using EnsureThat;
 using JetBrains.Annotations;
 using System.Globalization;
 
@@ -23,4 +24,11 @@ public class GreaterThanStructBenchmarks {
 
 	[Benchmark]
 	public int Ardalis_Guard() => Ardalis.GuardClauses.Guard.Against.Negative( this.value );
+
+	[Benchmark]
+	public int Ensure_That() {
+		EnsureThat.Ensure.That( this.value, nameof( this.value ) ).IsGt( this.comparisonValue );
+
+		return this.value;
+	}
 }

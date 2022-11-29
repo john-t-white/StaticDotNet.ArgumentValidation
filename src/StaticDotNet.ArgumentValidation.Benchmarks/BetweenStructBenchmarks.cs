@@ -1,5 +1,6 @@
 ﻿using Ardalis.GuardClauses;
 using Dawn;
+using EnsureThat;
 using JetBrains.Annotations;
 using System.Globalization;
 
@@ -25,4 +26,11 @@ public class BetweenStructBenchmarks {
 
 	[Benchmark]
 	public int Ardalis_Guard() => Ardalis.GuardClauses.Guard.Against.OutOfRange( this.value, nameof( this.value ), this.minValue, this.maxValue );
+
+	[Benchmark]
+	public int Ensure_That() {
+		EnsureThat.Ensure.That( this.value, nameof( this.value ) ).IsInRange( this.minValue, this.maxValue );
+
+		return this.value;
+	}
 }

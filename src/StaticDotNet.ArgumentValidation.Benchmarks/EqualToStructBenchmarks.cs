@@ -1,5 +1,6 @@
 ﻿using Ardalis.GuardClauses;
 using Dawn;
+using EnsureThat;
 using JetBrains.Annotations;
 using System.Globalization;
 
@@ -20,4 +21,11 @@ public class EqualToStructBenchmarks {
 
 	[Benchmark]
 	public int Dawn_Guard() => Dawn.Guard.Argument( this.value ).Equal( this.comparisonValue );
+
+	[Benchmark]
+	public int Ensure_That() {
+		EnsureThat.Ensure.That( this.value, nameof( this.value ) ).Is( this.comparisonValue );
+
+		return this.value;
+	}
 }

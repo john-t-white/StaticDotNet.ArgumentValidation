@@ -1,5 +1,6 @@
 ﻿using Ardalis.GuardClauses;
 using Dawn;
+using EnsureThat;
 using JetBrains.Annotations;
 using System.Text.RegularExpressions;
 
@@ -37,4 +38,12 @@ public partial class RegexBenchmarks {
 
 	[Benchmark]
 	public string Dawn_Guard() => Dawn.Guard.Argument( this.value ).NotNull().NotWhiteSpace().Matches( DigitRegex() );
+
+	[Benchmark]
+	public string Ensure_That() {
+
+		EnsureThat.Ensure.That( this.value, nameof( this.value ) ).Matches( DigitRegex() );
+
+		return this.value;
+	}
 }
