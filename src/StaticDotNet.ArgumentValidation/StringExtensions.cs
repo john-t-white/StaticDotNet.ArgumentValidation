@@ -63,6 +63,25 @@ public static class StringExtensions {
 	}
 
 	/// <summary>
+	/// Ensures a string argument is equal to <paramref name="comparisonValue"/>, otherwise an <see cref="ArgumentException"/> is thrown.
+	/// </summary>
+	/// <typeparam name="T">The type of argument value.</typeparam>
+	/// <param name="argInfo">The argument info.</param>
+	/// <param name="comparisonValue">The value to compare against.</param>
+	/// <param name="comparisonType">The type of comparison.</param>
+	/// <returns>The <see cref="ArgInfo{T}"/>.</returns>
+	/// <exception cref="ArgumentException">Thrown when <see cref="ArgInfo{T}.Value"/> does not equal <paramref name="comparisonValue"/>.</exception>
+	public static ref readonly ArgInfo<T> EqualTo<T>( in this ArgInfo<T> argInfo, string comparisonValue, StringComparison comparisonType )
+		where T : IEquatable<string>?, IComparable<string>?, IEnumerable<char>? {
+
+		if( argInfo.Value is null || GetStringComparer( comparisonType ).Equals( argInfo.Value, comparisonValue ) ) {
+			return ref argInfo;
+		}
+
+		throw new ArgumentException( argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, Constants.VALUE_MUST_BE_EQUAL_TO, comparisonValue?.ToString() ?? Constants.NULL ), argInfo.Name );
+	}
+
+	/// <summary>
 	/// Ensures a string argument has a length of <paramref name="length"/>, otherwise an <see cref="ArgumentOutOfRangeException"/> is thrown.
 	/// </summary>
 	/// <typeparam name="T">The type of argument value.</typeparam>
@@ -71,7 +90,7 @@ public static class StringExtensions {
 	/// <returns>The <see cref="ArgInfo{T}"/>.</returns>
 	/// <exception cref="ArgumentOutOfRangeException">Thrown when the length of <see cref="ArgInfo{T}.Value"/> does not equal <paramref name="length"/>.</exception>
 	public static ref readonly ArgInfo<T> Length<T>( in this ArgInfo<T> argInfo, int length )
-		where T : IEquatable<string>?, IComparable<string>?, IEnumerable<char>? {
+	where T : IEquatable<string>?, IComparable<string>?, IEnumerable<char>? {
 
 		if( argInfo.Value is null || ( argInfo.Value.ToString() ?? string.Empty ).Length == length ) {
 			return ref argInfo;
@@ -135,4 +154,33 @@ public static class StringExtensions {
 
 		throw new ArgumentOutOfRangeException( argInfo.Name, argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, Constants.VALUE_MUST_HAVE_LENGTH_BETWEEN, minLength, maxLength ) );
 	}
+
+	#region Internal Methods
+
+#if NETSTANDARD2_0
+
+	private static StringComparer GetStringComparer( StringComparison comparisonType )
+		=> comparisonType switch {
+			StringComparison.CurrentCulture => StringComparer.CurrentCulture,
+
+			StringComparison.CurrentCultureIgnoreCase => StringComparer.CurrentCultureIgnoreCase,
+
+			StringComparison.InvariantCulture => StringComparer.InvariantCulture,
+
+			StringComparison.InvariantCultureIgnoreCase => StringComparer.InvariantCultureIgnoreCase,
+
+			StringComparison.Ordinal => StringComparer.Ordinal,
+
+			StringComparison.OrdinalIgnoreCase => StringComparer.OrdinalIgnoreCase,
+
+			_ => throw new InvalidOperationException( "Comparison type not supported." )
+		};
+
+#else
+
+	private static StringComparer GetStringComparer( StringComparison comparisonType ) => StringComparer.FromComparison( comparisonType );
+
+#endif
+
+	#endregion
 }

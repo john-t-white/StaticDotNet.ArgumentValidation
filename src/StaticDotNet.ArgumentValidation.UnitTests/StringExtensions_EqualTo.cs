@@ -6,14 +6,16 @@ using System.Threading.Tasks;
 
 namespace StaticDotNet.ArgumentValidation.UnitTests;
 
-public sealed class StringExtensions_NotEmpty {
+public sealed class StringExtensions_EqualTo {
 
 	[Fact]
 	public void ReturnsCorrectly() {
 
 		ArgInfo<string> argInfo = new( "Value", null, null );
+		string comparisonValue = "value";
+		StringComparison comparisonType = StringComparison.OrdinalIgnoreCase;
 
-		ArgInfo<string> result = StringExtensions.NotEmpty( argInfo );
+		ArgInfo<string> result = StringExtensions.EqualTo( argInfo, comparisonValue, comparisonType );
 
 		ArgInfoAssertions.Equal( argInfo, result );
 	}
@@ -23,33 +25,29 @@ public sealed class StringExtensions_NotEmpty {
 
 		ArgInfo<string?> argInfo = new( null, null, null );
 
-		ArgInfo<string?> result = StringExtensions.NotEmpty( argInfo );
+		string comparisonValue = "value";
+		StringComparison comparisonType = StringComparison.OrdinalIgnoreCase;
+
+		ArgInfo<string?> result = StringExtensions.EqualTo( argInfo, comparisonValue, comparisonType );
 
 		ArgInfoAssertions.Equal( argInfo, result );
 	}
 
 	[Fact]
-	public void WithWhiteSpaceValueReturnsCorrectly() {
-
-		ArgInfo<string?> argInfo = new( " ", null, null );
-
-		ArgInfo<string?> result = StringExtensions.NotEmpty( argInfo );
-
-		ArgInfoAssertions.Equal( argInfo, result );
-	}
-
-	[Fact]
-	public void WithEmptyValueThrowsArgumentException() {
+	public void WithValueNotEqualToComparisonValueThrowsArgumentException() {
 
 		string name = "Name";
-		string value = string.Empty;
+		string value = "Value";
+		string comparisonValue = "Not Equal Value";
+		StringComparison comparisonType = StringComparison.OrdinalIgnoreCase;
+
 
 		ArgumentException exception = Assert.Throws<ArgumentException>( name, () => {
 			ArgInfo<string> argInfo = new( value, name, null );
-			_ = StringExtensions.NotEmpty( argInfo );
+			_ = StringExtensions.EqualTo( argInfo, comparisonValue, comparisonType );
 		} );
 
-		string expectedMessage = "Value cannot be empty.";
+		string expectedMessage = $"Value must be equal to {comparisonValue}.";
 
 		Assert.StartsWith( expectedMessage, exception.Message );
 	}
@@ -58,12 +56,14 @@ public sealed class StringExtensions_NotEmpty {
 	public void WithInvalidValueAndMessageThrowsArgumentException() {
 
 		string name = "Name";
-		string value = string.Empty;
+		string value = "Value";
 		string message = "Message";
+		string comparisonValue = "Not Equal Value";
+		StringComparison comparisonType = StringComparison.OrdinalIgnoreCase;
 
 		ArgumentException exception = Assert.Throws<ArgumentException>( name, () => {
 			ArgInfo<string> argInfo = new( value, name, message );
-			_ = StringExtensions.NotEmpty( argInfo );
+			_ = StringExtensions.EqualTo( argInfo, comparisonValue, comparisonType );
 		} );
 
 		Assert.StartsWith( message, exception.Message );

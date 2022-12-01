@@ -9,7 +9,7 @@ namespace StaticDotNet.ArgumentValidation;
 public static class Arg {
 
 	/// <summary>
-	/// Validates that <paramref name="value"/> is not null and allows chaining other checks.
+	/// Ensures the argument is not null.
 	/// </summary>
 	/// <typeparam name="T">The type of <paramref name="value"/>.</typeparam>
 	/// <param name="value">The value of the argument.</param>
@@ -24,7 +24,7 @@ public static class Arg {
 			: throw GetArgumentNullException( name, message );
 
 	/// <summary>
-	/// Validates that <paramref name="value"/> is not null and allows chaining other checks.
+	/// Ensures the argument is not null.
 	/// </summary>
 	/// <typeparam name="T">The type of <paramref name="value"/>.</typeparam>
 	/// <param name="value">The value of the argument.</param>
@@ -39,7 +39,7 @@ public static class Arg {
 			: throw GetArgumentNullException( name, message );
 
 	/// <summary>
-	/// Initial start to validating an argument.
+	/// Does not validate if parameter is null or not.
 	/// </summary>
 	/// <typeparam name="T">The type of <paramref name="value"/>.</typeparam>
 	/// <param name="value">The value of the argument.</param>
@@ -50,7 +50,7 @@ public static class Arg {
 		=> new( value, name, message );
 
 	/// <summary>
-	/// Validates that <paramref name="value"/> is null.
+	/// Ensures the argument is null.
 	/// </summary>
 	/// <typeparam name="T">The type of <paramref name="value"/>.</typeparam>
 	/// <param name="value">The value of the argument.</param>
@@ -63,6 +63,10 @@ public static class Arg {
 			? default
 			: throw new ArgumentException( message ?? Constants.VALUE_MUST_BE_NULL, name );
 
+	#region Internal Methods
+
 	private static ArgumentNullException GetArgumentNullException( string? name, string? message )
 		=> message is null ? new ArgumentNullException( name ) : new ArgumentNullException( name, message );
+
+	#endregion
 }
