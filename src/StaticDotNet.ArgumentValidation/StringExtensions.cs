@@ -51,11 +51,9 @@ public static class StringExtensions {
 			return ref argInfo;
 		}
 
-		string value = argInfo.Value.ToString() ?? string.Empty;
-
-		if( value.Length > 0 ) {
-			for( int i = 0; i < value.Length; i++ ) {
-				if( !char.IsWhiteSpace( value[ i ] ) ) {
+		if( argInfo.Value is string stringValue && stringValue.Length > 0 ) {
+			for( int i = 0; i < stringValue.Length; i++ ) {
+				if( !char.IsWhiteSpace( stringValue[ i ] ) ) {
 					return ref argInfo;
 				}
 			}
