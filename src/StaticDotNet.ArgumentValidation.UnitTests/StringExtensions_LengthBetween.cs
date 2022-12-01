@@ -6,18 +6,19 @@ using System.Threading.Tasks;
 
 namespace StaticDotNet.ArgumentValidation.UnitTests;
 
-public sealed class StringExtensions_MinLength {
+public sealed class StringExtensions_LengthBetween {
 
 	[Theory]
-	[InlineData( "12" )]
-	[InlineData( "123" )]
+	[InlineData("12")]
+	[InlineData("123")]
+	[InlineData("1234")]
 	public void ReturnsCorrectly( string value) {
 
-		int minLength = 2;
-
 		ArgInfo<string> argInfo = new( value, null, null );
+		int minLength = 2;
+		int maxLength = 4;
 
-		ArgInfo<string> result = StringExtensions.MinLength( argInfo, minLength );
+		ArgInfo<string> result = StringExtensions.LengthBetween( argInfo, minLength, maxLength );
 
 		ArgInfoAssertions.Equal( argInfo, result );
 	}
@@ -25,28 +26,30 @@ public sealed class StringExtensions_MinLength {
 	[Fact]
 	public void WithNullValueReturnsCorrectly() {
 
-		int minLength = 2;
-
 		ArgInfo<string?> argInfo = new( null, null, null );
+		int minLength = 2;
+		int maxLength = 4;
 
-		ArgInfo<string?> result = StringExtensions.MinLength( argInfo, minLength );
+		ArgInfo<string?> result = StringExtensions.LengthBetween( argInfo, minLength, maxLength );
 
 		ArgInfoAssertions.Equal( argInfo, result );
 	}
 
-	[Fact]
-	public void WithValueLengthLessThanMinLengthThrowsArgumentException() {
+	[Theory]
+	[InlineData( "1" )]
+	[InlineData( "12345" )]
+	public void WithValueLengthNotBetweenThrowsArgumentException( string value) {
 
 		string name = "Name";
-		string value = "1";
 		int minLength = 2;
+		int maxLength = 4;
 
 		ArgumentException exception = Assert.Throws<ArgumentException>( name, () => {
 			ArgInfo<string> argInfo = new( value, name, null );
-			_ = StringExtensions.MinLength( argInfo, minLength );
+			_ = StringExtensions.LengthBetween( argInfo, minLength, maxLength );
 		} );
 
-		string expectedMessage = $"Value cannot have a length less than {minLength}.";
+		string expectedMessage = $"Value cannot have a length between {minLength} and {maxLength}.";
 
 		Assert.StartsWith( expectedMessage, exception.Message );
 	}
@@ -58,10 +61,11 @@ public sealed class StringExtensions_MinLength {
 		string value = "1";
 		string message = "Message";
 		int minLength = 2;
+		int maxLength = 4;
 
 		ArgumentException exception = Assert.Throws<ArgumentException>( name, () => {
 			ArgInfo<string> argInfo = new( value, name, message );
-			_ = StringExtensions.MinLength( argInfo, minLength );
+			_ = StringExtensions.LengthBetween( argInfo, minLength, maxLength );
 		} );
 
 		Assert.StartsWith( message, exception.Message );

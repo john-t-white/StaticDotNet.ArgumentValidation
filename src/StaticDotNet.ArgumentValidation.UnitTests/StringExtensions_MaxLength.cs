@@ -9,11 +9,13 @@ namespace StaticDotNet.ArgumentValidation.UnitTests;
 public sealed class StringExtensions_MaxLength {
 
 	[Theory]
-	[InlineData(5)]
-	[InlineData(6)]
-	public void ReturnsCorrectly( int maxLength) {
+	[InlineData("1")]
+	[InlineData("12")]
+	public void ReturnsCorrectly( string value ) {
 
-		ArgInfo<string> argInfo = new( "Value", null, null );
+		int maxLength = 2;
+
+		ArgInfo<string> argInfo = new( value, null, null );
 
 		ArgInfo<string> result = StringExtensions.MaxLength( argInfo, maxLength );
 
@@ -23,19 +25,21 @@ public sealed class StringExtensions_MaxLength {
 	[Fact]
 	public void WithNullValueReturnsCorrectly() {
 
+		int maxLength = 2;
+
 		ArgInfo<string?> argInfo = new( null, null, null );
 
-		ArgInfo<string?> result = StringExtensions.MaxLength( argInfo, 0 );
+		ArgInfo<string?> result = StringExtensions.MaxLength( argInfo, maxLength );
 
 		ArgInfoAssertions.Equal( argInfo, result );
 	}
 
 	[Fact]
-	public void WithEmptyValueThrowsArgumentException() {
+	public void WithValueLengthLargerThanMaxThrowsArgumentException() {
 
-		string name = "Name";
+		string name = "123";
 		string value = "Value";
-		int maxLength = value.Length - 1;
+		int maxLength = 2;
 
 		ArgumentException exception = Assert.Throws<ArgumentException>( name, () => {
 			ArgInfo<string> argInfo = new( value, name, null );
@@ -50,10 +54,10 @@ public sealed class StringExtensions_MaxLength {
 	[Fact]
 	public void WithInvalidValueAndMessageThrowsArgumentException() {
 
-		string name = "Name";
+		string name = "123";
 		string value = "Value";
 		string message = "Message";
-		int maxLength = value.Length - 1;
+		int maxLength = 2;
 
 		ArgumentException exception = Assert.Throws<ArgumentException>( name, () => {
 			ArgInfo<string> argInfo = new( value, name, message );

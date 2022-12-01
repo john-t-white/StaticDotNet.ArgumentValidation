@@ -111,10 +111,10 @@ public static class StringExtensions {
 	public static ref readonly ArgInfo<T> LengthBetween<T>( in this ArgInfo<T> argInfo, int minLength, int maxLength )
 		where T : IEquatable<string>?, IComparable<string>?, IEnumerable<char>? {
 
-		if( argInfo.Value is null || ( ( argInfo.Value.ToString() ?? string.Empty ).Length >= minLength && ( argInfo.Value.ToString() ?? string.Empty ).Length >= minLength ) ) {
+		if( argInfo.Value is null || ( ( argInfo.Value.ToString() ?? string.Empty ).Length >= minLength && ( argInfo.Value.ToString() ?? string.Empty ).Length <= maxLength ) ) {
 			return ref argInfo;
 		}
 
-		throw new ArgumentException( argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, Constants.VALUE_MUST_HAVE_LENGTH_BETWEEN, minLength, maxLength ), argInfo.Name );
+		throw new ArgumentException( argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, Constants.VALUE_CANNOT_HAVE_LENGTH_BETWEEN, minLength, maxLength ), argInfo.Name );
 	}
 }

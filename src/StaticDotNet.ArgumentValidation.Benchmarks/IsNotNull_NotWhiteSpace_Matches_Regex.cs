@@ -30,8 +30,8 @@ public partial class IsNotNull_NotWhiteSpace_Matches_Regex {
 		return DigitRegex().IsMatch( this.value ) ? this.value : throw new ArgumentException( "Message", nameof( this.value ) );
 	}
 
-	[Benchmark]
-	public string Arg_Is() => Arg.IsNotNull( this.value ).NotWhiteSpace().Matches( DigitRegex() ).Value;
+	//[Benchmark]
+	//public string Arg_Is() => Arg.IsNotNull( this.value ).NotWhiteSpace().Matches( DigitRegex() ).Value;
 
 	[Benchmark]
 	public string Dawn_Guard() => Dawn.Guard.Argument( this.value ).NotNull().NotWhiteSpace().Matches( DigitRegex() );

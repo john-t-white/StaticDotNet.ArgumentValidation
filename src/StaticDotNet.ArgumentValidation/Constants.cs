@@ -40,7 +40,7 @@ internal class Constants {
 
 	internal const string VALUE_MUST_BE_WRITEABLE = "Value must be writable.";
 
-	internal const string VALUE_MUST_HAVE_LENGTH_BETWEEN = "Value must have length between {0} and {1}."
+	internal const string VALUE_CANNOT_HAVE_LENGTH_BETWEEN = "Value cannot have a length between {0} and {1}.";
 
 	internal const string VALUE_MUST_MATCH_REGEX = "Value must match the regex {0}.";
 
