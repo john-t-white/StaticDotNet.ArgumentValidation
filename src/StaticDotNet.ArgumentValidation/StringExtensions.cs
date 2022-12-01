@@ -28,11 +28,13 @@ public static class StringExtensions {
 	public static ref readonly ArgInfo<T> NotEmpty<T>( in this ArgInfo<T> argInfo )
 		where T : IEquatable<string>?, IComparable<string>?, IEnumerable<char>? {
 
-		if( argInfo.Value?.ToString()?.Length == 0 ) {
-			throw new ArgumentException( argInfo.Message ?? Constants.VALUE_CANNOT_BE_EMPTY, argInfo.Name );
+		if( !( argInfo.Value is string stringValue && stringValue.Length == 0 ) ) {
+			return ref argInfo;
 		}
 
-		return ref argInfo;
+		throw new ArgumentException( argInfo.Message ?? Constants.VALUE_CANNOT_BE_EMPTY, argInfo.Name );
+
+		//return ref argInfo;
 	}
 
 	/// <summary>
@@ -70,7 +72,7 @@ public static class StringExtensions {
 	/// <param name="comparisonValue">The value to compare against.</param>
 	/// <param name="comparisonType">The type of comparison.</param>
 	/// <returns>The <see cref="ArgInfo{T}"/>.</returns>
-	/// <exception cref="ArgumentException">Thrown when <see cref="ArgInfo{T}.Value"/> does not equal <paramref name="comparisonValue"/>.</exception>
+	/// <exception cref="ArgumentException">Thrown when <see cref="ArgInfo{T}.Value"/> does not equal <paramref name="length"/>.</exception>
 	public static ref readonly ArgInfo<T> EqualTo<T>( in this ArgInfo<T> argInfo, string comparisonValue, StringComparison comparisonType )
 		where T : IEquatable<string>?, IComparable<string>?, IEnumerable<char>? {
 

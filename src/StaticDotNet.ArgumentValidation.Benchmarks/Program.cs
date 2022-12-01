@@ -1,15 +1,15 @@
 ﻿using BenchmarkDotNet.Running;
 using StaticDotNet.ArgumentValidation.Benchmarks;
 
-_ = BenchmarkRunner.Run<IsNotNull_Class>();
+//_ = BenchmarkRunner.Run<IsNotNull_Class>();
+_ = BenchmarkRunner.Run<IsNotNull_NotEmpty_String>();
+//_ = BenchmarkRunner.Run<IsNotNull_NotWhiteSpace>();
 //_ = BenchmarkRunner.Run<IsNotNull_Struct>();
-//_ = BenchmarkRunner.Run<NullClassBenchmarks>();
-//_ = BenchmarkRunner.Run<NullStructBenchmarks>();
+//_ = BenchmarkRunner.Run<IsNull_Class>();
+//_ = BenchmarkRunner.Run<IsNull_Struct>();
 //_ = BenchmarkRunner.Run<TrueBenchmarks>();
 //_ = BenchmarkRunner.Run<NullableTrueBenchmarks>();
 //_ = BenchmarkRunner.Run<NotNullTrueBenchmarks>();
-//_ = BenchmarkRunner.Run<NotNullOrWhiteSpaceBenchmarks>();
-//_ = BenchmarkRunner.Run<NotNullOrEmptyStringBenchmarks>();
 //_ = BenchmarkRunner.Run<NotNullOrEmptyArrayBenchmarks>();
 //_ = BenchmarkRunner.Run<NotNullOrEmptyIListBenchmarks>();
 //_ = BenchmarkRunner.Run<NotNullOrEmptyIDictionaryBenchmarks>();

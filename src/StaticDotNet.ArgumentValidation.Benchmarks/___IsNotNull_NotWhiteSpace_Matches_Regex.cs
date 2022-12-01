@@ -8,7 +8,7 @@ namespace StaticDotNet.ArgumentValidation.Benchmarks;
 
 [MemoryDiagnoser]
 [SimpleJob( RuntimeMoniker.Net70 )]
-public partial class IsNotNull_NotWhiteSpace_Matches_Regex {
+public partial class ___IsNotNull_NotWhiteSpace_Matches_Regex {
 
 	[GeneratedRegex( @"\d" )]
 	private static partial Regex DigitRegex();
