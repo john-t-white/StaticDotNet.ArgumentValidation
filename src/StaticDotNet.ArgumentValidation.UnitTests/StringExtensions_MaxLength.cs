@@ -6,14 +6,16 @@ using System.Threading.Tasks;
 
 namespace StaticDotNet.ArgumentValidation.UnitTests;
 
-public sealed class StringExtensions_NotWhiteSpace {
+public sealed class StringExtensions_MaxLength {
 
-	[Fact]
-	public void ReturnsCorrectly() {
+	[Theory]
+	[InlineData(5)]
+	[InlineData(6)]
+	public void ReturnsCorrectly( int maxLength) {
 
 		ArgInfo<string> argInfo = new( "Value", null, null );
 
-		ArgInfo<string> result = StringExtensions.NotWhiteSpace( argInfo );
+		ArgInfo<string> result = StringExtensions.MaxLength( argInfo, maxLength );
 
 		ArgInfoAssertions.Equal( argInfo, result );
 	}
@@ -23,7 +25,7 @@ public sealed class StringExtensions_NotWhiteSpace {
 
 		ArgInfo<string?> argInfo = new( null, null, null );
 
-		ArgInfo<string?> result = StringExtensions.NotWhiteSpace( argInfo );
+		ArgInfo<string?> result = StringExtensions.MaxLength( argInfo, 0 );
 
 		ArgInfoAssertions.Equal( argInfo, result );
 	}
@@ -32,30 +34,15 @@ public sealed class StringExtensions_NotWhiteSpace {
 	public void WithEmptyValueThrowsArgumentException() {
 
 		string name = "Name";
-		string value = string.Empty;
+		string value = "Value";
+		int maxLength = value.Length - 1;
 
 		ArgumentException exception = Assert.Throws<ArgumentException>( name, () => {
 			ArgInfo<string> argInfo = new( value, name, null );
-			_ = StringExtensions.NotWhiteSpace( argInfo );
+			_ = StringExtensions.MaxLength( argInfo, maxLength );
 		} );
 
-		string expectedMessage = "Value cannot be white space.";
-
-		Assert.StartsWith( expectedMessage, exception.Message );
-	}
-
-	[Fact]
-	public void WithWhiteSpaceValueThrowsArgumentException() {
-
-		string name = "Name";
-		string value = " ";
-
-		ArgumentException exception = Assert.Throws<ArgumentException>( name, () => {
-			ArgInfo<string> argInfo = new( value, name, null );
-			_ = StringExtensions.NotWhiteSpace( argInfo );
-		} );
-
-		string expectedMessage = "Value cannot be white space.";
+		string expectedMessage = $"Value cannot have a length greater than {maxLength}.";
 
 		Assert.StartsWith( expectedMessage, exception.Message );
 	}
@@ -64,12 +51,13 @@ public sealed class StringExtensions_NotWhiteSpace {
 	public void WithInvalidValueAndMessageThrowsArgumentException() {
 
 		string name = "Name";
-		string value = string.Empty;
+		string value = "Value";
 		string message = "Message";
+		int maxLength = value.Length - 1;
 
 		ArgumentException exception = Assert.Throws<ArgumentException>( name, () => {
 			ArgInfo<string> argInfo = new( value, name, message );
-			_ = StringExtensions.NotWhiteSpace( argInfo );
+			_ = StringExtensions.MaxLength( argInfo, maxLength );
 		} );
 
 		Assert.StartsWith( message, exception.Message );

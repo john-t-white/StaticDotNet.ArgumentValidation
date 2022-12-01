@@ -17,8 +17,8 @@ public class NotNullOrEmptyIDictionaryBenchmarks {
 			? throw new ArgumentNullException( nameof( this.value ) )
 			: this.value.Count == 0 ? throw new ArgumentException( "Message", nameof( this.value ) ) : this.value;
 
-	[Benchmark]
-	public Dictionary<string, string> Arg_Is() => Arg.Is.NotNullOrEmpty( this.value );
+	//[Benchmark]
+	//public Dictionary<string, string> Arg_Is() => Arg.Is.NotNullOrEmpty( this.value );
 
 	[Benchmark]
 	public Dictionary<string, string> Dawn_Guard() => Dawn.Guard.Argument( this.value ).NotNull().NotEmpty().Value;

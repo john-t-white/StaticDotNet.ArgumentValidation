@@ -19,8 +19,8 @@ public class NotNullEqualToStructBenchmarks {
 			? throw new ArgumentNullException( nameof( this.value ) )
 			: this.value.Value == this.comparisonValue ? this.value.Value : throw new ArgumentException( string.Format( CultureInfo.InvariantCulture, "Value must be equal to {0}.", this.comparisonValue ), nameof( this.value ) );
 
-	[Benchmark]
-	public int Arg_Is() => Arg.Is.NotNullEqualTo( this.value, this.comparisonValue );
+	//[Benchmark]
+	//public int Arg_Is() => Arg.Is.NotNullEqualTo( this.value, this.comparisonValue );
 
 	[Benchmark]
 	public int Dawn_Guard() => Dawn.Guard.Argument( this.value ).NotNull().Equal( this.comparisonValue );

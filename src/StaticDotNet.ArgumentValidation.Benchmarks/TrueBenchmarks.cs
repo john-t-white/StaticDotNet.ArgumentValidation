@@ -13,8 +13,8 @@ public class TrueBenchmarks {
 	[Benchmark( Baseline = true )]
 	public bool Baseline() => this.value ? true : throw new ArgumentException( "Value must be true.", nameof( this.value ) );
 
-	[Benchmark]
-	public bool Arg_Is() => Arg.Is.True( this.value );
+	//[Benchmark]
+	//public bool Arg_Is() => Arg.Is.True( this.value );
 
 	[Benchmark]
 	public bool Dawn_Guard() => Dawn.Guard.Argument( this.value ).True();

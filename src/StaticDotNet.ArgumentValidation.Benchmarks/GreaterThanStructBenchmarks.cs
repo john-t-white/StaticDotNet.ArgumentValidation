@@ -16,8 +16,8 @@ public class GreaterThanStructBenchmarks {
 	[Benchmark( Baseline = true )]
 	public int Baseline() => this.value > this.comparisonValue ? this.value : throw new ArgumentException( string.Format( CultureInfo.InvariantCulture, "Value must be greater than {0}.", this.comparisonValue ), nameof( this.value ) );
 
-	[Benchmark]
-	public int Arg_Is() => Arg.Is.GreaterThan( this.value, this.comparisonValue );
+	//[Benchmark]
+	//public int Arg_Is() => Arg.Is.GreaterThan( this.value, this.comparisonValue );
 
 	[Benchmark]
 	public int Dawn_Guard() => Dawn.Guard.Argument( this.value ).GreaterThan( this.comparisonValue );

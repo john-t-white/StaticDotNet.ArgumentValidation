@@ -16,8 +16,8 @@ public class NotNullOrEmptyArrayBenchmarks {
 			? throw new ArgumentNullException( nameof( this.value ) )
 			: this.value.Length == 0 ? throw new ArgumentException( "Message", nameof( this.value ) ) : this.value;
 
-	[Benchmark]
-	public string[] Arg_Is() => Arg.Is.NotNullOrEmpty( this.value );
+	//[Benchmark]
+	//public string[] Arg_Is() => Arg.Is.NotNullOrEmpty( this.value );
 
 	[Benchmark]
 	public string[] Dawn_Guard() => Dawn.Guard.Argument( this.value ).NotNull().NotEmpty();

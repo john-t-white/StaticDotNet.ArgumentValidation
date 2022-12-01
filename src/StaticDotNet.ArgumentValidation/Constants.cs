@@ -14,6 +14,10 @@ internal class Constants {
 
 	internal const string VALUE_CANNOT_BE_WHITE_SPACE = "Value cannot be white space.";
 
+	internal const string VALUE_CANNOT_HAVE_LENGTH_GREATER_THAN = "Value cannot have a length greater than {0}.";
+
+	internal const string VALUE_CANNOT_HAVE_LENGTH_LESS_THAN = "Value cannot have a length less than {0}.";
+
 	internal const string VALUE_MUST_BE_BETWEEN = "Value must be between {0} and {1}.";
 
 	internal const string VALUE_MUST_BE_EQUAL_TO = "Value must be equal to {0}.";
@@ -35,6 +39,8 @@ internal class Constants {
 	internal const string VALUE_MUST_BE_TRUE = "Value must be true.";
 
 	internal const string VALUE_MUST_BE_WRITEABLE = "Value must be writable.";
+
+	internal const string VALUE_MUST_HAVE_LENGTH_BETWEEN = "Value must have length between {0} and {1}."
 
 	internal const string VALUE_MUST_MATCH_REGEX = "Value must match the regex {0}.";
 

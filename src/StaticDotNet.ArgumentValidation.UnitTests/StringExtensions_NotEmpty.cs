@@ -1,30 +1,43 @@
-﻿namespace StaticDotNet.ArgumentValidation.UnitTests;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace StaticDotNet.ArgumentValidation.UnitTests;
 
 public sealed class StringExtensions_NotEmpty {
 
 	[Fact]
-	public void WithValueReturnsCorrectly() {
-		string value = "Value";
+	public void ReturnsCorrectly() {
 
-		string result = Arg.Is.NotEmpty( value );
+		ArgInfo<string> argInfo = new( "Value", null, null );
 
-		Assert.Equal( value, result );
+		ArgInfo<string> result = StringExtensions.NotEmpty( argInfo );
+
+		ArgInfoAssertions.Equal( argInfo, result );
 	}
 
 	[Fact]
-	public void WithNullValueThrowsArgumentNullException() {
-		string? value = null;
+	public void WithNullValueReturnsCorrectly() {
 
-		string? result = Arg.Is.NotEmpty( value );
+		ArgInfo<string?> argInfo = new( null, null, null );
 
-		Assert.Equal( value, result );
+		ArgInfo<string?> result = StringExtensions.NotEmpty( argInfo );
+
+		ArgInfoAssertions.Equal( argInfo, result );
 	}
 
 	[Fact]
 	public void WithEmptyValueThrowsArgumentException() {
+
+		string name = "Name";
 		string value = string.Empty;
 
-		ArgumentException exception = Assert.Throws<ArgumentException>( nameof( value ), () => Arg.Is.NotEmpty( value ) );
+		ArgumentException exception = Assert.Throws<ArgumentException>( name, () => {
+			ArgInfo<string> argInfo = new( value, name, null );
+			_ = StringExtensions.NotEmpty( argInfo );
+		} );
 
 		string expectedMessage = "Value cannot be empty.";
 
@@ -32,28 +45,16 @@ public sealed class StringExtensions_NotEmpty {
 	}
 
 	[Fact]
-	public void WithWhiteSpaceValueReturnsCorrectly() {
-		string value = " ";
+	public void WithInvalidValueAndMessageThrowsArgumentException() {
 
-		string result = Arg.Is.NotEmpty( value );
-
-		Assert.Equal( value, result );
-	}
-
-	[Fact]
-	public void WithEmptyValueAndNameThrowsArgumentException() {
+		string name = "Name";
 		string value = string.Empty;
-		const string name = "Name";
+		string message = "Message";
 
-		_ = Assert.Throws<ArgumentException>( name, () => Arg.Is.NotEmpty( value, name ) );
-	}
-
-	[Fact]
-	public void WithEmptyValueAndMessageThrowsArgumentException() {
-		string value = string.Empty;
-		const string message = "Message";
-
-		ArgumentException exception = Assert.Throws<ArgumentException>( nameof( value ), () => Arg.Is.NotEmpty( value, message: message ) );
+		ArgumentException exception = Assert.Throws<ArgumentException>( name, () => {
+			ArgInfo<string> argInfo = new( value, name, message );
+			_ = StringExtensions.NotEmpty( argInfo );
+		} );
 
 		Assert.StartsWith( message, exception.Message );
 	}
