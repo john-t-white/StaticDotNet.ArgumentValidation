@@ -99,7 +99,7 @@ public static class StringExtensions {
 	}
 
 	/// <summary>
-	/// Ensures a string argument has a length between <paramref name="minLength"/> and <paramref name="maxValue"/>, otherwise an <see cref="ArgumentException"/> is thrown.
+	/// Ensures a string argument has a length between <paramref name="minLength"/> and <paramref name="maxLength"/>, otherwise an <see cref="ArgumentException"/> is thrown.
 	/// </summary>
 	/// <typeparam name="T">The type of argument value.</typeparam>
 	/// <param name="argInfo">The argument info.</param>
