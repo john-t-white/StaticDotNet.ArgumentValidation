@@ -63,13 +63,31 @@ public static class StringExtensions {
 	}
 
 	/// <summary>
-	/// Ensures a string argument has a maximum length of <paramref name="maxLength"/>, otherwise an <see cref="ArgumentException"/> is thrown.
+	/// Ensures a string argument has a length of <paramref name="length"/>, otherwise an <see cref="ArgumentOutOfRangeException"/> is thrown.
+	/// </summary>
+	/// <typeparam name="T">The type of argument value.</typeparam>
+	/// <param name="argInfo">The argument info.</param>
+	/// <param name="length">The maximum length.</param>
+	/// <returns>The <see cref="ArgInfo{T}"/>.</returns>
+	/// <exception cref="ArgumentOutOfRangeException">Thrown when the length of <see cref="ArgInfo{T}.Value"/> does not equal <paramref name="length"/>.</exception>
+	public static ref readonly ArgInfo<T> Length<T>( in this ArgInfo<T> argInfo, int length )
+		where T : IEquatable<string>?, IComparable<string>?, IEnumerable<char>? {
+
+		if( argInfo.Value is null || ( argInfo.Value.ToString() ?? string.Empty ).Length == length ) {
+			return ref argInfo;
+		}
+
+		throw new ArgumentOutOfRangeException( argInfo.Name, argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, Constants.VALUE_MUST_HAVE_LENGTH_EQUAL_TO, length ) );
+	}
+
+	/// <summary>
+	/// Ensures a string argument has a maximum length of <paramref name="maxLength"/>, otherwise an <see cref="ArgumentOutOfRangeException"/> is thrown.
 	/// </summary>
 	/// <typeparam name="T">The type of argument value.</typeparam>
 	/// <param name="argInfo">The argument info.</param>
 	/// <param name="maxLength">The maximum length.</param>
 	/// <returns>The <see cref="ArgInfo{T}"/>.</returns>
-	/// <exception cref="ArgumentException">Thrown when the length of <see cref="ArgInfo{T}.Value"/> greater than <paramref name="maxLength"/>.</exception>
+	/// <exception cref="ArgumentOutOfRangeException">Thrown when the length of <see cref="ArgInfo{T}.Value"/> greater than <paramref name="maxLength"/>.</exception>
 	public static ref readonly ArgInfo<T> MaxLength<T>( in this ArgInfo<T> argInfo, int maxLength )
 		where T : IEquatable<string>?, IComparable<string>?, IEnumerable<char>? {
 
@@ -77,17 +95,17 @@ public static class StringExtensions {
 			return ref argInfo;
 		}
 
-		throw new ArgumentException( argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, Constants.VALUE_CANNOT_HAVE_LENGTH_GREATER_THAN, maxLength ), argInfo.Name );
+		throw new ArgumentOutOfRangeException( argInfo.Name, argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, Constants.VALUE_CANNOT_HAVE_LENGTH_GREATER_THAN, maxLength ) );
 	}
 
 	/// <summary>
-	/// Ensures a string argument has a mininum length of <paramref name="minLength"/>, otherwise an <see cref="ArgumentException"/> is thrown.
+	/// Ensures a string argument has a mininum length of <paramref name="minLength"/>, otherwise an <see cref="ArgumentOutOfRangeException"/> is thrown.
 	/// </summary>
 	/// <typeparam name="T">The type of argument value.</typeparam>
 	/// <param name="argInfo">The argument info.</param>
 	/// <param name="minLength">The miniumum length.</param>
 	/// <returns>The <see cref="ArgInfo{T}"/>.</returns>
-	/// <exception cref="ArgumentException">Thrown when the length of <see cref="ArgInfo{T}.Value"/> is less than <paramref name="minLength"/>.</exception>
+	/// <exception cref="ArgumentOutOfRangeException">Thrown when the length of <see cref="ArgInfo{T}.Value"/> is less than <paramref name="minLength"/>.</exception>
 	public static ref readonly ArgInfo<T> MinLength<T>( in this ArgInfo<T> argInfo, int minLength )
 		where T : IEquatable<string>?, IComparable<string>?, IEnumerable<char>? {
 
@@ -95,18 +113,18 @@ public static class StringExtensions {
 			return ref argInfo;
 		}
 
-		throw new ArgumentException( argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, Constants.VALUE_CANNOT_HAVE_LENGTH_LESS_THAN, minLength ), argInfo.Name );
+		throw new ArgumentOutOfRangeException( argInfo.Name, argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, Constants.VALUE_CANNOT_HAVE_LENGTH_LESS_THAN, minLength ) );
 	}
 
 	/// <summary>
-	/// Ensures a string argument has a length between <paramref name="minLength"/> and <paramref name="maxLength"/>, otherwise an <see cref="ArgumentException"/> is thrown.
+	/// Ensures a string argument has a length between <paramref name="minLength"/> and <paramref name="maxLength"/>, otherwise an <see cref="ArgumentOutOfRangeException"/> is thrown.
 	/// </summary>
 	/// <typeparam name="T">The type of argument value.</typeparam>
 	/// <param name="argInfo">The argument info.</param>
 	/// <param name="minLength">The miniumum length.</param>
 	/// <param name="maxLength">The maximum length.</param>
 	/// <returns>The <see cref="ArgInfo{T}"/>.</returns>
-	/// <exception cref="ArgumentException">Thrown when the length of <see cref="ArgInfo{T}.Value"/>
+	/// <exception cref="ArgumentOutOfRangeException">Thrown when the length of <see cref="ArgInfo{T}.Value"/>
 	/// is not between <paramref name="minLength"/> and <paramref name="maxLength"/>.</exception>
 	public static ref readonly ArgInfo<T> LengthBetween<T>( in this ArgInfo<T> argInfo, int minLength, int maxLength )
 		where T : IEquatable<string>?, IComparable<string>?, IEnumerable<char>? {
@@ -115,6 +133,6 @@ public static class StringExtensions {
 			return ref argInfo;
 		}
 
-		throw new ArgumentException( argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, Constants.VALUE_CANNOT_HAVE_LENGTH_BETWEEN, minLength, maxLength ), argInfo.Name );
+		throw new ArgumentOutOfRangeException( argInfo.Name, argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, Constants.VALUE_MUST_HAVE_LENGTH_BETWEEN, minLength, maxLength ) );
 	}
 }

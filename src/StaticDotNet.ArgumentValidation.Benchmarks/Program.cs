@@ -1,8 +1,8 @@
 ﻿using BenchmarkDotNet.Running;
 using StaticDotNet.ArgumentValidation.Benchmarks;
 
-//_ = BenchmarkRunner.Run<NotNullClassBenchmarks>();
-_ = BenchmarkRunner.Run<IsNotNull_Struct>();
+_ = BenchmarkRunner.Run<IsNotNull_Class>();
+//_ = BenchmarkRunner.Run<IsNotNull_Struct>();
 //_ = BenchmarkRunner.Run<NullClassBenchmarks>();
 //_ = BenchmarkRunner.Run<NullStructBenchmarks>();
 //_ = BenchmarkRunner.Run<TrueBenchmarks>();

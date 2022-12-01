@@ -38,24 +38,24 @@ public sealed class StringExtensions_LengthBetween {
 	[Theory]
 	[InlineData( "1" )]
 	[InlineData( "12345" )]
-	public void WithValueLengthNotBetweenThrowsArgumentException( string value) {
+	public void WithValueLengthNotBetweenThrowsArgumentOutOfRangeException( string value) {
 
 		string name = "Name";
 		int minLength = 2;
 		int maxLength = 4;
 
-		ArgumentException exception = Assert.Throws<ArgumentException>( name, () => {
+		ArgumentOutOfRangeException exception = Assert.Throws<ArgumentOutOfRangeException>( name, () => {
 			ArgInfo<string> argInfo = new( value, name, null );
 			_ = StringExtensions.LengthBetween( argInfo, minLength, maxLength );
 		} );
 
-		string expectedMessage = $"Value cannot have a length between {minLength} and {maxLength}.";
+		string expectedMessage = $"Value must have a length between {minLength} and {maxLength}.";
 
 		Assert.StartsWith( expectedMessage, exception.Message );
 	}
 
 	[Fact]
-	public void WithInvalidValueAndMessageThrowsArgumentException() {
+	public void WithInvalidValueAndMessageThrowsArgumentOutOfRangeException() {
 
 		string name = "Name";
 		string value = "1";
@@ -63,7 +63,7 @@ public sealed class StringExtensions_LengthBetween {
 		int minLength = 2;
 		int maxLength = 4;
 
-		ArgumentException exception = Assert.Throws<ArgumentException>( name, () => {
+		ArgumentOutOfRangeException exception = Assert.Throws<ArgumentOutOfRangeException>( name, () => {
 			ArgInfo<string> argInfo = new( value, name, message );
 			_ = StringExtensions.LengthBetween( argInfo, minLength, maxLength );
 		} );

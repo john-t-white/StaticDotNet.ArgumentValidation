@@ -35,13 +35,13 @@ public sealed class StringExtensions_MinLength {
 	}
 
 	[Fact]
-	public void WithValueLengthLessThanMinLengthThrowsArgumentException() {
+	public void WithValueLengthLessThanMinLengthThrowsArgumentOutOfRangeException() {
 
 		string name = "Name";
 		string value = "1";
 		int minLength = 2;
 
-		ArgumentException exception = Assert.Throws<ArgumentException>( name, () => {
+		ArgumentOutOfRangeException exception = Assert.Throws<ArgumentOutOfRangeException>( name, () => {
 			ArgInfo<string> argInfo = new( value, name, null );
 			_ = StringExtensions.MinLength( argInfo, minLength );
 		} );
@@ -52,14 +52,14 @@ public sealed class StringExtensions_MinLength {
 	}
 
 	[Fact]
-	public void WithInvalidValueAndMessageThrowsArgumentException() {
+	public void WithInvalidValueAndMessageThrowsArgumentOutOfRangeException() {
 
 		string name = "Name";
 		string value = "1";
 		string message = "Message";
 		int minLength = 2;
 
-		ArgumentException exception = Assert.Throws<ArgumentException>( name, () => {
+		ArgumentOutOfRangeException exception = Assert.Throws<ArgumentOutOfRangeException>( name, () => {
 			ArgInfo<string> argInfo = new( value, name, message );
 			_ = StringExtensions.MinLength( argInfo, minLength );
 		} );

@@ -35,13 +35,13 @@ public sealed class StringExtensions_MaxLength {
 	}
 
 	[Fact]
-	public void WithValueLengthLargerThanMaxThrowsArgumentException() {
+	public void WithValueLengthLargerThanMaxThrowsArgumentOutOfRangeException() {
 
 		string name = "123";
 		string value = "Value";
 		int maxLength = 2;
 
-		ArgumentException exception = Assert.Throws<ArgumentException>( name, () => {
+		ArgumentOutOfRangeException exception = Assert.Throws<ArgumentOutOfRangeException>( name, () => {
 			ArgInfo<string> argInfo = new( value, name, null );
 			_ = StringExtensions.MaxLength( argInfo, maxLength );
 		} );
@@ -52,14 +52,14 @@ public sealed class StringExtensions_MaxLength {
 	}
 
 	[Fact]
-	public void WithInvalidValueAndMessageThrowsArgumentException() {
+	public void WithInvalidValueAndMessageThrowsArgumentOutOfRangeException() {
 
 		string name = "123";
 		string value = "Value";
 		string message = "Message";
 		int maxLength = 2;
 
-		ArgumentException exception = Assert.Throws<ArgumentException>( name, () => {
+		ArgumentOutOfRangeException exception = Assert.Throws<ArgumentOutOfRangeException>( name, () => {
 			ArgInfo<string> argInfo = new( value, name, message );
 			_ = StringExtensions.MaxLength( argInfo, maxLength );
 		} );
