@@ -6,14 +6,14 @@ using System.Threading.Tasks;
 
 namespace StaticDotNet.ArgumentValidation.UnitTests;
 
-public sealed class StringExtensions_NotEmpty {
+public sealed class EnumerableExtensions_NotEmpty_String {
 
 	[Fact]
 	public void ReturnsCorrectly() {
 
 		ArgInfo<string> argInfo = new( "Value", null, null );
 
-		ArgInfo<string> result = StringExtensions.NotEmpty( argInfo );
+		ArgInfo<string> result = EnumerableExtensions.NotEmpty( argInfo );
 
 		ArgInfoAssertions.Equal( argInfo, result );
 	}
@@ -23,7 +23,7 @@ public sealed class StringExtensions_NotEmpty {
 
 		ArgInfo<string?> argInfo = new( null, null, null );
 
-		ArgInfo<string?> result = StringExtensions.NotEmpty( argInfo );
+		ArgInfo<string?> result = EnumerableExtensions.NotEmpty( argInfo );
 
 		ArgInfoAssertions.Equal( argInfo, result );
 	}
@@ -33,7 +33,7 @@ public sealed class StringExtensions_NotEmpty {
 
 		ArgInfo<string?> argInfo = new( " ", null, null );
 
-		ArgInfo<string?> result = StringExtensions.NotEmpty( argInfo );
+		ArgInfo<string?> result = EnumerableExtensions.NotEmpty( argInfo );
 
 		ArgInfoAssertions.Equal( argInfo, result );
 	}
@@ -46,7 +46,7 @@ public sealed class StringExtensions_NotEmpty {
 
 		ArgumentException exception = Assert.Throws<ArgumentException>( name, () => {
 			ArgInfo<string> argInfo = new( value, name, null );
-			_ = StringExtensions.NotEmpty( argInfo );
+			_ = EnumerableExtensions.NotEmpty( argInfo );
 		} );
 
 		string expectedMessage = "Value cannot be empty.";
@@ -63,7 +63,7 @@ public sealed class StringExtensions_NotEmpty {
 
 		ArgumentException exception = Assert.Throws<ArgumentException>( name, () => {
 			ArgInfo<string> argInfo = new( value, name, message );
-			_ = StringExtensions.NotEmpty( argInfo );
+			_ = EnumerableExtensions.NotEmpty( argInfo );
 		} );
 
 		Assert.StartsWith( message, exception.Message );

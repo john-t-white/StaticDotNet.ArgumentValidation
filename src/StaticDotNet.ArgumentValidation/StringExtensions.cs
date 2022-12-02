@@ -19,23 +19,6 @@ namespace StaticDotNet.ArgumentValidation;
 public static class StringExtensions {
 
 	/// <summary>
-	/// Ensures a string argument is not empty, otherwise an <see cref="ArgumentException"/> is thrown.
-	/// </summary>
-	/// <typeparam name="T">The type of argument value.</typeparam>
-	/// <param name="argInfo">The argument info.</param>
-	/// <returns>The <see cref="ArgInfo{T}"/>.</returns>
-	/// <exception cref="ArgumentException">Thrown when <see cref="ArgInfo{T}.Value"/> is empty.</exception>
-	public static ref readonly ArgInfo<T> NotEmpty<T>( in this ArgInfo<T> argInfo )
-		where T : IEquatable<string>?, IComparable<string>?, IEnumerable<char>? {
-
-		if( argInfo.ValueAsString is null || argInfo.ValueAsString.Length > 0 ) {
-			return ref argInfo;
-		}
-
-		throw new ArgumentException( argInfo.Message ?? Constants.VALUE_CANNOT_BE_EMPTY, argInfo.Name );
-	}
-
-	/// <summary>
 	/// Ensures a string argument is not white space, otherwise an <see cref="ArgumentException"/> is thrown.
 	/// </summary>
 	/// <typeparam name="T">The type of argument value.</typeparam>
