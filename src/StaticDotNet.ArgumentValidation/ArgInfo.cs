@@ -25,12 +25,15 @@ public readonly ref struct ArgInfo<T> {
 		this.Value = value;
 		this.Name = name;
 		this.Message = message;
+		this.ValueAsString = value as string;
 	}
 
 	/// <summary>
 	/// Returns the value of the argument.
 	/// </summary>
 	public readonly T Value { get; }
+
+	public readonly string? ValueAsString { get; }
 
 	/// <summary>
 	/// Returns the name of the argument.

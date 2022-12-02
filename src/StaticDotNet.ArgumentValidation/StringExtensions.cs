@@ -28,7 +28,7 @@ public static class StringExtensions {
 	public static ref readonly ArgInfo<T> NotEmpty<T>( in this ArgInfo<T> argInfo )
 		where T : IEquatable<string>?, IComparable<string>?, IEnumerable<char>? {
 
-		if( !( argInfo.Value is string stringValue && stringValue.Length == 0 ) ) {
+		if( argInfo.ValueAsString is null || argInfo.ValueAsString.Length > 0 ) {
 			return ref argInfo;
 		}
 
@@ -45,15 +45,13 @@ public static class StringExtensions {
 	public static ref readonly ArgInfo<T> NotWhiteSpace<T>( in this ArgInfo<T> argInfo )
 		where T : IEquatable<string>?, IComparable<string>?, IEnumerable<char>? {
 
-		if( argInfo.Value is null ) {
+		if( argInfo.ValueAsString is null ) {
 			return ref argInfo;
 		}
 
-		if( argInfo.Value is string stringValue && stringValue.Length > 0 ) {
-			for( int i = 0; i < stringValue.Length; i++ ) {
-				if( !char.IsWhiteSpace( stringValue[ i ] ) ) {
-					return ref argInfo;
-				}
+		for( int i = 0; i < argInfo.ValueAsString.Length; i++ ) {
+			if( !char.IsWhiteSpace( argInfo.ValueAsString[ i ] ) ) {
+				return ref argInfo;
 			}
 		}
 
@@ -68,11 +66,11 @@ public static class StringExtensions {
 	/// <param name="comparisonValue">The value to compare against.</param>
 	/// <param name="comparisonType">The type of comparison.</param>
 	/// <returns>The <see cref="ArgInfo{T}"/>.</returns>
-	/// <exception cref="ArgumentException">Thrown when <see cref="ArgInfo{T}.Value"/> does not equal <paramref name="length"/>.</exception>
+	/// <exception cref="ArgumentException">Thrown when <see cref="ArgInfo{T}.Value"/> does not equal <paramref name="comparisonValue"/>.</exception>
 	public static ref readonly ArgInfo<T> EqualTo<T>( in this ArgInfo<T> argInfo, string comparisonValue, StringComparison comparisonType )
 		where T : IEquatable<string>?, IComparable<string>?, IEnumerable<char>? {
 
-		if( argInfo.Value is null || GetStringComparer( comparisonType ).Equals( argInfo.Value, comparisonValue ) ) {
+		if( argInfo.ValueAsString is null || GetStringComparer( comparisonType ).Equals( argInfo.ValueAsString, comparisonValue ) ) {
 			return ref argInfo;
 		}
 
@@ -90,7 +88,7 @@ public static class StringExtensions {
 	public static ref readonly ArgInfo<T> Length<T>( in this ArgInfo<T> argInfo, int length )
 	where T : IEquatable<string>?, IComparable<string>?, IEnumerable<char>? {
 
-		if( argInfo.Value is null || ( argInfo.Value.ToString() ?? string.Empty ).Length == length ) {
+		if( argInfo.ValueAsString is null || ( argInfo.ValueAsString.ToString() ).Length == length ) {
 			return ref argInfo;
 		}
 
@@ -108,7 +106,7 @@ public static class StringExtensions {
 	public static ref readonly ArgInfo<T> MaxLength<T>( in this ArgInfo<T> argInfo, int maxLength )
 		where T : IEquatable<string>?, IComparable<string>?, IEnumerable<char>? {
 
-		if( argInfo.Value is null || ( argInfo.Value.ToString() ?? string.Empty ).Length <= maxLength ) {
+		if( argInfo.ValueAsString is null || ( argInfo.ValueAsString ).Length <= maxLength ) {
 			return ref argInfo;
 		}
 
@@ -126,7 +124,7 @@ public static class StringExtensions {
 	public static ref readonly ArgInfo<T> MinLength<T>( in this ArgInfo<T> argInfo, int minLength )
 		where T : IEquatable<string>?, IComparable<string>?, IEnumerable<char>? {
 
-		if( argInfo.Value is null || ( argInfo.Value.ToString() ?? string.Empty ).Length >= minLength ) {
+		if( argInfo.ValueAsString is null || ( argInfo.ValueAsString ).Length >= minLength ) {
 			return ref argInfo;
 		}
 
@@ -146,7 +144,7 @@ public static class StringExtensions {
 	public static ref readonly ArgInfo<T> LengthBetween<T>( in this ArgInfo<T> argInfo, int minLength, int maxLength )
 		where T : IEquatable<string>?, IComparable<string>?, IEnumerable<char>? {
 
-		if( argInfo.Value is null || ( ( argInfo.Value.ToString() ?? string.Empty ).Length >= minLength && ( argInfo.Value.ToString() ?? string.Empty ).Length <= maxLength ) ) {
+		if( argInfo.ValueAsString is null || ( ( argInfo.ValueAsString ).Length >= minLength && ( argInfo.ValueAsString ).Length <= maxLength ) ) {
 			return ref argInfo;
 		}
 
