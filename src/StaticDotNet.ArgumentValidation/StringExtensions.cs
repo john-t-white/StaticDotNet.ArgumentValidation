@@ -54,6 +54,44 @@ public static class StringExtensions {
 	}
 
 	/// <summary>
+	/// Ensures a string argument ends with <paramref name="endsWith"/>, otherwise an <see cref="ArgumentException"/> is thrown.
+	/// </summary>
+	/// <typeparam name="T">The type of argument value.</typeparam>
+	/// <param name="argInfo">The argument info.</param>
+	/// <param name="endsWith">The value to compare against.</param>
+	/// <param name="comparisonType">The type of comparison.</param>
+	/// <returns>The <see cref="ArgInfo{T}"/>.</returns>
+	/// <exception cref="ArgumentException">Thrown when <see cref="ArgInfo{T}.Value"/> does not start with <paramref name="endsWith"/>.</exception>
+	public static ref readonly ArgInfo<T> EndsWith<T>( in this ArgInfo<T> argInfo, string endsWith, StringComparison comparisonType )
+		where T : IEquatable<string>?, IComparable<string>?, IEnumerable<char>? {
+
+		if( argInfo.ValueAsString is null || argInfo.ValueAsString.EndsWith( endsWith, comparisonType ) ) {
+			return ref argInfo;
+		}
+
+		throw new ArgumentException( argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, Constants.VALUE_MUST_END_WITH, endsWith?.ToString() ?? Constants.NULL ), argInfo.Name );
+	}
+
+	/// <summary>
+	/// Ensures a string argument starts with <paramref name="startsWith"/>, otherwise an <see cref="ArgumentException"/> is thrown.
+	/// </summary>
+	/// <typeparam name="T">The type of argument value.</typeparam>
+	/// <param name="argInfo">The argument info.</param>
+	/// <param name="startsWith">The value to compare against.</param>
+	/// <param name="comparisonType">The type of comparison.</param>
+	/// <returns>The <see cref="ArgInfo{T}"/>.</returns>
+	/// <exception cref="ArgumentException">Thrown when <see cref="ArgInfo{T}.Value"/> does not start with <paramref name="startsWith"/>.</exception>
+	public static ref readonly ArgInfo<T> StartsWith<T>( in this ArgInfo<T> argInfo, string startsWith, StringComparison comparisonType )
+		where T : IEquatable<string>?, IComparable<string>?, IEnumerable<char>? {
+
+		if( argInfo.ValueAsString is null || argInfo.ValueAsString.StartsWith( startsWith, comparisonType ) ) {
+			return ref argInfo;
+		}
+
+		throw new ArgumentException( argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, Constants.VALUE_MUST_START_WITH, startsWith?.ToString() ?? Constants.NULL ), argInfo.Name );
+	}
+
+	/// <summary>
 	/// Ensures a string argument has a length of <paramref name="length"/>, otherwise an <see cref="ArgumentOutOfRangeException"/> is thrown.
 	/// </summary>
 	/// <typeparam name="T">The type of argument value.</typeparam>
