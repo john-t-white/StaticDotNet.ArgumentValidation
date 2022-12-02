@@ -1,17 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace StaticDotNet.ArgumentValidation.UnitTests;
+﻿namespace StaticDotNet.ArgumentValidation.UnitTests;
 
 public sealed class StringExtensions_MinLength {
 
 	[Theory]
 	[InlineData( "12" )]
 	[InlineData( "123" )]
-	public void ReturnsCorrectly( string value) {
+	public void ReturnsCorrectly( string value ) {
 
 		int minLength = 2;
 

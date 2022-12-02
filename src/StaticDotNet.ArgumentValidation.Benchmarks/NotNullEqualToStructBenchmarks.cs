@@ -1,7 +1,5 @@
-﻿using Ardalis.GuardClauses;
-using Dawn;
+﻿using Dawn;
 using EnsureThat;
-using JetBrains.Annotations;
 using System.Globalization;
 
 namespace StaticDotNet.ArgumentValidation.Benchmarks;
@@ -14,7 +12,7 @@ public class NotNullEqualToStructBenchmarks {
 	public int comparisonValue = 1;
 
 	[Benchmark( Baseline = true )]
-	public int Baseline() 
+	public int Baseline()
 		=> this.value == null
 			? throw new ArgumentNullException( nameof( this.value ) )
 			: this.value.Value == this.comparisonValue ? this.value.Value : throw new ArgumentException( string.Format( CultureInfo.InvariantCulture, "Value must be equal to {0}.", this.comparisonValue ), nameof( this.value ) );

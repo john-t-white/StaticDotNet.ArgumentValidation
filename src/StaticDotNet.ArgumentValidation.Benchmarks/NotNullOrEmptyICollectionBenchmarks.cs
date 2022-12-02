@@ -9,7 +9,7 @@ namespace StaticDotNet.ArgumentValidation.Benchmarks;
 [SimpleJob( RuntimeMoniker.Net70 )]
 public class NotNullOrEmptyICollectionBenchmarks {
 
-	public Collection<string> value = new Collection<string>() { "Value" };
+	public ICollection<string> value = new Collection<string>() { "Value" };
 
 	[Benchmark( Baseline = true )]
 	public ICollection<string> Baseline()
@@ -21,13 +21,13 @@ public class NotNullOrEmptyICollectionBenchmarks {
 	//public Collection<string> Arg_Is() => Arg.Is.NotNullOrEmpty( this.value );
 
 	[Benchmark]
-	public Collection<string> Dawn_Guard() => Dawn.Guard.Argument( this.value ).NotNull().NotEmpty().Value;
+	public ICollection<string> Dawn_Guard() => Dawn.Guard.Argument( this.value ).NotNull().NotEmpty().Value;
 
 	[Benchmark]
-	public Collection<string> Ardalis_Guard() => ( Collection<string> )Ardalis.GuardClauses.Guard.Against.NullOrEmpty( this.value );
+	public ICollection<string> Ardalis_Guard() => ( ICollection<string> )Ardalis.GuardClauses.Guard.Against.NullOrEmpty( this.value );
 
 	[Benchmark]
-	public Collection<string> Ensure_That() {
+	public ICollection<string> Ensure_That() {
 		EnsureThat.Ensure.That( this.value, nameof( this.value ) ).IsNotNull();
 		EnsureThat.Ensure.That( this.value, nameof( this.value ) ).HasItems();
 

@@ -1,5 +1,4 @@
-﻿using Ardalis.GuardClauses;
-using Dawn;
+﻿using Dawn;
 using EnsureThat;
 
 namespace StaticDotNet.ArgumentValidation.Benchmarks;

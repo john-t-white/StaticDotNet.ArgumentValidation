@@ -1,11 +1,4 @@
-﻿using NSubstitute.ExceptionExtensions;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace StaticDotNet.ArgumentValidation.UnitTests;
+﻿namespace StaticDotNet.ArgumentValidation.UnitTests;
 
 public sealed class EnumerableExtensions_NotEmpty_Array {
 

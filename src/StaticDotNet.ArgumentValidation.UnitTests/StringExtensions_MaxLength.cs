@@ -1,16 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace StaticDotNet.ArgumentValidation.UnitTests;
+﻿namespace StaticDotNet.ArgumentValidation.UnitTests;
 
 public sealed class StringExtensions_MaxLength {
 
 	[Theory]
-	[InlineData("1")]
-	[InlineData("12")]
+	[InlineData( "1" )]
+	[InlineData( "12" )]
 	public void ReturnsCorrectly( string value ) {
 
 		int maxLength = 2;

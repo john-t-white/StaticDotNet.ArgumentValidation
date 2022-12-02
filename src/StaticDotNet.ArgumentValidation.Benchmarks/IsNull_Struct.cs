@@ -1,6 +1,5 @@
 ﻿using Ardalis.GuardClauses;
 using Dawn;
-using JetBrains.Annotations;
 
 namespace StaticDotNet.ArgumentValidation.Benchmarks;
 

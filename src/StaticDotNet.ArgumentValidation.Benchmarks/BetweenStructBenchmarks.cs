@@ -1,7 +1,6 @@
 ﻿using Ardalis.GuardClauses;
 using Dawn;
 using EnsureThat;
-using JetBrains.Annotations;
 using System.Globalization;
 
 namespace StaticDotNet.ArgumentValidation.Benchmarks;

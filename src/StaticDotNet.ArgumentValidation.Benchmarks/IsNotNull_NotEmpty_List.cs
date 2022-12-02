@@ -11,18 +11,12 @@ public class IsNotNull_NotEmpty_List {
 	public IList<int> value = new List<int>() { 1 };
 
 	[Benchmark( Baseline = true )]
-	public IList<int> Baseline() {
-
-		if( this.value == null ) {
-			throw new ArgumentNullException( nameof( this.value ) );
-		}
-
-		if( this.value.Count == 0 ) { 
-			throw new ArgumentException( "Message", nameof( this.value ) );
-		}
-
-		return this.value;
-	}
+	public IList<int> Baseline()
+		=> this.value == null
+			? throw new ArgumentNullException( nameof( this.value ) )
+			: this.value.Count == 0
+				? throw new ArgumentException( "Message", nameof( this.value ) )
+				: this.value;
 
 	[Benchmark]
 	public IList<int> Arg_Is() => Arg.IsNotNull( this.value ).NotEmpty().Value;

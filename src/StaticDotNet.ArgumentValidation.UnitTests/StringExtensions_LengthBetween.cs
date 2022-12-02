@@ -1,18 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace StaticDotNet.ArgumentValidation.UnitTests;
+﻿namespace StaticDotNet.ArgumentValidation.UnitTests;
 
 public sealed class StringExtensions_LengthBetween {
 
 	[Theory]
-	[InlineData("12")]
-	[InlineData("123")]
-	[InlineData("1234")]
-	public void ReturnsCorrectly( string value) {
+	[InlineData( "12" )]
+	[InlineData( "123" )]
+	[InlineData( "1234" )]
+	public void ReturnsCorrectly( string value ) {
 
 		ArgInfo<string> argInfo = new( value, null, null );
 		int minLength = 2;
@@ -38,7 +32,7 @@ public sealed class StringExtensions_LengthBetween {
 	[Theory]
 	[InlineData( "1" )]
 	[InlineData( "12345" )]
-	public void WithValueLengthNotBetweenThrowsArgumentOutOfRangeException( string value) {
+	public void WithValueLengthNotBetweenThrowsArgumentOutOfRangeException( string value ) {
 
 		string name = "Name";
 		int minLength = 2;

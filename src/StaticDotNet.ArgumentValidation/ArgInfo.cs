@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.InteropServices;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Runtime.InteropServices;
 
 namespace StaticDotNet.ArgumentValidation;
 
@@ -33,6 +28,9 @@ public readonly ref struct ArgInfo<T> {
 	/// </summary>
 	public readonly T Value { get; }
 
+	/// <summary>
+	/// Provides direct access to the <typeparamref name="T"/> if it is a string to avoid casting/converting, otherwise null.
+	/// </summary>
 	public readonly string? ValueAsString { get; }
 
 	/// <summary>

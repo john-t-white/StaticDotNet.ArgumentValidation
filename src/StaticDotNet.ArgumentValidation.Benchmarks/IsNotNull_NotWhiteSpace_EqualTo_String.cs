@@ -21,28 +21,26 @@ public class IsNotNull_NotWhiteSpace_EqualTo_String {
 			throw new ArgumentException( "Message", nameof( this.value ) );
 		}
 
-		if( !StringComparer.OrdinalIgnoreCase.Equals( this.value, this.comparisonValue ) ) {
-			throw new ArgumentException( "Value not equal.", nameof( this.value ) );
-		}
-
-		return this.value;
+		return !StringComparer.OrdinalIgnoreCase.Equals( this.value, this.comparisonValue )
+			? throw new ArgumentException( "Value not equal.", nameof( this.value ) )
+			: this.value;
 	}
 
 	[Benchmark]
 	public string Arg_Is() => Arg.IsNotNull( this.value ).NotWhiteSpace().EqualTo( this.comparisonValue, StringComparison.OrdinalIgnoreCase ).Value;
 
 	[Benchmark]
-	public string Dawn_Guard() => Dawn.Guard.Argument( this.value ).NotNull().NotWhiteSpace().Equal(this.comparisonValue, StringComparison.OrdinalIgnoreCase );
+#pragma warning disable CS8634 // The type cannot be used as type parameter in the generic type or method. Nullability of type argument doesn't match 'class' constraint.
+	public string Dawn_Guard() => Dawn.Guard.Argument( this.value ).NotNull().NotWhiteSpace().Equal( this.comparisonValue, StringComparison.OrdinalIgnoreCase );
+#pragma warning restore CS8634 // The type cannot be used as type parameter in the generic type or method. Nullability of type argument doesn't match 'class' constraint.
 
 	[Benchmark]
 	public string Ardalis_Guard() {
 		_ = Ardalis.GuardClauses.Guard.Against.NullOrWhiteSpace( this.value );
 
-		if( !StringComparer.OrdinalIgnoreCase.Equals( this.value, this.comparisonValue ) ) {
-			throw new ArgumentException( "Value not equal.", nameof( this.value ) );
-		}
-
-		return this.value;
+		return !StringComparer.OrdinalIgnoreCase.Equals( this.value, this.comparisonValue )
+			? throw new ArgumentException( "Value not equal.", nameof( this.value ) )
+			: this.value;
 	}
 
 	[Benchmark]
@@ -50,6 +48,8 @@ public class IsNotNull_NotWhiteSpace_EqualTo_String {
 		EnsureThat.Ensure.That( this.value, nameof( this.value ) ).IsNotNullOrWhiteSpace();
 		EnsureThat.Ensure.That( this.value, nameof( this.value ) ).IsEqualTo( this.comparisonValue, StringComparison.OrdinalIgnoreCase );
 
+#pragma warning disable CS8603 // Possible null reference return.
 		return this.value;
+#pragma warning restore CS8603 // Possible null reference return.
 	}
 }

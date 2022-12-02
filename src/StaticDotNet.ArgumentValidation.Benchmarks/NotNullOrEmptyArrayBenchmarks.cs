@@ -23,7 +23,7 @@ public class NotNullOrEmptyArrayBenchmarks {
 	public string[] Dawn_Guard() => Dawn.Guard.Argument( this.value ).NotNull().NotEmpty();
 
 	[Benchmark]
-	public string[] Ardalis_Guard() =>  ( string[] ) Ardalis.GuardClauses.Guard.Against.NullOrEmpty( this.value );
+	public string[] Ardalis_Guard() => ( string[] )Ardalis.GuardClauses.Guard.Against.NullOrEmpty( this.value );
 
 	[Benchmark]
 	public string[] Ensure_That() {

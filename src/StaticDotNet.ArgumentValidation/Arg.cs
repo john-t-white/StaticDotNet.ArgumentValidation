@@ -1,7 +1,4 @@
-﻿using System.Net.WebSockets;
-using System.Xml.Linq;
-
-namespace StaticDotNet.ArgumentValidation;
+﻿namespace StaticDotNet.ArgumentValidation;
 
 /// <summary>
 /// Starting class for access to all argument validation.
