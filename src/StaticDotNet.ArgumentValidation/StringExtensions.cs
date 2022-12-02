@@ -33,8 +33,6 @@ public static class StringExtensions {
 		}
 
 		throw new ArgumentException( argInfo.Message ?? Constants.VALUE_CANNOT_BE_EMPTY, argInfo.Name );
-
-		//return ref argInfo;
 	}
 
 	/// <summary>
