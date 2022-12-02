@@ -7,7 +7,7 @@ namespace StaticDotNet.ArgumentValidation;
 /// </summary>
 /// <remarks>
 /// Since <see cref="string"/> can't be used as a generic constraint <see cref="IEquatable{String}"/>, <see cref="IComparable{String}"/>
-/// and <see cref="IEnumerable{Char}"/> are used instead.
+/// and <see cref="IEnumerable{Char}"/> are used instead. Generic constraints are specifically used to ensure nullability is passed on.
 /// </remarks>
 public static class StringExtensions {
 
