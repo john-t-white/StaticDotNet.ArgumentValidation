@@ -14,8 +14,6 @@ internal class Constants {
 
 	internal const string VALUE_MUST_BE_BETWEEN = "Value must be between {0} and {1}.";
 
-	internal const string VALUE_MUST_END_WITH = "Value must end with {0}.";
-
 	internal const string VALUE_MUST_BE_EQUAL_TO = "Value must be equal to {0}.";
 
 	internal const string VALUE_MUST_BE_FALSE = "Value must be false.";
@@ -32,11 +30,15 @@ internal class Constants {
 
 	internal const string VALUE_MUST_BE_READABLE = "Value must be readable.";
 
-	internal const string VALUE_MUST_START_WITH = "Value must start with {0}.";
-
 	internal const string VALUE_MUST_BE_TRUE = "Value must be true.";
 
 	internal const string VALUE_MUST_BE_WRITEABLE = "Value must be writable.";
+
+	internal const string VALUE_MUST_CONTAIN = "Value must contain {0}.";
+
+	internal const string VALUE_MUST_END_WITH = "Value must end with {0}.";
+
+	internal const string VALUE_MUST_START_WITH = "Value must start with {0}.";
 
 	internal const string VALUE_MUST_HAVE_LENGTH_BETWEEN = "Value must have a length between {0} and {1}.";
 
