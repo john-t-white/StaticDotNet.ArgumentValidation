@@ -10,7 +10,7 @@ public class IsNull_Class {
 	public object? value = null;
 
 	[Benchmark( Baseline = true )]
-	public object? Baseline() => this.value == null ? this.value : throw new ArgumentException( "Value cannot be non null.", nameof( this.value ) );
+	public object? Baseline() => this.value is null ? this.value : throw new ArgumentException( "Value cannot be non null.", nameof( this.value ) );
 
 	[Benchmark]
 	public object? Arg_Is() => Arg.IsNull( this.value );

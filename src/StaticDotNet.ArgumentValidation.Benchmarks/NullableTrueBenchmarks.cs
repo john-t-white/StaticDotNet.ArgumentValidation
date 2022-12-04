@@ -20,7 +20,7 @@ public class NullableTrueBenchmarks {
 
 	[Benchmark]
 	public bool? Ensure_That() {
-		if( this.value != null ) {
+		if( this.value is not null ) {
 			EnsureThat.Ensure.That( this.value.Value, nameof( this.value ) ).IsTrue();
 		}
 

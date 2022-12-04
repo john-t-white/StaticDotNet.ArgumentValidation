@@ -10,7 +10,7 @@ public class NotNullTrueBenchmarks {
 	public bool? value = true;
 
 	[Benchmark( Baseline = true )]
-	public bool Baseline() => this.value == null ? throw new ArgumentNullException( nameof( this.value ) ) : this.value.Value ? true : throw new ArgumentException( "Value must be true.", nameof( this.value ) );
+	public bool Baseline() => this.value is null ? throw new ArgumentNullException( nameof( this.value ) ) : this.value.Value ? true : throw new ArgumentException( "Value must be true.", nameof( this.value ) );
 
 	//[Benchmark]
 	//public bool Arg_Is() => Arg.Is.NotNullTrue( this.value );

@@ -12,7 +12,7 @@ public class IsNotNull_NotEmpty_List {
 
 	[Benchmark( Baseline = true )]
 	public IList<int> Baseline()
-		=> this.value == null
+		=> this.value is null
 			? throw new ArgumentNullException( nameof( this.value ) )
 			: this.value.Count == 0
 				? throw new ArgumentException( "Message", nameof( this.value ) )

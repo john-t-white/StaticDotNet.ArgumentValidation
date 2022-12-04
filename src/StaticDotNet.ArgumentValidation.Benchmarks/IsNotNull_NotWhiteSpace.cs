@@ -13,7 +13,7 @@ public class IsNotNull_NotWhiteSpace {
 	[Benchmark( Baseline = true )]
 	public string Baseline() {
 		if( string.IsNullOrWhiteSpace( this.value ) ) {
-			if( this.value == null ) {
+			if( this.value is null ) {
 				throw new ArgumentNullException( nameof( this.value ) );
 			}
 

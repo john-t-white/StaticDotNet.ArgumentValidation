@@ -17,7 +17,7 @@ public partial class ___IsNotNull_NotWhiteSpace_Matches_Regex {
 	public string Baseline() {
 
 		if( string.IsNullOrWhiteSpace( this.value ) ) {
-			if( this.value == null ) {
+			if( this.value is null ) {
 
 				throw new ArgumentNullException( nameof( this.value ) );
 			}

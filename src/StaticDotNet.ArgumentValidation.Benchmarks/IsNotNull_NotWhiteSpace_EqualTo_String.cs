@@ -14,7 +14,7 @@ public class IsNotNull_NotWhiteSpace_EqualTo_String {
 	[Benchmark( Baseline = true )]
 	public string Baseline() {
 		if( string.IsNullOrEmpty( this.value ) ) {
-			if( this.value == null ) {
+			if( this.value is null ) {
 				throw new ArgumentNullException( nameof( this.value ) );
 			}
 
