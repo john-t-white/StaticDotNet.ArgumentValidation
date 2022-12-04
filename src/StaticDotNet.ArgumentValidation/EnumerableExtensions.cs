@@ -13,7 +13,7 @@ public static class EnumerableExtensions {
 	/// <typeparam name="T">The type of argument value.</typeparam>
 	/// <param name="argInfo">The argument info.</param>
 	/// <returns>The <see cref="ArgInfo{T}"/>.</returns>
-	/// <exception cref="ArgumentException">Thrown when <see cref="ArgInfo{T}.Value"/> is empty.</exception>
+	/// <exception cref="ArgumentException">Thrown when <paramref name="argInfo.Value"/> is empty.</exception>
 	public static ref readonly ArgInfo<T> NotEmpty<T>( in this ArgInfo<T> argInfo )
 		where T : IEnumerable? {
 

@@ -1,4 +1,5 @@
 ﻿using System.Globalization;
+using System.Text.RegularExpressions;
 
 namespace StaticDotNet.ArgumentValidation;
 
@@ -17,7 +18,7 @@ public static class StringExtensions {
 	/// <typeparam name="T">The type of argument value.</typeparam>
 	/// <param name="argInfo">The argument info.</param>
 	/// <returns>The <see cref="ArgInfo{T}"/>.</returns>
-	/// <exception cref="ArgumentException">Thrown when <see cref="ArgInfo{T}.Value"/> is white space.</exception>
+	/// <exception cref="ArgumentException">Thrown when <paramref name="argInfo.Value"/> is white space.</exception>
 	public static ref readonly ArgInfo<T> NotWhiteSpace<T>( in this ArgInfo<T> argInfo )
 		where T : IEquatable<string>?, IComparable<string>?, IEnumerable<char>? {
 
@@ -42,7 +43,7 @@ public static class StringExtensions {
 	/// <param name="comparisonValue">The value to compare against.</param>
 	/// <param name="comparisonType">The type of comparison.</param>
 	/// <returns>The <see cref="ArgInfo{T}"/>.</returns>
-	/// <exception cref="ArgumentException">Thrown when <see cref="ArgInfo{T}.Value"/> does not equal <paramref name="comparisonValue"/>.</exception>
+	/// <exception cref="ArgumentException">Thrown when <paramref name="argInfo.Value"/> does not equal <paramref name="comparisonValue"/>.</exception>
 	public static ref readonly ArgInfo<T> EqualTo<T>( in this ArgInfo<T> argInfo, string comparisonValue, StringComparison comparisonType )
 		where T : IEquatable<string>?, IComparable<string>?, IEnumerable<char>? {
 
@@ -61,7 +62,7 @@ public static class StringExtensions {
 	/// <param name="value">The value it should start with.</param>
 	/// <param name="comparisonType">The type of comparison.</param>
 	/// <returns>The <see cref="ArgInfo{T}"/>.</returns>
-	/// <exception cref="ArgumentException">Thrown when <see cref="ArgInfo{T}.Value"/> does not start with <paramref name="value"/>.</exception>
+	/// <exception cref="ArgumentException">Thrown when <paramref name="argInfo.Value"/> does not start with <paramref name="value"/>.</exception>
 	public static ref readonly ArgInfo<T> StartsWith<T>( in this ArgInfo<T> argInfo, string value, StringComparison comparisonType )
 		where T : IEquatable<string>?, IComparable<string>?, IEnumerable<char>? {
 
@@ -80,7 +81,7 @@ public static class StringExtensions {
 	/// <param name="value">The value to it should end with.</param>
 	/// <param name="comparisonType">The type of comparison.</param>
 	/// <returns>The <see cref="ArgInfo{T}"/>.</returns>
-	/// <exception cref="ArgumentException">Thrown when <see cref="ArgInfo{T}.Value"/> does not start with <paramref name="value"/>.</exception>
+	/// <exception cref="ArgumentException">Thrown when <paramref name="argInfo.Value"/> does not start with <paramref name="value"/>.</exception>
 	public static ref readonly ArgInfo<T> EndsWith<T>( in this ArgInfo<T> argInfo, string value, StringComparison comparisonType )
 		where T : IEquatable<string>?, IComparable<string>?, IEnumerable<char>? {
 
@@ -101,7 +102,7 @@ public static class StringExtensions {
 	/// <param name="value">The value it should contain.</param>
 	/// <param name="comparisonType">The type of comparison.</param>
 	/// <returns>The <see cref="ArgInfo{T}"/>.</returns>
-	/// <exception cref="ArgumentException">Thrown when <see cref="ArgInfo{T}.Value"/> does not contain <paramref name="value"/>.</exception>
+	/// <exception cref="ArgumentException">Thrown when <paramref name="argInfo.Value"/> does not contain <paramref name="value"/>.</exception>
 	public static ref readonly ArgInfo<T> Contains<T>( in this ArgInfo<T> argInfo, string value, StringComparison comparisonType )
 		where T : IEquatable<string>?, IComparable<string>?, IEnumerable<char>? {
 
@@ -121,7 +122,7 @@ public static class StringExtensions {
 	/// <param name="argInfo">The argument info.</param>
 	/// <param name="length">The maximum length.</param>
 	/// <returns>The <see cref="ArgInfo{T}"/>.</returns>
-	/// <exception cref="ArgumentOutOfRangeException">Thrown when the length of <see cref="ArgInfo{T}.Value"/> does not equal <paramref name="length"/>.</exception>
+	/// <exception cref="ArgumentOutOfRangeException">Thrown when the length of <paramref name="argInfo.Value"/> does not equal <paramref name="length"/>.</exception>
 	public static ref readonly ArgInfo<T> Length<T>( in this ArgInfo<T> argInfo, int length )
 	where T : IEquatable<string>?, IComparable<string>?, IEnumerable<char>? {
 
@@ -139,7 +140,7 @@ public static class StringExtensions {
 	/// <param name="argInfo">The argument info.</param>
 	/// <param name="maxLength">The maximum length.</param>
 	/// <returns>The <see cref="ArgInfo{T}"/>.</returns>
-	/// <exception cref="ArgumentOutOfRangeException">Thrown when the length of <see cref="ArgInfo{T}.Value"/> greater than <paramref name="maxLength"/>.</exception>
+	/// <exception cref="ArgumentOutOfRangeException">Thrown when the length of <paramref name="argInfo.Value"/> greater than <paramref name="maxLength"/>.</exception>
 	public static ref readonly ArgInfo<T> MaxLength<T>( in this ArgInfo<T> argInfo, int maxLength )
 		where T : IEquatable<string>?, IComparable<string>?, IEnumerable<char>? {
 
@@ -157,7 +158,7 @@ public static class StringExtensions {
 	/// <param name="argInfo">The argument info.</param>
 	/// <param name="minLength">The miniumum length.</param>
 	/// <returns>The <see cref="ArgInfo{T}"/>.</returns>
-	/// <exception cref="ArgumentOutOfRangeException">Thrown when the length of <see cref="ArgInfo{T}.Value"/> is less than <paramref name="minLength"/>.</exception>
+	/// <exception cref="ArgumentOutOfRangeException">Thrown when the length of <paramref name="argInfo.Value"/> is less than <paramref name="minLength"/>.</exception>
 	public static ref readonly ArgInfo<T> MinLength<T>( in this ArgInfo<T> argInfo, int minLength )
 		where T : IEquatable<string>?, IComparable<string>?, IEnumerable<char>? {
 
@@ -176,8 +177,7 @@ public static class StringExtensions {
 	/// <param name="minLength">The miniumum length.</param>
 	/// <param name="maxLength">The maximum length.</param>
 	/// <returns>The <see cref="ArgInfo{T}"/>.</returns>
-	/// <exception cref="ArgumentOutOfRangeException">Thrown when the length of <see cref="ArgInfo{T}.Value"/>
-	/// is not between <paramref name="minLength"/> and <paramref name="maxLength"/>.</exception>
+	/// <exception cref="ArgumentOutOfRangeException">Thrown when the length of <paramref name="argInfo.Value"/> is not between <paramref name="minLength"/> and <paramref name="maxLength"/>.</exception>
 	public static ref readonly ArgInfo<T> LengthBetween<T>( in this ArgInfo<T> argInfo, int minLength, int maxLength )
 		where T : IEquatable<string>?, IComparable<string>?, IEnumerable<char>? {
 
@@ -186,6 +186,61 @@ public static class StringExtensions {
 		}
 
 		throw new ArgumentOutOfRangeException( argInfo.Name, argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, Constants.VALUE_MUST_HAVE_LENGTH_BETWEEN, minLength, maxLength ) );
+	}
+
+	/// <summary>
+	/// Ensures a string argument matches the regular expression <paramref name="pattern"/>, otherwise an <see cref="ArgumentOutOfRangeException"/> is thrown.
+	/// </summary>
+	/// <typeparam name="T">The type of argument value.</typeparam>
+	/// <param name="argInfo">The argument info.</param>
+	/// <param name="pattern">The regular expression pattern.</param>
+	/// <returns>The <see cref="ArgInfo{T}"/>.</returns>
+	/// <exception cref="ArgumentOutOfRangeException">Thrown when <paramref name="argInfo.Value"/> does not match the <paramref name="pattern"/></exception>
+	public static ref readonly ArgInfo<T> Matches<T>( in this ArgInfo<T> argInfo, [StringSyntax( StringSyntaxAttribute.Regex ) ] string pattern )
+		where T : IEquatable<string>?, IComparable<string>?, IEnumerable<char>? {
+
+		if( argInfo.ValueAsString is null || ( pattern is not null && Regex.IsMatch( argInfo.ValueAsString, pattern ) ) ) {
+			return ref argInfo;
+		}
+
+		throw new ArgumentException( argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, Constants.VALUE_MUST_MATCH_REGEX, pattern ?? Constants.NULL ), argInfo.Name );
+	}
+
+	/// <summary>
+	/// Ensures a string argument matches the regular expression <paramref name="pattern"/>, otherwise an <see cref="ArgumentOutOfRangeException"/> is thrown.
+	/// </summary>
+	/// <typeparam name="T">The type of argument value.</typeparam>
+	/// <param name="argInfo">The argument info.</param>
+	/// <param name="pattern">The regular expression pattern.</param>
+	/// <param name="options">The regex options.</param>
+	/// <returns>The <see cref="ArgInfo{T}"/>.</returns>
+	/// <exception cref="ArgumentOutOfRangeException">Thrown when <paramref name="argInfo.Value"/> does not match the <paramref name="pattern"/></exception>
+	public static ref readonly ArgInfo<T> Matches<T>( in this ArgInfo<T> argInfo, [StringSyntax( StringSyntaxAttribute.Regex )] string pattern, RegexOptions options )
+		where T : IEquatable<string>?, IComparable<string>?, IEnumerable<char>? {
+
+		if( argInfo.ValueAsString is null || ( pattern is not null && Regex.IsMatch( argInfo.ValueAsString, pattern, options ) ) ) {
+			return ref argInfo;
+		}
+
+		throw new ArgumentException( argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, Constants.VALUE_MUST_MATCH_REGEX, pattern ?? Constants.NULL ), argInfo.Name );
+	}
+
+	/// <summary>
+	/// Ensures a string argument matches the regular expression <paramref name="regex"/>, otherwise an <see cref="ArgumentOutOfRangeException"/> is thrown.
+	/// </summary>
+	/// <typeparam name="T">The type of argument value.</typeparam>
+	/// <param name="argInfo">The argument info.</param>
+	/// <param name="regex">The regular expression pattern.</param>
+	/// <returns>The <see cref="ArgInfo{T}"/>.</returns>
+	/// <exception cref="ArgumentOutOfRangeException">Thrown when <paramref name="argInfo.Value"/> does not match the <paramref name="regex"/></exception>
+	public static ref readonly ArgInfo<T> Matches<T>( in this ArgInfo<T> argInfo, Regex regex )
+		where T : IEquatable<string>?, IComparable<string>?, IEnumerable<char>? {
+
+		if( argInfo.ValueAsString is null || ( regex is not null && regex.IsMatch( argInfo.ValueAsString ) ) ) {
+			return ref argInfo;
+		}
+
+		throw new ArgumentException( argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, Constants.VALUE_MUST_MATCH_REGEX, regex?.ToString() ?? Constants.NULL ), argInfo.Name );
 	}
 
 	#region Internal Methods
