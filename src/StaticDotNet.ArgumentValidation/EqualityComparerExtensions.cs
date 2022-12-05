@@ -16,7 +16,7 @@ public static class EqualityComparerExtensions {
 	/// <param name="comparer">The comparer. Null will use <see cref="EqualityComparer{T}.Default"/></param>
 	/// <returns>The <see cref="ArgInfo{T}"/>.</returns>
 	/// <exception cref="ArgumentException">Thrown when <paramref name="argInfo.Value"/> does not equal <paramref name="comparisonValue"/>.</exception>
-	public static ref readonly ArgInfo<T> EqualTo<T>( in this ArgInfo<T> argInfo, T comparisonValue, IEqualityComparer<T>? comparer = null ) {
+	public static ref readonly ArgInfo<T> EqualTo<T>( in this ArgInfo<T> argInfo, [DisallowNull] T comparisonValue, IEqualityComparer<T>? comparer = null ) {
 
 		if( argInfo.Value is null ) {
 			return ref argInfo;

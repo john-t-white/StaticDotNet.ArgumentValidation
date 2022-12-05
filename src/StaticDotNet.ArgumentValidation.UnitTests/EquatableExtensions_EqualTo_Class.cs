@@ -60,7 +60,24 @@ public sealed class EquatableExtensions_EqualTo_Class {
 			_ = argInfo.EqualTo( comparisionValue );
 		} );
 
-		string expectedMessage = $"Value must be equal to {comparisionValue}";
+		string expectedMessage = $"Value must be equal to {comparisionValue}.";
+
+		Assert.StartsWith( expectedMessage, exception.Message );
+	}
+
+	[Fact]
+	public void WithNullComparisonValueThrowsArgumentException() {
+
+		object value = new();
+		string name = "Name";
+		object? comparisionValue = null!;
+
+		ArgumentException exception = Assert.Throws<ArgumentException>( name, () => {
+			ArgInfo<object> argInfo = new( value, name, null );
+			_ = argInfo.EqualTo( comparisionValue );
+		} );
+
+		string expectedMessage = $"Value must be equal to <null>.";
 
 		Assert.StartsWith( expectedMessage, exception.Message );
 	}
