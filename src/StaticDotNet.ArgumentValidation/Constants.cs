@@ -30,11 +30,11 @@ internal class Constants {
 
 	internal const string VALUE_MUST_END_WITH = "Value must end with {0}.";
 
-	internal const string VALUE_MUST_START_WITH = "Value must start with {0}.";
-
 	internal const string VALUE_MUST_HAVE_LENGTH_BETWEEN = "Value must have a length between {0} and {1}.";
 
 	internal const string VALUE_MUST_HAVE_LENGTH_EQUAL_TO = "Value must have a length equal to {0}.";
 
 	internal const string VALUE_MUST_MATCH_REGEX = "Value must match the regex {0}.";
+
+	internal const string VALUE_MUST_START_WITH = "Value must start with {0}.";
 }
