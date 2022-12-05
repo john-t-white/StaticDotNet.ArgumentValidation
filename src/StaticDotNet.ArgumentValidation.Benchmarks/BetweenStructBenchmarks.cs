@@ -14,22 +14,22 @@ public class BetweenStructBenchmarks {
 	public int maxValue = 3;
 
 	[Benchmark( Baseline = true )]
-	public int Baseline() => this.value >= this.minValue && this.value <= this.maxValue ? this.value : throw new ArgumentOutOfRangeException( string.Format( CultureInfo.InvariantCulture, "Value must be between to {0} and {1}.", this.minValue, this.maxValue ), nameof( this.value ) );
+	public int Baseline() => value >= minValue && value <= maxValue ? value : throw new ArgumentOutOfRangeException( string.Format( CultureInfo.InvariantCulture, "Value must be between to {0} and {1}.", minValue, maxValue ), nameof( value ) );
 
 	//[Benchmark]
-	//public int Arg_Is() => Arg.Is.Between( this.value, this.minValue, this.maxValue );
+	//public int Arg_Is() => Arg.Is.Between( value, minValue, maxValue );
 
 	[Benchmark]
-	public int Dawn_Guard() => Dawn.Guard.Argument( this.value ).InRange( this.minValue, this.maxValue );
+	public int Dawn_Guard() => Dawn.Guard.Argument( value ).InRange( minValue, maxValue );
 
 
 	[Benchmark]
-	public int Ardalis_Guard() => Ardalis.GuardClauses.Guard.Against.OutOfRange( this.value, nameof( this.value ), this.minValue, this.maxValue );
+	public int Ardalis_Guard() => Ardalis.GuardClauses.Guard.Against.OutOfRange( value, nameof( value ), minValue, maxValue );
 
 	[Benchmark]
 	public int Ensure_That() {
-		EnsureThat.Ensure.That( this.value, nameof( this.value ) ).IsInRange( this.minValue, this.maxValue );
+		EnsureThat.Ensure.That( value, nameof( value ) ).IsInRange( minValue, maxValue );
 
-		return this.value;
+		return value;
 	}
 }

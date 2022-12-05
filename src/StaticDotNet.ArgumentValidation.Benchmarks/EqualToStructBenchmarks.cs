@@ -12,18 +12,18 @@ public class EqualToStructBenchmarks {
 	public int comparisonValue = 1;
 
 	[Benchmark( Baseline = true )]
-	public int Baseline() => this.value == this.comparisonValue ? this.value : throw new ArgumentException( string.Format( CultureInfo.InvariantCulture, "Value must be equal to {0}.", this.comparisonValue ), nameof( this.value ) );
+	public int Baseline() => value == comparisonValue ? value : throw new ArgumentException( string.Format( CultureInfo.InvariantCulture, "Value must be equal to {0}.", comparisonValue ), nameof( value ) );
 
 	//[Benchmark]
-	//public int Arg_Is() => Arg.Is.EqualTo( this.value, this.comparisonValue );
+	//public int Arg_Is() => Arg.Is.EqualTo( value, comparisonValue );
 
 	[Benchmark]
-	public int Dawn_Guard() => Dawn.Guard.Argument( this.value ).Equal( this.comparisonValue );
+	public int Dawn_Guard() => Dawn.Guard.Argument( value ).Equal( comparisonValue );
 
 	[Benchmark]
 	public int Ensure_That() {
-		EnsureThat.Ensure.That( this.value, nameof( this.value ) ).Is( this.comparisonValue );
+		EnsureThat.Ensure.That( value, nameof( value ) ).Is( comparisonValue );
 
-		return this.value;
+		return value;
 	}
 }

@@ -12,26 +12,26 @@ public class IsNotNull_NotEmpty_List {
 
 	[Benchmark( Baseline = true )]
 	public IList<int> Baseline()
-		=> this.value is null
-			? throw new ArgumentNullException( nameof( this.value ) )
-			: this.value.Count == 0
-				? throw new ArgumentException( "Message", nameof( this.value ) )
-				: this.value;
+		=> value is null
+			? throw new ArgumentNullException( nameof( value ) )
+			: value.Count == 0
+				? throw new ArgumentException( "Message", nameof( value ) )
+				: value;
 
 	[Benchmark]
-	public IList<int> Arg_Is() => Arg.IsNotNull( this.value ).NotEmpty().Value;
+	public IList<int> Arg_Is() => Arg.IsNotNull( value ).NotEmpty().Value;
 
 	[Benchmark]
-	public IList<int> Dawn_Guard() => Dawn.Guard.Argument( this.value ).NotNull().NotEmpty().Value;
+	public IList<int> Dawn_Guard() => Dawn.Guard.Argument( value ).NotNull().NotEmpty().Value;
 
 	[Benchmark]
-	public IList<int> Ardalis_Guard() => ( IList<int> )Ardalis.GuardClauses.Guard.Against.NullOrEmpty( this.value );
+	public IList<int> Ardalis_Guard() => ( IList<int> )Ardalis.GuardClauses.Guard.Against.NullOrEmpty( value );
 
 	[Benchmark]
 	public IList<int> Ensure_That() {
-		EnsureThat.Ensure.That( this.value, nameof( this.value ) ).IsNotNull();
-		EnsureThat.Ensure.That( this.value, nameof( this.value ) ).HasItems();
+		EnsureThat.Ensure.That( value, nameof( value ) ).IsNotNull();
+		EnsureThat.Ensure.That( value, nameof( value ) ).HasItems();
 
-		return this.value;
+		return value;
 	}
 }

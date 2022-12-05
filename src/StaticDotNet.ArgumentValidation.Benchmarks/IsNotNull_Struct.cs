@@ -11,25 +11,25 @@ public class IsNotNull_Struct {
 	public int? value = new();
 
 	[Benchmark( Baseline = true )]
-	public int Baseline() => this.value ?? throw new ArgumentNullException( nameof( this.value ) );
+	public int Baseline() => value ?? throw new ArgumentNullException( nameof( value ) );
 
 	[Benchmark]
-	public int Arg_IsNotNull() => Arg.IsNotNull( this.value ).Value;
+	public int Arg_IsNotNull() => Arg.IsNotNull( value ).Value;
 
 	[Benchmark]
-	public int Dawn_Guard() => Dawn.Guard.Argument( this.value ).NotNull();
+	public int Dawn_Guard() => Dawn.Guard.Argument( value ).NotNull();
 
 	[Benchmark]
 #pragma warning disable CS8629 // Nullable value type may be null.
-	public int Ardalis_Guard() => Ardalis.GuardClauses.Guard.Against.Null( this.value ).Value;
+	public int Ardalis_Guard() => Ardalis.GuardClauses.Guard.Against.Null( value ).Value;
 #pragma warning restore CS8629 // Nullable value type may be null.
 
 	[Benchmark]
 	public int Ensure_That() {
-		EnsureThat.Ensure.That( this.value, nameof( this.value ) ).IsNotNull();
+		EnsureThat.Ensure.That( value, nameof( value ) ).IsNotNull();
 
 #pragma warning disable CS8629 // Nullable value type may be null.
-		return this.value.Value;
+		return value.Value;
 #pragma warning restore CS8629 // Nullable value type may be null.
 	}
 }

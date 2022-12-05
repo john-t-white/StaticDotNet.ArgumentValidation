@@ -17,10 +17,10 @@ public readonly ref struct ArgInfo<T> {
 	/// <param name="message">The exception message.  Null for for default message.</param>
 	public ArgInfo( T value, string? name, string? message ) {
 
-		this.Value = value;
-		this.Name = name;
-		this.Message = message;
-		this.ValueAsString = value as string;
+		Value = value;
+		Name = name;
+		Message = message;
+		ValueAsString = value as string;
 	}
 
 	/// <summary>

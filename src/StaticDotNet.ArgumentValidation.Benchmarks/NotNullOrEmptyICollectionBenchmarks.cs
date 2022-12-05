@@ -13,24 +13,24 @@ public class NotNullOrEmptyICollectionBenchmarks {
 
 	[Benchmark( Baseline = true )]
 	public ICollection<string> Baseline()
-		=> this.value is null
-			? throw new ArgumentNullException( nameof( this.value ) )
-			: this.value.Count == 0 ? throw new ArgumentException( "Message", nameof( this.value ) ) : this.value;
+		=> value is null
+			? throw new ArgumentNullException( nameof( value ) )
+			: value.Count == 0 ? throw new ArgumentException( "Message", nameof( value ) ) : value;
 
 	//[Benchmark]
-	//public Collection<string> Arg_Is() => Arg.Is.NotNullOrEmpty( this.value );
+	//public Collection<string> Arg_Is() => Arg.Is.NotNullOrEmpty( value );
 
 	[Benchmark]
-	public ICollection<string> Dawn_Guard() => Dawn.Guard.Argument( this.value ).NotNull().NotEmpty().Value;
+	public ICollection<string> Dawn_Guard() => Dawn.Guard.Argument( value ).NotNull().NotEmpty().Value;
 
 	[Benchmark]
-	public ICollection<string> Ardalis_Guard() => ( ICollection<string> )Ardalis.GuardClauses.Guard.Against.NullOrEmpty( this.value );
+	public ICollection<string> Ardalis_Guard() => ( ICollection<string> )Ardalis.GuardClauses.Guard.Against.NullOrEmpty( value );
 
 	[Benchmark]
 	public ICollection<string> Ensure_That() {
-		EnsureThat.Ensure.That( this.value, nameof( this.value ) ).IsNotNull();
-		EnsureThat.Ensure.That( this.value, nameof( this.value ) ).HasItems();
+		EnsureThat.Ensure.That( value, nameof( value ) ).IsNotNull();
+		EnsureThat.Ensure.That( value, nameof( value ) ).HasItems();
 
-		return this.value;
+		return value;
 	}
 }

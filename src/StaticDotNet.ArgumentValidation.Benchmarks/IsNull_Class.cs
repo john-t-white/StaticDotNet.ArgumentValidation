@@ -10,11 +10,11 @@ public class IsNull_Class {
 	public object? value = null;
 
 	[Benchmark( Baseline = true )]
-	public object? Baseline() => this.value is null ? this.value : throw new ArgumentException( "Value cannot be non null.", nameof( this.value ) );
+	public object? Baseline() => value is null ? value : throw new ArgumentException( "Value cannot be non null.", nameof( value ) );
 
 	[Benchmark]
-	public object? Arg_Is() => Arg.IsNull( this.value );
+	public object? Arg_Is() => Arg.IsNull( value );
 
 	[Benchmark]
-	public object? Dawn_Guard() => Dawn.Guard.Argument( this.value ).Null();
+	public object? Dawn_Guard() => Dawn.Guard.Argument( value ).Null();
 }

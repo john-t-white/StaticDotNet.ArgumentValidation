@@ -13,21 +13,21 @@ public class GreaterThanStructBenchmarks {
 	public int comparisonValue = 0;
 
 	[Benchmark( Baseline = true )]
-	public int Baseline() => this.value > this.comparisonValue ? this.value : throw new ArgumentException( string.Format( CultureInfo.InvariantCulture, "Value must be greater than {0}.", this.comparisonValue ), nameof( this.value ) );
+	public int Baseline() => value > comparisonValue ? value : throw new ArgumentException( string.Format( CultureInfo.InvariantCulture, "Value must be greater than {0}.", comparisonValue ), nameof( value ) );
 
 	//[Benchmark]
-	//public int Arg_Is() => Arg.Is.GreaterThan( this.value, this.comparisonValue );
+	//public int Arg_Is() => Arg.Is.GreaterThan( value, comparisonValue );
 
 	[Benchmark]
-	public int Dawn_Guard() => Dawn.Guard.Argument( this.value ).GreaterThan( this.comparisonValue );
+	public int Dawn_Guard() => Dawn.Guard.Argument( value ).GreaterThan( comparisonValue );
 
 	[Benchmark]
-	public int Ardalis_Guard() => Ardalis.GuardClauses.Guard.Against.Negative( this.value );
+	public int Ardalis_Guard() => Ardalis.GuardClauses.Guard.Against.Negative( value );
 
 	[Benchmark]
 	public int Ensure_That() {
-		EnsureThat.Ensure.That( this.value, nameof( this.value ) ).IsGt( this.comparisonValue );
+		EnsureThat.Ensure.That( value, nameof( value ) ).IsGt( comparisonValue );
 
-		return this.value;
+		return value;
 	}
 }

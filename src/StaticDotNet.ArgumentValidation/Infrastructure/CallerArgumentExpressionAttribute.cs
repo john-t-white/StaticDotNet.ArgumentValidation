@@ -6,7 +6,7 @@ namespace System.Runtime.CompilerServices;
 internal sealed class CallerArgumentExpressionAttribute : Attribute {
 
 	public CallerArgumentExpressionAttribute( string? parameterName ) {
-		this.ParameterName = parameterName;
+		ParameterName = parameterName;
 	}
 
 	public string? ParameterName { get; }

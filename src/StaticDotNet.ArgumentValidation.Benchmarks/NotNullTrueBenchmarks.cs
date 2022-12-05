@@ -10,19 +10,19 @@ public class NotNullTrueBenchmarks {
 	public bool? value = true;
 
 	[Benchmark( Baseline = true )]
-	public bool Baseline() => this.value is null ? throw new ArgumentNullException( nameof( this.value ) ) : this.value.Value ? true : throw new ArgumentException( "Value must be true.", nameof( this.value ) );
+	public bool Baseline() => value is null ? throw new ArgumentNullException( nameof( value ) ) : value.Value ? true : throw new ArgumentException( "Value must be true.", nameof( value ) );
 
 	//[Benchmark]
-	//public bool Arg_Is() => Arg.Is.NotNullTrue( this.value );
+	//public bool Arg_Is() => Arg.Is.NotNullTrue( value );
 
 	[Benchmark]
-	public bool Dawn_Guard() => Dawn.Guard.Argument( this.value ).NotNull().True();
+	public bool Dawn_Guard() => Dawn.Guard.Argument( value ).NotNull().True();
 
 	[Benchmark]
 	public bool Ensure_That() {
-		EnsureThat.Ensure.That( this.value, nameof( this.value ) ).IsNotNull();
-		EnsureThat.Ensure.That( this.value!.Value, nameof( this.value ) ).IsTrue();
+		EnsureThat.Ensure.That( value, nameof( value ) ).IsNotNull();
+		EnsureThat.Ensure.That( value!.Value, nameof( value ) ).IsTrue();
 
-		return this.value!.Value;
+		return value!.Value;
 	}
 }

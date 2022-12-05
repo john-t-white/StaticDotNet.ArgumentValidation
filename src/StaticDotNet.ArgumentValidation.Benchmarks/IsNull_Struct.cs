@@ -10,11 +10,11 @@ public class IsNull_Struct {
 	public int? value = null;
 
 	[Benchmark( Baseline = true )]
-	public int? Baseline() => this.value is null ? this.value : throw new ArgumentException( "Value cannot be non null.", nameof( this.value ) );
+	public int? Baseline() => value is null ? value : throw new ArgumentException( "Value cannot be non null.", nameof( value ) );
 
 	[Benchmark]
-	public int? Arg_Is() => Arg.IsNull( this.value );
+	public int? Arg_Is() => Arg.IsNull( value );
 
 	[Benchmark]
-	public int? Dawn_Guard() => Dawn.Guard.Argument( this.value ).Null();
+	public int? Dawn_Guard() => Dawn.Guard.Argument( value ).Null();
 }

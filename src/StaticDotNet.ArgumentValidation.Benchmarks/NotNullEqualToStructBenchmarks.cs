@@ -13,21 +13,21 @@ public class NotNullEqualToStructBenchmarks {
 
 	[Benchmark( Baseline = true )]
 	public int Baseline()
-		=> this.value is null
-			? throw new ArgumentNullException( nameof( this.value ) )
-			: this.value.Value == this.comparisonValue ? this.value.Value : throw new ArgumentException( string.Format( CultureInfo.InvariantCulture, "Value must be equal to {0}.", this.comparisonValue ), nameof( this.value ) );
+		=> value is null
+			? throw new ArgumentNullException( nameof( value ) )
+			: value.Value == comparisonValue ? value.Value : throw new ArgumentException( string.Format( CultureInfo.InvariantCulture, "Value must be equal to {0}.", comparisonValue ), nameof( value ) );
 
 	//[Benchmark]
-	//public int Arg_Is() => Arg.Is.NotNullEqualTo( this.value, this.comparisonValue );
+	//public int Arg_Is() => Arg.Is.NotNullEqualTo( value, comparisonValue );
 
 	[Benchmark]
-	public int Dawn_Guard() => Dawn.Guard.Argument( this.value ).NotNull().Equal( this.comparisonValue );
+	public int Dawn_Guard() => Dawn.Guard.Argument( value ).NotNull().Equal( comparisonValue );
 
 	[Benchmark]
 	public int Ensure_That() {
-		EnsureThat.Ensure.That( this.value, nameof( this.value ) ).IsNotNull();
-		EnsureThat.Ensure.That( this.value!.Value, nameof( this.value ) ).Is( this.comparisonValue );
+		EnsureThat.Ensure.That( value, nameof( value ) ).IsNotNull();
+		EnsureThat.Ensure.That( value!.Value, nameof( value ) ).Is( comparisonValue );
 
-		return this.value.Value;
+		return value.Value;
 	}
 }

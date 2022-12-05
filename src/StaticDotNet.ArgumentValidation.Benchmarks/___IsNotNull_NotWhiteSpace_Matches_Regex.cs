@@ -16,34 +16,34 @@ public partial class ___IsNotNull_NotWhiteSpace_Matches_Regex {
 	[Benchmark( Baseline = true )]
 	public string Baseline() {
 
-		if( string.IsNullOrWhiteSpace( this.value ) ) {
-			if( this.value is null ) {
+		if( string.IsNullOrWhiteSpace( value ) ) {
+			if( value is null ) {
 
-				throw new ArgumentNullException( nameof( this.value ) );
+				throw new ArgumentNullException( nameof( value ) );
 			}
 
-			throw new ArgumentException( "Message", nameof( this.value ) );
+			throw new ArgumentException( "Message", nameof( value ) );
 		}
 
-		return DigitRegex().IsMatch( this.value ) ? this.value : throw new ArgumentException( "Message", nameof( this.value ) );
+		return DigitRegex().IsMatch( value ) ? value : throw new ArgumentException( "Message", nameof( value ) );
 	}
 
 	//[Benchmark]
-	//public string Arg_Is() => Arg.IsNotNull( this.value ).NotWhiteSpace().Matches( DigitRegex() ).Value;
+	//public string Arg_Is() => Arg.IsNotNull( value ).NotWhiteSpace().Matches( DigitRegex() ).Value;
 
 	[Benchmark]
 #pragma warning disable CS8634 // The type cannot be used as type parameter in the generic type or method. Nullability of type argument doesn't match 'class' constraint.
-	public string Dawn_Guard() => Dawn.Guard.Argument( this.value ).NotNull().NotWhiteSpace().Matches( DigitRegex() );
+	public string Dawn_Guard() => Dawn.Guard.Argument( value ).NotNull().NotWhiteSpace().Matches( DigitRegex() );
 #pragma warning restore CS8634 // The type cannot be used as type parameter in the generic type or method. Nullability of type argument doesn't match 'class' constraint.
 
 	[Benchmark]
 	public string Ensure_That() {
 
-		EnsureThat.Ensure.That( this.value, nameof( this.value ) ).IsNotNullOrWhiteSpace();
-		EnsureThat.Ensure.That( this.value, nameof( this.value ) ).Matches( DigitRegex() );
+		EnsureThat.Ensure.That( value, nameof( value ) ).IsNotNullOrWhiteSpace();
+		EnsureThat.Ensure.That( value, nameof( value ) ).Matches( DigitRegex() );
 
 #pragma warning disable CS8603 // Possible null reference return.
-		return this.value;
+		return value;
 #pragma warning restore CS8603 // Possible null reference return.
 	}
 }

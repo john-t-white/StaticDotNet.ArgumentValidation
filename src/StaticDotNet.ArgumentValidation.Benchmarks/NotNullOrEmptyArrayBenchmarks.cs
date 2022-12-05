@@ -12,24 +12,24 @@ public class NotNullOrEmptyArrayBenchmarks {
 
 	[Benchmark( Baseline = true )]
 	public string[] Baseline()
-		=> this.value is null
-			? throw new ArgumentNullException( nameof( this.value ) )
-			: this.value.Length == 0 ? throw new ArgumentException( "Message", nameof( this.value ) ) : this.value;
+		=> value is null
+			? throw new ArgumentNullException( nameof( value ) )
+			: value.Length == 0 ? throw new ArgumentException( "Message", nameof( value ) ) : value;
 
 	//[Benchmark]
-	//public string[] Arg_Is() => Arg.Is.NotNullOrEmpty( this.value );
+	//public string[] Arg_Is() => Arg.Is.NotNullOrEmpty( value );
 
 	[Benchmark]
-	public string[] Dawn_Guard() => Dawn.Guard.Argument( this.value ).NotNull().NotEmpty();
+	public string[] Dawn_Guard() => Dawn.Guard.Argument( value ).NotNull().NotEmpty();
 
 	[Benchmark]
-	public string[] Ardalis_Guard() => ( string[] )Ardalis.GuardClauses.Guard.Against.NullOrEmpty( this.value );
+	public string[] Ardalis_Guard() => ( string[] )Ardalis.GuardClauses.Guard.Against.NullOrEmpty( value );
 
 	[Benchmark]
 	public string[] Ensure_That() {
-		EnsureThat.Ensure.That( this.value, nameof( this.value ) ).IsNotNull();
-		EnsureThat.Ensure.That( this.value, nameof( this.value ) ).HasItems();
+		EnsureThat.Ensure.That( value, nameof( value ) ).IsNotNull();
+		EnsureThat.Ensure.That( value, nameof( value ) ).HasItems();
 
-		return this.value;
+		return value;
 	}
 }
