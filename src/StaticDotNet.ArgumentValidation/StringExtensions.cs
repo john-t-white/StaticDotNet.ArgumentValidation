@@ -4,7 +4,7 @@ using System.Text.RegularExpressions;
 namespace StaticDotNet.ArgumentValidation;
 
 /// <summary>
-/// Extension methods for validating string arguments.
+/// Extension methods for validating <see cref="string"/> arguments.
 /// </summary>
 /// <remarks>
 /// Since <see cref="string"/> can't be used as a generic constraint <see cref="IEquatable{String}"/>, <see cref="IComparable{String}"/>

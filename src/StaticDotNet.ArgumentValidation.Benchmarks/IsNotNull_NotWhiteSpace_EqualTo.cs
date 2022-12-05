@@ -6,7 +6,7 @@ namespace StaticDotNet.ArgumentValidation.Benchmarks;
 
 [MemoryDiagnoser]
 [SimpleJob( RuntimeMoniker.Net70 )]
-public class IsNotNull_NotWhiteSpace_EqualTo_String {
+public class IsNotNull_NotWhiteSpace_EqualTo {
 
 	public string? value = "Value";
 	public string comparisonValue = "Value";

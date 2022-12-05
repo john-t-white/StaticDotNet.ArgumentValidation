@@ -3,7 +3,7 @@
 namespace StaticDotNet.ArgumentValidation;
 
 /// <summary>
-/// Extension methods for validating string arguments.
+/// Extension methods for validating <see cref="IEnumerable"/> arguments.
 /// </summary>
 public static class EnumerableExtensions {
 
