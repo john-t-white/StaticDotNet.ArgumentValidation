@@ -26,6 +26,7 @@ public static class EquatableExtensions {
 			return ref argInfo;
 		}
 
-		throw new ArgumentException( argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, Constants.VALUE_MUST_BE_EQUAL_TO, comparisonValue?.ToString() ?? Constants.NULL ), argInfo.Name );
+		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, Constants.VALUE_MUST_BE_EQUAL_TO, comparisonValue?.ToString() ?? Constants.NULL );
+		throw new ArgumentException( message, argInfo.Name );
 	}
 }

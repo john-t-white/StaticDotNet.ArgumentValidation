@@ -51,7 +51,8 @@ public static class StringExtensions {
 			return ref argInfo;
 		}
 
-		throw new ArgumentException( argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, Constants.VALUE_MUST_BE_EQUAL_TO, comparisonValue?.ToString() ?? Constants.NULL ), argInfo.Name );
+		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, Constants.VALUE_MUST_BE_EQUAL_TO, comparisonValue?.ToString() ?? Constants.NULL );
+		throw new ArgumentException( message, argInfo.Name );
 	}
 
 	/// <summary>
@@ -70,7 +71,8 @@ public static class StringExtensions {
 			return ref argInfo;
 		}
 
-		throw new ArgumentException( argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, Constants.VALUE_MUST_START_WITH, value?.ToString() ?? Constants.NULL ), argInfo.Name );
+		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, Constants.VALUE_MUST_START_WITH, value?.ToString() ?? Constants.NULL );
+		throw new ArgumentException( message, argInfo.Name );
 	}
 
 	/// <summary>
@@ -89,7 +91,8 @@ public static class StringExtensions {
 			return ref argInfo;
 		}
 
-		throw new ArgumentException( argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, Constants.VALUE_MUST_END_WITH, value?.ToString() ?? Constants.NULL ), argInfo.Name );
+		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, Constants.VALUE_MUST_END_WITH, value?.ToString() ?? Constants.NULL );
+		throw new ArgumentException( message, argInfo.Name );
 	}
 
 #if !NETSTANDARD2_0
@@ -110,7 +113,8 @@ public static class StringExtensions {
 			return ref argInfo;
 		}
 
-		throw new ArgumentException( argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, Constants.VALUE_MUST_CONTAIN, value?.ToString() ?? Constants.NULL ), argInfo.Name );
+		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, Constants.VALUE_MUST_CONTAIN, value?.ToString() ?? Constants.NULL );
+        throw new ArgumentException( message, argInfo.Name );
 	}
 
 #endif
@@ -130,7 +134,8 @@ public static class StringExtensions {
 			return ref argInfo;
 		}
 
-		throw new ArgumentOutOfRangeException( argInfo.Name, argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, Constants.VALUE_MUST_HAVE_LENGTH_EQUAL_TO, length ) );
+		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, Constants.VALUE_MUST_HAVE_LENGTH_EQUAL_TO, length );
+		throw new ArgumentOutOfRangeException( argInfo.Name, message );
 	}
 
 	/// <summary>
@@ -148,7 +153,8 @@ public static class StringExtensions {
 			return ref argInfo;
 		}
 
-		throw new ArgumentOutOfRangeException( argInfo.Name, argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, Constants.VALUE_CANNOT_HAVE_LENGTH_GREATER_THAN, maxLength ) );
+		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, Constants.VALUE_CANNOT_HAVE_LENGTH_GREATER_THAN, maxLength );
+		throw new ArgumentOutOfRangeException( argInfo.Name, message );
 	}
 
 	/// <summary>
@@ -166,7 +172,8 @@ public static class StringExtensions {
 			return ref argInfo;
 		}
 
-		throw new ArgumentOutOfRangeException( argInfo.Name, argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, Constants.VALUE_CANNOT_HAVE_LENGTH_LESS_THAN, minLength ) );
+		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, Constants.VALUE_CANNOT_HAVE_LENGTH_LESS_THAN, minLength );
+		throw new ArgumentOutOfRangeException( argInfo.Name, message );
 	}
 
 	/// <summary>
@@ -185,7 +192,8 @@ public static class StringExtensions {
 			return ref argInfo;
 		}
 
-		throw new ArgumentOutOfRangeException( argInfo.Name, argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, Constants.VALUE_MUST_HAVE_LENGTH_BETWEEN, minLength, maxLength ) );
+		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, Constants.VALUE_MUST_HAVE_LENGTH_BETWEEN, minLength, maxLength );
+		throw new ArgumentOutOfRangeException( argInfo.Name, message );
 	}
 
 	#region Internal Methods

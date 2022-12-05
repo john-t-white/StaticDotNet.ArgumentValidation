@@ -68,6 +68,7 @@ public static class EnumerableExtensions {
 				break;
 		}
 
-		throw new ArgumentException( argInfo.Message ?? Constants.VALUE_CANNOT_BE_EMPTY, argInfo.Name );
+		string message = argInfo.Message ?? Constants.VALUE_CANNOT_BE_EMPTY;
+		throw new ArgumentException( message, argInfo.Name );
 	}
 }

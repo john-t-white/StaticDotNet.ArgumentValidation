@@ -29,7 +29,8 @@ public static class RegexExtensions {
 			return ref argInfo;
 		}
 
-		throw new ArgumentException( argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, Constants.VALUE_MUST_MATCH_REGEX, pattern ?? Constants.NULL ), argInfo.Name );
+		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, Constants.VALUE_MUST_MATCH_REGEX, pattern ?? Constants.NULL );
+		throw new ArgumentException( message, argInfo.Name );
 	}
 
 	/// <summary>
@@ -47,7 +48,8 @@ public static class RegexExtensions {
 			return ref argInfo;
 		}
 
-		throw new ArgumentException( argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, Constants.VALUE_MUST_MATCH_REGEX, regex?.ToString() ?? Constants.NULL ), argInfo.Name );
+		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, Constants.VALUE_MUST_MATCH_REGEX, regex?.ToString() ?? Constants.NULL );
+		throw new ArgumentException( message, argInfo.Name );
 	}
 
 	/// <summary>
@@ -74,7 +76,8 @@ public static class RegexExtensions {
 			return ref argInfo;
 		}
 
-		throw new ArgumentException( argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, Constants.VALUE_MUST_MATCH_REGEX, pattern ?? Constants.NULL ), argInfo.Name );
+		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, Constants.VALUE_MUST_MATCH_REGEX, pattern ?? Constants.NULL );
+		throw new ArgumentException( message, argInfo.Name );
 	}
 
 	/// <summary>
@@ -99,6 +102,7 @@ public static class RegexExtensions {
 			return ref argInfo;
 		}
 
-		throw new ArgumentException( argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, Constants.VALUE_MUST_MATCH_REGEX, regex?.ToString() ?? Constants.NULL ), argInfo.Name );
+		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, Constants.VALUE_MUST_MATCH_REGEX, regex?.ToString() ?? Constants.NULL );
+		throw new ArgumentException( message, argInfo.Name );
 	}
 }
