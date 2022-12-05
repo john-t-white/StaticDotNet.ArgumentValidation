@@ -22,7 +22,7 @@ public static class RegexExtensions {
 	/// <param name="matchTimeout">The timeout.</param>
 	/// <returns>The <see cref="ArgInfo{T}"/>.</returns>
 	/// <exception cref="ArgumentException">Thrown when <paramref name="argInfo.Value"/> does not match the <paramref name="pattern"/></exception>
-	public static ref readonly ArgInfo<T> Matches<T>( in this ArgInfo<T> argInfo, [StringSyntax( StringSyntaxAttribute.Regex ) ] string pattern, RegexOptions options = RegexOptions.None, TimeSpan? matchTimeout = null )
+	public static ref readonly ArgInfo<T> Matches<T>( in this ArgInfo<T> argInfo, [StringSyntax( StringSyntaxAttribute.Regex )] string pattern, RegexOptions options = RegexOptions.None, TimeSpan? matchTimeout = null )
 		where T : IEquatable<string>?, IComparable<string>?, IEnumerable<char>? {
 
 		if( argInfo.ValueAsString is null || ( pattern is not null && Regex.IsMatch( argInfo.ValueAsString, pattern, options, matchTimeout ?? Regex.InfiniteMatchTimeout ) ) ) {
@@ -72,7 +72,7 @@ public static class RegexExtensions {
 		}
 
 		match = pattern is not null ? Regex.Match( argInfo.ValueAsString, pattern, options, matchTimeout ?? Regex.InfiniteMatchTimeout ) : Match.Empty;
-		if( match.Success) {
+		if( match.Success ) {
 			return ref argInfo;
 		}
 

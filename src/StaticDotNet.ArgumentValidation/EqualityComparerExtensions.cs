@@ -5,7 +5,7 @@ namespace StaticDotNet.ArgumentValidation;
 /// <summary>
 /// Extension methods for validating <see cref="IComparable"/> arguments.
 /// </summary>
-public static class EquatableExtensions {
+public static class EqualityComparerExtensions {
 
 	/// <summary>
 	/// Ensures an argument is equal to <paramref name="comparisonValue"/>, otherwise an <see cref="ArgumentException"/> is thrown.
@@ -16,7 +16,7 @@ public static class EquatableExtensions {
 	/// <param name="comparer">The comparer. Null will use <see cref="EqualityComparer{T}.Default"/></param>
 	/// <returns>The <see cref="ArgInfo{T}"/>.</returns>
 	/// <exception cref="ArgumentException">Thrown when <paramref name="argInfo.Value"/> does not equal <paramref name="comparisonValue"/>.</exception>
-	public static ref readonly ArgInfo<T> EqualTo<T>( in this ArgInfo<T> argInfo, T comparisonValue, IEqualityComparer<T>? comparer = null) {
+	public static ref readonly ArgInfo<T> EqualTo<T>( in this ArgInfo<T> argInfo, T comparisonValue, IEqualityComparer<T>? comparer = null ) {
 
 		if( argInfo.Value is null ) {
 			return ref argInfo;

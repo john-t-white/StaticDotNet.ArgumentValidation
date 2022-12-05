@@ -114,7 +114,7 @@ public static class StringExtensions {
 		}
 
 		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, Constants.VALUE_MUST_CONTAIN, value?.ToString() ?? Constants.NULL );
-        throw new ArgumentException( message, argInfo.Name );
+		throw new ArgumentException( message, argInfo.Name );
 	}
 
 #endif
