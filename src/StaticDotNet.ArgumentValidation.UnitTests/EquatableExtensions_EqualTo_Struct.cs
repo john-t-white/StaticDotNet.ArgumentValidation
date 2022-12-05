@@ -6,17 +6,17 @@ using System.Threading.Tasks;
 
 namespace StaticDotNet.ArgumentValidation.UnitTests;
 
-public sealed class EquatableExtensions_EqualTo_Object {
+public sealed class EquatableExtensions_EqualTo_Struct {
 
 	[Fact]
 	public void ReturnsCorrectly() {
 
-		object value = new();
-		object comparisonValue = value;
+		int value = 1;
+		int comparisonValue = 1;
 
-		ArgInfo<object> argInfo = new( value, null, null );
+		ArgInfo<int> argInfo = new( value, null, null );
 
-		ArgInfo<object> result = argInfo.EqualTo( comparisonValue );
+		ArgInfo<int> result = argInfo.EqualTo( comparisonValue );
 
 		ArgInfoAssertions.Equal( argInfo, result );
 	}
@@ -24,13 +24,13 @@ public sealed class EquatableExtensions_EqualTo_Object {
 	[Fact]
 	public void WithEqualityComparerReturnsCorrectly() {
 
-		object value = new();
-		object comparisonValue = value;
-		IEqualityComparer<object> comparer = EqualityComparer<object>.Default;
+		int value = 1;
+		int comparisonValue = 1;
+		IEqualityComparer<int> comparer = EqualityComparer<int>.Default;
 
-		ArgInfo<object> argInfo = new( value, null, null );
+		ArgInfo<int> argInfo = new( value, null, null );
 
-		ArgInfo<object> result = argInfo.EqualTo( comparisonValue, comparer );
+		ArgInfo<int> result = argInfo.EqualTo( comparisonValue, comparer );
 
 		ArgInfoAssertions.Equal( argInfo, result );
 	}
@@ -38,12 +38,12 @@ public sealed class EquatableExtensions_EqualTo_Object {
 	[Fact]
 	public void WithNullValueReturnsCorrectly() {
 
-		object? value = null;
-		object comparisionValue = new();
+		int? value = null;
+		int comparisionValue = 1;
 
-		ArgInfo<object?> argInfo = new( value, null, null );
+		ArgInfo<int?> argInfo = new( value, null, null );
 
-		ArgInfo<object?> result = argInfo.EqualTo( comparisionValue );
+		ArgInfo<int?> result = argInfo.EqualTo( comparisionValue );
 
 		ArgInfoAssertions.Equal( argInfo, result );
 	}
@@ -51,12 +51,12 @@ public sealed class EquatableExtensions_EqualTo_Object {
 	[Fact]
 	public void WithValueNotEqualToThrowsArgumentException() {
 
-		object value = new();
+		int value = 2;
 		string name = "Name";
-		object comparisionValue = new();
+		int comparisionValue = 1;
 
 		ArgumentException exception = Assert.Throws<ArgumentException>( name, () => {
-			ArgInfo<object> argInfo = new( value, name, null );
+			ArgInfo<int> argInfo = new( value, name, null );
 			_ = argInfo.EqualTo( comparisionValue );
 		} );
 
@@ -68,13 +68,13 @@ public sealed class EquatableExtensions_EqualTo_Object {
 	[Fact]
 	public void WithValueNotEqualToAndMessageThrowsArgumentException() {
 
-		object value = new();
+		int value = 2;
 		string name = "Name";
 		string message = "Message";
-		object comparisionValue = new();
+		int comparisionValue = 1;
 
 		ArgumentException exception = Assert.Throws<ArgumentException>( name, () => {
-			ArgInfo<object> argInfo = new( value, name, message );
+			ArgInfo<int> argInfo = new( value, name, message );
 			_ = argInfo.EqualTo( comparisionValue );
 		} );
 
