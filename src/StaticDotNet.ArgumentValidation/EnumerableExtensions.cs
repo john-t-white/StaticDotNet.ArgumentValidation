@@ -57,7 +57,15 @@ public static class EnumerableExtensions {
 
 				break;
 
+			case ISet<dynamic> value:
+				if( value.Count > 0 ) {
+					return ref argInfo;
+				}
+
+				break;
+
 			default:
+
 				IEnumerator enumerator = argInfo.Value.GetEnumerator();
 				if( enumerator.MoveNext() ) {
 
