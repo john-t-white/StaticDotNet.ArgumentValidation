@@ -1,13 +1,13 @@
 ﻿namespace StaticDotNet.ArgumentValidation.UnitTests;
 
-public sealed class EnumerableExtensions_NotEmpty_Array {
+public sealed class EnumerableExtensions_NotEmpty_ClassArray {
 
 	[Fact]
 	public void ReturnsCorrectly() {
 
-		ArgInfo<Array> argInfo = new( new int[] { 1 }, null, null );
+		ArgInfo<object[]> argInfo = new( new object[] { new() }, null, null );
 
-		ArgInfo<Array> result = EnumerableExtensions.NotEmpty( argInfo );
+		ArgInfo<object[]> result = EnumerableExtensions.NotEmpty( argInfo );
 
 		ArgInfoAssertions.Equal( argInfo, result );
 	}
@@ -15,9 +15,9 @@ public sealed class EnumerableExtensions_NotEmpty_Array {
 	[Fact]
 	public void WithNullableArrayReturnsCorrectly() {
 
-		ArgInfo<Array> argInfo = new( new int?[] { 1 }, null, null );
+		ArgInfo<object?[]> argInfo = new( new object?[] { 1, null }, null, null );
 
-		ArgInfo<Array> result = EnumerableExtensions.NotEmpty( argInfo );
+		ArgInfo<object?[]> result = EnumerableExtensions.NotEmpty( argInfo );
 
 		ArgInfoAssertions.Equal( argInfo, result );
 	}
@@ -25,9 +25,9 @@ public sealed class EnumerableExtensions_NotEmpty_Array {
 	[Fact]
 	public void WithNullValueReturnsCorrectly() {
 
-		ArgInfo<Array?> argInfo = new( null, null, null );
+        ArgInfo<object[]?> argInfo = new( null, null, null );
 
-		ArgInfo<Array?> result = EnumerableExtensions.NotEmpty( argInfo );
+        ArgInfo<object[]?> result = EnumerableExtensions.NotEmpty( argInfo );
 
 		ArgInfoAssertions.Equal( argInfo, result );
 	}
@@ -36,10 +36,10 @@ public sealed class EnumerableExtensions_NotEmpty_Array {
 	public void WithEmptyValueThrowsArgumentException() {
 
 		string name = "Name";
-		Array value = Array.Empty<int>();
+		object[] value = Array.Empty<object>();
 
 		ArgumentException exception = Assert.Throws<ArgumentException>( name, () => {
-			ArgInfo<Array> argInfo = new( value, name, null );
+            ArgInfo<object[]> argInfo = new( value, name, null );
 			_ = EnumerableExtensions.NotEmpty( argInfo );
 		} );
 
@@ -52,11 +52,11 @@ public sealed class EnumerableExtensions_NotEmpty_Array {
 	public void WithInvalidValueAndMessageThrowsArgumentException() {
 
 		string name = "Name";
-		Array value = Array.Empty<int>();
+		object[] value = Array.Empty<object>();
 		string message = "Message";
 
 		ArgumentException exception = Assert.Throws<ArgumentException>( name, () => {
-			ArgInfo<Array> argInfo = new( value, name, message );
+            ArgInfo<object[]> argInfo = new( value, name, message );
 			_ = EnumerableExtensions.NotEmpty( argInfo );
 		} );
 
