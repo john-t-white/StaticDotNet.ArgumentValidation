@@ -1,12 +1,11 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
+		<TargetFrameworks>net48; netcoreapp3.1; net6.0; net7.0</TargetFrameworks>
+		<LangVersion>11.0</LangVersion>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
-
         <IsPackable>false</IsPackable>
-
-        <TargetFrameworks>net48; netcoreapp3.1; net6.0; net7.0</TargetFrameworks>
     </PropertyGroup>
 
     <ItemGroup>
