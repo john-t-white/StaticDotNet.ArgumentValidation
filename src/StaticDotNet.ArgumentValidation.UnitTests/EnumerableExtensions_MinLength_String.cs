@@ -1,6 +1,6 @@
 ﻿namespace StaticDotNet.ArgumentValidation.UnitTests;
 
-public sealed class StringExtensions_MinLength {
+public sealed class EnumerableExtensions_MinLength_String {
 
 	[Theory]
 	[InlineData( "12" )]
@@ -11,7 +11,7 @@ public sealed class StringExtensions_MinLength {
 
 		ArgInfo<string> argInfo = new( value, null, null );
 
-		ArgInfo<string> result = StringExtensions.MinLength( argInfo, minLength );
+		ArgInfo<string> result = EnumerableExtensions.MinLength( argInfo, minLength );
 
 		ArgInfoAssertions.Equal( argInfo, result );
 	}
@@ -23,7 +23,7 @@ public sealed class StringExtensions_MinLength {
 
 		ArgInfo<string?> argInfo = new( null, null, null );
 
-		ArgInfo<string?> result = StringExtensions.MinLength( argInfo, minLength );
+		ArgInfo<string?> result = EnumerableExtensions.MinLength( argInfo, minLength );
 
 		ArgInfoAssertions.Equal( argInfo, result );
 	}
@@ -37,7 +37,7 @@ public sealed class StringExtensions_MinLength {
 
 		ArgumentOutOfRangeException exception = Assert.Throws<ArgumentOutOfRangeException>( name, () => {
 			ArgInfo<string> argInfo = new( value, name, null );
-			_ = StringExtensions.MinLength( argInfo, minLength );
+			_ = EnumerableExtensions.MinLength( argInfo, minLength );
 		} );
 
 		string expectedMessage = $"Value cannot have a length less than {minLength}.";
@@ -55,7 +55,7 @@ public sealed class StringExtensions_MinLength {
 
 		ArgumentOutOfRangeException exception = Assert.Throws<ArgumentOutOfRangeException>( name, () => {
 			ArgInfo<string> argInfo = new( value, name, message );
-			_ = StringExtensions.MinLength( argInfo, minLength );
+			_ = EnumerableExtensions.MinLength( argInfo, minLength );
 		} );
 
 		Assert.StartsWith( message, exception.Message );

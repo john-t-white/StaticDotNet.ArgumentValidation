@@ -1,6 +1,6 @@
 ﻿namespace StaticDotNet.ArgumentValidation.UnitTests;
 
-public sealed class StringExtensions_LengthBetween {
+public sealed class EnumerableExtensions_LengthBetween_String {
 
 	[Theory]
 	[InlineData( "12" )]
@@ -12,7 +12,7 @@ public sealed class StringExtensions_LengthBetween {
 		int minLength = 2;
 		int maxLength = 4;
 
-		ArgInfo<string> result = StringExtensions.LengthBetween( argInfo, minLength, maxLength );
+		ArgInfo<string> result = EnumerableExtensions.LengthBetween( argInfo, minLength, maxLength );
 
 		ArgInfoAssertions.Equal( argInfo, result );
 	}
@@ -24,7 +24,7 @@ public sealed class StringExtensions_LengthBetween {
 		int minLength = 2;
 		int maxLength = 4;
 
-		ArgInfo<string?> result = StringExtensions.LengthBetween( argInfo, minLength, maxLength );
+		ArgInfo<string?> result = EnumerableExtensions.LengthBetween( argInfo, minLength, maxLength );
 
 		ArgInfoAssertions.Equal( argInfo, result );
 	}
@@ -40,7 +40,7 @@ public sealed class StringExtensions_LengthBetween {
 
 		ArgumentOutOfRangeException exception = Assert.Throws<ArgumentOutOfRangeException>( name, () => {
 			ArgInfo<string> argInfo = new( value, name, null );
-			_ = StringExtensions.LengthBetween( argInfo, minLength, maxLength );
+			_ = EnumerableExtensions.LengthBetween( argInfo, minLength, maxLength );
 		} );
 
 		string expectedMessage = $"Value must have a length between {minLength} and {maxLength}.";
@@ -59,7 +59,7 @@ public sealed class StringExtensions_LengthBetween {
 
 		ArgumentOutOfRangeException exception = Assert.Throws<ArgumentOutOfRangeException>( name, () => {
 			ArgInfo<string> argInfo = new( value, name, message );
-			_ = StringExtensions.LengthBetween( argInfo, minLength, maxLength );
+			_ = EnumerableExtensions.LengthBetween( argInfo, minLength, maxLength );
 		} );
 
 		Assert.StartsWith( message, exception.Message );

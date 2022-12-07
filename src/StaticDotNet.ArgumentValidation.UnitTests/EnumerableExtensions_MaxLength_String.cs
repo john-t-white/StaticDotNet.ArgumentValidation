@@ -1,6 +1,6 @@
 ﻿namespace StaticDotNet.ArgumentValidation.UnitTests;
 
-public sealed class StringExtensions_MaxLength {
+public sealed class EnumerableExtensions_MaxLength_String {
 
 	[Theory]
 	[InlineData( "1" )]
@@ -11,7 +11,7 @@ public sealed class StringExtensions_MaxLength {
 
 		ArgInfo<string> argInfo = new( value, null, null );
 
-		ArgInfo<string> result = StringExtensions.MaxLength( argInfo, maxLength );
+		ArgInfo<string> result = EnumerableExtensions.MaxLength( argInfo, maxLength );
 
 		ArgInfoAssertions.Equal( argInfo, result );
 	}
@@ -23,7 +23,7 @@ public sealed class StringExtensions_MaxLength {
 
 		ArgInfo<string?> argInfo = new( null, null, null );
 
-		ArgInfo<string?> result = StringExtensions.MaxLength( argInfo, maxLength );
+		ArgInfo<string?> result = EnumerableExtensions.MaxLength( argInfo, maxLength );
 
 		ArgInfoAssertions.Equal( argInfo, result );
 	}
@@ -37,7 +37,7 @@ public sealed class StringExtensions_MaxLength {
 
 		ArgumentOutOfRangeException exception = Assert.Throws<ArgumentOutOfRangeException>( name, () => {
 			ArgInfo<string> argInfo = new( value, name, null );
-			_ = StringExtensions.MaxLength( argInfo, maxLength );
+			_ = EnumerableExtensions.MaxLength( argInfo, maxLength );
 		} );
 
 		string expectedMessage = $"Value cannot have a length greater than {maxLength}.";
@@ -55,7 +55,7 @@ public sealed class StringExtensions_MaxLength {
 
 		ArgumentOutOfRangeException exception = Assert.Throws<ArgumentOutOfRangeException>( name, () => {
 			ArgInfo<string> argInfo = new( value, name, message );
-			_ = StringExtensions.MaxLength( argInfo, maxLength );
+			_ = EnumerableExtensions.MaxLength( argInfo, maxLength );
 		} );
 
 		Assert.StartsWith( message, exception.Message );

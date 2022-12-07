@@ -13,7 +13,7 @@ namespace StaticDotNet.ArgumentValidation;
 public static class RegexExtensions {
 
 	/// <summary>
-	/// Ensures a string argument matches the regular expression <paramref name="pattern"/>, otherwise an <see cref="ArgumentOutOfRangeException"/> is thrown.
+	/// Ensures an argument matches the regular expression <paramref name="pattern"/>, otherwise an <see cref="ArgumentOutOfRangeException"/> is thrown.
 	/// </summary>
 	/// <typeparam name="T">The type of argument value.</typeparam>
 	/// <param name="argInfo">The argument info.</param>
@@ -34,7 +34,7 @@ public static class RegexExtensions {
 	}
 
 	/// <summary>
-	/// Ensures a string argument matches the regular expression <paramref name="regex"/>, otherwise an <see cref="ArgumentOutOfRangeException"/> is thrown.
+	/// Ensures an argument matches the regular expression <paramref name="regex"/>, otherwise an <see cref="ArgumentOutOfRangeException"/> is thrown.
 	/// </summary>
 	/// <typeparam name="T">The type of argument value.</typeparam>
 	/// <param name="argInfo">The argument info.</param>
@@ -53,7 +53,7 @@ public static class RegexExtensions {
 	}
 
 	/// <summary>
-	/// Ensures a string argument matches the regular expression <paramref name="pattern"/>, otherwise an <see cref="ArgumentOutOfRangeException"/> is thrown.
+	/// Ensures an argument matches the regular expression <paramref name="pattern"/>, otherwise an <see cref="ArgumentOutOfRangeException"/> is thrown.
 	/// </summary>
 	/// <typeparam name="T">The type of argument value.</typeparam>
 	/// <param name="argInfo">The argument info.</param>
@@ -81,7 +81,7 @@ public static class RegexExtensions {
 	}
 
 	/// <summary>
-	/// Ensures a string argument matches the regular expression <paramref name="regex"/>, otherwise an <see cref="ArgumentOutOfRangeException"/> is thrown.
+	/// Ensures an argument matches the regular expression <paramref name="regex"/>, otherwise an <see cref="ArgumentOutOfRangeException"/> is thrown.
 	/// </summary>
 	/// <typeparam name="T">The type of argument value.</typeparam>
 	/// <param name="argInfo">The argument info.</param>
