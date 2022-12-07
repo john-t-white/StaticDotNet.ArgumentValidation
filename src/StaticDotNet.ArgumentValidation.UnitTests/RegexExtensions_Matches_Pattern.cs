@@ -41,7 +41,7 @@ public sealed class RegexExtensions_Matches_Pattern {
 		string value = "A";
 		string pattern = "a";
 		RegexOptions options = RegexOptions.IgnoreCase;
-		TimeSpan matchTimeout = TimeSpan.FromSeconds( 5 );
+		var matchTimeout = TimeSpan.FromSeconds( 5 );
 
 		ArgInfo<string> argInfo = new( value, null, null );
 
@@ -117,7 +117,7 @@ public sealed class RegexExtensions_Matches_Pattern {
 		string value = "A";
 		string pattern = "a";
 		RegexOptions options = RegexOptions.IgnoreCase;
-		TimeSpan matchTimeout = TimeSpan.FromSeconds( 5 );
+		var matchTimeout = TimeSpan.FromSeconds( 5 );
 
 		ArgInfo<string> argInfo = new( value, null, null );
 
