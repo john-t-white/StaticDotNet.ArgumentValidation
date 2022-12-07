@@ -15,7 +15,7 @@ public static class RegexExtensions {
 	/// <summary>
 	/// Ensures an argument matches the regular expression <paramref name="pattern"/>, otherwise an <see cref="ArgumentOutOfRangeException"/> is thrown.
 	/// </summary>
-	/// <typeparam name="T">The type of argument value.</typeparam>
+	/// <typeparam name="T">The argument type.</typeparam>
 	/// <param name="argInfo">The argument info.</param>
 	/// <param name="pattern">The regular expression pattern.</param>
 	/// <param name="options">The regex options.</param>
@@ -36,7 +36,7 @@ public static class RegexExtensions {
 	/// <summary>
 	/// Ensures an argument matches the regular expression <paramref name="regex"/>, otherwise an <see cref="ArgumentOutOfRangeException"/> is thrown.
 	/// </summary>
-	/// <typeparam name="T">The type of argument value.</typeparam>
+	/// <typeparam name="T">The argument type.</typeparam>
 	/// <param name="argInfo">The argument info.</param>
 	/// <param name="regex">The regular expression pattern.</param>
 	/// <returns>The <see cref="ArgInfo{T}"/>.</returns>
@@ -55,7 +55,7 @@ public static class RegexExtensions {
 	/// <summary>
 	/// Ensures an argument matches the regular expression <paramref name="pattern"/>, otherwise an <see cref="ArgumentOutOfRangeException"/> is thrown.
 	/// </summary>
-	/// <typeparam name="T">The type of argument value.</typeparam>
+	/// <typeparam name="T">The argument type.</typeparam>
 	/// <param name="argInfo">The argument info.</param>
 	/// <param name="pattern">The regular expression pattern.</param>
 	/// <param name="match">The match result.</param>
@@ -83,7 +83,7 @@ public static class RegexExtensions {
 	/// <summary>
 	/// Ensures an argument matches the regular expression <paramref name="regex"/>, otherwise an <see cref="ArgumentOutOfRangeException"/> is thrown.
 	/// </summary>
-	/// <typeparam name="T">The type of argument value.</typeparam>
+	/// <typeparam name="T">The argument type.</typeparam>
 	/// <param name="argInfo">The argument info.</param>
 	/// <param name="regex">The regular expression pattern.</param>
 	/// <param name="match">The match result.</param>

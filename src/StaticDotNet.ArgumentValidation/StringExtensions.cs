@@ -1,5 +1,4 @@
 ﻿using System.Globalization;
-using System.Text.RegularExpressions;
 
 namespace StaticDotNet.ArgumentValidation;
 
@@ -15,7 +14,7 @@ public static class StringExtensions {
 	/// <summary>
 	/// Ensures an argument is not white space, otherwise an <see cref="ArgumentException"/> is thrown.
 	/// </summary>
-	/// <typeparam name="T">The type of argument value.</typeparam>
+	/// <typeparam name="T">The argument type.</typeparam>
 	/// <param name="argInfo">The argument info.</param>
 	/// <returns>The <see cref="ArgInfo{T}"/>.</returns>
 	/// <exception cref="ArgumentException">Thrown when <paramref name="argInfo.Value"/> is white space.</exception>
@@ -38,7 +37,7 @@ public static class StringExtensions {
 	/// <summary>
 	/// Ensures an argument is equal to <paramref name="comparisonValue"/>, otherwise an <see cref="ArgumentException"/> is thrown.
 	/// </summary>
-	/// <typeparam name="T">The type of argument value.</typeparam>
+	/// <typeparam name="T">The argument type.</typeparam>
 	/// <param name="argInfo">The argument info.</param>
 	/// <param name="comparisonValue">The value to compare against.</param>
 	/// <param name="comparisonType">The type of comparison.</param>
@@ -58,7 +57,7 @@ public static class StringExtensions {
 	/// <summary>
 	/// Ensures an argument starts with <paramref name="value"/>, otherwise an <see cref="ArgumentException"/> is thrown.
 	/// </summary>
-	/// <typeparam name="T">The type of argument value.</typeparam>
+	/// <typeparam name="T">The argument type.</typeparam>
 	/// <param name="argInfo">The argument info.</param>
 	/// <param name="value">The value it should start with.</param>
 	/// <param name="comparisonType">The type of comparison.</param>
@@ -78,7 +77,7 @@ public static class StringExtensions {
 	/// <summary>
 	/// Ensures an argument ends with <paramref name="value"/>, otherwise an <see cref="ArgumentException"/> is thrown.
 	/// </summary>
-	/// <typeparam name="T">The type of argument value.</typeparam>
+	/// <typeparam name="T">The argument type.</typeparam>
 	/// <param name="argInfo">The argument info.</param>
 	/// <param name="value">The value to it should end with.</param>
 	/// <param name="comparisonType">The type of comparison.</param>
@@ -100,7 +99,7 @@ public static class StringExtensions {
 	/// <summary>
 	/// Ensures an argument contains <paramref name="value"/>, otherwise an <see cref="ArgumentException"/> is thrown.
 	/// </summary>
-	/// <typeparam name="T">The type of argument value.</typeparam>
+	/// <typeparam name="T">The argument type.</typeparam>
 	/// <param name="argInfo">The argument info.</param>
 	/// <param name="value">The value it should contain.</param>
 	/// <param name="comparisonType">The type of comparison.</param>

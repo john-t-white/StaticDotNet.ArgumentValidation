@@ -1,6 +1,4 @@
-﻿using System.Collections.ObjectModel;
-
-namespace StaticDotNet.ArgumentValidation.UnitTests;
+﻿namespace StaticDotNet.ArgumentValidation.UnitTests;
 
 public sealed class EnumerableExtensions_NotEmpty_ISet {
 

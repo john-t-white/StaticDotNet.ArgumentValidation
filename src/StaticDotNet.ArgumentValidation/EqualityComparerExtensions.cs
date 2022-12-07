@@ -10,7 +10,7 @@ public static class EqualityComparerExtensions {
 	/// <summary>
 	/// Ensures an argument is equal to <paramref name="comparisonValue"/>, otherwise an <see cref="ArgumentException"/> is thrown.
 	/// </summary>
-	/// <typeparam name="T">The type of argument value.</typeparam>
+	/// <typeparam name="T">The argument type.</typeparam>
 	/// <param name="argInfo">The argument info.</param>
 	/// <param name="comparisonValue">The value to compare against.</param>
 	/// <param name="comparer">The comparer. Null will use <see cref="EqualityComparer{T}.Default"/></param>
@@ -33,7 +33,7 @@ public static class EqualityComparerExtensions {
 	/// <summary>
 	/// Ensures an argument is equal to <paramref name="comparisonValue"/>, otherwise an <see cref="ArgumentException"/> is thrown.
 	/// </summary>
-	/// <typeparam name="T">The type of argument value.</typeparam>
+	/// <typeparam name="T">The argument type.</typeparam>
 	/// <param name="argInfo">The argument info.</param>
 	/// <param name="comparisonValue">The value to compare against.</param>
 	/// <param name="comparer">The comparer. Null will use <see cref="EqualityComparer{T}.Default"/></param>

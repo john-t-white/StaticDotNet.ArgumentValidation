@@ -25,9 +25,9 @@ public sealed class EnumerableExtensions_NotEmpty_StructArray {
 	[Fact]
 	public void WithNullValueReturnsCorrectly() {
 
-        ArgInfo<int[]?> argInfo = new( null, null, null );
+		ArgInfo<int[]?> argInfo = new( null, null, null );
 
-        ArgInfo<int[]?> result = EnumerableExtensions.NotEmpty( argInfo );
+		ArgInfo<int[]?> result = EnumerableExtensions.NotEmpty( argInfo );
 
 		ArgInfoAssertions.Equal( argInfo, result );
 	}
@@ -39,7 +39,7 @@ public sealed class EnumerableExtensions_NotEmpty_StructArray {
 		int[] value = Array.Empty<int>();
 
 		ArgumentException exception = Assert.Throws<ArgumentException>( name, () => {
-            ArgInfo<int[]> argInfo = new( value, name, null );
+			ArgInfo<int[]> argInfo = new( value, name, null );
 			_ = EnumerableExtensions.NotEmpty( argInfo );
 		} );
 
@@ -56,7 +56,7 @@ public sealed class EnumerableExtensions_NotEmpty_StructArray {
 		string message = "Message";
 
 		ArgumentException exception = Assert.Throws<ArgumentException>( name, () => {
-            ArgInfo<int[]> argInfo = new( value, name, message );
+			ArgInfo<int[]> argInfo = new( value, name, message );
 			_ = EnumerableExtensions.NotEmpty( argInfo );
 		} );
 

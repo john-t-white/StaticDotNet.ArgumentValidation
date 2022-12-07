@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Runtime.InteropServices;
+﻿using System.Runtime.InteropServices;
 
 namespace StaticDotNet.ArgumentValidation;
 
@@ -10,19 +9,19 @@ namespace StaticDotNet.ArgumentValidation;
 [StructLayout( LayoutKind.Auto )]
 public readonly ref struct ArgInfo<T> {
 
-    /// <summary>
-    /// Instantiates an instance of <see cref="ArgInfo{T}"/>.
-    /// </summary>
-    /// <param name="value">The value of the argument.</param>
-    /// <param name="name">The name of the argument.</param>
-    /// <param name="message">The exception message.  Null for for default message.</param>
-    public ArgInfo( T value, string? name, string? message ) {
+	/// <summary>
+	/// Instantiates an instance of <see cref="ArgInfo{T}"/>.
+	/// </summary>
+	/// <param name="value">The value of the argument.</param>
+	/// <param name="name">The name of the argument.</param>
+	/// <param name="message">The exception message.  Null for for default message.</param>
+	public ArgInfo( T value, string? name, string? message ) {
 
-        Value = value;
-        Name = name;
-        Message = message;
-        ValueAsString = value as string;
-    }
+		Value = value;
+		Name = name;
+		Message = message;
+		ValueAsString = value as string;
+	}
 
 	/// <summary>
 	/// Returns the value of the argument.

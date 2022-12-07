@@ -1,17 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace StaticDotNet.ArgumentValidation.UnitTests;
+﻿namespace StaticDotNet.ArgumentValidation.UnitTests;
 
 public sealed class ComparableExtensions_GreaterThanOrEqualTo_Struct {
 
 	[Theory]
 	[InlineData( 2 )]
 	[InlineData( 3 )]
-	public void ReturnsCorrectly( int value) {
+	public void ReturnsCorrectly( int value ) {
 
 		int comparisonValue = 2;
 

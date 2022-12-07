@@ -4,6 +4,8 @@ internal class Constants {
 
 	internal const string NULL = "<null>";
 
+	internal const string SEE_INNER_EXCEPTION_FOR_DETAILS = "See inner excepetion for details.";
+
 	internal const string VALUE_CANNOT_BE_EMPTY = "Value cannot be empty.";
 
 	internal const string VALUE_CANNOT_BE_WHITE_SPACE = "Value cannot be white space.";
@@ -11,6 +13,8 @@ internal class Constants {
 	internal const string VALUE_CANNOT_HAVE_LENGTH_GREATER_THAN = "Value cannot have a length greater than {0}.";
 
 	internal const string VALUE_CANNOT_HAVE_LENGTH_LESS_THAN = "Value cannot have a length less than {0}.";
+
+	internal const string VALUE_MUST_BE_ASSIGNABLE_TO = "Value must be assignable to {0}.";
 
 	internal const string VALUE_MUST_BE_BETWEEN = "Value must be between {0} and {1}.";
 
@@ -24,7 +28,12 @@ internal class Constants {
 
 	internal const string VALUE_MUST_BE_LESS_THAN_OR_EQUAL_TO = "Value must be less than or equal to {0}.";
 
+	internal const string VALUE_MUST_BE_NOT_NULL_VALID_TYPE = "Value must not be null and be a valid type.";
+
 	internal const string VALUE_MUST_BE_NULL = "Value must be null.";
+
+	internal const string VALUE_MUST_BE_VALID_TYPE = "Value must be a valid type.";
+
 
 	internal const string VALUE_MUST_CONTAIN = "Value must contain {0}.";
 

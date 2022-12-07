@@ -2,10 +2,10 @@
 
 public sealed class EnumerableExtensions_Length_String {
 
-    [Fact]
+	[Fact]
 	public void ReturnsCorrectly() {
 
-        string value = "12";
+		string value = "12";
 		int length = 2;
 
 		ArgInfo<string> argInfo = new( value, null, null );

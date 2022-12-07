@@ -10,7 +10,7 @@ public static class ComparableExtensions {
 	/// <summary>
 	/// Ensures an argument is greater than <paramref name="comparisonValue"/>, otherwise an <see cref="ArgumentException"/> is thrown.
 	/// </summary>
-	/// <typeparam name="T">The type of argument value.</typeparam>
+	/// <typeparam name="T">The argument type.</typeparam>
 	/// <param name="argInfo">The argument info.</param>
 	/// <param name="comparisonValue">The value to compare against.</param>
 	/// <returns>The <see cref="ArgInfo{T}"/>.</returns>
@@ -33,7 +33,7 @@ public static class ComparableExtensions {
 	/// <summary>
 	/// Ensures an argument is greater than <paramref name="comparisonValue"/>, otherwise an <see cref="ArgumentException"/> is thrown.
 	/// </summary>
-	/// <typeparam name="T">The type of argument value.</typeparam>
+	/// <typeparam name="T">The argument type.</typeparam>
 	/// <param name="argInfo">The argument info.</param>
 	/// <param name="comparisonValue">The value to compare against.</param>
 	/// <returns>The <see cref="ArgInfo{T}"/>.</returns>
@@ -56,7 +56,7 @@ public static class ComparableExtensions {
 	/// <summary>
 	/// Ensures an argument is greater than or equal to <paramref name="comparisonValue"/>, otherwise an <see cref="ArgumentException"/> is thrown.
 	/// </summary>
-	/// <typeparam name="T">The type of argument value.</typeparam>
+	/// <typeparam name="T">The argument type.</typeparam>
 	/// <param name="argInfo">The argument info.</param>
 	/// <param name="comparisonValue">The value to compare against.</param>
 	/// <returns>The <see cref="ArgInfo{T}"/>.</returns>
@@ -79,7 +79,7 @@ public static class ComparableExtensions {
 	/// <summary>
 	/// Ensures an argument is greater than or equal to <paramref name="comparisonValue"/>, otherwise an <see cref="ArgumentException"/> is thrown.
 	/// </summary>
-	/// <typeparam name="T">The type of argument value.</typeparam>
+	/// <typeparam name="T">The argument type.</typeparam>
 	/// <param name="argInfo">The argument info.</param>
 	/// <param name="comparisonValue">The value to compare against.</param>
 	/// <returns>The <see cref="ArgInfo{T}"/>.</returns>
@@ -102,7 +102,7 @@ public static class ComparableExtensions {
 	/// <summary>
 	/// Ensures an argument is less than <paramref name="comparisonValue"/>, otherwise an <see cref="ArgumentException"/> is thrown.
 	/// </summary>
-	/// <typeparam name="T">The type of argument value.</typeparam>
+	/// <typeparam name="T">The argument type.</typeparam>
 	/// <param name="argInfo">The argument info.</param>
 	/// <param name="comparisonValue">The value to compare against.</param>
 	/// <returns>The <see cref="ArgInfo{T}"/>.</returns>
@@ -125,7 +125,7 @@ public static class ComparableExtensions {
 	/// <summary>
 	/// Ensures an argument is less than <paramref name="comparisonValue"/>, otherwise an <see cref="ArgumentException"/> is thrown.
 	/// </summary>
-	/// <typeparam name="T">The type of argument value.</typeparam>
+	/// <typeparam name="T">The argument type.</typeparam>
 	/// <param name="argInfo">The argument info.</param>
 	/// <param name="comparisonValue">The value to compare against.</param>
 	/// <returns>The <see cref="ArgInfo{T}"/>.</returns>
@@ -148,7 +148,7 @@ public static class ComparableExtensions {
 	/// <summary>
 	/// Ensures an argument is less than or equal to <paramref name="comparisonValue"/>, otherwise an <see cref="ArgumentException"/> is thrown.
 	/// </summary>
-	/// <typeparam name="T">The type of argument value.</typeparam>
+	/// <typeparam name="T">The argument type.</typeparam>
 	/// <param name="argInfo">The argument info.</param>
 	/// <param name="comparisonValue">The value to compare against.</param>
 	/// <returns>The <see cref="ArgInfo{T}"/>.</returns>
@@ -171,7 +171,7 @@ public static class ComparableExtensions {
 	/// <summary>
 	/// Ensures an argument is less than or equal to <paramref name="comparisonValue"/>, otherwise an <see cref="ArgumentException"/> is thrown.
 	/// </summary>
-	/// <typeparam name="T">The type of argument value.</typeparam>
+	/// <typeparam name="T">The argument type.</typeparam>
 	/// <param name="argInfo">The argument info.</param>
 	/// <param name="comparisonValue">The value to compare against.</param>
 	/// <returns>The <see cref="ArgInfo{T}"/>.</returns>
@@ -194,7 +194,7 @@ public static class ComparableExtensions {
 	/// <summary>
 	/// Ensures an argument is between <paramref name="minValue"/> and <paramref name="maxValue"/>, otherwise an <see cref="ArgumentException"/> is thrown.
 	/// </summary>
-	/// <typeparam name="T">The type of argument value.</typeparam>
+	/// <typeparam name="T">The argument type.</typeparam>
 	/// <param name="argInfo">The argument info.</param>
 	/// <param name="minValue">The minimum value.</param>
 	/// <param name="maxValue">The minimum value.</param>
@@ -218,7 +218,7 @@ public static class ComparableExtensions {
 	/// <summary>
 	/// Ensures an argument is between <paramref name="minValue"/> and <paramref name="maxValue"/>, otherwise an <see cref="ArgumentException"/> is thrown.
 	/// </summary>
-	/// <typeparam name="T">The type of argument value.</typeparam>
+	/// <typeparam name="T">The argument type.</typeparam>
 	/// <param name="argInfo">The argument info.</param>
 	/// <param name="minValue">The minimum value.</param>
 	/// <param name="maxValue">The minimum value.</param>
