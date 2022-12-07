@@ -8,7 +8,8 @@ namespace StaticDotNet.ArgumentValidation;
 /// Extension methods for validating <see cref="IEnumerable"/> arguments.
 /// </summary>
 /// <remarks>
-/// In order to keep as much performance as possible, the methods try to cast the value to specific types in order to access certain properties without having to use the Enumerator.
+/// In order to keep as much performance as possible, the methods try to cast the value to specific types in order to access certain properties without having to use the enumerator.  If the enumerator
+/// is used, it only iterates the smallest amount to keep performance.  Using the enumerator may also allocate memory.
 /// </remarks>
 public static class EnumerableExtensions {
 
@@ -22,28 +23,7 @@ public static class EnumerableExtensions {
     public static ref readonly ArgInfo<T> NotEmpty<T>( in this ArgInfo<T> argInfo )
         where T : IEnumerable? {
 
-        if( argInfo.Value is null ) {
-            return ref argInfo;
-        }
-
-        bool? isNotEmpty = argInfo.Value switch {
-            string stringValue => stringValue.Length > 0,
-            Array arrayValue => arrayValue.Length > 0,
-            IList listValue => listValue.Count > 0,
-            IDictionary dictionaryValue => dictionaryValue.Count > 0,
-            ICollection collectionValue => collectionValue.Count > 0,
-            IReadOnlyCollection<dynamic> readonlyCollectionValue => readonlyCollectionValue.Count > 0,
-            ISet<dynamic> setValue => setValue.Count > 0,
-            _ => null
-        };
-
-        if( isNotEmpty == true ) {
-            return ref argInfo;
-        }
-
-        IEnumerator enumerator = argInfo.Value.GetEnumerator();
-        if( enumerator.MoveNext() ) {
-            ( enumerator as IDisposable )?.Dispose();
+        if( argInfo.Value is null || GetLength( argInfo.Value, 1 ) > 0 ) {
             return ref argInfo;
         }
 
@@ -62,35 +42,7 @@ public static class EnumerableExtensions {
     public static ref readonly ArgInfo<T> Length<T>( in this ArgInfo<T> argInfo, int length )
         where T : IEnumerable? {
 
-        if( argInfo.Value is null ) {
-            return ref argInfo;
-        }
-
-        int? valueLength = argInfo.Value switch {
-            string stringValue => stringValue.Length,
-            Array arrayValue => arrayValue.Length,
-            IList listValue => listValue.Count,
-            IDictionary dictionaryValue => dictionaryValue.Count,
-            ICollection collectionValue => collectionValue.Count,
-            IReadOnlyCollection<dynamic> readonlyCollectionValue => readonlyCollectionValue.Count,
-            ISet<dynamic> setValue => setValue.Count,
-            _ => null
-        };
-
-        if( valueLength is null ) {
-            valueLength = 0;
-            IEnumerator enumerator = argInfo.Value.GetEnumerator();
-            while( enumerator.MoveNext() ) {
-                valueLength += 1;
-                if( valueLength > length ) {
-                    break;
-                }
-            }
-
-            ( enumerator as IDisposable )?.Dispose();
-        }
-
-        if( valueLength == length ) {
+        if( argInfo.Value is null || GetLength( argInfo.Value, length ) == length ) {
             return ref argInfo;
         }
 
@@ -109,35 +61,7 @@ public static class EnumerableExtensions {
 	public static ref readonly ArgInfo<T> MinLength<T>( in this ArgInfo<T> argInfo, int length )
         where T : IEquatable<string>?, IComparable<string>?, IEnumerable<char>? {
 
-        if( argInfo.Value is null ) {
-            return ref argInfo;
-        }
-
-        int? valueLength = argInfo.Value switch {
-            string stringValue => stringValue.Length,
-            Array arrayValue => arrayValue.Length,
-            IList listValue => listValue.Count,
-            IDictionary dictionaryValue => dictionaryValue.Count,
-            ICollection collectionValue => collectionValue.Count,
-            IReadOnlyCollection<dynamic> readonlyCollectionValue => readonlyCollectionValue.Count,
-            ISet<dynamic> setValue => setValue.Count,
-            _ => null
-        };
-
-        if( valueLength is null ) {
-            valueLength = 0;
-            IEnumerator enumerator = argInfo.Value.GetEnumerator();
-            while( enumerator.MoveNext() ) {
-                valueLength += 1;
-                if( valueLength > length ) {
-                    break;
-                }
-            }
-
-            ( enumerator as IDisposable )?.Dispose();
-        }
-
-        if( valueLength >= length ) {
+        if( argInfo.Value is null || GetLength( argInfo.Value, length ) >= length ) {
             return ref argInfo;
         }
 
@@ -156,35 +80,7 @@ public static class EnumerableExtensions {
 	public static ref readonly ArgInfo<T> MaxLength<T>( in this ArgInfo<T> argInfo, int length )
         where T : IEnumerable? {
 
-        if( argInfo.Value is null ) {
-            return ref argInfo;
-        }
-
-        int? valueLength = argInfo.Value switch {
-            string stringValue => stringValue.Length,
-            Array arrayValue => arrayValue.Length,
-            IList listValue => listValue.Count,
-            IDictionary dictionaryValue => dictionaryValue.Count,
-            ICollection collectionValue => collectionValue.Count,
-            IReadOnlyCollection<dynamic> readonlyCollectionValue => readonlyCollectionValue.Count,
-            ISet<dynamic> setValue => setValue.Count,
-            _ => null
-        };
-
-        if( valueLength is null ) {
-            valueLength = 0;
-            IEnumerator enumerator = argInfo.Value.GetEnumerator();
-            while( enumerator.MoveNext() ) {
-                valueLength += 1;
-                if( valueLength > length ) {
-                    break;
-                }
-            }
-
-            ( enumerator as IDisposable )?.Dispose();
-        }
-
-        if( valueLength <= length ) {
+        if( argInfo.Value is null || GetLength( argInfo.Value, length ) <= length ) {
             return ref argInfo;
         }
 
@@ -208,7 +104,26 @@ public static class EnumerableExtensions {
             return ref argInfo;
         }
 
-        int? valueLength = argInfo.Value switch {
+        int enumerableLength = GetLength( argInfo.Value, maxLength );
+
+        if( enumerableLength >= minLength && enumerableLength <= maxLength ) {
+            return ref argInfo;
+        }
+
+        string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, Constants.VALUE_MUST_HAVE_LENGTH_BETWEEN, minLength, maxLength );
+        throw new ArgumentOutOfRangeException( argInfo.Name, message );
+    }
+
+    #region Internal Methods
+
+    /// <remarks>
+    /// DisallowNullAttribute is needed because it is failing due to the constraint must also be IEnumerable? in order for the methods to call it
+    /// and <paramref name="value"/> should never be null when this is called.
+    /// </remarks>
+    private static int GetLength<T>( [DisallowNull] T value, int maxIterations )
+        where T : IEnumerable? {
+
+        int? enumerableLength = value switch {
             string stringValue => stringValue.Length,
             Array arrayValue => arrayValue.Length,
             IList listValue => listValue.Count,
@@ -219,12 +134,13 @@ public static class EnumerableExtensions {
             _ => null
         };
 
-        if( valueLength is null ) {
-            valueLength = 0;
-            IEnumerator enumerator = argInfo.Value.GetEnumerator();
+        if( enumerableLength is null ) {
+
+            enumerableLength = 0;
+            IEnumerator enumerator = value.GetEnumerator(); 
             while( enumerator.MoveNext() ) {
-                valueLength += 1;
-                if( valueLength > maxLength ) {
+                enumerableLength += 1;
+                if( enumerableLength > maxIterations ) {
                     break;
                 }
             }
@@ -232,11 +148,8 @@ public static class EnumerableExtensions {
             ( enumerator as IDisposable )?.Dispose();
         }
 
-        if( valueLength >= minLength && valueLength <= maxLength ) {
-            return ref argInfo;
-        }
-
-        string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, Constants.VALUE_MUST_HAVE_LENGTH_BETWEEN, minLength, maxLength );
-        throw new ArgumentOutOfRangeException( argInfo.Name, message );
+        return enumerableLength.Value;
     }
+
+    #endregion
 }
