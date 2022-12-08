@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
 		<TargetFrameworks>netstandard2.0; netstandard2.1; net6.0; net7.0</TargetFrameworks>
@@ -9,20 +9,23 @@
 		<IsTrimmable>true</IsTrimmable>
 		<EnableTrimAnalyzer>true</EnableTrimAnalyzer>
 		<AnalysisMode>All</AnalysisMode>
-		<EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
-		<NeutralLanguage>en-US</NeutralLanguage>
-		<PackageReadmeFile>README.md</PackageReadmeFile>
-		<Description>A guard library with performance, nullability and ease of use in mind.</Description>
-		<PackageProjectUrl>https://github.com/john-t-white/StaticDotNet.ArgumentValidation</PackageProjectUrl>
-		<RepositoryUrl>https://github.com/john-t-white/StaticDotNet.ArgumentValidation</RepositoryUrl>
-		<PackageTags>argument, parameter, guard</PackageTags>
-		<Title>StaticDotNet.ArgumentValidation</Title>
-		<Company />
-		<IncludeSymbols>True</IncludeSymbols>
-		<SymbolPackageFormat>snupkg</SymbolPackageFormat>
 		<EnableNETAnalyzers>True</EnableNETAnalyzers>
 		<AnalysisLevel>latest-all</AnalysisLevel>
-    </PropertyGroup>
+		<EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
+		<NeutralLanguage>en-US</NeutralLanguage>
+		<ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>
+
+		<Title>StaticDotNet.ArgumentValidation</Title>
+		<Description>A simple to use guard library which fully supports nullability annotations with performance in mind.</Description>
+		<PackageTags>argument, parameter, guard</PackageTags>
+		<PackageReadmeFile>README.md</PackageReadmeFile>
+		<PackageProjectUrl>https://github.com/john-t-white/StaticDotNet.ArgumentValidation</PackageProjectUrl>
+		<RepositoryUrl>https://github.com/john-t-white/StaticDotNet.ArgumentValidation</RepositoryUrl>
+		<PublishRepositoryUrl>true</PublishRepositoryUrl>
+		<IncludeSymbols>True</IncludeSymbols>
+		<SymbolPackageFormat>snupkg</SymbolPackageFormat>
+		<EmbedUntrackedSources>true</EmbedUntrackedSources>
+	</PropertyGroup>
 
     <ItemGroup>
       <None Include="..\..\README.md">
@@ -33,6 +36,10 @@
 
     <ItemGroup>
       <PackageReference Include="ErrorProne.NET.Structs" Version="0.1.2">
+        <PrivateAssets>all</PrivateAssets>
+        <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      </PackageReference>
+      <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.1.1">
         <PrivateAssets>all</PrivateAssets>
         <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       </PackageReference>

@@ -3,7 +3,6 @@
 	<PropertyGroup>
 		<Version>0.1.0</Version>
 		<Authors>John T. White</Authors>
-		<Company>StaticDotNet</Company>
 	</PropertyGroup>
 
 </Project>
