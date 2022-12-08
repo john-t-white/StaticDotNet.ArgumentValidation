@@ -18,7 +18,7 @@ Validation is focused on the end user, guard clauses are focused on developers. 
 
 # Performance
 
-Since the point of guard clauses are to ensure the developer doesn't write bad code, ideally they should never throw an exception.  This library is built around the idea that it should be just as fast, or as close as possible to writing the code directly and avoid allocating any memory on to the heap.
+Since the point of guard clauses are to ensure the developer doesn't write bad code, ideally they should never throw an exception.  This library is built around the idea that it should be just as fast as possible and avoid allocating any memory with the idea that the exception will not happen.
 
 # Writing guard clauses are ugly
 
