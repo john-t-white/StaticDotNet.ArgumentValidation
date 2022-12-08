@@ -1,5 +1,9 @@
 StaticDotNet.ArgumentValiation is a nullability annotation supported guard library with performance and ease of use in mind.
 
+# Installation
+
+Package can be found at https://www.nuget.org/packages/StaticDotNet.ArgumentValidation.
+
 # Nullability annotations makes guard clauses pointless
 
 While nullability annontations is a huge step forward in help us developers write better applications, which we don't need as we get it right 100% of the time, it doesn't replace the need for guard clauses. And most of the guard libraries aren't able to fully support nullability annotations, which means you have to constantly ignore those warnings which really makes nullability annotations less helpful. And without them you have a bigger chance of getting the fun "Object not set to an instance of an object" error. If you haven't had to look at the stack trace, open a method of over 500 lines of code and tried to figure out what could possible be null in some random situation, you haven't lived.
@@ -23,7 +27,3 @@ Yes, writing guard clauses are ugly and they take up a lot of space.  We all agr
 # Documentation
 
 All documentation can be found at [here](./docs/README.md).
-
-# Installation
-
-Package can be found at https://www.nuget.org/packages/StaticDotNet.ArgumentValidation.
