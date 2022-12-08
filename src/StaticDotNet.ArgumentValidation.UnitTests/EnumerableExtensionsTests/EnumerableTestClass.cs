@@ -10,7 +10,7 @@ namespace StaticDotNet.ArgumentValidation.UnitTests.EnumerableExtensionsTests;
 public class EnumerableTestClass
 		: IEnumerable {
 
-	private IEnumerable _enumerable;
+	private readonly IEnumerable _enumerable;
 
 	public EnumerableTestClass( IEnumerable enumerable ) {
 

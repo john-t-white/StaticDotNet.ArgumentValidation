@@ -39,11 +39,7 @@ public class IsNotNull_Length {
 	[Benchmark]
 	public string Ardalis_Guard() {
 		string result = Ardalis.GuardClauses.Guard.Against.NullOrWhiteSpace( value );
-		if( result.Length != length ) {
-			throw new ArgumentOutOfRangeException();
-		}
-
-		return result;
+		return result.Length != length ? throw new ArgumentOutOfRangeException() : result;
 	}
 
 	[Benchmark]

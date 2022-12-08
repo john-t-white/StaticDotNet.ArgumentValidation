@@ -16,7 +16,20 @@
 		<PackageProjectUrl>https://github.com/john-t-white/StaticDotNet.ArgumentValidation</PackageProjectUrl>
 		<RepositoryUrl>https://github.com/john-t-white/StaticDotNet.ArgumentValidation</RepositoryUrl>
 		<PackageTags>argument, parameter, guard</PackageTags>
+		<Title>StaticDotNet.ArgumentValidation</Title>
+		<Company />
+		<IncludeSymbols>True</IncludeSymbols>
+		<SymbolPackageFormat>snupkg</SymbolPackageFormat>
+		<EnableNETAnalyzers>True</EnableNETAnalyzers>
+		<AnalysisLevel>latest-all</AnalysisLevel>
     </PropertyGroup>
+
+    <ItemGroup>
+      <None Include="..\..\README.md">
+        <Pack>True</Pack>
+        <PackagePath>\</PackagePath>
+      </None>
+    </ItemGroup>
 
     <ItemGroup>
       <PackageReference Include="ErrorProne.NET.Structs" Version="0.1.2">
