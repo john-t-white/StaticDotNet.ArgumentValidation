@@ -20,6 +20,8 @@ Validation is focused on the end user, guard clauses are focused on developers. 
 
 Since the point of guard clauses are to ensure the developer doesn't write bad code, ideally they should never throw an exception.  This library is built around the idea that it should be just as fast as possible and avoid allocating any memory with the idea that the exception will not happen.
 
+The library also fully supports trimming so you can only include the code that is actually used.
+
 # Writing guard clauses are ugly
 
 Yes, writing guard clauses are ugly and they take up a lot of space.  We all agree they are important but they take up too many lines of code and are ugly.  Ok, maybe you don't agree, yet, but drink the Kool-Aid and I promise no space ships are involved. The library is built using fluent syntax as that allows the developer a lot of flexibility with how they want to combine different argument validation.
