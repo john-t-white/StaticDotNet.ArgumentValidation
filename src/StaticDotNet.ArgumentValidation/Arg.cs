@@ -18,7 +18,7 @@ public static class Arg {
 	public static ArgInfo<T> IsNotNull<T>( [NotNull] T? value, [CallerArgumentExpression( nameof( value ) )] string? name = null, string? message = null )
 		=> value is not null
 			? new( value, name, message )
-			: throw GetArgumentNullException( name, message );
+			: throw ArgumentNullExceptionFactory.Create( name, message );
 
 	/// <summary>
 	/// Ensures the argument is not null.
@@ -33,7 +33,7 @@ public static class Arg {
 		where T : struct
 		=> value is not null
 			? new( value.Value, name, message )
-			: throw GetArgumentNullException( name, message );
+			: throw ArgumentNullExceptionFactory.Create( name, message );
 
 	/// <summary>
 	/// Does not validate if parameter is null or not.
@@ -59,11 +59,4 @@ public static class Arg {
 		=> value is null
 			? default
 			: throw new ArgumentException( message ?? Constants.VALUE_MUST_BE_NULL, name );
-
-	#region Internal Methods
-
-	private static ArgumentNullException GetArgumentNullException( string? name, string? message )
-		=> message is null ? new ArgumentNullException( name ) : new ArgumentNullException( name, message );
-
-	#endregion
 }

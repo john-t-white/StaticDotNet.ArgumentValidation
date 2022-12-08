@@ -118,6 +118,65 @@ public static class StringExtensions {
 
 #endif
 
+	/// <summary>
+	/// Ensures an argument is not null and represents a <see cref="Type"/>, otherwise an <see cref="ArgumentNullException"/> or <see cref="ArgumentException"/> is thrown. Due to how nullability annotations work, use
+	/// <see cref="StringExtensions.ToTypeMaybeNull(in ArgInfo{string})"/> if the argument could be null as there is no way to annotate whether the result could be null or not.
+	/// </summary>
+	/// <param name="argInfo">The argument info.</param>
+	/// <returns>The <see cref="Type"/>.</returns>
+	/// <exception cref="ArgumentNullException">Thrown when <paramref name="argInfo.Value"/> is null.</exception>
+	/// <exception cref="ArgumentException">Thrown when <paramref name="argInfo.Value"/> does not represent a <see cref="Type"/>.</exception>
+	[RequiresUnreferencedCode( "The type might be removed." )]
+	public static ArgInfo<Type> ToType( in this ArgInfo<string> argInfo ) {
+
+		Exception? thrownException = null;
+		if( argInfo.ValueAsString is not null ) {
+			Type? type;
+			try {
+				type = Type.GetType( argInfo.ValueAsString, true );
+
+				// Nullabiliy ignored as per the Type.GetType documentation, throwOnError true will always throw an exception if the type isn't found.
+				return new( type!, argInfo.Name, argInfo.Message );
+			} catch( Exception exception ) {
+				thrownException = exception;
+			}
+		}
+
+		string message = argInfo.Message ?? Constants.VALUE_MUST_BE_NOT_NULL_VALID_TYPE;
+		
+		if( thrownException is not null ) {
+
+			message += $" {Constants.SEE_INNER_EXCEPTION_FOR_DETAILS}";
+		}
+
+		throw ( argInfo.Value is null ) ? ArgumentNullExceptionFactory.Create( argInfo.Name, message ) : new ArgumentException( message, argInfo.Name, thrownException );
+	}
+
+	/// <summary>
+	/// Ensures an argument represents a <see cref="Type"/>, otherwise an <see cref="ArgumentException"/> is thrown. Due to how nullability annotations work, use
+	/// <see cref="StringExtensions.ToType(in ArgInfo{string})"/> if the argument is not null as there is no way to annotate whether the result could be null or not.
+	/// </summary>
+	/// <param name="argInfo">The argument info.</param>
+	/// <returns>The <see cref="Type"/>.</returns>
+	/// <exception cref="ArgumentException">Thrown when <paramref name="argInfo.Value"/> does not represent a <see cref="Type"/>.</exception>
+	[RequiresUnreferencedCode( "The type might be removed." )]
+	public static ArgInfo<Type?> ToTypeMaybeNull( in this ArgInfo<string?> argInfo ) {
+
+		if( argInfo.ValueAsString is null ) {
+			return new( null, argInfo.Name, argInfo.Message );
+		}
+
+		Type? type;
+		try {
+			type = Type.GetType( argInfo.ValueAsString, true );
+			return new( type, argInfo.Name, argInfo.Message );
+		} catch( Exception exception ) {
+
+			string message = $"{argInfo.Message ?? Constants.VALUE_MUST_BE_VALID_TYPE} {Constants.SEE_INNER_EXCEPTION_FOR_DETAILS}";
+			throw new ArgumentException( message, argInfo.Name, exception );
+		}
+	}
+
 	#region Internal Methods
 
 #if NETSTANDARD2_0
