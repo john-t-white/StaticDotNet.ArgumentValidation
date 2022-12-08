@@ -22,7 +22,7 @@ Yes, writing guard clauses are ugly and they take up a lot of space.  That is wh
 
 The library is also build with trying to support as many versions of the .NET framework that are currently supported by Microsoft.
 
-# NuGet
-
-The library is available through NuGet:
-
+- .NET Standard 2.0
+- .NET Standard 2.1
+- .NET 6.0
+- .NET 7.0
