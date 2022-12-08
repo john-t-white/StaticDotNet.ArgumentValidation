@@ -7,7 +7,7 @@ public sealed class NotEmpty {
 
 		ArgInfo<string> argInfo = new( "Value", null, null );
 
-		ArgInfo<string> result = argInfo .NotEmpty( );
+		ArgInfo<string> result = argInfo.NotEmpty();
 
 		ArgInfoAssertions.Equal( argInfo, result );
 	}
@@ -17,7 +17,7 @@ public sealed class NotEmpty {
 
 		ArgInfo<string?> argInfo = new( null, null, null );
 
-		ArgInfo<string?> result = argInfo .NotEmpty( );
+		ArgInfo<string?> result = argInfo.NotEmpty();
 
 		ArgInfoAssertions.Equal( argInfo, result );
 	}
@@ -27,7 +27,7 @@ public sealed class NotEmpty {
 
 		ArgInfo<string?> argInfo = new( " ", null, null );
 
-		ArgInfo<string?> result = argInfo .NotEmpty( );
+		ArgInfo<string?> result = argInfo.NotEmpty();
 
 		ArgInfoAssertions.Equal( argInfo, result );
 	}
@@ -40,7 +40,7 @@ public sealed class NotEmpty {
 
 		ArgumentException exception = Assert.Throws<ArgumentException>( name, () => {
 			ArgInfo<string> argInfo = new( value, name, null );
-			_ = argInfo .NotEmpty( );
+			_ = argInfo.NotEmpty();
 		} );
 
 		string expectedMessage = "Value cannot be empty.";
@@ -57,7 +57,7 @@ public sealed class NotEmpty {
 
 		ArgumentException exception = Assert.Throws<ArgumentException>( name, () => {
 			ArgInfo<string> argInfo = new( value, name, message );
-			_ = argInfo .NotEmpty( );
+			_ = argInfo.NotEmpty();
 		} );
 
 		Assert.StartsWith( message, exception.Message );

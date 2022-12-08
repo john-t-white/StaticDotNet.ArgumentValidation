@@ -1,5 +1,4 @@
 ﻿using System.Globalization;
-using System.Linq;
 
 namespace StaticDotNet.ArgumentValidation;
 
@@ -163,7 +162,7 @@ public static class StringExtensions {
 		}
 
 		string message = argInfo.Message ?? Constants.VALUE_MUST_BE_NOT_NULL_VALID_TYPE;
-		
+
 		if( thrownException is not null ) {
 
 			message += $" {Constants.SEE_INNER_EXCEPTION_FOR_DETAILS}";

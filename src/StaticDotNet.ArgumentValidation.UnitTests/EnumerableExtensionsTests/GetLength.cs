@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.ObjectModel;
 
 namespace StaticDotNet.ArgumentValidation.UnitTests.EnumerableExtensionsTests;
 
@@ -97,7 +91,7 @@ public sealed class GetLength {
 		IReadOnlyCollection<int> value = ( new List<int>() { 1, 2, 3 } ).AsReadOnly();
 		int maxEnumeratorIterations = 0;
 
-		int result = EnumerableExtensions.GetLength( value, maxEnumeratorIterations );	
+		int result = EnumerableExtensions.GetLength( value, maxEnumeratorIterations );
 
 		Assert.Equal( value.Count, result );
 	}

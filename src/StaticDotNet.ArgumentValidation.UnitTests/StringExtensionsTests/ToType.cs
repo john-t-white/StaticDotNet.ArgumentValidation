@@ -27,7 +27,7 @@ public sealed class ToType {
 
 		string expectedMessage = "Value must not be null and be a valid type.";
 
-		Assert.StartsWith(expectedMessage, exception.Message );
+		Assert.StartsWith( expectedMessage, exception.Message );
 	}
 
 	[Fact]

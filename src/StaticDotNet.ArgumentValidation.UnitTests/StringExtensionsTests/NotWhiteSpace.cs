@@ -7,7 +7,7 @@ public sealed class NotWhiteSpace {
 
 		ArgInfo<string> argInfo = new( "Value", null, null );
 
-		ArgInfo<string> result = argInfo .NotWhiteSpace( );
+		ArgInfo<string> result = argInfo.NotWhiteSpace();
 
 		ArgInfoAssertions.Equal( argInfo, result );
 	}
@@ -17,7 +17,7 @@ public sealed class NotWhiteSpace {
 
 		ArgInfo<string?> argInfo = new( null, null, null );
 
-		ArgInfo<string?> result = argInfo .NotWhiteSpace( );
+		ArgInfo<string?> result = argInfo.NotWhiteSpace();
 
 		ArgInfoAssertions.Equal( argInfo, result );
 	}
@@ -30,7 +30,7 @@ public sealed class NotWhiteSpace {
 
 		ArgumentException exception = Assert.Throws<ArgumentException>( name, () => {
 			ArgInfo<string> argInfo = new( value, name, null );
-			_ = argInfo .NotWhiteSpace( );
+			_ = argInfo.NotWhiteSpace();
 		} );
 
 		string expectedMessage = "Value cannot be white space.";
@@ -46,7 +46,7 @@ public sealed class NotWhiteSpace {
 
 		ArgumentException exception = Assert.Throws<ArgumentException>( name, () => {
 			ArgInfo<string> argInfo = new( value, name, null );
-			_ = argInfo .NotWhiteSpace( );
+			_ = argInfo.NotWhiteSpace();
 		} );
 
 		string expectedMessage = "Value cannot be white space.";
@@ -63,7 +63,7 @@ public sealed class NotWhiteSpace {
 
 		ArgumentException exception = Assert.Throws<ArgumentException>( name, () => {
 			ArgInfo<string> argInfo = new( value, name, message );
-			_ = argInfo .NotWhiteSpace( );
+			_ = argInfo.NotWhiteSpace();
 		} );
 
 		Assert.StartsWith( message, exception.Message );

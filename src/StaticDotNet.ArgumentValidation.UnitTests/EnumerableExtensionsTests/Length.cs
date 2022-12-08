@@ -1,6 +1,4 @@
-﻿using System.Collections;
-
-namespace StaticDotNet.ArgumentValidation.UnitTests.EnumerableExtensionsTests;
+﻿namespace StaticDotNet.ArgumentValidation.UnitTests.EnumerableExtensionsTests;
 
 public sealed class Length {
 
