@@ -24,7 +24,9 @@ The library also fully supports trimming so you can only include the code that i
 
 # Writing guard clauses are ugly
 
-Yes, writing guard clauses are ugly and they take up a lot of space.  We all agree they are important but they take up too many lines of code and are ugly.  Ok, maybe you don't agree, yet, but drink the Kool-Aid and I promise no space ships are involved. The library is built using fluent syntax as that allows the developer a lot of flexibility with how they want to combine different argument validation.
+Yes, writing guard clauses are ugly and they take up a lot of space.  We all agree they are important but they take up too many lines of code and are ugly.  Ok, maybe you don't agree, yet, but drink the Kool-Aid and I promise no space ships are involved.
+
+The library is built using fluent syntax as that allows the developer a lot of flexibility with how they want to combine different argument validation.  It also uses a readonly ref struct so as much as possible stays on the stack without copying the struct on every call.
 
 # Documentation
 
