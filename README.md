@@ -22,7 +22,7 @@ Yes, writing guard clauses are ugly and they take up a lot of space.  We all agr
 
 # Documentation
 
-All documentation can be found at [here](./docs/README.md)
+All documentation can be found at [here](./docs/README.md).
 
 # Installation
 
