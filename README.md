@@ -22,4 +22,4 @@ Yes, writing guard clauses are ugly and they take up a lot of space.  We all agr
 
 # Documentation
 
-All documentation can be found at https://john-t-white.github.io/StaticDotNet.ArgumentValidation/.
+All documentation can be found at [here](./Docs/README.md)
