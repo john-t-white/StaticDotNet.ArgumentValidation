@@ -1,13 +1,13 @@
 ﻿namespace StaticDotNet.ArgumentValidation.UnitTests.EnumerableExtensionsTests;
 
-public sealed class EnumerableExtensions_NotEmpty_IDicionary {
+public sealed class NotEmpty {
 
 	[Fact]
 	public void ReturnsCorrectly() {
 
-		ArgInfo<IDictionary<string, int>> argInfo = new( new Dictionary<string, int>() { { "Key", 1 } }, null, null );
+		ArgInfo<string> argInfo = new( "Value", null, null );
 
-		ArgInfo<IDictionary<string, int>> result = argInfo .NotEmpty( );
+		ArgInfo<string> result = argInfo .NotEmpty( );
 
 		ArgInfoAssertions.Equal( argInfo, result );
 	}
@@ -15,9 +15,19 @@ public sealed class EnumerableExtensions_NotEmpty_IDicionary {
 	[Fact]
 	public void WithNullValueReturnsCorrectly() {
 
-		ArgInfo<IDictionary<string, int>?> argInfo = new( null, null, null );
+		ArgInfo<string?> argInfo = new( null, null, null );
 
-		ArgInfo<IDictionary<string, int>?> result = argInfo .NotEmpty( );
+		ArgInfo<string?> result = argInfo .NotEmpty( );
+
+		ArgInfoAssertions.Equal( argInfo, result );
+	}
+
+	[Fact]
+	public void WithWhiteSpaceValueReturnsCorrectly() {
+
+		ArgInfo<string?> argInfo = new( " ", null, null );
+
+		ArgInfo<string?> result = argInfo .NotEmpty( );
 
 		ArgInfoAssertions.Equal( argInfo, result );
 	}
@@ -26,10 +36,10 @@ public sealed class EnumerableExtensions_NotEmpty_IDicionary {
 	public void WithEmptyValueThrowsArgumentException() {
 
 		string name = "Name";
-		IDictionary<string, int> value = new Dictionary<string, int>();
+		string value = string.Empty;
 
 		ArgumentException exception = Assert.Throws<ArgumentException>( name, () => {
-			ArgInfo<IDictionary<string, int>> argInfo = new( value, name, null );
+			ArgInfo<string> argInfo = new( value, name, null );
 			_ = argInfo .NotEmpty( );
 		} );
 
@@ -42,11 +52,11 @@ public sealed class EnumerableExtensions_NotEmpty_IDicionary {
 	public void WithInvalidValueAndMessageThrowsArgumentException() {
 
 		string name = "Name";
-		IDictionary<string, int> value = new Dictionary<string, int>();
+		string value = string.Empty;
 		string message = "Message";
 
 		ArgumentException exception = Assert.Throws<ArgumentException>( name, () => {
-			ArgInfo<IDictionary<string, int>> argInfo = new( value, name, message );
+			ArgInfo<string> argInfo = new( value, name, message );
 			_ = argInfo .NotEmpty( );
 		} );
 

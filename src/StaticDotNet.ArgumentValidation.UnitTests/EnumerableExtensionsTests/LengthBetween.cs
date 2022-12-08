@@ -1,6 +1,6 @@
 ﻿namespace StaticDotNet.ArgumentValidation.UnitTests.EnumerableExtensionsTests;
 
-public sealed class LengthBetween_String {
+public sealed class LengthBetween {
 
 	[Theory]
 	[InlineData( "12" )]
@@ -13,6 +13,22 @@ public sealed class LengthBetween_String {
 		int maxLength = 4;
 
 		ArgInfo<string> result = argInfo.LengthBetween( minLength, maxLength );
+
+		ArgInfoAssertions.Equal( argInfo, result );
+	}
+
+	[Theory]
+	[InlineData( "12" )]
+	[InlineData( "123" )]
+	[InlineData( "1234" )]
+	public void IEnumerableReturnsCorrectly( string value ) {
+
+		EnumerableTestClass enumerableValue = new( value.ToCharArray() );
+		ArgInfo<EnumerableTestClass> argInfo = new( enumerableValue, null, null );
+		int minLength = 2;
+		int maxLength = 4;
+
+		ArgInfo<EnumerableTestClass> result = argInfo.LengthBetween( minLength, maxLength );
 
 		ArgInfoAssertions.Equal( argInfo, result );
 	}
@@ -51,8 +67,8 @@ public sealed class LengthBetween_String {
 	[Fact]
 	public void WithInvalidValueAndMessageThrowsArgumentOutOfRangeException() {
 
-		string name = "Name";
 		string value = "1";
+		string name = "Name";
 		string message = "Message";
 		int minLength = 2;
 		int maxLength = 4;

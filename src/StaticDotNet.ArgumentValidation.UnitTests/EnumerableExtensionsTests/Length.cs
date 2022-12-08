@@ -1,14 +1,14 @@
-﻿namespace StaticDotNet.ArgumentValidation.UnitTests.EnumerableExtensionsTests;
+﻿using System.Collections;
 
-public sealed class Length_String {
+namespace StaticDotNet.ArgumentValidation.UnitTests.EnumerableExtensionsTests;
+
+public sealed class Length {
 
 	[Fact]
 	public void ReturnsCorrectly() {
 
-		string value = "12";
-		int length = 2;
-
-		ArgInfo<string> argInfo = new( value, null, null );
+		ArgInfo<string> argInfo = new( "123", null, null );
+		int length = 3;
 
 		ArgInfo<string> result = argInfo.Length( length );
 
@@ -16,11 +16,22 @@ public sealed class Length_String {
 	}
 
 	[Fact]
+	public void IEnumerableReturnsCorrectly() {
+
+		EnumerableTestClass value = new( "123".ToCharArray() );
+		ArgInfo<EnumerableTestClass> argInfo = new( value, null, null );
+		int length = 3;
+
+		ArgInfo<EnumerableTestClass> result = argInfo.Length( length );
+
+		ArgInfoAssertions.Equal( argInfo, result );
+	}
+
+	[Fact]
 	public void WithNullValueReturnsCorrectly() {
 
-		int length = 2;
-
 		ArgInfo<string?> argInfo = new( null, null, null );
+		int length = 3;
 
 		ArgInfo<string?> result = argInfo.Length( length );
 
@@ -30,9 +41,9 @@ public sealed class Length_String {
 	[Fact]
 	public void WithValueLengthNotEqualToThrowsArgumentOutOfRangeException() {
 
-		string name = "123";
-		string value = "Value";
-		int length = 2;
+		string value = "12";
+		string name = "Name";
+		int length = 3;
 
 		ArgumentOutOfRangeException exception = Assert.Throws<ArgumentOutOfRangeException>( name, () => {
 			ArgInfo<string> argInfo = new( value, name, null );
@@ -47,10 +58,10 @@ public sealed class Length_String {
 	[Fact]
 	public void WithInvalidValueAndMessageThrowsArgumentOutOfRangeException() {
 
-		string name = "123";
-		string value = "Value";
+		string value = "12";
+		string name = "Name";
 		string message = "Message";
-		int length = 2;
+		int length = 3;
 
 		ArgumentOutOfRangeException exception = Assert.Throws<ArgumentOutOfRangeException>( name, () => {
 			ArgInfo<string> argInfo = new( value, name, message );

@@ -41,7 +41,7 @@ public static class EnumerableExtensions {
 	public static ref readonly ArgInfo<T> Length<T>( in this ArgInfo<T> argInfo, int length )
 		where T : IEnumerable? {
 
-		if( argInfo.Value is null || GetLength( argInfo.Value, length ) == length ) {
+		if( argInfo.Value is null || GetLength( argInfo.Value, length + 1 ) == length ) {
 			return ref argInfo;
 		}
 
@@ -58,7 +58,7 @@ public static class EnumerableExtensions {
 	/// <returns>The <see cref="ArgInfo{T}"/>.</returns>
 	/// <exception cref="ArgumentOutOfRangeException">Thrown when the length of <paramref name="argInfo.Value"/> is less than <paramref name="length"/>.</exception>
 	public static ref readonly ArgInfo<T> MinLength<T>( in this ArgInfo<T> argInfo, int length )
-		where T : IEquatable<string>?, IComparable<string>?, IEnumerable<char>? {
+		where T : IEnumerable? {
 
 		if( argInfo.Value is null || GetLength( argInfo.Value, length ) >= length ) {
 			return ref argInfo;
@@ -79,7 +79,7 @@ public static class EnumerableExtensions {
 	public static ref readonly ArgInfo<T> MaxLength<T>( in this ArgInfo<T> argInfo, int length )
 		where T : IEnumerable? {
 
-		if( argInfo.Value is null || GetLength( argInfo.Value, length ) <= length ) {
+		if( argInfo.Value is null || GetLength( argInfo.Value, length + 1 ) <= length ) {
 			return ref argInfo;
 		}
 
@@ -97,13 +97,13 @@ public static class EnumerableExtensions {
 	/// <returns>The <see cref="ArgInfo{T}"/>.</returns>
 	/// <exception cref="ArgumentOutOfRangeException">Thrown when the length of <paramref name="argInfo.Value"/> is not between <paramref name="minLength"/> and <paramref name="maxLength"/>.</exception>
 	public static ref readonly ArgInfo<T> LengthBetween<T>( in this ArgInfo<T> argInfo, int minLength, int maxLength )
-		where T : IEquatable<string>?, IComparable<string>?, IEnumerable<char>? {
+		where T : IEnumerable? {
 
 		if( argInfo.Value is null ) {
 			return ref argInfo;
 		}
 
-		int enumerableLength = GetLength( argInfo.Value, maxLength );
+		int enumerableLength = GetLength( argInfo.Value, maxLength + 1 );
 
 		if( enumerableLength >= minLength && enumerableLength <= maxLength ) {
 			return ref argInfo;
@@ -119,7 +119,7 @@ public static class EnumerableExtensions {
 	/// DisallowNullAttribute is needed because it is failing due to the constraint must also be IEnumerable? in order for the methods to call it
 	/// and <paramref name="value"/> should never be null when this is called.
 	/// </remarks>
-	private static int GetLength<T>( [DisallowNull] T value, int maxIterations )
+	internal static int GetLength<T>( [DisallowNull] T value, int maxEnumeratorIterations )
 		where T : IEnumerable? {
 
 		int? enumerableLength = value switch {
@@ -129,7 +129,6 @@ public static class EnumerableExtensions {
 			IDictionary dictionaryValue => dictionaryValue.Count,
 			ICollection collectionValue => collectionValue.Count,
 			IReadOnlyCollection<dynamic> readonlyCollectionValue => readonlyCollectionValue.Count,
-			ISet<dynamic> setValue => setValue.Count,
 			_ => null
 		};
 
@@ -139,7 +138,7 @@ public static class EnumerableExtensions {
 			IEnumerator enumerator = value.GetEnumerator();
 			while( enumerator.MoveNext() ) {
 				enumerableLength += 1;
-				if( enumerableLength > maxIterations ) {
+				if( enumerableLength == maxEnumeratorIterations ) {
 					break;
 				}
 			}
