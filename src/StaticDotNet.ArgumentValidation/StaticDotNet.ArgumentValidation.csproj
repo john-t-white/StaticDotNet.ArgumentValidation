@@ -12,7 +12,7 @@
 		<EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
 		<NeutralLanguage>en-US</NeutralLanguage>
 		<PackageReadmeFile>README.md</PackageReadmeFile>
-		<Description>A guard library with performance, extensibility and ease of use in mind.</Description>
+		<Description>A guard library with performance, nullability and ease of use in mind.</Description>
 		<PackageProjectUrl>https://github.com/john-t-white/StaticDotNet.ArgumentValidation</PackageProjectUrl>
 		<RepositoryUrl>https://github.com/john-t-white/StaticDotNet.ArgumentValidation</RepositoryUrl>
 		<PackageTags>argument, parameter, guard</PackageTags>
