@@ -49,6 +49,8 @@ public string AppendLetterA( string? value ) {
 }
 ```
 
+Guard clauses should always honor the specific type that is being validated.  For example, if I wanted to validate a specific argument that implements IList, than it should not require me to cast the result of the validation back to that type.
+
 # ArgInfo\<T\>
 
 Every argument validation method returns a readonly ref struct ArgInfo\<T\> which allows for chaining additional validation methods based on the result of the previous one. Since it is a ref readonly struct it is only allocated to the stack and prevents copying. All remaining validation checks will always return null if the argument is allowed to be null. This allows you to validate arguments if they aren't null, but still allow them to be null.
