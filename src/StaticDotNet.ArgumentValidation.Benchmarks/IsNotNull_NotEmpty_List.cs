@@ -8,7 +8,7 @@ namespace StaticDotNet.ArgumentValidation.Benchmarks;
 [SimpleJob( RuntimeMoniker.Net70 )]
 public class IsNotNull_NotEmpty_List {
 
-	public IList<int> value = new List<int>() { 1 };
+	public List<int> value = new List<int>() { 1 };
 
 	[Benchmark( Baseline = true )]
 	public IList<int> Baseline()
@@ -19,13 +19,13 @@ public class IsNotNull_NotEmpty_List {
 				: value;
 
 	[Benchmark]
-	public IList<int> Arg_Is() => Arg.IsNotNull( value ).NotEmpty().Value;
+	public List<int> Arg_Is() => Arg.IsNotNull( value ).NotEmpty().Value;
 
 	[Benchmark]
-	public IList<int> Dawn_Guard() => Dawn.Guard.Argument( value ).NotNull().NotEmpty().Value;
+	public List<int> Dawn_Guard() => Dawn.Guard.Argument( value ).NotNull().NotEmpty();
 
 	[Benchmark]
-	public IList<int> Ardalis_Guard() => ( IList<int> )Ardalis.GuardClauses.Guard.Against.NullOrEmpty( value );
+	public List<int> Ardalis_Guard() => ( List<int> )Ardalis.GuardClauses.Guard.Against.NullOrEmpty( value );
 
 	[Benchmark]
 	public IList<int> Ensure_That() {

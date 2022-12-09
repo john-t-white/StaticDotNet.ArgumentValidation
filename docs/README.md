@@ -6,7 +6,7 @@ Arg is a static class that is the starting point for all argument validation. It
 - [IsNotNull](IsNotNull.md)
 - [IsNull](IsNull.md)
 
-All of the methods allow for the value, name of the argument and if a message if you don't want to use the default exception message.  If you are using c# 10, the [CallerArgumentExpressionAttribute](https://learn.microsoft.com/en-us/dotnet/api/system.runtime.compilerservices.callerargumentexpressionattribute) is supported and you don't need to supply the argument name. Everything is under the StaticDotNet.ArgumentValidation namespace.
+All of the methods allow for the value, name of the argument and a message if you don't want to use the default exception message.  If you are using c# 10, the [CallerArgumentExpressionAttribute](https://learn.microsoft.com/en-us/dotnet/api/system.runtime.compilerservices.callerargumentexpressionattribute) is supported and you don't need to supply the argument name. Everything is under the StaticDotNet.ArgumentValidation namespace.
 
 ``` c#
 using StaticDotNet.ArgumentValidation;
@@ -48,7 +48,7 @@ Guard clauses should always honor the specific type that is being validated.  Fo
 
 # ArgInfo\<T\>
 
-Every argument validation method returns a readonly ref struct ArgInfo\<T\> which allows for chaining additional validation methods based on the result of the previous one. Since it is a ref readonly struct it is only allocated to the stack and prevents copying. All remaining validation checks will always return null if the argument is allowed to be null. This allows you to validate arguments if they aren't null, but still allow them to be null.
+Every argument validation method returns a readonly ref struct ArgInfo\<T\> which allows for chaining additional validation methods based on the result of the previous one. Since it is a ref readonly struct it is only allocated to the stack and prevents copying.
 
 # Trimming
 
@@ -56,7 +56,7 @@ The library includes the specific attributes and analyzers to ensure it can be t
 
 # Included Validations
 
-While the following are included with the library, you can add extend the library with your own extension methods for more specific cases.
+While the following are included with the library, you can add extend the library with your own extension methods for more specific cases. All validation checks will return null if the argument is allowed to be null. This allows you to validate arguments if they aren't null, but still allow them to be null.
 
 ## Object
 

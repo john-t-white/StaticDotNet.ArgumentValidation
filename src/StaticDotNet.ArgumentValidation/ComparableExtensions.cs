@@ -192,7 +192,7 @@ public static class ComparableExtensions {
 	}
 
 	/// <summary>
-	/// Ensures an argument is between <paramref name="minValue"/> and <paramref name="maxValue"/>, otherwise an <see cref="ArgumentException"/> is thrown.
+	/// Ensures an argument is between (inclusively) <paramref name="minValue"/> and <paramref name="maxValue"/>, otherwise an <see cref="ArgumentException"/> is thrown.
 	/// </summary>
 	/// <typeparam name="T">The argument type.</typeparam>
 	/// <param name="argInfo">The argument info.</param>
