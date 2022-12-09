@@ -4,7 +4,7 @@ Takes the nullability of the argument.  If the argument is nullable, then all ot
 
 ## Example
 
-```c#
+``` c#
 public void Method( string value ) {
 	string result = Arg.Is( value ).Value;
 }

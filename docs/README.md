@@ -8,7 +8,7 @@ Arg is a static class that is the starting point for all argument validation. It
 
 All of the methods allow for the value, name of the argument and if a message if you don't want to use the default exception message.  If you are using c# 10, the [CallerArgumentExpressionAttribute](https://learn.microsoft.com/en-us/dotnet/api/system.runtime.compilerservices.callerargumentexpressionattribute) is supported and you don't need to supply the argument name. Everything is under the StaticDotNet.ArgumentValidation namespace.
 
-```c#
+``` c#
 using StaticDotNet.ArgumentValidation;
 
 Arg.IsNotNull( value );
@@ -19,7 +19,7 @@ Arg.IsNotNull( value, nameof( value ) ), message );
 
 If you want to use the value after all of the argument validations, you can use the Value property.
 
-```c#
+``` c#
 public class Person {
 
 	public Person( string? name ) {
@@ -35,7 +35,7 @@ public class Person {
 
 Nullability annontations are also fully supported when you don't use the Value property, like when you validate arguments for a method.
 
-```c#
+``` c#
 
 public string AppendLetterA( string? value ) {
 	_ = Arg.IsNotNull( value );

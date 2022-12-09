@@ -4,7 +4,7 @@ Ensures that the argument is null, otherwise an ArgumentException is thrown. As 
 
 ## Example
 
-```c#
+``` c#
 public void Method( string? value ) {
 	string? result = Arg.IsNull( value );
 }
