@@ -26,7 +26,9 @@ The library also fully supports trimming so you can only include the code that i
 
 Yes, writing guard clauses are ugly and they take up a lot of space.  We all agree they are important but they take up too many lines of code and are ugly.  Ok, maybe you don't agree, yet, but drink the Kool-Aid and I promise no space ships are involved.
 
-The library is built using fluent syntax as that allows the developer a lot of flexibility with how they want to combine different argument validation.  It also uses a readonly ref struct so as much as possible stays on the stack without copying the struct on every call.
+The library is built using fluent syntax as that allows the developer a lot of flexibility with how they want to combine different argument validation. It is also built to only show the available validation methods for the specific argument type. For example, the NotWhiteSpace validation method is only shown in intellisense for string arguments.
+
+It also uses a readonly ref struct so as much as possible stays on the stack without copying the struct on every call.
 
 # Documentation
 
