@@ -69,7 +69,7 @@ Valdiation methods for any type.
 
 ## Comparable
 
-Validation methods types that implement System.IComparable\<T\>.
+Validation methods types that implement System.IComparable\<T\>, which includes string.
 
 - [Between](Between.md)
 - [GreaterThan](GreaterThan.md)

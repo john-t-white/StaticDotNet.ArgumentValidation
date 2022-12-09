@@ -1,4 +1,4 @@
-﻿namespace StaticDotNet.ArgumentValidation.UnitTests.EquatableExtensionsTests;
+﻿namespace StaticDotNet.ArgumentValidation.UnitTests.ObjectTests;
 
 public sealed class EqualTo_Class {
 

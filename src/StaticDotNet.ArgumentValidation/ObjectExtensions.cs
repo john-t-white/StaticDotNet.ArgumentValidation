@@ -5,7 +5,7 @@ namespace StaticDotNet.ArgumentValidation;
 /// <summary>
 /// Extension methods for validating <see cref="IComparable"/> arguments.
 /// </summary>
-public static class EqualityComparerExtensions {
+public static class ObjectExtensions {
 
 	/// <summary>
 	/// Ensures an argument is equal to <paramref name="comparisonValue"/>, otherwise an <see cref="ArgumentException"/> is thrown.
