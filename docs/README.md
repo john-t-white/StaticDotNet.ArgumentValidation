@@ -1,8 +1,3 @@
-Need to document the following:
-
-- Trimming
-- Benchmarks
-
 # Arg class
 
 Arg is a static class that is the starting point for all argument validation. It has three basic methods, and all of them support nullability annontations.
