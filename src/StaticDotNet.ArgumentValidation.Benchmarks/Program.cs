@@ -2,7 +2,8 @@
 using StaticDotNet.ArgumentValidation.Benchmarks;
 
 //_ = BenchmarkRunner.Run<IsNotNull_Class>();
-_ = BenchmarkRunner.Run<IsNotNull_Length>();
+_ = BenchmarkRunner.Run<IsNotNull_Contains_List>();
+//_ = BenchmarkRunner.Run<IsNotNull_Length>();
 //_ = BenchmarkRunner.Run<IsNotNull_NotEmpty_List>();
 //_ = BenchmarkRunner.Run<IsNotNull_NotEmpty_String>();
 //_ = BenchmarkRunner.Run<IsNotNull_NotWhiteSpace>();

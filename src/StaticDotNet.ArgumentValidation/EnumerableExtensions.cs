@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using System.Collections.Generic;
 using System.Globalization;
 
 namespace StaticDotNet.ArgumentValidation;
@@ -113,10 +114,36 @@ public static class EnumerableExtensions {
 		throw new ArgumentOutOfRangeException( argInfo.Name, message );
 	}
 
+	/// <summary>
+	/// Ensures an argument contains <paramref name="value"/>, otherwise an <see cref="ArgumentException"/> is thrown.
+	/// </summary>
+	/// <typeparam name="TArg">The argument type.</typeparam>
+	/// <typeparam name="TItem">The argument item in the enumerable argument.</typeparam>
+	/// <param name="argInfo">The argument info.</param>
+	/// <param name="value">The value it should contain.</param>
+	/// <param name="comparer">The comparer.</param>
+	/// <returns>The <see cref="ArgInfo{T}"/>.</returns>
+	/// <exception cref="ArgumentException">Thrown when <paramref name="argInfo.Value"/> does not contain <paramref name="value"/>.</exception>
+	public static ref readonly ArgInfo<TArg> Contains<TArg, TItem>( in this ArgInfo<TArg> argInfo, TItem value, IEqualityComparer<TItem>? comparer = null )
+		where TArg : IEnumerable<TItem>? {
+
+		if( argInfo.Value is null ) {
+			return ref argInfo;
+		}
+
+		// Specifically not calling the overload that accepts a comparer if it is null as it still allocates memory and is twice as slow.
+		if( comparer is null ? argInfo.Value.Contains( value ) : argInfo.Value.Contains( value, comparer ) ) {
+			return ref argInfo;
+		}
+
+		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, Constants.VALUE_MUST_CONTAIN, value?.ToString() ?? Constants.NULL );
+		throw new ArgumentException( message, argInfo.Name );
+	}
+
 	#region Internal Methods
 
 	/// <remarks>
-	/// DisallowNullAttribute is needed because it is failing due to the constraint must also be IEnumerable? in order for the methods to call it
+	/// DisallowNullAttribute is needed because the constraint must also be IEnumerable? in order for the methods to call it
 	/// and <paramref name="value"/> should never be null when this is called.
 	/// </remarks>
 	internal static int GetLength<T>( [DisallowNull] T value, int maxEnumeratorIterations )

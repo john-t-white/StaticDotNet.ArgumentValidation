@@ -1,15 +1,15 @@
-# EqualTo
+# Contains
 
-Ensures the argument equal to the a value, otherwise an ArgumentException is thrown.
-
-## Object
+Ensures the argument contains a value, otherwise an ArgumentException is thrown.
 
 **Example**
 ``` c#
 Arg.Is( argument ).EqualTo( value );
+
+Arg.Is( argument ).EqualTo( value, comparer );
 ```
 
-## String
+## String (>= .NET Standard 2.0)
 
 For string arguments, an additional overload allows you to specify the [StringComparision](https://learn.microsoft.com/en-us/dotnet/api/system.stringcomparison) type to use.
 

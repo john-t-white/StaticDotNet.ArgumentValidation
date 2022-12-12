@@ -58,46 +58,21 @@ The library includes the specific attributes and analyzers to ensure it can be t
 
 While the following are included with the library, you can add extend the library with your own extension methods for more specific cases. All validation checks will return null if the argument is allowed to be null. This allows you to validate arguments if they aren't null, but still allow them to be null.
 
-## Object
-
-Valdiation methods for any type.
-
-- [EqualTo](EqualTo.md)
-
-## Comparable
-
-Validation methods types that implement System.IComparable\<T\>, which includes string.
-
+- [AssignableTo](AssignableTo.md)
+- [Contains](Contains.md)
 - [Between](Between.md)
+- [EndsWith](EndsWith.md)
+- [EqualTo](EqualTo.md)
 - [GreaterThan](GreaterThan.md)
 - [GreaterThanOrEqualTo](GreaterThanOrEqualTo.md)
-- [LessThan](LessThan.md)
-- [LessThanOrEqualTo](LessThanOrEqualTo.md)
-
-## Enumerable
-
-Validation methods for types that implement System.IEnumerable, which includes string.
-
 - [Length](Length.md)
 - [LengthBetween](LengthBetween.md)
+- [LessThan](LessThan.md)
+- [LessThanOrEqualTo](LessThanOrEqualTo.md)
+- [Matches](Matches.md)
 - [MaxLength](MaxLength.md)
 - [MinLength](MinLength.md)
 - [NotEmpty](NotEmpty.md)
-
-## String
-
-Validation methods for string arguments.
-
-- [Contains](Contains.md)
-- [EndsWith](EndsWith.md)
 - [NotWhiteSpace](NotWhiteSpace.md)
-- [Matches](Matches.md)
 - [StartsWith](StartsWith.md)
-- [ToType](ToType.md)
-- [ToTypeMaybeNull](ToTypeMaybeNull.md)
-
-## Type
-
-Validation metohds for System.Type arguments
-
-- [AssignableTo](AssignableTo.md)
+- [ToType / ToTypeMaybeNull](ToType.md)

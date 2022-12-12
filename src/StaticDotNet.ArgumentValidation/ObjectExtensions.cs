@@ -13,7 +13,7 @@ public static class ObjectExtensions {
 	/// <typeparam name="T">The argument type.</typeparam>
 	/// <param name="argInfo">The argument info.</param>
 	/// <param name="value">The value to compare against.</param>
-	/// <param name="comparer">The comparer. Null will use <see cref="EqualityComparer{T}.Default"/></param>
+	/// <param name="comparer">The comparer.</param>
 	/// <returns>The <see cref="ArgInfo{T}"/>.</returns>
 	/// <exception cref="ArgumentException">Thrown when <paramref name="argInfo.Value"/> does not equal <paramref name="value"/>.</exception>
 	public static ref readonly ArgInfo<T> EqualTo<T>( in this ArgInfo<T> argInfo, [DisallowNull] T value, IEqualityComparer<T>? comparer = null ) {
@@ -36,7 +36,7 @@ public static class ObjectExtensions {
 	/// <typeparam name="T">The argument type.</typeparam>
 	/// <param name="argInfo">The argument info.</param>
 	/// <param name="value">The value to compare against.</param>
-	/// <param name="comparer">The comparer. Null will use <see cref="EqualityComparer{T}.Default"/></param>
+	/// <param name="comparer">The comparer.</param>
 	/// <returns>The <see cref="ArgInfo{T}"/>.</returns>
 	/// <exception cref="ArgumentException">Thrown when <paramref name="argInfo.Value"/> does not equal <paramref name="value"/>.</exception>
 	public static ref readonly ArgInfo<T?> EqualTo<T>( in this ArgInfo<T?> argInfo, T value, IEqualityComparer<T>? comparer = null )

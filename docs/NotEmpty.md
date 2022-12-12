@@ -2,8 +2,7 @@
 
 Ensures the argument is not empty, otherwise an ArgumentException is thrown.
 
-## Example
-
+**Example**
 ``` c#
 Arg.Is( argument ).NotEmpty();
 ```
