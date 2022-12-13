@@ -12,11 +12,13 @@ Ensures the argument contains the value, otherwise an ArgumentException is throw
 ``` c#
 Arg.Is( argument ).Contains( value );
 ```
+
 -----------------------------------------------------------
+
 **Parameters**
 
 - value : System.String
-- comparison : System.StringComparison
+- comparisonType : System.StringComparison
 
 **Example**
 ``` c#

@@ -80,13 +80,53 @@ public static class StringExtensions {
 	/// <typeparam name="T">The argument type.</typeparam>
 	/// <param name="argInfo">The argument info.</param>
 	/// <param name="value">The value to it should end with.</param>
+	/// <returns>The <see cref="ArgInfo{T}"/>.</returns>
+	/// <exception cref="ArgumentException">Thrown when <paramref name="argInfo.Value"/> does not start with <paramref name="value"/>.</exception>
+	public static ref readonly ArgInfo<T> EndsWith<T>( in this ArgInfo<T> argInfo, char value )
+		where T : IEquatable<string>?, IComparable<string>?, IEnumerable<char>? {
+
+		if( argInfo.ValueAsString is null || argInfo.ValueAsString.EndsWith( value ) ) {
+			return ref argInfo;
+		}
+
+		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, Constants.VALUE_MUST_END_WITH, value.ToString() );
+		throw new ArgumentException( message, argInfo.Name );
+	}
+
+	/// <summary>
+	/// Ensures an argument ends with <paramref name="value"/>, otherwise an <see cref="ArgumentException"/> is thrown.
+	/// </summary>
+	/// <typeparam name="T">The argument type.</typeparam>
+	/// <param name="argInfo">The argument info.</param>
+	/// <param name="value">The value to it should end with.</param>
 	/// <param name="comparisonType">The type of comparison.</param>
 	/// <returns>The <see cref="ArgInfo{T}"/>.</returns>
 	/// <exception cref="ArgumentException">Thrown when <paramref name="argInfo.Value"/> does not start with <paramref name="value"/>.</exception>
-	public static ref readonly ArgInfo<T> EndsWith<T>( in this ArgInfo<T> argInfo, string value, StringComparison comparisonType )
+	public static ref readonly ArgInfo<T> EndsWith<T>( in this ArgInfo<T> argInfo, string value, StringComparison? comparisonType = null )
 		where T : IEquatable<string>?, IComparable<string>?, IEnumerable<char>? {
 
-		if( argInfo.ValueAsString is null || argInfo.ValueAsString.EndsWith( value, comparisonType ) ) {
+		if( argInfo.ValueAsString is null || ( comparisonType == null ? argInfo.ValueAsString.EndsWith( value ) : argInfo.ValueAsString.EndsWith( value, comparisonType.Value ) ) ) {
+			return ref argInfo;
+		}
+
+		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, Constants.VALUE_MUST_END_WITH, value?.ToString() ?? Constants.NULL );
+		throw new ArgumentException( message, argInfo.Name );
+	}
+
+	/// <summary>
+	/// Ensures an argument ends with <paramref name="value"/>, otherwise an <see cref="ArgumentException"/> is thrown.
+	/// </summary>
+	/// <typeparam name="T">The argument type.</typeparam>
+	/// <param name="argInfo">The argument info.</param>
+	/// <param name="value">The value to it should end with.</param>
+	/// <param name="ignoreCase">true to ignore case.</param>
+	/// <param name="culture">The culture to use.</param>
+	/// <returns>The <see cref="ArgInfo{T}"/>.</returns>
+	/// <exception cref="ArgumentException">Thrown when <paramref name="argInfo.Value"/> does not start with <paramref name="value"/>.</exception>
+	public static ref readonly ArgInfo<T> EndsWith<T>( in this ArgInfo<T> argInfo, string value, bool ignoreCase, CultureInfo? culture = null )
+		where T : IEquatable<string>?, IComparable<string>?, IEnumerable<char>? {
+
+		if( argInfo.ValueAsString is null || argInfo.ValueAsString.EndsWith( value, ignoreCase, culture ) ) {
 			return ref argInfo;
 		}
 

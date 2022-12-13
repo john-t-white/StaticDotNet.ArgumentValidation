@@ -1,15 +1,26 @@
 ﻿namespace StaticDotNet.ArgumentValidation.UnitTests.StringExtensionsTests;
 
-public sealed class EndsWith {
+public sealed class EndsWith_String {
 
 	[Fact]
 	public void ReturnsCorrectly() {
 
 		ArgInfo<string> argInfo = new( "Value", null, null );
-		string endsWidth = "ue";
+		string value = "ue";
+
+		ArgInfo<string> result = argInfo.EndsWith( value );
+
+		ArgInfoAssertions.Equal( argInfo, result );
+	}
+
+	[Fact]
+	public void WithComparisonTypeReturnsCorrectly() {
+
+		ArgInfo<string> argInfo = new( "Value", null, null );
+		string value = "UE";
 		StringComparison comparisonType = StringComparison.OrdinalIgnoreCase;
 
-		ArgInfo<string> result = argInfo.EndsWith( endsWidth, comparisonType );
+		ArgInfo<string> result = argInfo.EndsWith( value, comparisonType );
 
 		ArgInfoAssertions.Equal( argInfo, result );
 	}
@@ -19,10 +30,9 @@ public sealed class EndsWith {
 
 		ArgInfo<string?> argInfo = new( null, null, null );
 
-		string endsWidth = "ue";
-		StringComparison comparisonType = StringComparison.OrdinalIgnoreCase;
+		string value = "ue";
 
-		ArgInfo<string?> result = argInfo.EndsWith( endsWidth, comparisonType );
+		ArgInfo<string?> result = argInfo.EndsWith( value );
 
 		ArgInfoAssertions.Equal( argInfo, result );
 	}
@@ -31,17 +41,16 @@ public sealed class EndsWith {
 	public void WithValueNotEqualToComparisonValueThrowsArgumentException() {
 
 		string name = "Name";
-		string value = "Value";
-		string endsWidth = "Does Not End With";
-		StringComparison comparisonType = StringComparison.OrdinalIgnoreCase;
+		string argumentValue = "Value";
+		string value = "Does Not End With";
 
 
 		ArgumentException exception = Assert.Throws<ArgumentException>( name, () => {
-			ArgInfo<string> argInfo = new( value, name, null );
-			_ = argInfo.EndsWith( endsWidth, comparisonType );
+			ArgInfo<string> argInfo = new( argumentValue, name, null );
+			_ = argInfo.EndsWith( value );
 		} );
 
-		string expectedMessage = $"Value must end with {endsWidth}.";
+		string expectedMessage = $"Value must end with {value}.";
 
 		Assert.StartsWith( expectedMessage, exception.Message );
 	}
@@ -50,14 +59,13 @@ public sealed class EndsWith {
 	public void WithInvalidValueAndMessageThrowsArgumentException() {
 
 		string name = "Name";
-		string value = "Value";
+		string argumentValue = "Value";
 		string message = "Message";
-		string endsWidth = "Does Not End With";
-		StringComparison comparisonType = StringComparison.OrdinalIgnoreCase;
+		string value = "Does Not End With";
 
 		ArgumentException exception = Assert.Throws<ArgumentException>( name, () => {
-			ArgInfo<string> argInfo = new( value, name, message );
-			_ = argInfo.EndsWith( endsWidth, comparisonType );
+			ArgInfo<string> argInfo = new( argumentValue, name, message );
+			_ = argInfo.EndsWith( value );
 		} );
 
 		Assert.StartsWith( message, exception.Message );
