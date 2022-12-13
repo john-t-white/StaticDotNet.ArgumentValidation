@@ -25,9 +25,19 @@ public class IsNotNull_AssignableTo_Type {
 		}
 #endif
 
-		return value.IsAssignableFrom( argumentValue ) ? value : throw new ArgumentException( nameof( value ) );
+		return value.IsAssignableFrom( argumentValue ) ? value : throw new ArgumentException( nameof( argumentValue ) );
 	}
 
 	[Benchmark]
 	public Type ArgumentValidation() => Arg.IsNotNull( argumentValue ).AssignableTo( value ).Value;
+
+	[Benchmark]
+	public Type Ensure_That() {
+		Ensure.That( argumentValue ).IsNotNull();
+		Ensure.ThatType( argumentValue ).IsAssignableToType( value );
+
+#pragma warning disable CS8603 // Possible null reference return.
+		return argumentValue;
+#pragma warning restore CS8603 // Possible null reference return.
+	}
 }
