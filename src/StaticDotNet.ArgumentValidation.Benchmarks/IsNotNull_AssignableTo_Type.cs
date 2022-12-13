@@ -9,7 +9,7 @@ namespace StaticDotNet.ArgumentValidation.Benchmarks;
 [SimpleJob( RuntimeMoniker.Net70 )]
 [SimpleJob( RuntimeMoniker.Net60 )]
 [SimpleJob( RuntimeMoniker.NetCoreApp31 )]
-public class IsNotNull_AssignableTo {
+public class IsNotNull_AssignableTo_Type {
 
 	public Type? argumentValue = typeof( int[] );
 	public Type value = typeof( IList<int> );
