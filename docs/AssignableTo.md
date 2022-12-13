@@ -1,8 +1,8 @@
 # AssignableTo
 
-## System.Type
+Ensures the argument is assignable to the specific type, otherwise an ArgumentException is thrown.
 
-Ensures a System.Type argument is assignable to the specific System.Type, otherwise an ArgumentException is thrown.
+## System.Type
 
 **Example**
 
@@ -27,8 +27,6 @@ Arg.Is( argument ).AssignableTo( value );
 |        Ensure_That | .NET Core 3.1 | .NET Core 3.1 | 47.931 ns | 0.7777 ns | 0.7274 ns |  1.09 |    0.03 |         - |          NA |
 
 ## System.Reflection.TypeInfo
-
-Ensures a System.Reflection.TypeInfo argument is assignable to the specific System.Reflection.TypeInfo, otherwise an ArgumentException is thrown.
 
 **Example**
 

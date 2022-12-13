@@ -1,10 +1,8 @@
 # Between
 
-
+Ensures the argument is between (inclusively) a minValue and maxValue, otherwise an ArgumentOutOfRangeException is thrown.
 
 ## System.IComparable\<T\>
-
-Ensures the argument is between (inclusively) a minValue and maxValue, otherwise an ArgumentOutOfRangeException is thrown.
 
 **Example**
 

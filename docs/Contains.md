@@ -1,19 +1,21 @@
 # Contains
 
-Ensures the argument contains a value, otherwise an ArgumentException is thrown.
+Ensures the argument contains a System.String value, otherwise an ArgumentException is thrown.
+
+## System.String
 
 **Example**
 ``` c#
-Arg.Is( argument ).EqualTo( value );
+Arg.Is( argument ).Contains( value );
 
-Arg.Is( argument ).EqualTo( value, comparer );
+Arg.Is( argument ).Contains( value, comparisonType );
 ```
 
-## String (>= .NET Standard 2.0)
-
-For string arguments, an additional overload allows you to specify the [StringComparision](https://learn.microsoft.com/en-us/dotnet/api/system.stringcomparison) type to use.
+## System.Collections.Generic.IEnumerable\<T\>
 
 **Example**
 ``` c#
-Arg.Is( argument ).EqualTo( value, StringComparision.OrdinalIgnoreCase );
+Arg.Is( argument ).Contains( value );
+
+Arg.Is( argument ).Contains( value, comparer );
 ```
