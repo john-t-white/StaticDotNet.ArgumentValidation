@@ -59,8 +59,8 @@ The library includes the specific attributes and analyzers to ensure it can be t
 While the following are included with the library, you can add extend the library with your own extension methods for more specific cases. All validation checks will return null if the argument is allowed to be null. This allows you to validate arguments if they aren't null, but still allow them to be null.
 
 - [AssignableTo](AssignableTo.md)
-- [Contains](Contains.md)
 - [Between](Between.md)
+- [Contains](Contains.md)
 - [EndsWith](EndsWith.md)
 - [EqualTo](EqualTo.md)
 - [GreaterThan](GreaterThan.md)
