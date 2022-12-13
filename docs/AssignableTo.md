@@ -4,6 +4,10 @@ Ensures the argument is assignable to the specific type, otherwise an ArgumentEx
 
 ## System.Type
 
+**Parameters**
+
+- value : System.Type
+
 **Example**
 
 ``` c#
@@ -27,6 +31,10 @@ Arg.Is( argument ).AssignableTo( value );
 |        Ensure_That | .NET Core 3.1 | .NET Core 3.1 | 47.931 ns | 0.7777 ns | 0.7274 ns |  1.09 |    0.03 |         - |          NA |
 
 ## System.Reflection.TypeInfo
+
+**Parameters**
+
+- value : System.Reflection.TypeInfo
 
 **Example**
 

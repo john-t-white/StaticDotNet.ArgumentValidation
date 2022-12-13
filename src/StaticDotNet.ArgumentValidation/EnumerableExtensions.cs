@@ -89,7 +89,7 @@ public static class EnumerableExtensions {
 	}
 
 	/// <summary>
-	/// Ensures an argument has a length between (inclusively) <paramref name="minLength"/> and <paramref name="maxLength"/>, otherwise an <see cref="ArgumentOutOfRangeException"/> is thrown.
+	/// Ensures an argument has a length inclusively between <paramref name="minLength"/> and <paramref name="maxLength"/>, otherwise an <see cref="ArgumentOutOfRangeException"/> is thrown.
 	/// </summary>
 	/// <typeparam name="T">The argument type.</typeparam>
 	/// <param name="argInfo">The argument info.</param>
