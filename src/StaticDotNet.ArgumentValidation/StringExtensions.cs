@@ -113,8 +113,6 @@ public static class StringExtensions {
 		throw new ArgumentException( message, argInfo.Name );
 	}
 
-#if !NETSTANDARD2_0
-
 	/// <summary>
 	/// Ensures an argument contains <paramref name="value"/>, otherwise an <see cref="ArgumentException"/> is thrown.
 	/// </summary>
@@ -134,8 +132,6 @@ public static class StringExtensions {
 		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, Constants.VALUE_MUST_CONTAIN, value?.ToString() ?? Constants.NULL );
 		throw new ArgumentException( message, argInfo.Name );
 	}
-
-#endif
 
 	/// <summary>
 	/// Ensures an argument is not null and represents a <see cref="Type"/>, otherwise an <see cref="ArgumentNullException"/> or <see cref="ArgumentException"/> is thrown. Due to how nullability annotations work, use

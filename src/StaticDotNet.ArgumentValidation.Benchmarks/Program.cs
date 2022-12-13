@@ -1,27 +1,4 @@
 ﻿using BenchmarkDotNet.Running;
 using StaticDotNet.ArgumentValidation.Benchmarks;
 
-//_ = BenchmarkRunner.Run<IsNotNull_Class>();
-_ = BenchmarkRunner.Run<IsNotNull_Contains_List>();
-//_ = BenchmarkRunner.Run<IsNotNull_Length>();
-//_ = BenchmarkRunner.Run<IsNotNull_NotEmpty_List>();
-//_ = BenchmarkRunner.Run<IsNotNull_NotEmpty_String>();
-//_ = BenchmarkRunner.Run<IsNotNull_NotWhiteSpace>();
-//_ = BenchmarkRunner.Run<IsNotNull_NotWhiteSpace_EqualTo_String>();
-//_ = BenchmarkRunner.Run<IsNotNull_Struct>();
-//_ = BenchmarkRunner.Run<IsNull_Class>();
-//_ = BenchmarkRunner.Run<IsNull_Struct>();
-//_ = BenchmarkRunner.Run<TrueBenchmarks>();
-//_ = BenchmarkRunner.Run<NullableTrueBenchmarks>();
-//_ = BenchmarkRunner.Run<NotNullTrueBenchmarks>();
-//_ = BenchmarkRunner.Run<NotNullOrEmptyArrayBenchmarks>();
-//_ = BenchmarkRunner.Run<NotNullOrEmptyIListBenchmarks>();
-//_ = BenchmarkRunner.Run<NotNullOrEmptyIDictionaryBenchmarks>();
-//_ = BenchmarkRunner.Run<NotNullOrEmptyICollectionBenchmarks>();
-//_ = BenchmarkRunner.Run<EqualToStructBenchmarks>();
-//_ = BenchmarkRunner.Run<NotNullEqualToStructBenchmarks>();
-//_ = BenchmarkRunner.Run<NotNullNotEqualToStructBenchmarks>();
-//_ = BenchmarkRunner.Run<GreaterThanClassBenchmarks>();
-//_ = BenchmarkRunner.Run<GreaterThanStructBenchmarks>();
-//_ = BenchmarkRunner.Run<BetweenStructBenchmarks>();
-//_ = BenchmarkRunner.Run<RegexBenchmarks>();
+_ = BenchmarkRunner.Run<IsNotNull_AssignableTo>();

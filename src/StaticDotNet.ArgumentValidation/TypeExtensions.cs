@@ -21,7 +21,7 @@ public static class TypeExtensions {
 	/// <returns>The <see cref="ArgInfo{T}"/>.</returns>
 	/// <exception cref="ArgumentException">Thrown when <paramref name="argInfo.Value"/> is not assignable to <paramref name="type"/>.</exception>
 
-#if NETSTANDARD2_0_OR_GREATER
+#if NETSTANDARD2_1
 
 	public static ref readonly ArgInfo<T> AssignableTo<T>( in this ArgInfo<T> argInfo, [DisallowNull] T type )
 		where T : Type? {

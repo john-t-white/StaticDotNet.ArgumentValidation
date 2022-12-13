@@ -24,6 +24,19 @@ The library also fully supports trimming so you can only include the code that i
 
 It also uses a readonly ref struct so as much as possible stays on the stack without copying the struct on every call.
 
+All methods have benchmark run against them based on the most common way of writing the guard clause to accomplish the same functionality. The baseline isn't focused on what is fast to execute, but what is generally written. Other guard libraries are included as a comparison if the library supports the same functionality.
+
+All benchmarks were run on the following:
+```
+BenchmarkDotNet=v0.13.2, OS=Windows 11 (10.0.22621.819)
+Intel Core i7-10750H CPU 2.60GHz, 1 CPU, 12 logical and 6 physical cores
+.NET SDK=7.0.100
+  [Host]        : .NET 7.0.0 (7.0.22.51805), X64 RyuJIT AVX2
+  .NET 6.0      : .NET 6.0.11 (6.0.1122.52304), X64 RyuJIT AVX2
+  .NET 7.0      : .NET 7.0.0 (7.0.22.51805), X64 RyuJIT AVX2
+  .NET Core 3.1 : .NET Core 3.1.31 (CoreCLR 4.700.22.51102, CoreFX 4.700.22.51303), X64 RyuJIT AVX2
+```
+
 # Writing guard clauses are ugly
 
 Yes, writing guard clauses are ugly and they take up a lot of space.  We all agree they are important but they take up too many lines of code and are ugly.  Ok, maybe you don't agree, yet, but drink the Kool-Aid and I promise no space ships are involved.
