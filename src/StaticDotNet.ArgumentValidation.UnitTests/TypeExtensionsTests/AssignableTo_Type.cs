@@ -5,7 +5,48 @@ namespace StaticDotNet.ArgumentValidation.UnitTests.TypeExtensionsTests;
 public class AssignableTo_Type {
 
 	[Fact]
-	public void ReturnsCorrectly() {
+	public void WithGenericTypeParamReturnsCorrectly() {
+
+		ArgInfo<Type> argInfo = new( typeof( string ), null, null );
+
+		ArgInfo<Type> result = argInfo.AssignableTo<object>();
+
+		ArgInfoAssertions.Equal( argInfo, result );
+	}
+
+	[Fact]
+	public void WithGenericTypeNotAssignableToThrowsArgumentException() {
+
+		Type argumentValue = typeof( object );
+		string name = "Name";
+
+		ArgumentException exception = Assert.Throws<ArgumentException>( name, () => {
+			ArgInfo<Type> argInfo = new( argumentValue, name, null );
+			_ = argInfo.AssignableTo<string>();
+		} );
+
+		string expectedMessage = $"Value must be assignable to {typeof(string).FullName}.";
+
+		Assert.StartsWith( expectedMessage, exception.Message );
+	}
+
+	[Fact]
+	public void WithGenericTypeNotAssignableToAndMessageThrowsArgumentException() {
+
+		Type argumentValue = typeof( object );
+		string name = "Name";
+		string message = "Message";
+
+		ArgumentException exception = Assert.Throws<ArgumentException>( name, () => {
+			ArgInfo<Type> argInfo = new( argumentValue, name, message );
+			_ = argInfo.AssignableTo<string>();
+		} );
+
+		Assert.StartsWith( message, exception.Message );
+	}
+
+	[Fact]
+	public void WithValueReturnsCorrectly() {
 
 		Type type = typeof( object );
 		ArgInfo<Type> argInfo = new( typeof( string ), null, null );
@@ -33,7 +74,7 @@ public class AssignableTo_Type {
 	}
 
 	[Fact]
-	public void WithNullTypeThrowsArgumentException() {
+	public void WithValueAndNullTypeThrowsArgumentException() {
 
 		Type argumentValue = typeof( object );
 		string name = "Name";
