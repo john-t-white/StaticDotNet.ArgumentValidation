@@ -28,9 +28,11 @@ internal class Constants {
 
 	internal const string VALUE_MUST_BE_LESS_THAN_OR_EQUAL_TO = "Value must be less than or equal to {0}.";
 
+	internal const string VALUE_MUST_BE_INT32 = "Value must be an int32.";
+
 	internal const string VALUE_MUST_BE_NULL = "Value must be null.";
 
-	internal const string VALUE_MUST_BE_VALID_TYPE = "Value must be a valid type.";
+	internal const string VALUE_MUST_BE_TYPE = "Value must be a type.";
 
 	internal const string VALUE_MUST_CONTAIN = "Value must contain {0}.";
 

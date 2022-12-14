@@ -99,4 +99,5 @@ While the following are included with the library, you can add extend the librar
 - [NotEmpty](NotEmpty.md)
 - [NotWhiteSpace](NotWhiteSpace.md)
 - [StartsWith](StartsWith.md)
+- ToInt32
 - [ToType / ToTypeMaybeNull](ToType.md)

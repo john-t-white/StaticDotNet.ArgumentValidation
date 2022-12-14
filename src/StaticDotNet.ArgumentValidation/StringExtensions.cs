@@ -197,11 +197,26 @@ public static class StringExtensions {
 	}
 
 	/// <summary>
+	/// Ensures an argument represents a <see cref="int"/>, otherwise an <see cref="ArgumentException"/> is thrown.
+	/// </summary>
+	/// <param name="argInfo">The argument info.</param>
+	/// <returns>The <see cref="int"/>.</returns>
+	/// <exception cref="ArgumentException">Thrown when <paramref name="argInfo.Value"/> does not represent a <see cref="int"/>.</exception>
+	public static ArgInfo<int> ToInt32( in this ArgInfo<string> argInfo ) {
+		
+		if( int.TryParse( argInfo.Value, out int result ) ) {
+			return new( result, argInfo.Name, argInfo.Message );
+		}
+
+		string message = argInfo.Message ?? Constants.VALUE_MUST_BE_INT32;
+		throw new ArgumentException( message, argInfo.Name );
+	}
+
+	/// <summary>
 	/// Ensures an argument represents a <see cref="Type"/>, otherwise an <see cref="ArgumentException"/> is thrown.
 	/// </summary>
 	/// <param name="argInfo">The argument info.</param>
 	/// <returns>The <see cref="Type"/>.</returns>
-	/// <exception cref="ArgumentNullException">Thrown when <paramref name="argInfo.Value"/> is null.</exception>
 	/// <exception cref="ArgumentException">Thrown when <paramref name="argInfo.Value"/> does not represent a <see cref="Type"/>.</exception>
 	[RequiresUnreferencedCode( "The type might be removed." )]
 	public static ArgInfo<Type> ToType( in this ArgInfo<string> argInfo ) {
@@ -221,13 +236,13 @@ public static class StringExtensions {
 #pragma warning restore CA1031
 		}
 
-		string message = argInfo.Message ?? Constants.VALUE_MUST_BE_VALID_TYPE;
+		string message = argInfo.Message ?? Constants.VALUE_MUST_BE_TYPE;
 
 		if( thrownException is not null ) {
 
 			message += $" {Constants.SEE_INNER_EXCEPTION_FOR_DETAILS}";
 		}
 
-		throw ( argInfo.Value is null ) ? ArgumentNullExceptionFactory.Create( argInfo.Name, message ) : new ArgumentException( message, argInfo.Name, thrownException );
+		throw new ArgumentException( message, argInfo.Name, thrownException );
 	}
 }

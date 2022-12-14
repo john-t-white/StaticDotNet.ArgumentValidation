@@ -1,16 +1,16 @@
 ﻿namespace StaticDotNet.ArgumentValidation.UnitTests.StringExtensionsTests;
 
-public sealed class ToType {
+public sealed class ToInt32 {
 
 	[Fact]
 	public void ReturnsCorrectly() {
 
-		Type expectedType = typeof( string );
-		ArgInfo<string> argInfo = new( expectedType.FullName ?? throw new InvalidOperationException( "Fullname not available."), null, null );
+		int expectedInt32 = 1;
+		ArgInfo<string> argInfo = new( expectedInt32.ToString(), null, null );
 
-		ArgInfo<Type> result = StringExtensions.ToType( argInfo );
+		ArgInfo<int> result = StringExtensions.ToInt32( argInfo );
 
-		Assert.Same( expectedType, result.Value );
+		Assert.Equal( expectedInt32, result.Value );
 	}
 
 	[Fact]
@@ -22,13 +22,12 @@ public sealed class ToType {
 		ArgumentException exception = Assert.Throws<ArgumentException>( name, () => {
 
 			ArgInfo<string> argInfo = new( argumentValue, name, null );
-			_ = StringExtensions.ToType( argInfo );
+			_ = StringExtensions.ToInt32( argInfo );
 		} );
 
-		string expectedMessage = "Value must be a type.";
+		string expectedMessage = "Value must be an int32.";
 
 		Assert.StartsWith( expectedMessage, exception.Message );
-		Assert.NotNull( exception.InnerException );
 	}
 
 	[Fact]
@@ -41,10 +40,9 @@ public sealed class ToType {
 		ArgumentException exception = Assert.Throws<ArgumentException>( name, () => {
 
 			ArgInfo<string> argInfo = new( argumentValue, name, message );
-			_ = StringExtensions.ToType( argInfo );
+			_ = StringExtensions.ToInt32( argInfo );
 		} );
 
 		Assert.StartsWith( message, exception.Message );
-		Assert.NotNull( exception.InnerException );
 	}
 }
