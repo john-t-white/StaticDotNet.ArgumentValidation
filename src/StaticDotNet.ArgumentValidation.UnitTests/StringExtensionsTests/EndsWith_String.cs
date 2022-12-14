@@ -32,7 +32,6 @@ public sealed class EndsWith_String {
 		string name = "Name";
 		string value = "Does Not End With";
 
-
 		ArgumentException exception = Assert.Throws<ArgumentException>( name, () => {
 			ArgInfo<string> argInfo = new( argumentValue, name, null );
 			_ = argInfo.EndsWith( value );

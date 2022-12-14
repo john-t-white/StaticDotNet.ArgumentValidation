@@ -6,6 +6,17 @@ public sealed class StartsWith {
 	public void ReturnsCorrectly() {
 
 		ArgInfo<string> argInfo = new( "Value", null, null );
+		string value = "Va";
+
+		ArgInfo<string> result = argInfo.StartsWith( value );
+
+		ArgInfoAssertions.Equal( argInfo, result );
+	}
+
+	[Fact]
+	public void WithComparisonTypeReturnsCorrectly() {
+
+		ArgInfo<string> argInfo = new( "Value", null, null );
 		string value = "va";
 		StringComparison comparisonType = StringComparison.OrdinalIgnoreCase;
 
@@ -22,10 +33,9 @@ public sealed class StartsWith {
 		string value = "Does Not Start With";
 		StringComparison comparisonType = StringComparison.OrdinalIgnoreCase;
 
-
 		ArgumentException exception = Assert.Throws<ArgumentException>( name, () => {
 			ArgInfo<string> argInfo = new( argumentValue, name, null );
-			_ = argInfo.StartsWith( value, comparisonType );
+			_ = argInfo.StartsWith( value );
 		} );
 
 		string expectedMessage = $"Value must start with {value}.";
@@ -40,11 +50,10 @@ public sealed class StartsWith {
 		string name = "Name";
 		string message = "Message";
 		string value = "Does Not Start With";
-		StringComparison comparisonType = StringComparison.OrdinalIgnoreCase;
 
 		ArgumentException exception = Assert.Throws<ArgumentException>( name, () => {
 			ArgInfo<string> argInfo = new( argumentValue, name, message );
-			_ = argInfo.StartsWith( value, comparisonType );
+			_ = argInfo.StartsWith( value );
 		} );
 
 		Assert.StartsWith( message, exception.Message );
