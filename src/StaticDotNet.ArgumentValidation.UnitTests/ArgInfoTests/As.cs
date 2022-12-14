@@ -23,11 +23,11 @@ public sealed class As {
 	[Fact]
 	public void WithNotAssignableToThrowsArgumentException() {
 
-		object argumentValue = new();
+		int argumentValue = 1;
 		string name = "Name";
 
 		ArgumentException exception = Assert.Throws<ArgumentException>( name, () => {
-			ArgInfo<object> argInfo = new( argumentValue, name, null );
+			ArgInfo<int> argInfo = new( argumentValue, name, null );
 			_ = argInfo.As<string>();
 		} );
 

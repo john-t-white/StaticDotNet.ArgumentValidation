@@ -50,6 +50,8 @@ internal class Constants {
 
 	internal const string VALUE_MUST_MATCH_REGEX = "Value must match the regex {0}.";
 
+	internal const string VALUE_MUST_BE_SAME = "Value must be the same.";
+
 	internal const string VALUE_MUST_START_WITH = "Value must start with {0}.";
 
 	internal const string VALUE_UNEXPECTED_NULL = "Value is unexpectedly null. Please use Arg.IsNotNull.";
