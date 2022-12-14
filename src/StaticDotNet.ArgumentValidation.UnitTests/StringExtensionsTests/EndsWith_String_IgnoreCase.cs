@@ -30,7 +30,7 @@ public sealed class EndsWith_String_IgnoreCase {
 	}
 
 	[Fact]
-	public void WithValueNotEqualToComparisonValueThrowsArgumentException() {
+	public void WithValueNotEqualToValueThrowsArgumentException() {
 
 		string argumentValue = "Value";
 		string name = "Name";

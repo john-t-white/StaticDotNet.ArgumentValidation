@@ -25,7 +25,7 @@ public sealed class ToType {
 			_ = StringExtensions.ToType( argInfo );
 		} );
 
-		string expectedMessage = "Value must not be null and be a valid type.";
+		string expectedMessage = "Value must be a valid type.";
 
 		Assert.StartsWith( expectedMessage, exception.Message );
 	}
@@ -42,7 +42,7 @@ public sealed class ToType {
 			_ = StringExtensions.ToType( argInfo );
 		} );
 
-		string expectedMessage = "Value must not be null and be a valid type.";
+		string expectedMessage = "Value must be a valid type.";
 
 		Assert.StartsWith( expectedMessage, exception.Message );
 		Assert.NotNull( exception.InnerException );

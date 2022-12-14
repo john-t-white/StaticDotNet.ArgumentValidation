@@ -26,7 +26,7 @@ public sealed class EndsWith_String {
 	}
 
 	[Fact]
-	public void WithValueNotEqualToComparisonValueThrowsArgumentException() {
+	public void WithValueNotEqualToValueThrowsArgumentException() {
 
 		string argumentValue = "Value";
 		string name = "Name";

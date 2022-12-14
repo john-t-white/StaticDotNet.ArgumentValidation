@@ -15,7 +15,7 @@ public sealed class EqualTo {
 	}
 
 	[Fact]
-	public void WithValueNotEqualToComparisonValueThrowsArgumentException() {
+	public void WithValueNotEqualToValueThrowsArgumentException() {
 
 		string argumentValue = "Value";
 		string name = "Name";

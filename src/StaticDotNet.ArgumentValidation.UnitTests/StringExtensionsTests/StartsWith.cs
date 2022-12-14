@@ -15,7 +15,7 @@ public sealed class StartsWith {
 	}
 
 	[Fact]
-	public void WithValueNotEqualToComparisonValueThrowsArgumentException() {
+	public void WithValueNotEqualToValueThrowsArgumentException() {
 
 		string argumentValue = "Value";
 		string name = "Name";
