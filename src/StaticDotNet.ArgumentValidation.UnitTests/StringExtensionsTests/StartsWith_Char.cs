@@ -1,26 +1,14 @@
 ﻿namespace StaticDotNet.ArgumentValidation.UnitTests.StringExtensionsTests;
 
-public sealed class StartsWith {
+public sealed class StartsWith_Char {
 
 	[Fact]
 	public void ReturnsCorrectly() {
 
 		ArgInfo<string> argInfo = new( "Value", null, null );
-		string value = "Va";
+		char value = 'V';
 
 		ArgInfo<string> result = argInfo.StartsWith( value );
-
-		ArgInfoAssertions.Equal( argInfo, result );
-	}
-
-	[Fact]
-	public void WithComparisonTypeReturnsCorrectly() {
-
-		ArgInfo<string> argInfo = new( "Value", null, null );
-		string value = "va";
-		StringComparison comparisonType = StringComparison.OrdinalIgnoreCase;
-
-		ArgInfo<string> result = argInfo.StartsWith( value, comparisonType );
 
 		ArgInfoAssertions.Equal( argInfo, result );
 	}
@@ -30,8 +18,7 @@ public sealed class StartsWith {
 
 		string argumentValue = "Value";
 		string name = "Name";
-		string value = "Does Not Start With";
-		StringComparison comparisonType = StringComparison.OrdinalIgnoreCase;
+		char value = 'z';
 
 		ArgumentException exception = Assert.Throws<ArgumentException>( name, () => {
 			ArgInfo<string> argInfo = new( argumentValue, name, null );
@@ -49,7 +36,7 @@ public sealed class StartsWith {
 		string argumentValue = "Value";
 		string name = "Name";
 		string message = "Message";
-		string value = "Does Not Start With";
+		char value = 'z';
 
 		ArgumentException exception = Assert.Throws<ArgumentException>( name, () => {
 			ArgInfo<string> argInfo = new( argumentValue, name, message );
