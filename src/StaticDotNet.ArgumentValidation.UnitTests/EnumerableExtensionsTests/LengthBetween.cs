@@ -6,9 +6,9 @@ public sealed class LengthBetween {
 	[InlineData( "12" )]
 	[InlineData( "123" )]
 	[InlineData( "1234" )]
-	public void ReturnsCorrectly( string value ) {
+	public void ReturnsCorrectly( string argumentValue ) {
 
-		ArgInfo<string> argInfo = new( value, null, null );
+		ArgInfo<string> argInfo = new( argumentValue, null, null );
 		int minLength = 2;
 		int maxLength = 4;
 
@@ -21,9 +21,9 @@ public sealed class LengthBetween {
 	[InlineData( "12" )]
 	[InlineData( "123" )]
 	[InlineData( "1234" )]
-	public void IEnumerableReturnsCorrectly( string value ) {
+	public void IEnumerableReturnsCorrectly( string argumentValue ) {
 
-		EnumerableTestClass enumerableValue = new( value.ToCharArray() );
+		EnumerableTestClass enumerableValue = new( argumentValue.ToCharArray() );
 		ArgInfo<EnumerableTestClass> argInfo = new( enumerableValue, null, null );
 		int minLength = 2;
 		int maxLength = 4;
@@ -33,29 +33,17 @@ public sealed class LengthBetween {
 		ArgInfoAssertions.Equal( argInfo, result );
 	}
 
-	[Fact]
-	public void WithNullValueReturnsCorrectly() {
-
-		ArgInfo<string?> argInfo = new( null, null, null );
-		int minLength = 2;
-		int maxLength = 4;
-
-		ArgInfo<string?> result = argInfo.LengthBetween( minLength, maxLength );
-
-		ArgInfoAssertions.Equal( argInfo, result );
-	}
-
 	[Theory]
 	[InlineData( "1" )]
 	[InlineData( "12345" )]
-	public void WithValueLengthNotBetweenThrowsArgumentOutOfRangeException( string value ) {
+	public void WithValueLengthNotBetweenThrowsArgumentOutOfRangeException( string argumentValue ) {
 
 		string name = "Name";
 		int minLength = 2;
 		int maxLength = 4;
 
 		ArgumentOutOfRangeException exception = Assert.Throws<ArgumentOutOfRangeException>( name, () => {
-			ArgInfo<string> argInfo = new( value, name, null );
+			ArgInfo<string> argInfo = new( argumentValue, name, null );
 			_ = argInfo.LengthBetween( minLength, maxLength );
 		} );
 
@@ -67,14 +55,14 @@ public sealed class LengthBetween {
 	[Fact]
 	public void WithInvalidValueAndMessageThrowsArgumentOutOfRangeException() {
 
-		string value = "1";
+		string argumentValue = "1";
 		string name = "Name";
 		string message = "Message";
 		int minLength = 2;
 		int maxLength = 4;
 
 		ArgumentOutOfRangeException exception = Assert.Throws<ArgumentOutOfRangeException>( name, () => {
-			ArgInfo<string> argInfo = new( value, name, message );
+			ArgInfo<string> argInfo = new( argumentValue, name, message );
 			_ = argInfo.LengthBetween( minLength, maxLength );
 		} );
 

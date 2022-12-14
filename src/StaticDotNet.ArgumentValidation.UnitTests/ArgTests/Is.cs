@@ -1,6 +1,6 @@
 ﻿namespace StaticDotNet.ArgumentValidation.UnitTests.ArgTests;
 
-public sealed class Is_Struct {
+public sealed class Is {
 
 	[Fact]
 	public void ReturnsCorrectly() {
@@ -26,25 +26,5 @@ public sealed class Is_Struct {
 		Assert.Equal( value, result.Value );
 		Assert.Equal( name, result.Name );
 		Assert.Equal( message, result.Message );
-	}
-
-	[Fact]
-	public void WithNullableValueNotNullReturnsCorrectly() {
-
-		int? value = 1;
-
-		ArgInfo<int?> result = Arg.Is( value );
-
-		Assert.Equal( value, result.Value );
-	}
-
-	[Fact]
-	public void WithNullableValueIsNullReturnsCorrectly() {
-
-		int? value = null;
-
-		ArgInfo<int?> result = Arg.Is( value );
-
-		Assert.Null( result.Value );
 	}
 }

@@ -13,23 +13,13 @@ public sealed class NotWhiteSpace {
 	}
 
 	[Fact]
-	public void WithNullValueReturnsCorrectly() {
-
-		ArgInfo<string?> argInfo = new( null, null, null );
-
-		ArgInfo<string?> result = argInfo.NotWhiteSpace();
-
-		ArgInfoAssertions.Equal( argInfo, result );
-	}
-
-	[Fact]
 	public void WithEmptyValueThrowsArgumentException() {
 
+		string argumentValue = string.Empty;
 		string name = "Name";
-		string value = string.Empty;
 
 		ArgumentException exception = Assert.Throws<ArgumentException>( name, () => {
-			ArgInfo<string> argInfo = new( value, name, null );
+			ArgInfo<string> argInfo = new( argumentValue, name, null );
 			_ = argInfo.NotWhiteSpace();
 		} );
 
@@ -41,11 +31,11 @@ public sealed class NotWhiteSpace {
 	[Fact]
 	public void WithWhiteSpaceValueThrowsArgumentException() {
 
+		string argumentValue = " ";
 		string name = "Name";
-		string value = " ";
 
 		ArgumentException exception = Assert.Throws<ArgumentException>( name, () => {
-			ArgInfo<string> argInfo = new( value, name, null );
+			ArgInfo<string> argInfo = new( argumentValue, name, null );
 			_ = argInfo.NotWhiteSpace();
 		} );
 
@@ -57,12 +47,12 @@ public sealed class NotWhiteSpace {
 	[Fact]
 	public void WithInvalidValueAndMessageThrowsArgumentException() {
 
+		string argumentValue = string.Empty;
 		string name = "Name";
-		string value = string.Empty;
 		string message = "Message";
 
 		ArgumentException exception = Assert.Throws<ArgumentException>( name, () => {
-			ArgInfo<string> argInfo = new( value, name, message );
+			ArgInfo<string> argInfo = new( argumentValue, name, message );
 			_ = argInfo.NotWhiteSpace();
 		} );
 

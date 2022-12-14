@@ -7,10 +7,10 @@ public sealed class Matches_Pattern {
 	[Fact]
 	public void ReturnsCorrectly() {
 
-		string value = "1";
+		string argumentValue = "1";
 		string pattern = @"\d";
 
-		ArgInfo<string> argInfo = new( value, "Name", null );
+		ArgInfo<string> argInfo = new( argumentValue, "Name", null );
 
 		ArgInfo<string> result = argInfo.Matches( pattern );
 
@@ -18,27 +18,14 @@ public sealed class Matches_Pattern {
 	}
 
 	[Fact]
-	public void WithNullValueReturnsCorrectly() {
-
-		string? value = null;
-		string pattern = @"/d";
-
-		ArgInfo<string?> argInfo = new( value, null, null );
-
-		ArgInfo<string?> result = argInfo.Matches( pattern );
-
-		ArgInfoAssertions.Equal( argInfo, result );
-	}
-
-	[Fact]
 	public void WithOptionsAndMatchTimeOutReturnsCorrectly() {
 
-		string value = "A";
+		string argumentValue = "A";
 		string pattern = "a";
 		RegexOptions options = RegexOptions.IgnoreCase;
 		var matchTimeout = TimeSpan.FromSeconds( 5 );
 
-		ArgInfo<string> argInfo = new( value, null, null );
+		ArgInfo<string> argInfo = new( argumentValue, null, null );
 
 		ArgInfo<string> result = argInfo.Matches( pattern, options, matchTimeout );
 
@@ -48,12 +35,12 @@ public sealed class Matches_Pattern {
 	[Fact]
 	public void WithValueNotMatchThrowsArgumentException() {
 
-		string value = "a";
+		string argumentValue = "a";
 		string name = "Name";
 		string pattern = @"\d";
 
 		ArgumentException excetion = Assert.Throws<ArgumentException>( name, () => {
-			ArgInfo<string> argInfo = new( value, name, null );
+			ArgInfo<string> argInfo = new( argumentValue, name, null );
 			_ = argInfo.Matches( pattern );
 		} );
 
@@ -65,13 +52,13 @@ public sealed class Matches_Pattern {
 	[Fact]
 	public void WithValueNotMatchAndMessageThrowsArgumentException() {
 
-		string value = "a";
+		string argumentValue = "a";
 		string name = "Name";
 		string message = "Message";
 		string pattern = @"\d";
 
 		ArgumentException excetion = Assert.Throws<ArgumentException>( name, () => {
-			ArgInfo<string> argInfo = new( value, name, message );
+			ArgInfo<string> argInfo = new( argumentValue, name, message );
 			_ = argInfo.Matches( pattern );
 		} );
 
@@ -81,10 +68,10 @@ public sealed class Matches_Pattern {
 	[Fact]
 	public void WithOutMatchReturnsCorrectly() {
 
-		string value = "1";
+		string argumentValue = "1";
 		string pattern = @"\d";
 
-		ArgInfo<string> argInfo = new( value, "Name", null );
+		ArgInfo<string> argInfo = new( argumentValue, "Name", null );
 
 		ArgInfo<string> result = argInfo.Matches( pattern, out Match match );
 
@@ -93,28 +80,14 @@ public sealed class Matches_Pattern {
 	}
 
 	[Fact]
-	public void WithOutMatchWithNullValueReturnsCorrectly() {
-
-		string? value = null;
-		string pattern = @"/d";
-
-		ArgInfo<string?> argInfo = new( value, null, null );
-
-		ArgInfo<string?> result = argInfo.Matches( pattern, out Match match );
-
-		ArgInfoAssertions.Equal( argInfo, result );
-		Assert.Same( Match.Empty, match );
-	}
-
-	[Fact]
 	public void WithOutMatchWithOptionsAndMatchTimeOutReturnsCorrectly() {
 
-		string value = "A";
+		string argumentValue = "A";
 		string pattern = "a";
 		RegexOptions options = RegexOptions.IgnoreCase;
 		var matchTimeout = TimeSpan.FromSeconds( 5 );
 
-		ArgInfo<string> argInfo = new( value, null, null );
+		ArgInfo<string> argInfo = new( argumentValue, null, null );
 
 		ArgInfo<string> result = argInfo.Matches( pattern, out Match _, options, matchTimeout );
 
@@ -124,12 +97,12 @@ public sealed class Matches_Pattern {
 	[Fact]
 	public void WithOutMatchWithValueNotMatchThrowsArgumentException() {
 
-		string value = "a";
+		string argumentValue = "a";
 		string name = "Name";
 		string pattern = @"\d";
 
 		ArgumentException excetion = Assert.Throws<ArgumentException>( name, () => {
-			ArgInfo<string> argInfo = new( value, name, null );
+			ArgInfo<string> argInfo = new( argumentValue, name, null );
 			_ = argInfo.Matches( pattern, out Match _ );
 		} );
 
@@ -141,13 +114,13 @@ public sealed class Matches_Pattern {
 	[Fact]
 	public void WithOutMatchWithValueNotMatchAndMessageThrowsArgumentException() {
 
-		string value = "a";
+		string argumentValue = "a";
 		string name = "Name";
 		string message = "Message";
 		string pattern = @"\d";
 
 		ArgumentException excetion = Assert.Throws<ArgumentException>( name, () => {
-			ArgInfo<string> argInfo = new( value, name, message );
+			ArgInfo<string> argInfo = new( argumentValue, name, message );
 			_ = argInfo.Matches( pattern, out Match _ );
 		} );
 

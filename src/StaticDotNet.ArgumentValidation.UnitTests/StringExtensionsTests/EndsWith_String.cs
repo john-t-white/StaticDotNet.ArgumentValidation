@@ -26,22 +26,10 @@ public sealed class EndsWith_String {
 	}
 
 	[Fact]
-	public void WithNullValueReturnsCorrectly() {
-
-		ArgInfo<string?> argInfo = new( null, null, null );
-
-		string value = "ue";
-
-		ArgInfo<string?> result = argInfo.EndsWith( value );
-
-		ArgInfoAssertions.Equal( argInfo, result );
-	}
-
-	[Fact]
 	public void WithValueNotEqualToComparisonValueThrowsArgumentException() {
 
-		string name = "Name";
 		string argumentValue = "Value";
+		string name = "Name";
 		string value = "Does Not End With";
 
 
@@ -58,8 +46,8 @@ public sealed class EndsWith_String {
 	[Fact]
 	public void WithInvalidValueAndMessageThrowsArgumentException() {
 
-		string name = "Name";
 		string argumentValue = "Value";
+		string name = "Name";
 		string message = "Message";
 		string value = "Does Not End With";
 

@@ -19,9 +19,9 @@ public sealed class MaxLength {
 	[Theory]
 	[InlineData( "1" )]
 	[InlineData( "12" )]
-	public void IEnumerableReturnsCorrectly( string value ) {
+	public void IEnumerableReturnsCorrectly( string argumentValue ) {
 
-		EnumerableTestClass enumerableValue = new( value.ToCharArray() );
+		EnumerableTestClass enumerableValue = new( argumentValue.ToCharArray() );
 		ArgInfo<EnumerableTestClass> argInfo = new( enumerableValue, null, null );
 		int length = 2;
 
@@ -31,26 +31,14 @@ public sealed class MaxLength {
 	}
 
 	[Fact]
-	public void WithNullValueReturnsCorrectly() {
-
-		int length = 2;
-
-		ArgInfo<string?> argInfo = new( null, null, null );
-
-		ArgInfo<string?> result = argInfo.MaxLength( length );
-
-		ArgInfoAssertions.Equal( argInfo, result );
-	}
-
-	[Fact]
 	public void WithValueLengthLargerThanMaxThrowsArgumentOutOfRangeException() {
 
+		string argumentValue = "Value";
 		string name = "123";
-		string value = "Value";
 		int length = 2;
 
 		ArgumentOutOfRangeException exception = Assert.Throws<ArgumentOutOfRangeException>( name, () => {
-			ArgInfo<string> argInfo = new( value, name, null );
+			ArgInfo<string> argInfo = new( argumentValue, name, null );
 			_ = argInfo.MaxLength( length );
 		} );
 
@@ -62,13 +50,13 @@ public sealed class MaxLength {
 	[Fact]
 	public void WithInvalidValueAndMessageThrowsArgumentOutOfRangeException() {
 
+		string argumentValue = "Value";
 		string name = "123";
-		string value = "Value";
 		string message = "Message";
 		int length = 2;
 
 		ArgumentOutOfRangeException exception = Assert.Throws<ArgumentOutOfRangeException>( name, () => {
-			ArgInfo<string> argInfo = new( value, name, message );
+			ArgInfo<string> argInfo = new( argumentValue, name, message );
 			_ = argInfo.MaxLength( length );
 		} );
 

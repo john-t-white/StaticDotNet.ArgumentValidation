@@ -30,23 +30,10 @@ public sealed class EndsWith_String_IgnoreCase {
 	}
 
 	[Fact]
-	public void WithNullValueReturnsCorrectly() {
-
-		ArgInfo<string?> argInfo = new( null, null, null );
-
-		string value = "ue";
-		bool ignoreCase = true;
-
-		ArgInfo<string?> result = argInfo.EndsWith( value, ignoreCase );
-
-		ArgInfoAssertions.Equal( argInfo, result );
-	}
-
-	[Fact]
 	public void WithValueNotEqualToComparisonValueThrowsArgumentException() {
 
-		string name = "Name";
 		string argumentValue = "Value";
+		string name = "Name";
 		string value = "UE";
 		bool ignoreCase = false;
 
@@ -63,8 +50,8 @@ public sealed class EndsWith_String_IgnoreCase {
 	[Fact]
 	public void WithInvalidValueAndMessageThrowsArgumentException() {
 
-		string name = "Name";
 		string argumentValue = "Value";
+		string name = "Name";
 		string message = "Message";
 		string value = "Does Not End With";
 		bool ignoreCase = true;

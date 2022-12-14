@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using System.Globalization;
 
 namespace StaticDotNet.ArgumentValidation;
@@ -21,9 +20,9 @@ public static class EnumerableExtensions {
 	/// <returns>The <see cref="ArgInfo{T}"/>.</returns>
 	/// <exception cref="ArgumentException">Thrown when <paramref name="argInfo.Value"/> is empty.</exception>
 	public static ref readonly ArgInfo<T> NotEmpty<T>( in this ArgInfo<T> argInfo )
-		where T : IEnumerable? {
+		where T : IEnumerable {
 
-		if( argInfo.Value is null || GetLength( argInfo.Value, 1 ) > 0 ) {
+		if( GetLength( argInfo.Value, 1 ) > 0 ) {
 			return ref argInfo;
 		}
 
@@ -40,9 +39,9 @@ public static class EnumerableExtensions {
 	/// <returns>The <see cref="ArgInfo{T}"/>.</returns>
 	/// <exception cref="ArgumentOutOfRangeException">Thrown when the length of <paramref name="argInfo.Value"/> does not equal <paramref name="length"/>.</exception>
 	public static ref readonly ArgInfo<T> Length<T>( in this ArgInfo<T> argInfo, int length )
-		where T : IEnumerable? {
+		where T : IEnumerable {
 
-		if( argInfo.Value is null || GetLength( argInfo.Value, length + 1 ) == length ) {
+		if( GetLength( argInfo.Value, length + 1 ) == length ) {
 			return ref argInfo;
 		}
 
@@ -59,9 +58,9 @@ public static class EnumerableExtensions {
 	/// <returns>The <see cref="ArgInfo{T}"/>.</returns>
 	/// <exception cref="ArgumentOutOfRangeException">Thrown when the length of <paramref name="argInfo.Value"/> is less than <paramref name="length"/>.</exception>
 	public static ref readonly ArgInfo<T> MinLength<T>( in this ArgInfo<T> argInfo, int length )
-		where T : IEnumerable? {
+		where T : IEnumerable {
 
-		if( argInfo.Value is null || GetLength( argInfo.Value, length ) >= length ) {
+		if( GetLength( argInfo.Value, length ) >= length ) {
 			return ref argInfo;
 		}
 
@@ -78,9 +77,9 @@ public static class EnumerableExtensions {
 	/// <returns>The <see cref="ArgInfo{T}"/>.</returns>
 	/// <exception cref="ArgumentOutOfRangeException">Thrown when the length of <paramref name="argInfo.Value"/> greater than <paramref name="length"/>.</exception>
 	public static ref readonly ArgInfo<T> MaxLength<T>( in this ArgInfo<T> argInfo, int length )
-		where T : IEnumerable? {
+		where T : IEnumerable {
 
-		if( argInfo.Value is null || GetLength( argInfo.Value, length + 1 ) <= length ) {
+		if( GetLength( argInfo.Value, length + 1 ) <= length ) {
 			return ref argInfo;
 		}
 
@@ -98,11 +97,7 @@ public static class EnumerableExtensions {
 	/// <returns>The <see cref="ArgInfo{T}"/>.</returns>
 	/// <exception cref="ArgumentOutOfRangeException">Thrown when the length of <paramref name="argInfo.Value"/> is not between <paramref name="minLength"/> and <paramref name="maxLength"/>.</exception>
 	public static ref readonly ArgInfo<T> LengthBetween<T>( in this ArgInfo<T> argInfo, int minLength, int maxLength )
-		where T : IEnumerable? {
-
-		if( argInfo.Value is null ) {
-			return ref argInfo;
-		}
+		where T : IEnumerable {
 
 		int enumerableLength = GetLength( argInfo.Value, maxLength + 1 );
 
@@ -125,11 +120,7 @@ public static class EnumerableExtensions {
 	/// <returns>The <see cref="ArgInfo{T}"/>.</returns>
 	/// <exception cref="ArgumentException">Thrown when <paramref name="argInfo.Value"/> does not contain <paramref name="value"/>.</exception>
 	public static ref readonly ArgInfo<TArg> Contains<TArg, TItem>( in this ArgInfo<TArg> argInfo, TItem value, IEqualityComparer<TItem>? comparer = null )
-		where TArg : IEnumerable<TItem>? {
-
-		if( argInfo.Value is null ) {
-			return ref argInfo;
-		}
+		where TArg : IEnumerable<TItem> {
 
 		// Specifically not calling the overload that accepts a comparer if it is null as it still allocates memory and is twice as slow.
 		if( comparer is null ? argInfo.Value.Contains( value ) : argInfo.Value.Contains( value, comparer ) ) {
@@ -147,7 +138,7 @@ public static class EnumerableExtensions {
 	/// and <paramref name="value"/> should never be null when this is called.
 	/// </remarks>
 	internal static int GetLength<T>( [DisallowNull] T value, int maxEnumeratorIterations )
-		where T : IEnumerable? {
+		where T : IEnumerable {
 
 		int? enumerableLength = value switch {
 			string stringValue => stringValue.Length,

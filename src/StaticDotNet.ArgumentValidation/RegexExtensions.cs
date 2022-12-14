@@ -15,17 +15,15 @@ public static class RegexExtensions {
 	/// <summary>
 	/// Ensures an argument matches the regular expression <paramref name="pattern"/>, otherwise an <see cref="ArgumentOutOfRangeException"/> is thrown.
 	/// </summary>
-	/// <typeparam name="T">The argument type.</typeparam>
 	/// <param name="argInfo">The argument info.</param>
 	/// <param name="pattern">The regular expression pattern.</param>
 	/// <param name="options">The regex options.</param>
 	/// <param name="matchTimeout">The timeout.</param>
 	/// <returns>The <see cref="ArgInfo{T}"/>.</returns>
 	/// <exception cref="ArgumentException">Thrown when <paramref name="argInfo.Value"/> does not match the <paramref name="pattern"/></exception>
-	public static ref readonly ArgInfo<T> Matches<T>( in this ArgInfo<T> argInfo, [StringSyntax( StringSyntaxAttribute.Regex )] string pattern, RegexOptions options = RegexOptions.None, TimeSpan? matchTimeout = null )
-		where T : IEquatable<string>?, IComparable<string>?, IEnumerable<char>? {
+	public static ref readonly ArgInfo<string> Matches( in this ArgInfo<string> argInfo, [StringSyntax( StringSyntaxAttribute.Regex )] string pattern, RegexOptions options = RegexOptions.None, TimeSpan? matchTimeout = null ) {
 
-		if( argInfo.ValueAsString is null || ( pattern is not null && Regex.IsMatch( argInfo.ValueAsString, pattern, options, matchTimeout ?? Regex.InfiniteMatchTimeout ) ) ) {
+		if( pattern is not null && Regex.IsMatch( argInfo.Value, pattern, options, matchTimeout ?? Regex.InfiniteMatchTimeout ) ) {
 			return ref argInfo;
 		}
 
@@ -36,15 +34,13 @@ public static class RegexExtensions {
 	/// <summary>
 	/// Ensures an argument matches the regular expression <paramref name="regex"/>, otherwise an <see cref="ArgumentOutOfRangeException"/> is thrown.
 	/// </summary>
-	/// <typeparam name="T">The argument type.</typeparam>
 	/// <param name="argInfo">The argument info.</param>
 	/// <param name="regex">The regular expression pattern.</param>
 	/// <returns>The <see cref="ArgInfo{T}"/>.</returns>
 	/// <exception cref="ArgumentException">Thrown when <paramref name="argInfo.Value"/> does not match the <paramref name="regex"/></exception>
-	public static ref readonly ArgInfo<T> Matches<T>( in this ArgInfo<T> argInfo, Regex regex )
-		where T : IEquatable<string>?, IComparable<string>?, IEnumerable<char>? {
+	public static ref readonly ArgInfo<string> Matches( in this ArgInfo<string> argInfo, Regex regex ) {
 
-		if( argInfo.ValueAsString is null || ( regex is not null && regex.IsMatch( argInfo.ValueAsString ) ) ) {
+		if( regex is not null && regex.IsMatch( argInfo.Value ) ) {
 			return ref argInfo;
 		}
 
@@ -55,7 +51,6 @@ public static class RegexExtensions {
 	/// <summary>
 	/// Ensures an argument matches the regular expression <paramref name="pattern"/>, otherwise an <see cref="ArgumentOutOfRangeException"/> is thrown.
 	/// </summary>
-	/// <typeparam name="T">The argument type.</typeparam>
 	/// <param name="argInfo">The argument info.</param>
 	/// <param name="pattern">The regular expression pattern.</param>
 	/// <param name="match">The match result.</param>
@@ -63,15 +58,9 @@ public static class RegexExtensions {
 	/// <param name="matchTimeout">The timeout.</param>
 	/// <returns>The <see cref="ArgInfo{T}"/>.</returns>
 	/// <exception cref="ArgumentException">Thrown when <paramref name="argInfo.Value"/> does not match the <paramref name="pattern"/></exception>
-	public static ref readonly ArgInfo<T> Matches<T>( in this ArgInfo<T> argInfo, [StringSyntax( StringSyntaxAttribute.Regex )] string pattern, out Match match, RegexOptions options = RegexOptions.None, TimeSpan? matchTimeout = null )
-		where T : IEquatable<string>?, IComparable<string>?, IEnumerable<char>? {
+	public static ref readonly ArgInfo<string> Matches( in this ArgInfo<string> argInfo, [StringSyntax( StringSyntaxAttribute.Regex )] string pattern, out Match match, RegexOptions options = RegexOptions.None, TimeSpan? matchTimeout = null ) {
 
-		if( argInfo.ValueAsString is null ) {
-			match = Match.Empty;
-			return ref argInfo;
-		}
-
-		match = pattern is not null ? Regex.Match( argInfo.ValueAsString, pattern, options, matchTimeout ?? Regex.InfiniteMatchTimeout ) : Match.Empty;
+		match = pattern is not null ? Regex.Match( argInfo.Value, pattern, options, matchTimeout ?? Regex.InfiniteMatchTimeout ) : Match.Empty;
 		if( match.Success ) {
 			return ref argInfo;
 		}
@@ -83,21 +72,14 @@ public static class RegexExtensions {
 	/// <summary>
 	/// Ensures an argument matches the regular expression <paramref name="regex"/>, otherwise an <see cref="ArgumentOutOfRangeException"/> is thrown.
 	/// </summary>
-	/// <typeparam name="T">The argument type.</typeparam>
 	/// <param name="argInfo">The argument info.</param>
 	/// <param name="regex">The regular expression pattern.</param>
 	/// <param name="match">The match result.</param>
 	/// <returns>The <see cref="ArgInfo{T}"/>.</returns>
 	/// <exception cref="ArgumentException">Thrown when <paramref name="argInfo.Value"/> does not match the <paramref name="regex"/></exception>
-	public static ref readonly ArgInfo<T> Matches<T>( in this ArgInfo<T> argInfo, Regex regex, out Match match )
-		where T : IEquatable<string>?, IComparable<string>?, IEnumerable<char>? {
+	public static ref readonly ArgInfo<string> Matches( in this ArgInfo<string> argInfo, Regex regex, out Match match ) {
 
-		if( argInfo.ValueAsString is null ) {
-			match = Match.Empty;
-			return ref argInfo;
-		}
-
-		match = regex is not null ? regex.Match( argInfo.ValueAsString ) : Match.Empty;
+		match = regex is not null ? regex.Match( argInfo.Value ) : Match.Empty;
 		if( match.Success ) {
 			return ref argInfo;
 		}

@@ -16,8 +16,8 @@ public sealed class Length {
 	[Fact]
 	public void IEnumerableReturnsCorrectly() {
 
-		EnumerableTestClass value = new( "123".ToCharArray() );
-		ArgInfo<EnumerableTestClass> argInfo = new( value, null, null );
+		EnumerableTestClass argumentValue = new( "123".ToCharArray() );
+		ArgInfo<EnumerableTestClass> argInfo = new( argumentValue, null, null );
 		int length = 3;
 
 		ArgInfo<EnumerableTestClass> result = argInfo.Length( length );
@@ -26,25 +26,14 @@ public sealed class Length {
 	}
 
 	[Fact]
-	public void WithNullValueReturnsCorrectly() {
-
-		ArgInfo<string?> argInfo = new( null, null, null );
-		int length = 3;
-
-		ArgInfo<string?> result = argInfo.Length( length );
-
-		ArgInfoAssertions.Equal( argInfo, result );
-	}
-
-	[Fact]
 	public void WithValueLengthNotEqualToThrowsArgumentOutOfRangeException() {
 
-		string value = "12";
+		string argumentValue = "12";
 		string name = "Name";
 		int length = 3;
 
 		ArgumentOutOfRangeException exception = Assert.Throws<ArgumentOutOfRangeException>( name, () => {
-			ArgInfo<string> argInfo = new( value, name, null );
+			ArgInfo<string> argInfo = new( argumentValue, name, null );
 			_ = argInfo.Length( length );
 		} );
 
@@ -56,13 +45,13 @@ public sealed class Length {
 	[Fact]
 	public void WithInvalidValueAndMessageThrowsArgumentOutOfRangeException() {
 
-		string value = "12";
+		string argumentValue = "12";
 		string name = "Name";
 		string message = "Message";
 		int length = 3;
 
 		ArgumentOutOfRangeException exception = Assert.Throws<ArgumentOutOfRangeException>( name, () => {
-			ArgInfo<string> argInfo = new( value, name, message );
+			ArgInfo<string> argInfo = new( argumentValue, name, message );
 			_ = argInfo.Length( length );
 		} );
 

@@ -6,23 +6,10 @@ public sealed class StartsWith {
 	public void ReturnsCorrectly() {
 
 		ArgInfo<string> argInfo = new( "Value", null, null );
-		string startsWith = "va";
+		string value = "va";
 		StringComparison comparisonType = StringComparison.OrdinalIgnoreCase;
 
-		ArgInfo<string> result = argInfo.StartsWith( startsWith, comparisonType );
-
-		ArgInfoAssertions.Equal( argInfo, result );
-	}
-
-	[Fact]
-	public void WithNullValueReturnsCorrectly() {
-
-		ArgInfo<string?> argInfo = new( null, null, null );
-
-		string startsWith = "va";
-		StringComparison comparisonType = StringComparison.OrdinalIgnoreCase;
-
-		ArgInfo<string?> result = argInfo.StartsWith( startsWith, comparisonType );
+		ArgInfo<string> result = argInfo.StartsWith( value, comparisonType );
 
 		ArgInfoAssertions.Equal( argInfo, result );
 	}
@@ -30,18 +17,18 @@ public sealed class StartsWith {
 	[Fact]
 	public void WithValueNotEqualToComparisonValueThrowsArgumentException() {
 
+		string argumentValue = "Value";
 		string name = "Name";
-		string value = "Value";
-		string startsWith = "Does Not Start With";
+		string value = "Does Not Start With";
 		StringComparison comparisonType = StringComparison.OrdinalIgnoreCase;
 
 
 		ArgumentException exception = Assert.Throws<ArgumentException>( name, () => {
-			ArgInfo<string> argInfo = new( value, name, null );
-			_ = argInfo.StartsWith( startsWith, comparisonType );
+			ArgInfo<string> argInfo = new( argumentValue, name, null );
+			_ = argInfo.StartsWith( value, comparisonType );
 		} );
 
-		string expectedMessage = $"Value must start with {startsWith}.";
+		string expectedMessage = $"Value must start with {value}.";
 
 		Assert.StartsWith( expectedMessage, exception.Message );
 	}
@@ -49,15 +36,15 @@ public sealed class StartsWith {
 	[Fact]
 	public void WithInvalidValueAndMessageThrowsArgumentException() {
 
+		string argumentValue = "Value";
 		string name = "Name";
-		string value = "Value";
 		string message = "Message";
-		string startsWith = "Does Not Start With";
+		string value = "Does Not Start With";
 		StringComparison comparisonType = StringComparison.OrdinalIgnoreCase;
 
 		ArgumentException exception = Assert.Throws<ArgumentException>( name, () => {
-			ArgInfo<string> argInfo = new( value, name, message );
-			_ = argInfo.StartsWith( startsWith, comparisonType );
+			ArgInfo<string> argInfo = new( argumentValue, name, message );
+			_ = argInfo.StartsWith( value, comparisonType );
 		} );
 
 		Assert.StartsWith( message, exception.Message );

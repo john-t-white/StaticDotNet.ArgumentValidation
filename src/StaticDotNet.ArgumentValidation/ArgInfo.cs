@@ -7,7 +7,8 @@ namespace StaticDotNet.ArgumentValidation;
 /// </summary>
 /// <typeparam name="T">The type of <see cref="Value"/>.</typeparam>
 [StructLayout( LayoutKind.Auto )]
-public readonly ref struct ArgInfo<T> {
+public readonly ref struct ArgInfo<T>
+	where T : notnull {
 
 	/// <summary>
 	/// Instantiates an instance of <see cref="ArgInfo{T}"/>.
@@ -20,18 +21,12 @@ public readonly ref struct ArgInfo<T> {
 		Value = value;
 		Name = name;
 		Message = message;
-		ValueAsString = value as string;
 	}
 
 	/// <summary>
 	/// Returns the value of the argument.
 	/// </summary>
 	public readonly T Value { get; }
-
-	/// <summary>
-	/// Provides direct access to the <typeparamref name="T"/> if it is a string to avoid casting/converting, otherwise null.
-	/// </summary>
-	public readonly string? ValueAsString { get; }
 
 	/// <summary>
 	/// Returns the name of the argument.

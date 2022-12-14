@@ -16,6 +16,7 @@ public static class Arg {
 	/// <exception cref="ArgumentNullException">Thrown when <paramref name="value"/> is null.</exception>
 	[return: NotNull]
 	public static ArgInfo<T> IsNotNull<T>( [NotNull] T? value, [CallerArgumentExpression( nameof( value ) )] string? name = null, string? message = null )
+		where T : notnull
 		=> value is not null
 			? new( value, name, message )
 			: throw ArgumentNullExceptionFactory.Create( name, message );
@@ -36,7 +37,7 @@ public static class Arg {
 			: throw ArgumentNullExceptionFactory.Create( name, message );
 
 	/// <summary>
-	/// Does not validate if parameter is null or not.
+	/// Used for structs since they cannot be null.
 	/// </summary>
 	/// <typeparam name="T">The type of <paramref name="value"/>.</typeparam>
 	/// <param name="value">The value of the argument.</param>
@@ -44,6 +45,7 @@ public static class Arg {
 	/// <param name="message">The exception message.  Null for for default message.</param>
 	/// <returns>A <see cref="ArgInfo{T}"/>.</returns>
 	public static ArgInfo<T> Is<T>( T value, [CallerArgumentExpression( nameof( value ) )] string? name = null, string? message = null )
+		where T : struct
 		=> new( value, name, message );
 
 	/// <summary>

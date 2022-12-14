@@ -17,10 +17,10 @@ public sealed partial class Matches_Regex {
 	[Fact]
 	public void ReturnsCorrectly() {
 
-		string value = "1";
+		string argumentValue = "1";
 		Regex regex = DigitRegex();
 
-		ArgInfo<string> argInfo = new( value, "Name", null );
+		ArgInfo<string> argInfo = new( argumentValue, "Name", null );
 
 		ArgInfo<string> result = argInfo.Matches( regex );
 
@@ -28,27 +28,14 @@ public sealed partial class Matches_Regex {
 	}
 
 	[Fact]
-	public void WithNullValueReturnsCorrectly() {
-
-		string? value = null;
-		Regex regex = DigitRegex();
-
-		ArgInfo<string?> argInfo = new( value, null, null );
-
-		ArgInfo<string?> result = argInfo.Matches( regex );
-
-		ArgInfoAssertions.Equal( argInfo, result );
-	}
-
-	[Fact]
 	public void WithValueNotMatchThrowsArgumentException() {
 
-		string value = "a";
+		string argumentValue = "a";
 		string name = "Name";
 		Regex regex = DigitRegex();
 
 		ArgumentException excetion = Assert.Throws<ArgumentException>( name, () => {
-			ArgInfo<string> argInfo = new( value, name, null );
+			ArgInfo<string> argInfo = new( argumentValue, name, null );
 			_ = argInfo.Matches( DigitRegex() );
 		} );
 
@@ -60,13 +47,13 @@ public sealed partial class Matches_Regex {
 	[Fact]
 	public void WithValueNotMatchAndMessageThrowsArgumentException() {
 
-		string value = "a";
+		string argumentValue = "a";
 		string name = "Name";
 		string message = "Message";
 		Regex regex = DigitRegex();
 
 		ArgumentException excetion = Assert.Throws<ArgumentException>( name, () => {
-			ArgInfo<string> argInfo = new( value, name, message );
+			ArgInfo<string> argInfo = new( argumentValue, name, message );
 			_ = argInfo.Matches( regex );
 		} );
 
@@ -76,10 +63,10 @@ public sealed partial class Matches_Regex {
 	[Fact]
 	public void WithOutMatchReturnsCorrectly() {
 
-		string value = "1";
+		string argumentValue = "1";
 		Regex regex = DigitRegex();
 
-		ArgInfo<string> argInfo = new( value, "Name", null );
+		ArgInfo<string> argInfo = new( argumentValue, "Name", null );
 
 		ArgInfo<string> result = argInfo.Matches( regex, out Match match );
 
@@ -88,28 +75,14 @@ public sealed partial class Matches_Regex {
 	}
 
 	[Fact]
-	public void WithOutMatchWithNullValueReturnsCorrectly() {
-
-		string? value = null;
-		Regex regex = DigitRegex();
-
-		ArgInfo<string?> argInfo = new( value, null, null );
-
-		ArgInfo<string?> result = argInfo.Matches( regex, out Match match );
-
-		ArgInfoAssertions.Equal( argInfo, result );
-		Assert.Same( Match.Empty, match );
-	}
-
-	[Fact]
 	public void WithOutMatchWithValueNotMatchThrowsArgumentException() {
 
-		string value = "a";
+		string argumentValue = "a";
 		string name = "Name";
 		Regex regex = DigitRegex();
 
 		ArgumentException excetion = Assert.Throws<ArgumentException>( name, () => {
-			ArgInfo<string> argInfo = new( value, name, null );
+			ArgInfo<string> argInfo = new( argumentValue, name, null );
 			_ = argInfo.Matches( regex, out Match _ );
 		} );
 
@@ -121,13 +94,13 @@ public sealed partial class Matches_Regex {
 	[Fact]
 	public void WithOutMatchWithValueNotMatchAndMessageThrowsArgumentException() {
 
-		string value = "a";
+		string argumentValue = "a";
 		string name = "Name";
 		string message = "Message";
 		Regex regex = DigitRegex();
 
 		ArgumentException excetion = Assert.Throws<ArgumentException>( name, () => {
-			ArgInfo<string> argInfo = new( value, name, message );
+			ArgInfo<string> argInfo = new( argumentValue, name, message );
 			_ = argInfo.Matches( regex, out Match _ );
 		} );
 

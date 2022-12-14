@@ -14,22 +14,10 @@ public sealed class EndsWith_Char {
 	}
 
 	[Fact]
-	public void WithNullValueReturnsCorrectly() {
-
-		ArgInfo<string?> argInfo = new( null, null, null );
-
-		char value = 'e';
-
-		ArgInfo<string?> result = argInfo.EndsWith( value );
-
-		ArgInfoAssertions.Equal( argInfo, result );
-	}
-
-	[Fact]
 	public void WithValueNotEqualToComparisonValueThrowsArgumentException() {
 
-		string name = "Name";
 		string argumentValue = "Value";
+		string name = "Name";
 		char value = 'm';
 
 		ArgumentException exception = Assert.Throws<ArgumentException>( name, () => {
@@ -45,8 +33,8 @@ public sealed class EndsWith_Char {
 	[Fact]
 	public void WithInvalidValueAndMessageThrowsArgumentException() {
 
-		string name = "Name";
 		string argumentValue = "Value";
+		string name = "Name";
 		string message = "Message";
 		char value = 'm';
 
