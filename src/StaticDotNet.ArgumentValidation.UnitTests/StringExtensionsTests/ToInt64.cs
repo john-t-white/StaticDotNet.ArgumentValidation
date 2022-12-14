@@ -1,14 +1,14 @@
 ﻿namespace StaticDotNet.ArgumentValidation.UnitTests.StringExtensionsTests;
 
-public sealed class ToByte {
+public sealed class ToInt64 {
 
 	[Fact]
 	public void ReturnsCorrectly() {
 
-		byte expectedResult = 1;
+		long expectedResult = 1;
 		ArgInfo<string> argInfo = new( expectedResult.ToString(), null, null );
 
-		ArgInfo<byte> result = StringExtensions.ToByte( argInfo );
+		ArgInfo<long> result = StringExtensions.ToInt64( argInfo );
 
 		Assert.Equal( expectedResult, result.Value );
 	}
@@ -22,10 +22,10 @@ public sealed class ToByte {
 		ArgumentException exception = Assert.Throws<ArgumentException>( name, () => {
 
 			ArgInfo<string> argInfo = new( argumentValue, name, null );
-			_ = StringExtensions.ToByte( argInfo );
+			_ = StringExtensions.ToInt64( argInfo );
 		} );
 
-		string expectedMessage = "Value must be a byte.";
+		string expectedMessage = "Value must be an int64.";
 
 		Assert.StartsWith( expectedMessage, exception.Message );
 	}
@@ -40,7 +40,7 @@ public sealed class ToByte {
 		ArgumentException exception = Assert.Throws<ArgumentException>( name, () => {
 
 			ArgInfo<string> argInfo = new( argumentValue, name, message );
-			_ = StringExtensions.ToByte( argInfo );
+			_ = StringExtensions.ToInt64( argInfo );
 		} );
 
 		Assert.StartsWith( message, exception.Message );

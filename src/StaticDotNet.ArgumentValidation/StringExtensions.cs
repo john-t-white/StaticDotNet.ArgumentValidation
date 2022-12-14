@@ -5,10 +5,6 @@ namespace StaticDotNet.ArgumentValidation;
 /// <summary>
 /// Extension methods for validating <see cref="string"/> arguments.
 /// </summary>
-/// <remarks>
-/// Since <see cref="string"/> can't be used as a generic constraint <see cref="IEquatable{String}"/>, <see cref="IComparable{String}"/>
-/// and <see cref="IEnumerable{Char}"/> are used instead. Generic constraints are specifically used to ensure nullability is passed on.
-/// </remarks>
 public static class StringExtensions {
 
 	/// <summary>
@@ -202,7 +198,7 @@ public static class StringExtensions {
 	/// <param name="argInfo">The argument info.</param>
 	/// <returns>The <see cref="int"/>.</returns>
 	/// <exception cref="ArgumentException">Thrown when <paramref name="argInfo.Value"/> does not represent a <see cref="byte"/>.</exception>
-	public static ArgInfo<short> ToByte( in this ArgInfo<string> argInfo ) {
+	public static ArgInfo<byte> ToByte( in this ArgInfo<string> argInfo ) {
 
 		if( byte.TryParse( argInfo.Value, out byte result ) ) {
 			return new( result, argInfo.Name, argInfo.Message );
@@ -241,6 +237,22 @@ public static class StringExtensions {
 		}
 
 		string message = argInfo.Message ?? Constants.VALUE_MUST_BE_INT32;
+		throw new ArgumentException( message, argInfo.Name );
+	}
+
+	/// <summary>
+	/// Ensures an argument represents a <see cref="long"/>, otherwise an <see cref="ArgumentException"/> is thrown.
+	/// </summary>
+	/// <param name="argInfo">The argument info.</param>
+	/// <returns>The <see cref="int"/>.</returns>
+	/// <exception cref="ArgumentException">Thrown when <paramref name="argInfo.Value"/> does not represent a <see cref="long"/>.</exception>
+	public static ArgInfo<long> ToInt64( in this ArgInfo<string> argInfo ) {
+
+		if( long.TryParse( argInfo.Value, out long result ) ) {
+			return new( result, argInfo.Name, argInfo.Message );
+		}
+
+		string message = argInfo.Message ?? Constants.VALUE_MUST_BE_INT64;
 		throw new ArgumentException( message, argInfo.Name );
 	}
 
