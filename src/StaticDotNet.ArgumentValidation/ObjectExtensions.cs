@@ -16,10 +16,10 @@ public static class ObjectExtensions {
 	/// <param name="comparer">The comparer.</param>
 	/// <returns>The <see cref="ArgInfo{T}"/>.</returns>
 	/// <exception cref="ArgumentException">Thrown when <paramref name="argInfo.Value"/> does not equal <paramref name="value"/>.</exception>
-	public static ref readonly ArgInfo<T> EqualTo<T>( in this ArgInfo<T> argInfo, [DisallowNull] T value, IEqualityComparer<T>? comparer = null )
+	public static ref readonly ArgInfo<T> EqualTo<T>( in this ArgInfo<T> argInfo, T value, IEqualityComparer<T>? comparer = null )
 		where T : notnull {
 
-		if( value is not null && ( comparer ?? EqualityComparer<T>.Default ).Equals( argInfo.Value, value ) ) {
+		if( ( comparer ?? EqualityComparer<T>.Default ).Equals( argInfo.Value, value ) ) {
 			return ref argInfo;
 		}
 
