@@ -12,6 +12,13 @@ namespace StaticDotNet.ArgumentValidation;
 /// </remarks>
 public static class TypeExtensions {
 
+	/// <summary>
+	/// Ensures an argument is assignable to <typeparamref name="T"/>, otherwise an <see cref="ArgumentException"/> is thrown.
+	/// </summary>
+	/// <typeparam name="T">The type it should be assignable to.</typeparam>
+	/// <param name="argInfo">The argument info.</param>
+	/// <returns>The <see cref="ArgInfo{T}"/>.</returns>
+	/// <exception cref="ArgumentException">Thrown when <paramref name="argInfo.Value"/> is not assignable to <typeparamref name="T"/>.</exception>
 	public static ref readonly ArgInfo<Type> AssignableTo<T>( in this ArgInfo<Type> argInfo )
 		=> ref TypeExtensions.AssignableTo( in argInfo, typeof( T ) );
 
@@ -25,20 +32,21 @@ public static class TypeExtensions {
 
 	public static ref readonly ArgInfo<Type> AssignableTo( in this ArgInfo<Type> argInfo, Type type ) {
 
-#if NETSTANDARD2_0_OR_GREATER
-		if( type is not null && type.GetTypeInfo().IsAssignableFrom( argInfo.Value.GetTypeInfo() ) ) {
-			return ref argInfo;
-		}
-#else
 		if( type is not null && argInfo.Value.GetTypeInfo().IsAssignableTo( type.GetTypeInfo() ) ) {
 			return ref argInfo;
 		}
-#endif
 
 		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, Constants.VALUE_MUST_BE_ASSIGNABLE_TO, type?.FullName ?? Constants.NULL );
 		throw new ArgumentException( message, argInfo.Name );
 	}
 
+	/// <summary>
+	/// Ensures an argument is assignable to <typeparamref name="T"/>, otherwise an <see cref="ArgumentException"/> is thrown.
+	/// </summary>
+	/// <typeparam name="T">The type it should be assignable to.</typeparam>
+	/// <param name="argInfo">The argument info.</param>
+	/// <returns>The <see cref="ArgInfo{T}"/>.</returns>
+	/// <exception cref="ArgumentException">Thrown when <paramref name="argInfo.Value"/> is not assignable to <typeparamref name="T"/>.</exception>
 	public static ref readonly ArgInfo<TypeInfo> AssignableTo<T>( in this ArgInfo<TypeInfo> argInfo )
 		=> ref TypeExtensions.AssignableTo( in argInfo, typeof( T ) );
 
@@ -51,15 +59,9 @@ public static class TypeExtensions {
 	/// <exception cref="ArgumentException">Thrown when <paramref name="argInfo.Value"/> is not assignable to <paramref name="type"/>.</exception>
 	public static ref readonly ArgInfo<TypeInfo> AssignableTo( in this ArgInfo<TypeInfo> argInfo, [DisallowNull] Type type ) {
 
-#if NETSTANDARD2_0_OR_GREATER
-		if( type is not null && type.IsAssignableFrom( argInfo.Value.GetTypeInfo() ) ) {
-			return ref argInfo;
-		}
-#else
 		if( type is not null && argInfo.Value.IsAssignableTo( type.GetTypeInfo() ) ) {
 			return ref argInfo;
 		}
-#endif
 
 		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, Constants.VALUE_MUST_BE_ASSIGNABLE_TO, type?.FullName ?? Constants.NULL );
 		throw new ArgumentException( message, argInfo.Name );
