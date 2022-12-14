@@ -197,6 +197,38 @@ public static class StringExtensions {
 	}
 
 	/// <summary>
+	/// Ensures an argument represents a <see cref="byte"/>, otherwise an <see cref="ArgumentException"/> is thrown.
+	/// </summary>
+	/// <param name="argInfo">The argument info.</param>
+	/// <returns>The <see cref="int"/>.</returns>
+	/// <exception cref="ArgumentException">Thrown when <paramref name="argInfo.Value"/> does not represent a <see cref="byte"/>.</exception>
+	public static ArgInfo<short> ToByte( in this ArgInfo<string> argInfo ) {
+
+		if( byte.TryParse( argInfo.Value, out byte result ) ) {
+			return new( result, argInfo.Name, argInfo.Message );
+		}
+
+		string message = argInfo.Message ?? Constants.VALUE_MUST_BE_BYTE;
+		throw new ArgumentException( message, argInfo.Name );
+	}
+
+	/// <summary>
+	/// Ensures an argument represents a <see cref="short"/>, otherwise an <see cref="ArgumentException"/> is thrown.
+	/// </summary>
+	/// <param name="argInfo">The argument info.</param>
+	/// <returns>The <see cref="int"/>.</returns>
+	/// <exception cref="ArgumentException">Thrown when <paramref name="argInfo.Value"/> does not represent a <see cref="short"/>.</exception>
+	public static ArgInfo<short> ToInt16( in this ArgInfo<string> argInfo ) {
+
+		if( short.TryParse( argInfo.Value, out short result ) ) {
+			return new( result, argInfo.Name, argInfo.Message );
+		}
+
+		string message = argInfo.Message ?? Constants.VALUE_MUST_BE_INT16;
+		throw new ArgumentException( message, argInfo.Name );
+	}
+
+	/// <summary>
 	/// Ensures an argument represents a <see cref="int"/>, otherwise an <see cref="ArgumentException"/> is thrown.
 	/// </summary>
 	/// <param name="argInfo">The argument info.</param>

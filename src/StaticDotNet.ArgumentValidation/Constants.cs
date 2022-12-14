@@ -18,17 +18,21 @@ internal class Constants {
 
 	internal const string VALUE_MUST_BE_BETWEEN = "Value must be between {0} and {1}.";
 
+	internal const string VALUE_MUST_BE_BYTE = "Value must be a byte.";
+
 	internal const string VALUE_MUST_BE_EQUAL_TO = "Value must be equal to {0}.";
 
 	internal const string VALUE_MUST_BE_GREATER_THAN = "Value must be greater than {0}.";
 
 	internal const string VALUE_MUST_BE_GREATER_THAN_OR_EQUAL_TO = "Value must be greater than or equal to {0}.";
 
+	internal const string VALUE_MUST_BE_INT16 = "Value must be an int16.";
+
+	internal const string VALUE_MUST_BE_INT32 = "Value must be an int32.";
+
 	internal const string VALUE_MUST_BE_LESS_THAN = "Value must be less than {0}.";
 
 	internal const string VALUE_MUST_BE_LESS_THAN_OR_EQUAL_TO = "Value must be less than or equal to {0}.";
-
-	internal const string VALUE_MUST_BE_INT32 = "Value must be an int32.";
 
 	internal const string VALUE_MUST_BE_NULL = "Value must be null.";
 
