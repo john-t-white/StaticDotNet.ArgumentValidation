@@ -120,7 +120,7 @@ public static class EnumerableExtensions {
 	/// <returns>The <see cref="ArgInfo{T}"/>.</returns>
 	/// <exception cref="ArgumentException">Thrown when <paramref name="argInfo.Value"/> does not contain <paramref name="value"/>.</exception>
 	public static ref readonly ArgInfo<TArg> Contains<TArg, TItem>( in this ArgInfo<TArg> argInfo, TItem value, IEqualityComparer<TItem>? comparer = null )
-		where TArg : IEnumerable<TItem> {
+		where TArg : IEnumerable, IEnumerable<TItem> {
 
 		// Specifically not calling the overload that accepts a comparer if it is null as it still allocates memory and is twice as slow.
 		if( comparer is null ? argInfo.Value.Contains( value ) : argInfo.Value.Contains( value, comparer ) ) {
