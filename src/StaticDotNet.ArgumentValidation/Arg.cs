@@ -45,8 +45,8 @@ public static class Arg {
 	/// <param name="message">The exception message.  Null for for default message.</param>
 	/// <returns>A <see cref="ArgInfo{T}"/>.</returns>
 	public static ArgInfo<T> Is<T>( T value, [CallerArgumentExpression( nameof( value ) )] string? name = null, string? message = null )
-		where T : struct
-		=> new( value, name, message );
+		where T : notnull
+		=> value is not null ? new( value, name, message ) : throw new ArgumentNullException( name, Constants.VALUE_UNEXPECTED_NULL );
 
 	/// <summary>
 	/// Ensures the argument is null.

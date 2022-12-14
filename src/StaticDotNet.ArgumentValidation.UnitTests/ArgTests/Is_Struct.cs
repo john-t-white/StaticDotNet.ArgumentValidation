@@ -1,6 +1,6 @@
 ﻿namespace StaticDotNet.ArgumentValidation.UnitTests.ArgTests;
 
-public sealed class Is {
+public sealed class Is_Struct {
 
 	[Fact]
 	public void ReturnsCorrectly() {
