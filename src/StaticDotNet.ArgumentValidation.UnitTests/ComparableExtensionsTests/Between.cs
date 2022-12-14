@@ -1,33 +1,19 @@
 ﻿namespace StaticDotNet.ArgumentValidation.UnitTests.ComparableExtensionsTests;
 
-public sealed class Between_Struct {
+public sealed class Between {
 
 	[Theory]
 	[InlineData( 2 )]
 	[InlineData( 3 )]
 	[InlineData( 4 )]
-	public void ReturnsCorrectly( int value ) {
+	public void ReturnsCorrectly( int argumentValue ) {
 
 		int minValue = 2;
 		int maxValue = 4;
 
-		ArgInfo<int> argInfo = new( value, null, null );
+		ArgInfo<int> argInfo = new( argumentValue, null, null );
 
 		ArgInfo<int> result = argInfo.Between( minValue, maxValue );
-
-		ArgInfoAssertions.Equal( argInfo, result );
-	}
-
-	[Fact]
-	public void WithNullValueReturnsCorrectly() {
-
-		int? value = null;
-		int minValue = 2;
-		int maxValue = 4;
-
-		ArgInfo<int?> argInfo = new( value, null, null );
-
-		ArgInfo<int?> result = argInfo.Between( minValue, maxValue );
 
 		ArgInfoAssertions.Equal( argInfo, result );
 	}
@@ -35,14 +21,14 @@ public sealed class Between_Struct {
 	[Theory]
 	[InlineData( 1 )]
 	[InlineData( 5 )]
-	public void WithValueNotBetweenThrowsArgumentOutOfRangeException( int value ) {
+	public void WithValueNotBetweenThrowsArgumentOutOfRangeException( int argumentValue ) {
 
 		string name = "Name";
 		int minValue = 2;
 		int maxValue = 4;
 
 		ArgumentOutOfRangeException exception = Assert.Throws<ArgumentOutOfRangeException>( name, () => {
-			ArgInfo<int> argInfo = new( value, name, null );
+			ArgInfo<int> argInfo = new( argumentValue, name, null );
 			_ = argInfo.Between( minValue, maxValue );
 		} );
 
@@ -54,14 +40,14 @@ public sealed class Between_Struct {
 	[Fact]
 	public void WithValueNotBetweenAndMessageThrowsArgumentOutOfRangeException() {
 
-		int value = 1;
+		int argumentValue = 1;
 		string name = "Name";
 		string message = "Message";
 		int minValue = 2;
 		int maxValue = 4;
 
 		ArgumentOutOfRangeException exception = Assert.Throws<ArgumentOutOfRangeException>( name, () => {
-			ArgInfo<int> argInfo = new( value, name, message );
+			ArgInfo<int> argInfo = new( argumentValue, name, message );
 			_ = argInfo.Between( minValue, maxValue );
 		} );
 

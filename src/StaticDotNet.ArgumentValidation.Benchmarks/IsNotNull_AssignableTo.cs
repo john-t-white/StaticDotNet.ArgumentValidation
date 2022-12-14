@@ -1,8 +1,4 @@
-﻿using Ardalis.GuardClauses;
-using BenchmarkDotNet.Order;
-using Dawn;
-using EnsureThat;
-using System.Reflection;
+﻿using EnsureThat;
 
 namespace StaticDotNet.ArgumentValidation.Benchmarks;
 
@@ -10,10 +6,10 @@ namespace StaticDotNet.ArgumentValidation.Benchmarks;
 [SimpleJob( RuntimeMoniker.Net70 )]
 [SimpleJob( RuntimeMoniker.Net60 )]
 [SimpleJob( RuntimeMoniker.NetCoreApp31 )]
-public class IsNotNull_AssignableTo_TypeInfo {
+public class IsNotNull_AssignableTo {
 
-	public TypeInfo? argumentValue = typeof( int[] ).GetTypeInfo();
-	public TypeInfo value = typeof( IList<int> ).GetTypeInfo();
+	public Type? argumentValue = typeof( int[] );
+	public Type value = typeof( IList<int> );
 
 	[Benchmark( Baseline = true )]
 	public Type Baseline() {
@@ -26,7 +22,7 @@ public class IsNotNull_AssignableTo_TypeInfo {
 		}
 #endif
 
-		return value.IsAssignableFrom( argumentValue ) ? value : throw new ArgumentException( nameof( value ) );
+		return value.IsAssignableFrom( argumentValue ) ? value : throw new ArgumentException( nameof( argumentValue ) );
 	}
 
 	[Benchmark]

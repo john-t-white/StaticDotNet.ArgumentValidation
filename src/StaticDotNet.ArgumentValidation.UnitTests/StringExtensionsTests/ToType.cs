@@ -16,12 +16,12 @@ public sealed class ToType {
 	[Fact]
 	public void WithNullValueThrowsArgumentNullException() {
 
-		string value = null!;
+		string argumentValue = null!;
 		string name = "Name";
 
 		ArgumentNullException exception = Assert.Throws<ArgumentNullException>( name, () => {
 
-			ArgInfo<string> argInfo = new( value, name, null );
+			ArgInfo<string> argInfo = new( argumentValue, name, null );
 			_ = StringExtensions.ToType( argInfo );
 		} );
 
@@ -31,30 +31,14 @@ public sealed class ToType {
 	}
 
 	[Fact]
-	public void WithNullValueAndMessageThrowsArgumentNullException() {
-
-		string value = null!;
-		string name = "Name";
-		string message = "Message";
-
-		ArgumentNullException exception = Assert.Throws<ArgumentNullException>( name, () => {
-
-			ArgInfo<string> argInfo = new( value, name, message );
-			_ = StringExtensions.ToType( argInfo );
-		} );
-
-		Assert.StartsWith( message, exception.Message );
-	}
-
-	[Fact]
 	public void WithInvalidValueThrowsArgumentException() {
 
-		string value = "Not a type.";
+		string argumentValue = "Not a type.";
 		string name = "Name";
 
 		ArgumentException exception = Assert.Throws<ArgumentException>( name, () => {
 
-			ArgInfo<string> argInfo = new( value, name, null );
+			ArgInfo<string> argInfo = new( argumentValue, name, null );
 			_ = StringExtensions.ToType( argInfo );
 		} );
 
@@ -67,13 +51,13 @@ public sealed class ToType {
 	[Fact]
 	public void WithInvalidValueAndMessageThrowsArgumentException() {
 
-		string value = "Not a type.";
+		string argumentValue = "Not a type.";
 		string name = "Name";
 		string message = "Message";
 
 		ArgumentException exception = Assert.Throws<ArgumentException>( name, () => {
 
-			ArgInfo<string> argInfo = new( value, name, message );
+			ArgInfo<string> argInfo = new( argumentValue, name, message );
 			_ = StringExtensions.ToType( argInfo );
 		} );
 

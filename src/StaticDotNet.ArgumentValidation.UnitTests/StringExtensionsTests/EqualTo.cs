@@ -6,23 +6,10 @@ public sealed class EqualTo {
 	public void ReturnsCorrectly() {
 
 		ArgInfo<string> argInfo = new( "Value", null, null );
-		string comparisonValue = "value";
+		string value = "value";
 		StringComparison comparisonType = StringComparison.OrdinalIgnoreCase;
 
-		ArgInfo<string> result = argInfo.EqualTo( comparisonValue, comparisonType );
-
-		ArgInfoAssertions.Equal( argInfo, result );
-	}
-
-	[Fact]
-	public void WithNullValueReturnsCorrectly() {
-
-		ArgInfo<string?> argInfo = new( null, null, null );
-
-		string comparisonValue = "value";
-		StringComparison comparisonType = StringComparison.OrdinalIgnoreCase;
-
-		ArgInfo<string?> result = argInfo.EqualTo( comparisonValue, comparisonType );
+		ArgInfo<string> result = argInfo.EqualTo( value, comparisonType );
 
 		ArgInfoAssertions.Equal( argInfo, result );
 	}
@@ -30,18 +17,18 @@ public sealed class EqualTo {
 	[Fact]
 	public void WithValueNotEqualToComparisonValueThrowsArgumentException() {
 
+		string argumentValue = "Value";
 		string name = "Name";
-		string value = "Value";
-		string comparisonValue = "Not Equal Value";
+		string value = "Not Equal Value";
 		StringComparison comparisonType = StringComparison.OrdinalIgnoreCase;
 
 
 		ArgumentException exception = Assert.Throws<ArgumentException>( name, () => {
-			ArgInfo<string> argInfo = new( value, name, null );
-			_ = argInfo.EqualTo( comparisonValue, comparisonType );
+			ArgInfo<string> argInfo = new( argumentValue, name, null );
+			_ = argInfo.EqualTo( value, comparisonType );
 		} );
 
-		string expectedMessage = $"Value must be equal to {comparisonValue}.";
+		string expectedMessage = $"Value must be equal to {value}.";
 
 		Assert.StartsWith( expectedMessage, exception.Message );
 	}
@@ -49,15 +36,15 @@ public sealed class EqualTo {
 	[Fact]
 	public void WithInvalidValueAndMessageThrowsArgumentException() {
 
+		string argumentValue = "Value";
 		string name = "Name";
-		string value = "Value";
 		string message = "Message";
-		string comparisonValue = "Not Equal Value";
+		string value = "Not Equal Value";
 		StringComparison comparisonType = StringComparison.OrdinalIgnoreCase;
 
 		ArgumentException exception = Assert.Throws<ArgumentException>( name, () => {
-			ArgInfo<string> argInfo = new( value, name, message );
-			_ = argInfo.EqualTo( comparisonValue, comparisonType );
+			ArgInfo<string> argInfo = new( argumentValue, name, message );
+			_ = argInfo.EqualTo( value, comparisonType );
 		} );
 
 		Assert.StartsWith( message, exception.Message );

@@ -16,40 +16,13 @@ public static class ComparableExtensions {
 	/// <returns>The <see cref="ArgInfo{T}"/>.</returns>
 	/// <exception cref="ArgumentOutOfRangeException">Thrown when <paramref name="argInfo.Value"/> is not greater than <paramref name="value"/>.</exception>
 	public static ref readonly ArgInfo<T> GreaterThan<T>( in this ArgInfo<T> argInfo, [DisallowNull] T value )
-		where T : IComparable<T>? {
-
-		if( argInfo.Value is null ) {
-			return ref argInfo;
-		}
+		where T : IComparable<T> {
 
 		if( value is not null && argInfo.Value.CompareTo( value ) > 0 ) {
 			return ref argInfo;
 		}
 
 		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, Constants.VALUE_MUST_BE_GREATER_THAN, value?.ToString() ?? Constants.NULL );
-		throw new ArgumentOutOfRangeException( argInfo.Name, message );
-	}
-
-	/// <summary>
-	/// Ensures an argument is greater than <paramref name="value"/>, otherwise an <see cref="ArgumentException"/> is thrown.
-	/// </summary>
-	/// <typeparam name="T">The argument type.</typeparam>
-	/// <param name="argInfo">The argument info.</param>
-	/// <param name="value">The value to compare against.</param>
-	/// <returns>The <see cref="ArgInfo{T}"/>.</returns>
-	/// <exception cref="ArgumentOutOfRangeException">Thrown when <paramref name="argInfo.Value"/> is not greater than <paramref name="value"/>.</exception>
-	public static ref readonly ArgInfo<T?> GreaterThan<T>( in this ArgInfo<T?> argInfo, T value )
-		where T : struct, IComparable<T> {
-
-		if( argInfo.Value is null ) {
-			return ref argInfo;
-		}
-
-		if( argInfo.Value.Value.CompareTo( value ) > 0 ) {
-			return ref argInfo;
-		}
-
-		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, Constants.VALUE_MUST_BE_GREATER_THAN, value.ToString() );
 		throw new ArgumentOutOfRangeException( argInfo.Name, message );
 	}
 
@@ -62,40 +35,13 @@ public static class ComparableExtensions {
 	/// <returns>The <see cref="ArgInfo{T}"/>.</returns>
 	/// <exception cref="ArgumentOutOfRangeException">Thrown when <paramref name="argInfo.Value"/> is not greater than or equal to <paramref name="value"/>.</exception>
 	public static ref readonly ArgInfo<T> GreaterThanOrEqualTo<T>( in this ArgInfo<T> argInfo, [DisallowNull] T value )
-		where T : IComparable<T>? {
-
-		if( argInfo.Value is null ) {
-			return ref argInfo;
-		}
+		where T : IComparable<T> {
 
 		if( value is not null && argInfo.Value.CompareTo( value ) >= 0 ) {
 			return ref argInfo;
 		}
 
 		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, Constants.VALUE_MUST_BE_GREATER_THAN_OR_EQUAL_TO, value?.ToString() ?? Constants.NULL );
-		throw new ArgumentOutOfRangeException( argInfo.Name, message );
-	}
-
-	/// <summary>
-	/// Ensures an argument is greater than or equal to <paramref name="value"/>, otherwise an <see cref="ArgumentException"/> is thrown.
-	/// </summary>
-	/// <typeparam name="T">The argument type.</typeparam>
-	/// <param name="argInfo">The argument info.</param>
-	/// <param name="value">The value to compare against.</param>
-	/// <returns>The <see cref="ArgInfo{T}"/>.</returns>
-	/// <exception cref="ArgumentOutOfRangeException">Thrown when <paramref name="argInfo.Value"/> is not greater than or equal to <paramref name="value"/>.</exception>
-	public static ref readonly ArgInfo<T?> GreaterThanOrEqualTo<T>( in this ArgInfo<T?> argInfo, T value )
-		where T : struct, IComparable<T> {
-
-		if( argInfo.Value is null ) {
-			return ref argInfo;
-		}
-
-		if( argInfo.Value.Value.CompareTo( value ) >= 0 ) {
-			return ref argInfo;
-		}
-
-		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, Constants.VALUE_MUST_BE_GREATER_THAN_OR_EQUAL_TO, value.ToString() );
 		throw new ArgumentOutOfRangeException( argInfo.Name, message );
 	}
 
@@ -108,40 +54,13 @@ public static class ComparableExtensions {
 	/// <returns>The <see cref="ArgInfo{T}"/>.</returns>
 	/// <exception cref="ArgumentOutOfRangeException">Thrown when <paramref name="argInfo.Value"/> is not less than <paramref name="value"/>.</exception>
 	public static ref readonly ArgInfo<T> LessThan<T>( in this ArgInfo<T> argInfo, [DisallowNull] T value )
-		where T : IComparable<T>? {
-
-		if( argInfo.Value is null ) {
-			return ref argInfo;
-		}
+		where T : IComparable<T> {
 
 		if( value is not null && argInfo.Value.CompareTo( value ) < 0 ) {
 			return ref argInfo;
 		}
 
 		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, Constants.VALUE_MUST_BE_LESS_THAN, value?.ToString() ?? Constants.NULL );
-		throw new ArgumentOutOfRangeException( argInfo.Name, message );
-	}
-
-	/// <summary>
-	/// Ensures an argument is less than <paramref name="value"/>, otherwise an <see cref="ArgumentException"/> is thrown.
-	/// </summary>
-	/// <typeparam name="T">The argument type.</typeparam>
-	/// <param name="argInfo">The argument info.</param>
-	/// <param name="value">The value to compare against.</param>
-	/// <returns>The <see cref="ArgInfo{T}"/>.</returns>
-	/// <exception cref="ArgumentOutOfRangeException">Thrown when <paramref name="argInfo.Value"/> is not less than <paramref name="value"/>.</exception>
-	public static ref readonly ArgInfo<T?> LessThan<T>( in this ArgInfo<T?> argInfo, T value )
-		where T : struct, IComparable<T> {
-
-		if( argInfo.Value is null ) {
-			return ref argInfo;
-		}
-
-		if( argInfo.Value.Value.CompareTo( value ) < 0 ) {
-			return ref argInfo;
-		}
-
-		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, Constants.VALUE_MUST_BE_LESS_THAN, value.ToString() ?? Constants.NULL );
 		throw new ArgumentOutOfRangeException( argInfo.Name, message );
 	}
 
@@ -154,40 +73,13 @@ public static class ComparableExtensions {
 	/// <returns>The <see cref="ArgInfo{T}"/>.</returns>
 	/// <exception cref="ArgumentOutOfRangeException">Thrown when <paramref name="argInfo.Value"/> is not less than or equal to <paramref name="value"/>.</exception>
 	public static ref readonly ArgInfo<T> LessThanOrEqualTo<T>( in this ArgInfo<T> argInfo, [DisallowNull] T value )
-		where T : IComparable<T>? {
-
-		if( argInfo.Value is null ) {
-			return ref argInfo;
-		}
+		where T : IComparable<T> {
 
 		if( value is not null && argInfo.Value.CompareTo( value ) <= 0 ) {
 			return ref argInfo;
 		}
 
 		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, Constants.VALUE_MUST_BE_LESS_THAN_OR_EQUAL_TO, value?.ToString() ?? Constants.NULL );
-		throw new ArgumentOutOfRangeException( argInfo.Name, message );
-	}
-
-	/// <summary>
-	/// Ensures an argument is less than or equal to <paramref name="value"/>, otherwise an <see cref="ArgumentException"/> is thrown.
-	/// </summary>
-	/// <typeparam name="T">The argument type.</typeparam>
-	/// <param name="argInfo">The argument info.</param>
-	/// <param name="value">The value to compare against.</param>
-	/// <returns>The <see cref="ArgInfo{T}"/>.</returns>
-	/// <exception cref="ArgumentOutOfRangeException">Thrown when <paramref name="argInfo.Value"/> is not less than or equal to <paramref name="value"/>.</exception>
-	public static ref readonly ArgInfo<T?> LessThanOrEqualTo<T>( in this ArgInfo<T?> argInfo, T value )
-		where T : struct, IComparable<T> {
-
-		if( argInfo.Value is null ) {
-			return ref argInfo;
-		}
-
-		if( argInfo.Value.Value.CompareTo( value ) <= 0 ) {
-			return ref argInfo;
-		}
-
-		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, Constants.VALUE_MUST_BE_LESS_THAN_OR_EQUAL_TO, value.ToString() );
 		throw new ArgumentOutOfRangeException( argInfo.Name, message );
 	}
 
@@ -201,42 +93,13 @@ public static class ComparableExtensions {
 	/// <returns>The <see cref="ArgInfo{T}"/>.</returns>
 	/// <exception cref="ArgumentOutOfRangeException">Thrown when <paramref name="argInfo.Value"/> is not between <paramref name="minValue"/> and <paramref name="maxValue"/>.</exception>
 	public static ref readonly ArgInfo<T> Between<T>( in this ArgInfo<T> argInfo, [DisallowNull] T minValue, [DisallowNull] T maxValue )
-		where T : IComparable<T>? {
-
-		if( argInfo.Value is null ) {
-			return ref argInfo;
-		}
+		where T : IComparable<T> {
 
 		if( minValue is not null && maxValue is not null && argInfo.Value.CompareTo( minValue ) >= 0 && argInfo.Value.CompareTo( maxValue ) <= 0 ) {
 			return ref argInfo;
 		}
 
 		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, Constants.VALUE_MUST_BE_BETWEEN, minValue?.ToString() ?? Constants.NULL, maxValue?.ToString() ?? Constants.NULL );
-		throw new ArgumentOutOfRangeException( argInfo.Name, message );
-	}
-
-	/// <summary>
-	/// Ensures an argument is between <paramref name="minValue"/> and <paramref name="maxValue"/>, otherwise an <see cref="ArgumentException"/> is thrown.
-	/// </summary>
-	/// <typeparam name="T">The argument type.</typeparam>
-	/// <param name="argInfo">The argument info.</param>
-	/// <param name="minValue">The minimum value.</param>
-	/// <param name="maxValue">The minimum value.</param>
-	/// <returns>The <see cref="ArgInfo{T}"/>.</returns>
-	/// <exception cref="ArgumentOutOfRangeException">Thrown when <paramref name="argInfo.Value"/> is not between <paramref name="minValue"/> and <paramref name="maxValue"/>.</exception>
-	public static ref readonly ArgInfo<T?> Between<T>( in this ArgInfo<T?> argInfo, T minValue, T maxValue )
-		where T : struct, IComparable<T> {
-
-		if( argInfo.Value is null ) {
-			return ref argInfo;
-		}
-
-		T argValue = argInfo.Value.Value;
-		if( argValue.CompareTo( minValue ) >= 0 && argValue.CompareTo( maxValue ) <= 0 ) {
-			return ref argInfo;
-		}
-
-		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, Constants.VALUE_MUST_BE_BETWEEN, minValue.ToString(), maxValue.ToString() );
 		throw new ArgumentOutOfRangeException( argInfo.Name, message );
 	}
 }

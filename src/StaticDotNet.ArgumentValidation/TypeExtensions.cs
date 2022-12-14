@@ -24,9 +24,9 @@ public static class TypeExtensions {
 #if NETSTANDARD2_1
 
 	public static ref readonly ArgInfo<T> AssignableTo<T>( in this ArgInfo<T> argInfo, [DisallowNull] T type )
-		where T : Type? {
+		where T : Type {
 
-		if( argInfo.Value is null || ( type is not null && type.GetTypeInfo().IsAssignableFrom( argInfo.Value.GetTypeInfo() ) ) ) {
+		if( type is not null && type.GetTypeInfo().IsAssignableFrom( argInfo.Value.GetTypeInfo() ) ) {
 			return ref argInfo;
 		}
 
@@ -37,9 +37,9 @@ public static class TypeExtensions {
 #else
 
 	public static ref readonly ArgInfo<T> AssignableTo<T>( in this ArgInfo<T> argInfo, [DisallowNull] T type )
-		where T : Type? {
+		where T : Type {
 
-		if( argInfo.Value is null || ( type is not null && argInfo.Value.GetTypeInfo().IsAssignableTo( type.GetTypeInfo() ) ) ) {
+		if( type is not null && argInfo.Value.GetTypeInfo().IsAssignableTo( type.GetTypeInfo() ) ) {
 			return ref argInfo;
 		}
 

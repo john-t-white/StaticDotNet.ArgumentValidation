@@ -13,21 +13,11 @@ public sealed class NotEmpty {
 	}
 
 	[Fact]
-	public void WithNullValueReturnsCorrectly() {
-
-		ArgInfo<string?> argInfo = new( null, null, null );
-
-		ArgInfo<string?> result = argInfo.NotEmpty();
-
-		ArgInfoAssertions.Equal( argInfo, result );
-	}
-
-	[Fact]
 	public void WithWhiteSpaceValueReturnsCorrectly() {
 
-		ArgInfo<string?> argInfo = new( " ", null, null );
+		ArgInfo<string> argInfo = new( " ", null, null );
 
-		ArgInfo<string?> result = argInfo.NotEmpty();
+		ArgInfo<string> result = argInfo.NotEmpty();
 
 		ArgInfoAssertions.Equal( argInfo, result );
 	}
@@ -35,11 +25,11 @@ public sealed class NotEmpty {
 	[Fact]
 	public void WithEmptyValueThrowsArgumentException() {
 
+		string argumentValue = string.Empty;
 		string name = "Name";
-		string value = string.Empty;
 
 		ArgumentException exception = Assert.Throws<ArgumentException>( name, () => {
-			ArgInfo<string> argInfo = new( value, name, null );
+			ArgInfo<string> argInfo = new( argumentValue, name, null );
 			_ = argInfo.NotEmpty();
 		} );
 
@@ -51,12 +41,12 @@ public sealed class NotEmpty {
 	[Fact]
 	public void WithInvalidValueAndMessageThrowsArgumentException() {
 
+		string argumentValue = string.Empty;
 		string name = "Name";
-		string value = string.Empty;
 		string message = "Message";
 
 		ArgumentException exception = Assert.Throws<ArgumentException>( name, () => {
-			ArgInfo<string> argInfo = new( value, name, message );
+			ArgInfo<string> argInfo = new( argumentValue, name, message );
 			_ = argInfo.NotEmpty();
 		} );
 

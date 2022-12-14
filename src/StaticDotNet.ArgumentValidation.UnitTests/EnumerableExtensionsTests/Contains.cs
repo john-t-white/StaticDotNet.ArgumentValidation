@@ -1,6 +1,4 @@
-﻿using NSubstitute.ExceptionExtensions;
-
-namespace StaticDotNet.ArgumentValidation.UnitTests.EnumerableExtensionsTests;
+﻿namespace StaticDotNet.ArgumentValidation.UnitTests.EnumerableExtensionsTests;
 
 public sealed class Contains {
 
@@ -45,23 +43,11 @@ public sealed class Contains {
 	}
 
 	[Fact]
-	public void WithNullArgumentValueReturnsCorrectly() {
-
-		int value = 2;
-
-		ArgInfo<IEnumerable<int>?> argInfo = new( null, null, null );
-
-		ArgInfo<IEnumerable<int>?> result = argInfo.Contains( value );
-
-		ArgInfoAssertions.Equal( argInfo, result );
-	}
-
-	[Fact]
 	public void WithNotContainsValueThrowsArgumentException() {
 
-		int value = 4;
 		IEnumerable<int> argumentValue = new List<int>() { 1, 2, 3 };
 		string name = "Name";
+		int value = 4;
 
 		ArgumentException exception = Assert.Throws<ArgumentException>( name, () => {
 			ArgInfo<IEnumerable<int>> argInfo = new( argumentValue, name, null );
@@ -76,9 +62,9 @@ public sealed class Contains {
 	[Fact]
 	public void WithNullValueThrowsArgumentException() {
 
-		string value = null!;
 		IEnumerable<string> argumentValue = new List<string>() { "a", "b", "c" };
 		string name = "Name";
+		string value = null!;
 
 		ArgumentException exception = Assert.Throws<ArgumentException>( name, () => {
 			ArgInfo<IEnumerable<string>> argInfo = new( argumentValue, name, null );
@@ -93,10 +79,10 @@ public sealed class Contains {
 	[Fact]
 	public void WithInvalidValueAndMessageThrowsArgumentException() {
 
-		int value = 4;
-		string name = "Name";
 		IEnumerable<int> argumentValue = new List<int>() { 1, 2, 3 };
+		string name = "Name";
 		string message = "Message";
+		int value = 4;
 
 		ArgumentException exception = Assert.Throws<ArgumentException>( name, () => {
 			ArgInfo<IEnumerable<int>> argInfo = new( argumentValue, name, message );

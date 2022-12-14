@@ -6,9 +6,9 @@ public sealed class StringExtensions_Contains {
 	public void ReturnsCorrectly() {
 
 		ArgInfo<string> argInfo = new( "Value", null, null );
-		string endsWidth = "alu";
+		string value = "alu";
 
-		ArgInfo<string> result = StringExtensions.Contains( argInfo, endsWidth );
+		ArgInfo<string> result = StringExtensions.Contains( argInfo, value );
 
 		ArgInfoAssertions.Equal( argInfo, result );
 	}
@@ -17,22 +17,10 @@ public sealed class StringExtensions_Contains {
 	public void WithStringComparisonReturnsCorrectly() {
 
 		ArgInfo<string> argInfo = new( "Value", null, null );
-		string endsWidth = "alu";
+		string value = "alu";
 		StringComparison comparisonType = StringComparison.OrdinalIgnoreCase;
 
-		ArgInfo<string> result = StringExtensions.Contains( argInfo, endsWidth, comparisonType );
-
-		ArgInfoAssertions.Equal( argInfo, result );
-	}
-
-	[Fact]
-	public void WithNullValueReturnsCorrectly() {
-
-		ArgInfo<string?> argInfo = new( null, null, null );
-
-		string endsWidth = "alu";
-
-		ArgInfo<string?> result = StringExtensions.Contains( argInfo, endsWidth );
+		ArgInfo<string> result = StringExtensions.Contains( argInfo, value, comparisonType );
 
 		ArgInfoAssertions.Equal( argInfo, result );
 	}
@@ -40,17 +28,16 @@ public sealed class StringExtensions_Contains {
 	[Fact]
 	public void WithValueNotEqualToComparisonValueThrowsArgumentException() {
 
+		string argumentValue = "Value";
 		string name = "Name";
-		string value = "Value";
-		string endsWidth = "Does Not Contain";
-
+		string value = "Does Not Contain";
 
 		ArgumentException exception = Assert.Throws<ArgumentException>( name, () => {
-			ArgInfo<string> argInfo = new( value, name, null );
-			_ = StringExtensions.Contains( argInfo, endsWidth );
+			ArgInfo<string> argInfo = new( argumentValue, name, null );
+			_ = StringExtensions.Contains( argInfo, value );
 		} );
 
-		string expectedMessage = $"Value must contain {endsWidth}.";
+		string expectedMessage = $"Value must contain {value}.";
 
 		Assert.StartsWith( expectedMessage, exception.Message );
 	}
@@ -58,14 +45,14 @@ public sealed class StringExtensions_Contains {
 	[Fact]
 	public void WithInvalidValueAndMessageThrowsArgumentException() {
 
+		string argumentValue = "Value";
 		string name = "Name";
-		string value = "Value";
 		string message = "Message";
-		string endsWidth = "Does Not Contain";
+		string value = "Does Not Contain";
 
 		ArgumentException exception = Assert.Throws<ArgumentException>( name, () => {
-			ArgInfo<string> argInfo = new( value, name, message );
-			_ = StringExtensions.Contains( argInfo, endsWidth );
+			ArgInfo<string> argInfo = new( argumentValue, name, message );
+			_ = StringExtensions.Contains( argInfo, value );
 		} );
 
 		Assert.StartsWith( message, exception.Message );

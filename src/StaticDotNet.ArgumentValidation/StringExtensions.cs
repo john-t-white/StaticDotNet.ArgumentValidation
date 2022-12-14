@@ -14,19 +14,13 @@ public static class StringExtensions {
 	/// <summary>
 	/// Ensures an argument is not white space, otherwise an <see cref="ArgumentException"/> is thrown.
 	/// </summary>
-	/// <typeparam name="T">The argument type.</typeparam>
 	/// <param name="argInfo">The argument info.</param>
 	/// <returns>The <see cref="ArgInfo{T}"/>.</returns>
 	/// <exception cref="ArgumentException">Thrown when <paramref name="argInfo.Value"/> is white space.</exception>
-	public static ref readonly ArgInfo<T> NotWhiteSpace<T>( in this ArgInfo<T> argInfo )
-		where T : IEquatable<string>?, IComparable<string>?, IEnumerable<char>? {
+	public static ref readonly ArgInfo<string> NotWhiteSpace( in this ArgInfo<string> argInfo ) {
 
-		if( argInfo.ValueAsString is null ) {
-			return ref argInfo;
-		}
-
-		for( int i = 0; i < argInfo.ValueAsString.Length; i++ ) {
-			if( !char.IsWhiteSpace( argInfo.ValueAsString[ i ] ) ) {
+		for( int i = 0; i < argInfo.Value.Length; i++ ) {
+			if( !char.IsWhiteSpace( argInfo.Value[ i ] ) ) {
 				return ref argInfo;
 			}
 		}
@@ -37,16 +31,16 @@ public static class StringExtensions {
 	/// <summary>
 	/// Ensures an argument is equal to <paramref name="value"/>, otherwise an <see cref="ArgumentException"/> is thrown.
 	/// </summary>
-	/// <typeparam name="T">The argument type.</typeparam>
 	/// <param name="argInfo">The argument info.</param>
 	/// <param name="value">The value to compare against.</param>
 	/// <param name="comparisonType">The type of comparison.</param>
 	/// <returns>The <see cref="ArgInfo{T}"/>.</returns>
 	/// <exception cref="ArgumentException">Thrown when <paramref name="argInfo.Value"/> does not equal <paramref name="value"/>.</exception>
-	public static ref readonly ArgInfo<T> EqualTo<T>( in this ArgInfo<T> argInfo, string value, StringComparison? comparisonType = null )
-		where T : IEquatable<string>?, IComparable<string>?, IEnumerable<char>? {
+	[SuppressMessage( "Globalization", "CA1307:Specify StringComparison for clarity", Justification = "Does not assume default comparisonType if not specified." )]
+	[SuppressMessage( "Globalization", "CA1309:Use ordinal string comparison", Justification = "Does not assume default comparisonType if not specified." )]
+	public static ref readonly ArgInfo<string> EqualTo( in this ArgInfo<string> argInfo, string value, StringComparison? comparisonType = null ) {
 
-		if( argInfo.ValueAsString is null || ( comparisonType is null ? argInfo.ValueAsString.Equals( value ) : argInfo.ValueAsString.Equals( value, comparisonType.Value ) ) ) {
+		if( comparisonType is null ? argInfo.Value.Equals( value ) : argInfo.Value.Equals( value, comparisonType.Value ) ) {
 			return ref argInfo;
 		}
 
@@ -57,15 +51,13 @@ public static class StringExtensions {
 	/// <summary>
 	/// Ensures an argument starts with <paramref name="value"/>, otherwise an <see cref="ArgumentException"/> is thrown.
 	/// </summary>
-	/// <typeparam name="T">The argument type.</typeparam>
 	/// <param name="argInfo">The argument info.</param>
 	/// <param name="value">The value it should start with.</param>
 	/// <returns>The <see cref="ArgInfo{T}"/>.</returns>
 	/// <exception cref="ArgumentException">Thrown when <paramref name="argInfo.Value"/> does not start with <paramref name="value"/>.</exception>
-	public static ref readonly ArgInfo<T> StartsWith<T>( in this ArgInfo<T> argInfo, char value )
-		where T : IEquatable<string>?, IComparable<string>?, IEnumerable<char>? {
+	public static ref readonly ArgInfo<string> StartsWith( in this ArgInfo<string> argInfo, char value ) {
 
-		if( argInfo.ValueAsString is null || argInfo.ValueAsString.StartsWith( value ) ) {
+		if( argInfo.Value.StartsWith( value ) ) {
 			return ref argInfo;
 		}
 
@@ -76,16 +68,15 @@ public static class StringExtensions {
 	/// <summary>
 	/// Ensures an argument starts with <paramref name="value"/>, otherwise an <see cref="ArgumentException"/> is thrown.
 	/// </summary>
-	/// <typeparam name="T">The argument type.</typeparam>
 	/// <param name="argInfo">The argument info.</param>
 	/// <param name="value">The value it should start with.</param>
 	/// <param name="comparisonType">The type of comparison.</param>
 	/// <returns>The <see cref="ArgInfo{T}"/>.</returns>
 	/// <exception cref="ArgumentException">Thrown when <paramref name="argInfo.Value"/> does not start with <paramref name="value"/>.</exception>
-	public static ref readonly ArgInfo<T> StartsWith<T>( in this ArgInfo<T> argInfo, string value, StringComparison? comparisonType = null )
-		where T : IEquatable<string>?, IComparable<string>?, IEnumerable<char>? {
+	[SuppressMessage( "Globalization", "CA1310:Specify StringComparison for correctness", Justification = "Does not assume default comparisonType if not specified." )]
+	public static ref readonly ArgInfo<string> StartsWith( in this ArgInfo<string> argInfo, string value, StringComparison? comparisonType = null ) {
 
-		if( argInfo.ValueAsString is null || ( comparisonType == null ? argInfo.ValueAsString.StartsWith( value ) : argInfo.ValueAsString.StartsWith( value, comparisonType.Value ) ) ) {
+		if( comparisonType == null ? argInfo.Value.StartsWith( value ) : argInfo.Value.StartsWith( value, comparisonType.Value ) ) {
 			return ref argInfo;
 		}
 
@@ -96,17 +87,15 @@ public static class StringExtensions {
 	/// <summary>
 	/// Ensures an argument starts with <paramref name="value"/>, otherwise an <see cref="ArgumentException"/> is thrown.
 	/// </summary>
-	/// <typeparam name="T">The argument type.</typeparam>
 	/// <param name="argInfo">The argument info.</param>
 	/// <param name="value">The value it should start with.</param>
 	/// <param name="ignoreCase">true to ignore case.</param>
 	/// <param name="culture">The culture to use.</param>
 	/// <returns>The <see cref="ArgInfo{T}"/>.</returns>
 	/// <exception cref="ArgumentException">Thrown when <paramref name="argInfo.Value"/> does not start with <paramref name="value"/>.</exception>
-	public static ref readonly ArgInfo<T> StartsWith<T>( in this ArgInfo<T> argInfo, string value, bool ignoreCase, CultureInfo? culture = null )
-		where T : IEquatable<string>?, IComparable<string>?, IEnumerable<char>? {
+	public static ref readonly ArgInfo<string> StartsWith( in this ArgInfo<string> argInfo, string value, bool ignoreCase, CultureInfo? culture = null ) {
 
-		if( argInfo.ValueAsString is null || argInfo.ValueAsString.StartsWith( value, ignoreCase, culture ) ) {
+		if( argInfo.Value.StartsWith( value, ignoreCase, culture ) ) {
 			return ref argInfo;
 		}
 
@@ -117,15 +106,13 @@ public static class StringExtensions {
 	/// <summary>
 	/// Ensures an argument ends with <paramref name="value"/>, otherwise an <see cref="ArgumentException"/> is thrown.
 	/// </summary>
-	/// <typeparam name="T">The argument type.</typeparam>
 	/// <param name="argInfo">The argument info.</param>
 	/// <param name="value">The value to it should end with.</param>
 	/// <returns>The <see cref="ArgInfo{T}"/>.</returns>
 	/// <exception cref="ArgumentException">Thrown when <paramref name="argInfo.Value"/> does not start with <paramref name="value"/>.</exception>
-	public static ref readonly ArgInfo<T> EndsWith<T>( in this ArgInfo<T> argInfo, char value )
-		where T : IEquatable<string>?, IComparable<string>?, IEnumerable<char>? {
+	public static ref readonly ArgInfo<string> EndsWith( in this ArgInfo<string> argInfo, char value ) {
 
-		if( argInfo.ValueAsString is null || argInfo.ValueAsString.EndsWith( value ) ) {
+		if( argInfo.Value.EndsWith( value ) ) {
 			return ref argInfo;
 		}
 
@@ -136,16 +123,15 @@ public static class StringExtensions {
 	/// <summary>
 	/// Ensures an argument ends with <paramref name="value"/>, otherwise an <see cref="ArgumentException"/> is thrown.
 	/// </summary>
-	/// <typeparam name="T">The argument type.</typeparam>
 	/// <param name="argInfo">The argument info.</param>
 	/// <param name="value">The value to it should end with.</param>
 	/// <param name="comparisonType">The type of comparison.</param>
 	/// <returns>The <see cref="ArgInfo{T}"/>.</returns>
 	/// <exception cref="ArgumentException">Thrown when <paramref name="argInfo.Value"/> does not start with <paramref name="value"/>.</exception>
-	public static ref readonly ArgInfo<T> EndsWith<T>( in this ArgInfo<T> argInfo, string value, StringComparison? comparisonType = null )
-		where T : IEquatable<string>?, IComparable<string>?, IEnumerable<char>? {
+	[SuppressMessage( "Globalization", "CA1310:Specify StringComparison for correctness", Justification = "Does not assume default comparisonType if not specified." )]
+	public static ref readonly ArgInfo<string> EndsWith( in this ArgInfo<string> argInfo, string value, StringComparison? comparisonType = null ) {
 
-		if( argInfo.ValueAsString is null || ( comparisonType == null ? argInfo.ValueAsString.EndsWith( value ) : argInfo.ValueAsString.EndsWith( value, comparisonType.Value ) ) ) {
+		if( comparisonType == null ? argInfo.Value.EndsWith( value ) : argInfo.Value.EndsWith( value, comparisonType.Value ) ) {
 			return ref argInfo;
 		}
 
@@ -156,17 +142,15 @@ public static class StringExtensions {
 	/// <summary>
 	/// Ensures an argument ends with <paramref name="value"/>, otherwise an <see cref="ArgumentException"/> is thrown.
 	/// </summary>
-	/// <typeparam name="T">The argument type.</typeparam>
 	/// <param name="argInfo">The argument info.</param>
 	/// <param name="value">The value to it should end with.</param>
 	/// <param name="ignoreCase">true to ignore case.</param>
 	/// <param name="culture">The culture to use.</param>
 	/// <returns>The <see cref="ArgInfo{T}"/>.</returns>
 	/// <exception cref="ArgumentException">Thrown when <paramref name="argInfo.Value"/> does not start with <paramref name="value"/>.</exception>
-	public static ref readonly ArgInfo<T> EndsWith<T>( in this ArgInfo<T> argInfo, string value, bool ignoreCase, CultureInfo? culture = null )
-		where T : IEquatable<string>?, IComparable<string>?, IEnumerable<char>? {
+	public static ref readonly ArgInfo<string> EndsWith( in this ArgInfo<string> argInfo, string value, bool ignoreCase, CultureInfo? culture = null ) {
 
-		if( argInfo.ValueAsString is null || argInfo.ValueAsString.EndsWith( value, ignoreCase, culture ) ) {
+		if( argInfo.Value.EndsWith( value, ignoreCase, culture ) ) {
 			return ref argInfo;
 		}
 
@@ -177,16 +161,15 @@ public static class StringExtensions {
 	/// <summary>
 	/// Ensures an argument contains <paramref name="value"/>, otherwise an <see cref="ArgumentException"/> is thrown.
 	/// </summary>
-	/// <typeparam name="T">The argument type.</typeparam>
 	/// <param name="argInfo">The argument info.</param>
 	/// <param name="value">The value it should contain.</param>
 	/// <param name="comparisonType">The type of comparison.</param>
 	/// <returns>The <see cref="ArgInfo{T}"/>.</returns>
 	/// <exception cref="ArgumentException">Thrown when <paramref name="argInfo.Value"/> does not contain <paramref name="value"/>.</exception>
-	public static ref readonly ArgInfo<T> Contains<T>( in this ArgInfo<T> argInfo, char value, StringComparison? comparisonType = null )
-		where T : IEquatable<string>?, IComparable<string>?, IEnumerable<char>? {
+	[SuppressMessage( "Globalization", "CA1307:Specify StringComparison for clarity", Justification = "Does not assume default comparisonType if not specified." )]
+	public static ref readonly ArgInfo<string> Contains( in this ArgInfo<string> argInfo, char value, StringComparison? comparisonType = null ) {
 
-		if( argInfo.ValueAsString is null || ( comparisonType is null ? argInfo.ValueAsString.Contains( value ) : argInfo.ValueAsString.Contains( value, comparisonType.Value ) ) ) {
+		if( comparisonType is null ? argInfo.Value.Contains( value ) : argInfo.Value.Contains( value, comparisonType.Value ) ) {
 			return ref argInfo;
 		}
 
@@ -197,16 +180,15 @@ public static class StringExtensions {
 	/// <summary>
 	/// Ensures an argument contains <paramref name="value"/>, otherwise an <see cref="ArgumentException"/> is thrown.
 	/// </summary>
-	/// <typeparam name="T">The argument type.</typeparam>
 	/// <param name="argInfo">The argument info.</param>
 	/// <param name="value">The value it should contain.</param>
 	/// <param name="comparisonType">The type of comparison.</param>
 	/// <returns>The <see cref="ArgInfo{T}"/>.</returns>
 	/// <exception cref="ArgumentException">Thrown when <paramref name="argInfo.Value"/> does not contain <paramref name="value"/>.</exception>
-	public static ref readonly ArgInfo<T> Contains<T>( in this ArgInfo<T> argInfo, string value, StringComparison? comparisonType = null )
-		where T : IEquatable<string>?, IComparable<string>?, IEnumerable<char>? {
+	[SuppressMessage( "Globalization", "CA1307:Specify StringComparison for clarity", Justification = "Does not assume default comparisonType if not specified." )]
+	public static ref readonly ArgInfo<string> Contains( in this ArgInfo<string> argInfo, string value, StringComparison? comparisonType = null ) {
 
-		if( argInfo.ValueAsString is null || ( comparisonType is null ? argInfo.ValueAsString.Contains( value ) : argInfo.ValueAsString.Contains( value, comparisonType.Value ) ) ) {
+		if( comparisonType is null ? argInfo.Value.Contains( value ) : argInfo.Value.Contains( value, comparisonType.Value ) ) {
 			return ref argInfo;
 		}
 
@@ -215,8 +197,7 @@ public static class StringExtensions {
 	}
 
 	/// <summary>
-	/// Ensures an argument is not null and represents a <see cref="Type"/>, otherwise an <see cref="ArgumentNullException"/> or <see cref="ArgumentException"/> is thrown. Due to how nullability annotations work, use
-	/// <see cref="StringExtensions.ToTypeMaybeNull(in ArgInfo{string})"/> if the argument could be null as there is no way to annotate whether the result could be null or not.
+	/// Ensures an argument represents a <see cref="Type"/>, otherwise an <see cref="ArgumentException"/> is thrown.
 	/// </summary>
 	/// <param name="argInfo">The argument info.</param>
 	/// <returns>The <see cref="Type"/>.</returns>
@@ -226,16 +207,18 @@ public static class StringExtensions {
 	public static ArgInfo<Type> ToType( in this ArgInfo<string> argInfo ) {
 
 		Exception? thrownException = null;
-		if( argInfo.ValueAsString is not null ) {
+		if( argInfo.Value is not null ) {
 			Type? type;
+#pragma warning disable CA1031 // Intentionally not catching specific exceptions as it is included as an inner exception.
 			try {
-				type = Type.GetType( argInfo.ValueAsString, true );
+				type = Type.GetType( argInfo.Value, true );
 
 				// Nullabiliy ignored as per the Type.GetType documentation, throwOnError true will always throw an exception if the type isn't found.
 				return new( type!, argInfo.Name, argInfo.Message );
 			} catch( Exception exception ) {
 				thrownException = exception;
 			}
+#pragma warning restore CA1031
 		}
 
 		string message = argInfo.Message ?? Constants.VALUE_MUST_BE_NOT_NULL_VALID_TYPE;
@@ -246,30 +229,5 @@ public static class StringExtensions {
 		}
 
 		throw ( argInfo.Value is null ) ? ArgumentNullExceptionFactory.Create( argInfo.Name, message ) : new ArgumentException( message, argInfo.Name, thrownException );
-	}
-
-	/// <summary>
-	/// Ensures an argument represents a <see cref="Type"/>, otherwise an <see cref="ArgumentException"/> is thrown. Due to how nullability annotations work, use
-	/// <see cref="StringExtensions.ToType(in ArgInfo{string})"/> if the argument is not null as there is no way to annotate whether the result could be null or not.
-	/// </summary>
-	/// <param name="argInfo">The argument info.</param>
-	/// <returns>The <see cref="Type"/>.</returns>
-	/// <exception cref="ArgumentException">Thrown when <paramref name="argInfo.Value"/> does not represent a <see cref="Type"/>.</exception>
-	[RequiresUnreferencedCode( "The type might be removed." )]
-	public static ArgInfo<Type?> ToTypeMaybeNull( in this ArgInfo<string?> argInfo ) {
-
-		if( argInfo.ValueAsString is null ) {
-			return new( null, argInfo.Name, argInfo.Message );
-		}
-
-		Type? type;
-		try {
-			type = Type.GetType( argInfo.ValueAsString, true );
-			return new( type, argInfo.Name, argInfo.Message );
-		} catch( Exception exception ) {
-
-			string message = $"{argInfo.Message ?? Constants.VALUE_MUST_BE_VALID_TYPE} {Constants.SEE_INNER_EXCEPTION_FOR_DETAILS}";
-			throw new ArgumentException( message, argInfo.Name, exception );
-		}
 	}
 }

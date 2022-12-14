@@ -5,11 +5,11 @@ public sealed class MinLength {
 	[Theory]
 	[InlineData( "12" )]
 	[InlineData( "123" )]
-	public void ReturnsCorrectly( string value ) {
+	public void ReturnsCorrectly( string argumentValue ) {
 
 		int length = 2;
 
-		ArgInfo<string> argInfo = new( value, null, null );
+		ArgInfo<string> argInfo = new( argumentValue, null, null );
 
 		ArgInfo<string> result = argInfo.MinLength( length );
 
@@ -19,9 +19,9 @@ public sealed class MinLength {
 	[Theory]
 	[InlineData( "12" )]
 	[InlineData( "123" )]
-	public void IEnumerableReturnsCorrectly( string value ) {
+	public void IEnumerableReturnsCorrectly( string argumentValue ) {
 
-		EnumerableTestClass enumerableValue = new( value.ToCharArray() );
+		EnumerableTestClass enumerableValue = new( argumentValue.ToCharArray() );
 		ArgInfo<EnumerableTestClass> argInfo = new( enumerableValue, null, null );
 		int length = 2;
 
@@ -31,26 +31,14 @@ public sealed class MinLength {
 	}
 
 	[Fact]
-	public void WithNullValueReturnsCorrectly() {
-
-		int length = 2;
-
-		ArgInfo<string?> argInfo = new( null, null, null );
-
-		ArgInfo<string?> result = argInfo.MinLength( length );
-
-		ArgInfoAssertions.Equal( argInfo, result );
-	}
-
-	[Fact]
 	public void WithValueLengthLessThanMinLengthThrowsArgumentOutOfRangeException() {
 
+		string argumentValue = "1";
 		string name = "Name";
-		string value = "1";
 		int length = 2;
 
 		ArgumentOutOfRangeException exception = Assert.Throws<ArgumentOutOfRangeException>( name, () => {
-			ArgInfo<string> argInfo = new( value, name, null );
+			ArgInfo<string> argInfo = new( argumentValue, name, null );
 			_ = argInfo.MinLength( length );
 		} );
 
@@ -62,13 +50,13 @@ public sealed class MinLength {
 	[Fact]
 	public void WithInvalidValueAndMessageThrowsArgumentOutOfRangeException() {
 
+		string argumentValue = "1";
 		string name = "Name";
-		string value = "1";
 		string message = "Message";
 		int length = 2;
 
 		ArgumentOutOfRangeException exception = Assert.Throws<ArgumentOutOfRangeException>( name, () => {
-			ArgInfo<string> argInfo = new( value, name, message );
+			ArgInfo<string> argInfo = new( argumentValue, name, message );
 			_ = argInfo.MinLength( length );
 		} );
 

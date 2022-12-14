@@ -1,5 +1,4 @@
 ﻿using Ardalis.GuardClauses;
-using BenchmarkDotNet.Order;
 using Dawn;
 using EnsureThat;
 
@@ -25,7 +24,7 @@ public class Is_Between {
 	public int Dawn_Guard() => Dawn.Guard.Argument( argumentValue ).InRange( minValue, maxValue );
 
 	[Benchmark]
-	public int Ardalis_GuardClauses() => Ardalis.GuardClauses.Guard.Against.OutOfRange( argumentValue, nameof(argumentValue), minValue, maxValue );
+	public int Ardalis_GuardClauses() => Ardalis.GuardClauses.Guard.Against.OutOfRange( argumentValue, nameof( argumentValue ), minValue, maxValue );
 
 	[Benchmark]
 	public int Ensure_That() {
