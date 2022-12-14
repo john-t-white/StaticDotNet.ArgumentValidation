@@ -13,6 +13,8 @@ public sealed class StringExtensions_Contains {
 		ArgInfoAssertions.Equal( argInfo, result );
 	}
 
+#if !NET481
+
 	[Fact]
 	public void WithStringComparisonReturnsCorrectly() {
 
@@ -24,6 +26,8 @@ public sealed class StringExtensions_Contains {
 
 		ArgInfoAssertions.Equal( argInfo, result );
 	}
+
+#endif
 
 	[Fact]
 	public void WithValueNotEqualToValueThrowsArgumentException() {

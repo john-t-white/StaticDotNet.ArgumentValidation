@@ -1,4 +1,6 @@
-﻿namespace StaticDotNet.ArgumentValidation.UnitTests.StringExtensionsTests;
+﻿#if !NET481
+
+namespace StaticDotNet.ArgumentValidation.UnitTests.StringExtensionsTests;
 
 public sealed class EndsWith_Char {
 
@@ -46,3 +48,5 @@ public sealed class EndsWith_Char {
 		Assert.StartsWith( message, exception.Message );
 	}
 }
+
+#endif

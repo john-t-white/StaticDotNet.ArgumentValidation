@@ -1,4 +1,5 @@
 ﻿using System.Globalization;
+using System.Linq;
 
 namespace StaticDotNet.ArgumentValidation;
 
@@ -44,6 +45,8 @@ public static class StringExtensions {
 		throw new ArgumentException( message, argInfo.Name );
 	}
 
+#if !NETSTANDARD2_0
+
 	/// <summary>
 	/// Ensures an argument starts with <paramref name="value"/>, otherwise an <see cref="ArgumentException"/> is thrown.
 	/// </summary>
@@ -60,6 +63,8 @@ public static class StringExtensions {
 		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, Constants.VALUE_MUST_START_WITH, value.ToString() );
 		throw new ArgumentException( message, argInfo.Name );
 	}
+
+#endif
 
 	/// <summary>
 	/// Ensures an argument starts with <paramref name="value"/>, otherwise an <see cref="ArgumentException"/> is thrown.
@@ -99,6 +104,8 @@ public static class StringExtensions {
 		throw new ArgumentException( message, argInfo.Name );
 	}
 
+#if !NETSTANDARD2_0
+
 	/// <summary>
 	/// Ensures an argument ends with <paramref name="value"/>, otherwise an <see cref="ArgumentException"/> is thrown.
 	/// </summary>
@@ -115,6 +122,8 @@ public static class StringExtensions {
 		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, Constants.VALUE_MUST_END_WITH, value.ToString() );
 		throw new ArgumentException( message, argInfo.Name );
 	}
+
+#endif
 
 	/// <summary>
 	/// Ensures an argument ends with <paramref name="value"/>, otherwise an <see cref="ArgumentException"/> is thrown.
@@ -159,19 +168,20 @@ public static class StringExtensions {
 	/// </summary>
 	/// <param name="argInfo">The argument info.</param>
 	/// <param name="value">The value it should contain.</param>
-	/// <param name="comparisonType">The type of comparison.</param>
 	/// <returns>The <see cref="ArgInfo{T}"/>.</returns>
 	/// <exception cref="ArgumentException">Thrown when <paramref name="argInfo.Value"/> does not contain <paramref name="value"/>.</exception>
 	[SuppressMessage( "Globalization", "CA1307:Specify StringComparison for clarity", Justification = "Does not assume default comparisonType if not specified." )]
-	public static ref readonly ArgInfo<string> Contains( in this ArgInfo<string> argInfo, char value, StringComparison? comparisonType = null ) {
+	public static ref readonly ArgInfo<string> Contains( in this ArgInfo<string> argInfo, char value ) {
 
-		if( comparisonType is null ? argInfo.Value.Contains( value ) : argInfo.Value.Contains( value, comparisonType.Value ) ) {
+		if( argInfo.Value.Contains( value ) ) {
 			return ref argInfo;
 		}
 
 		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, Constants.VALUE_MUST_CONTAIN, value.ToString() );
 		throw new ArgumentException( message, argInfo.Name );
 	}
+
+#if !NETSTANDARD2_0
 
 	/// <summary>
 	/// Ensures an argument contains <paramref name="value"/>, otherwise an <see cref="ArgumentException"/> is thrown.
@@ -181,16 +191,57 @@ public static class StringExtensions {
 	/// <param name="comparisonType">The type of comparison.</param>
 	/// <returns>The <see cref="ArgInfo{T}"/>.</returns>
 	/// <exception cref="ArgumentException">Thrown when <paramref name="argInfo.Value"/> does not contain <paramref name="value"/>.</exception>
-	[SuppressMessage( "Globalization", "CA1307:Specify StringComparison for clarity", Justification = "Does not assume default comparisonType if not specified." )]
-	public static ref readonly ArgInfo<string> Contains( in this ArgInfo<string> argInfo, string value, StringComparison? comparisonType = null ) {
+	public static ref readonly ArgInfo<string> Contains( in this ArgInfo<string> argInfo, char value, StringComparison comparisonType ) {
 
-		if( comparisonType is null ? argInfo.Value.Contains( value ) : argInfo.Value.Contains( value, comparisonType.Value ) ) {
+		if( argInfo.Value.Contains( value, comparisonType ) ) {
+			return ref argInfo;
+		}
+
+		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, Constants.VALUE_MUST_CONTAIN, value.ToString() );
+		throw new ArgumentException( message, argInfo.Name );
+	}
+
+#endif
+
+	/// <summary>
+	/// Ensures an argument contains <paramref name="value"/>, otherwise an <see cref="ArgumentException"/> is thrown.
+	/// </summary>
+	/// <param name="argInfo">The argument info.</param>
+	/// <param name="value">The value it should contain.</param>
+	/// <returns>The <see cref="ArgInfo{T}"/>.</returns>
+	/// <exception cref="ArgumentException">Thrown when <paramref name="argInfo.Value"/> does not contain <paramref name="value"/>.</exception>
+	[SuppressMessage( "Globalization", "CA1307:Specify StringComparison for clarity", Justification = "Does not assume default comparisonType if not specified." )]
+	public static ref readonly ArgInfo<string> Contains( in this ArgInfo<string> argInfo, string value ) {
+
+		if( argInfo.Value.Contains( value ) ) {
 			return ref argInfo;
 		}
 
 		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, Constants.VALUE_MUST_CONTAIN, value?.ToString() ?? Constants.NULL );
 		throw new ArgumentException( message, argInfo.Name );
 	}
+
+#if !NETSTANDARD2_0
+
+	/// <summary>
+	/// Ensures an argument contains <paramref name="value"/>, otherwise an <see cref="ArgumentException"/> is thrown.
+	/// </summary>
+	/// <param name="argInfo">The argument info.</param>
+	/// <param name="value">The value it should contain.</param>
+	/// <param name="comparisonType">The type of comparison.</param>
+	/// <returns>The <see cref="ArgInfo{T}"/>.</returns>
+	/// <exception cref="ArgumentException">Thrown when <paramref name="argInfo.Value"/> does not contain <paramref name="value"/>.</exception>
+	public static ref readonly ArgInfo<string> Contains( in this ArgInfo<string> argInfo, string value, StringComparison comparisonType ) {
+
+		if( argInfo.Value.Contains( value, comparisonType ) ) {
+			return ref argInfo;
+		}
+
+		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, Constants.VALUE_MUST_CONTAIN, value?.ToString() ?? Constants.NULL );
+		throw new ArgumentException( message, argInfo.Name );
+	}
+
+#endif
 
 	/// <summary>
 	/// Ensures an argument represents a <see cref="byte"/>, otherwise an <see cref="ArgumentException"/> is thrown.
