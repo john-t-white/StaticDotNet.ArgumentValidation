@@ -221,7 +221,7 @@ public static class StringExtensions {
 #pragma warning restore CA1031
 		}
 
-		string message = argInfo.Message ?? Constants.VALUE_MUST_BE_NOT_NULL_VALID_TYPE;
+		string message = argInfo.Message ?? Constants.VALUE_MUST_BE_VALID_TYPE;
 
 		if( thrownException is not null ) {
 
