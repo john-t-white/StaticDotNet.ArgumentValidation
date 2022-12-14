@@ -18,6 +18,8 @@ internal class Constants {
 
 	internal const string VALUE_MUST_BE_BETWEEN = "Value must be between {0} and {1}.";
 
+	internal const string VALUE_MUST_BE_BOOL = "Value must be a boolean.";
+
 	internal const string VALUE_MUST_BE_BYTE = "Value must be a byte.";
 
 	internal const string VALUE_MUST_BE_EQUAL_TO = "Value must be equal to {0}.";
