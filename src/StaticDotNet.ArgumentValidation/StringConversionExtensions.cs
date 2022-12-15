@@ -144,6 +144,62 @@ public static class StringConversionExtensions {
 		throw new ArgumentException( message, argInfo.Name );
 	}
 
+	/// <summary>
+	/// Ensures an argument represents a <see cref="DateTimeOffset"/>, otherwise an <see cref="ArgumentException"/> is thrown.
+	/// </summary>
+	/// <param name="argInfo">The argument info.</param>
+	/// <param name="provider">The <see cref="IFormatProvider"/> to use.</param>
+	/// <param name="styles">The <see cref="DateTimeStyles"/> to use.</param>
+	/// <returns>A new <see cref="DateTime"/> <see cref="ArgInfo{T}"/>.</returns>
+	/// <exception cref="ArgumentException">Thrown when <paramref name="argInfo.Value"/> does not represent a <see cref="DateTimeOffset"/>.</exception>
+	public static ArgInfo<DateTimeOffset> ToDateTimeOffset( in this ArgInfo<string> argInfo, IFormatProvider? provider = null, DateTimeStyles styles = DateTimeStyles.None ) {
+
+		if( DateTimeOffset.TryParse( argInfo.Value, provider, styles, out DateTimeOffset result ) ) {
+			return new( result, argInfo.Name, argInfo.Message );
+		}
+
+		string message = argInfo.Message ?? Constants.VALUE_MUST_BE_DATETIME_OFFSET;
+		throw new ArgumentException( message, argInfo.Name );
+	}
+
+	/// <summary>
+	/// Ensures an argument represents a <see cref="DateTimeOffset"/>, otherwise an <see cref="ArgumentException"/> is thrown.
+	/// </summary>
+	/// <param name="argInfo">The argument info.</param>
+	/// <param name="format">The date time format.</param>
+	/// <param name="provider">The <see cref="IFormatProvider"/> to use.</param>
+	/// <param name="styles">The <see cref="DateTimeStyles"/> to use.</param>
+	/// <returns>A new <see cref="DateTime"/> <see cref="ArgInfo{T}"/>.</returns>
+	/// <exception cref="ArgumentException">Thrown when <paramref name="argInfo.Value"/> does not represent a <see cref="DateTimeOffset"/>.</exception>
+	public static ArgInfo<DateTimeOffset> ToDateTimeOffsetExact( in this ArgInfo<string> argInfo, string? format, IFormatProvider? provider = null, DateTimeStyles styles = DateTimeStyles.None ) {
+
+		if( DateTimeOffset.TryParseExact( argInfo.Value, format, provider, styles, out DateTimeOffset result ) ) {
+			return new( result, argInfo.Name, argInfo.Message );
+		}
+
+		string message = argInfo.Message ?? Constants.VALUE_MUST_BE_DATETIME_OFFSET;
+		throw new ArgumentException( message, argInfo.Name );
+	}
+
+	/// <summary>
+	/// Ensures an argument represents a <see cref="DateTimeOffset"/>, otherwise an <see cref="ArgumentException"/> is thrown.
+	/// </summary>
+	/// <param name="argInfo">The argument info.</param>
+	/// <param name="formats">The date time formats.</param>
+	/// <param name="provider">The <see cref="IFormatProvider"/> to use.</param>
+	/// <param name="styles">The <see cref="DateTimeStyles"/> to use.</param>
+	/// <returns>A new <see cref="DateTime"/> <see cref="ArgInfo{T}"/>.</returns>
+	/// <exception cref="ArgumentException">Thrown when <paramref name="argInfo.Value"/> does not represent a <see cref="DateTimeOffset"/>.</exception>
+	public static ArgInfo<DateTimeOffset> ToDateTimeOffsetExact( in this ArgInfo<string> argInfo, string?[]? formats, IFormatProvider? provider = null, DateTimeStyles styles = DateTimeStyles.None ) {
+
+		if( DateTimeOffset.TryParseExact( argInfo.Value, formats, provider, styles, out DateTimeOffset result ) ) {
+			return new( result, argInfo.Name, argInfo.Message );
+		}
+
+		string message = argInfo.Message ?? Constants.VALUE_MUST_BE_DATETIME_OFFSET;
+		throw new ArgumentException( message, argInfo.Name );
+	}
+
 #if NET6_0_OR_GREATER
 
 	/// <summary>
