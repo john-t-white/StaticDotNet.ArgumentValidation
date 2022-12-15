@@ -213,7 +213,7 @@ public static class StringExtensions {
 	[SuppressMessage( "Globalization", "CA1307:Specify StringComparison for clarity", Justification = "Does not assume default comparisonType if not specified." )]
 	public static ref readonly ArgInfo<string> Contains( in this ArgInfo<string> argInfo, string value ) {
 
-		if( argInfo.Value.Contains( value ) ) {
+		if( value is not null && argInfo.Value.Contains( value ) ) {
 			return ref argInfo;
 		}
 
@@ -233,7 +233,7 @@ public static class StringExtensions {
 	/// <exception cref="ArgumentException">Thrown when <paramref name="argInfo.Value"/> does not contain <paramref name="value"/>.</exception>
 	public static ref readonly ArgInfo<string> Contains( in this ArgInfo<string> argInfo, string value, StringComparison comparisonType ) {
 
-		if( argInfo.Value.Contains( value, comparisonType ) ) {
+		if( value is not null && argInfo.Value.Contains( value, comparisonType ) ) {
 			return ref argInfo;
 		}
 

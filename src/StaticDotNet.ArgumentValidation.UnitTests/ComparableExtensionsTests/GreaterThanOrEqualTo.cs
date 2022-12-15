@@ -34,6 +34,23 @@ public sealed class GreaterThanOrEqualTo {
 	}
 
 	[Fact]
+	public void WithNullValueThrowsArgumentOutOfRangeException() {
+
+		string argumentValue = "1";
+		string name = "Name";
+		string value = null!;
+
+		ArgumentOutOfRangeException exception = Assert.Throws<ArgumentOutOfRangeException>( name, () => {
+			ArgInfo<string> argInfo = new( argumentValue, name, null );
+			_ = argInfo.GreaterThanOrEqualTo( value );
+		} );
+
+		string expectedMessage = "Value must be greater than or equal to <null>.";
+
+		Assert.StartsWith( expectedMessage, exception.Message );
+	}
+
+	[Fact]
 	public void WithValueNotGreaterThanOrEqualToToAndMessageThrowsArgumentOutOfRangeException() {
 
 		int argumentValue = 1;

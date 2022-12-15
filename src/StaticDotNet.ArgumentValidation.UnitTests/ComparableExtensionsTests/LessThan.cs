@@ -34,6 +34,23 @@ public sealed class LessThan {
 	}
 
 	[Fact]
+	public void WithNullValueThrowsArgumentOutOfRangeException() {
+
+		string argumentValue = "1";
+		string name = "Name";
+		string value = null!;
+
+		ArgumentOutOfRangeException exception = Assert.Throws<ArgumentOutOfRangeException>( name, () => {
+			ArgInfo<string> argInfo = new( argumentValue, name, null );
+			_ = argInfo.LessThan( value );
+		} );
+
+		string expectedMessage = "Value must be less than <null>.";
+
+		Assert.StartsWith( expectedMessage, exception.Message );
+	}
+
+	[Fact]
 	public void WithValueNotValueLessThanAndMessageThrowsArgumentOutOfRangeException() {
 
 		int argumentValue = 3;
