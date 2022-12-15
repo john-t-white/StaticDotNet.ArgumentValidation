@@ -35,7 +35,7 @@ public readonly ref struct ArgInfo<T>
 	public readonly string? Name { get; }
 
 	/// <summary>
-	/// Returns the exception message. If this is null, the default exception message should b used.
+	/// Returns the exception message. If this is null, the default exception message should be used.
 	/// </summary>
 	public readonly string? Message { get; }
 
