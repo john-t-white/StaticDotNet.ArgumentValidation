@@ -1,4 +1,4 @@
-﻿namespace StaticDotNet.ArgumentValidation.UnitTests.StringExtensionsTests;
+﻿namespace StaticDotNet.ArgumentValidation.UnitTests.StringConversionExtensionsTests;
 
 public sealed class ToInt64 {
 
@@ -8,7 +8,7 @@ public sealed class ToInt64 {
 		long expectedResult = 1;
 		ArgInfo<string> argInfo = new( expectedResult.ToString(), null, null );
 
-		ArgInfo<long> result = StringExtensions.ToInt64( argInfo );
+		ArgInfo<long> result = StringConversionExtensions.ToInt64( argInfo );
 
 		Assert.Equal( expectedResult, result.Value );
 	}
@@ -22,7 +22,7 @@ public sealed class ToInt64 {
 		ArgumentException exception = Assert.Throws<ArgumentException>( name, () => {
 
 			ArgInfo<string> argInfo = new( argumentValue, name, null );
-			_ = StringExtensions.ToInt64( argInfo );
+			_ = StringConversionExtensions.ToInt64( argInfo );
 		} );
 
 		string expectedMessage = "Value must be an int64.";
@@ -40,7 +40,7 @@ public sealed class ToInt64 {
 		ArgumentException exception = Assert.Throws<ArgumentException>( name, () => {
 
 			ArgInfo<string> argInfo = new( argumentValue, name, message );
-			_ = StringExtensions.ToInt64( argInfo );
+			_ = StringConversionExtensions.ToInt64( argInfo );
 		} );
 
 		Assert.StartsWith( message, exception.Message );

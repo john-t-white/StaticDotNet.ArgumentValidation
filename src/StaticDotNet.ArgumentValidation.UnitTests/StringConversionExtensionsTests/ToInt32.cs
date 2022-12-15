@@ -1,15 +1,16 @@
-﻿namespace StaticDotNet.ArgumentValidation.UnitTests.StringExtensionsTests;
+﻿namespace StaticDotNet.ArgumentValidation.UnitTests.StringConversionExtensionsTests;
 
-public sealed class ToBool {
+public sealed class ToInt32 {
 
 	[Fact]
 	public void ReturnsCorrectly() {
 
-		ArgInfo<string> argInfo = new( "true", null, null );
+		int expectedResult = 1;
+		ArgInfo<string> argInfo = new( expectedResult.ToString(), null, null );
 
-		ArgInfo<bool> result = StringExtensions.ToBool( argInfo );
+		ArgInfo<int> result = StringConversionExtensions.ToInt32( argInfo );
 
-		Assert.True( result.Value );
+		Assert.Equal( expectedResult, result.Value );
 	}
 
 	[Fact]
@@ -21,10 +22,10 @@ public sealed class ToBool {
 		ArgumentException exception = Assert.Throws<ArgumentException>( name, () => {
 
 			ArgInfo<string> argInfo = new( argumentValue, name, null );
-			_ = StringExtensions.ToBool( argInfo );
+			_ = StringConversionExtensions.ToInt32( argInfo );
 		} );
 
-		string expectedMessage = "Value must be a boolean.";
+		string expectedMessage = "Value must be an int32.";
 
 		Assert.StartsWith( expectedMessage, exception.Message );
 	}
@@ -39,7 +40,7 @@ public sealed class ToBool {
 		ArgumentException exception = Assert.Throws<ArgumentException>( name, () => {
 
 			ArgInfo<string> argInfo = new( argumentValue, name, message );
-			_ = StringExtensions.ToBool( argInfo );
+			_ = StringConversionExtensions.ToInt32( argInfo );
 		} );
 
 		Assert.StartsWith( message, exception.Message );

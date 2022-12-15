@@ -1,4 +1,4 @@
-﻿namespace StaticDotNet.ArgumentValidation.UnitTests.StringExtensionsTests;
+﻿namespace StaticDotNet.ArgumentValidation.UnitTests.StringConversionExtensionsTests;
 
 public sealed class ToType {
 
@@ -6,9 +6,9 @@ public sealed class ToType {
 	public void ReturnsCorrectly() {
 
 		Type expectedType = typeof( string );
-		ArgInfo<string> argInfo = new( expectedType.FullName ?? throw new InvalidOperationException( "Fullname not available."), null, null );
+		ArgInfo<string> argInfo = new( expectedType.FullName ?? throw new InvalidOperationException( "Fullname not available." ), null, null );
 
-		ArgInfo<Type> result = StringExtensions.ToType( argInfo );
+		ArgInfo<Type> result = StringConversionExtensions.ToType( argInfo );
 
 		Assert.Same( expectedType, result.Value );
 	}
@@ -22,7 +22,7 @@ public sealed class ToType {
 		ArgumentException exception = Assert.Throws<ArgumentException>( name, () => {
 
 			ArgInfo<string> argInfo = new( argumentValue, name, null );
-			_ = StringExtensions.ToType( argInfo );
+			_ = StringConversionExtensions.ToType( argInfo );
 		} );
 
 		string expectedMessage = "Value must be a type.";
@@ -41,7 +41,7 @@ public sealed class ToType {
 		ArgumentException exception = Assert.Throws<ArgumentException>( name, () => {
 
 			ArgInfo<string> argInfo = new( argumentValue, name, message );
-			_ = StringExtensions.ToType( argInfo );
+			_ = StringConversionExtensions.ToType( argInfo );
 		} );
 
 		Assert.StartsWith( message, exception.Message );

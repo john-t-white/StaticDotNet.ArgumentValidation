@@ -1,4 +1,4 @@
-﻿namespace StaticDotNet.ArgumentValidation.UnitTests.StringExtensionsTests;
+﻿namespace StaticDotNet.ArgumentValidation.UnitTests.StringConversionExtensionsTests;
 
 public sealed class ToByte {
 
@@ -8,7 +8,7 @@ public sealed class ToByte {
 		byte expectedResult = 1;
 		ArgInfo<string> argInfo = new( expectedResult.ToString(), null, null );
 
-		ArgInfo<byte> result = StringExtensions.ToByte( argInfo );
+		ArgInfo<byte> result = StringConversionExtensions.ToByte( argInfo );
 
 		Assert.Equal( expectedResult, result.Value );
 	}
@@ -22,7 +22,7 @@ public sealed class ToByte {
 		ArgumentException exception = Assert.Throws<ArgumentException>( name, () => {
 
 			ArgInfo<string> argInfo = new( argumentValue, name, null );
-			_ = StringExtensions.ToByte( argInfo );
+			_ = StringConversionExtensions.ToByte( argInfo );
 		} );
 
 		string expectedMessage = "Value must be a byte.";
@@ -40,7 +40,7 @@ public sealed class ToByte {
 		ArgumentException exception = Assert.Throws<ArgumentException>( name, () => {
 
 			ArgInfo<string> argInfo = new( argumentValue, name, message );
-			_ = StringExtensions.ToByte( argInfo );
+			_ = StringConversionExtensions.ToByte( argInfo );
 		} );
 
 		Assert.StartsWith( message, exception.Message );

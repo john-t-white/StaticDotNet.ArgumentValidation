@@ -1,6 +1,6 @@
 ﻿using System.Globalization;
 
-namespace StaticDotNet.ArgumentValidation.UnitTests.StringExtensionsTests;
+namespace StaticDotNet.ArgumentValidation.UnitTests.StringConversionExtensionsTests;
 
 public sealed class ToDateTime {
 
@@ -10,7 +10,7 @@ public sealed class ToDateTime {
 		DateTime expectedResult = new( 2000, 1, 2, 3, 4, 5 );
 		ArgInfo<string> argInfo = new( expectedResult.ToString(), null, null );
 
-		ArgInfo<DateTime> result = StringExtensions.ToDateTime( argInfo );
+		ArgInfo<DateTime> result = StringConversionExtensions.ToDateTime( argInfo );
 
 		Assert.Equal( expectedResult, result.Value );
 	}
@@ -22,7 +22,7 @@ public sealed class ToDateTime {
 		ArgInfo<string> argInfo = new( expectedResult.ToString(), null, null );
 		IFormatProvider provider = DateTimeFormatInfo.CurrentInfo;
 
-		ArgInfo<DateTime> result = StringExtensions.ToDateTime( argInfo, provider );
+		ArgInfo<DateTime> result = StringConversionExtensions.ToDateTime( argInfo, provider );
 
 		Assert.Equal( expectedResult, result.Value );
 	}
@@ -34,7 +34,7 @@ public sealed class ToDateTime {
 		ArgInfo<string> argInfo = new( expectedResult.ToString(), null, null );
 		DateTimeStyles styles = DateTimeStyles.AdjustToUniversal;
 
-		ArgInfo<DateTime> result = StringExtensions.ToDateTime( argInfo, styles: styles );
+		ArgInfo<DateTime> result = StringConversionExtensions.ToDateTime( argInfo, styles: styles );
 
 		Assert.Equal( expectedResult, result.Value );
 	}
@@ -48,7 +48,7 @@ public sealed class ToDateTime {
 		ArgumentException exception = Assert.Throws<ArgumentException>( name, () => {
 
 			ArgInfo<string> argInfo = new( argumentValue, name, null );
-			_ = StringExtensions.ToDateTime( argInfo );
+			_ = StringConversionExtensions.ToDateTime( argInfo );
 		} );
 
 		string expectedMessage = "Value must be a date/time.";
@@ -66,7 +66,7 @@ public sealed class ToDateTime {
 		ArgumentException exception = Assert.Throws<ArgumentException>( name, () => {
 
 			ArgInfo<string> argInfo = new( argumentValue, name, message );
-			_ = StringExtensions.ToDateTime( argInfo );
+			_ = StringConversionExtensions.ToDateTime( argInfo );
 		} );
 
 		Assert.StartsWith( message, exception.Message );

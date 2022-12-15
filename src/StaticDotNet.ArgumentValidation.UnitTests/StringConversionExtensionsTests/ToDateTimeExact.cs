@@ -1,6 +1,6 @@
 ﻿using System.Globalization;
 
-namespace StaticDotNet.ArgumentValidation.UnitTests.StringExtensionsTests;
+namespace StaticDotNet.ArgumentValidation.UnitTests.StringConversionExtensionsTests;
 
 public sealed class ToDateTimeExact {
 
@@ -11,7 +11,7 @@ public sealed class ToDateTimeExact {
 		string format = "yyyy-MM-dd (hh:mm:ss)";
 		ArgInfo<string> argInfo = new( expectedResult.ToString( format ), null, null );
 
-		ArgInfo<DateTime> result = StringExtensions.ToDateTimeExact( argInfo, format );
+		ArgInfo<DateTime> result = StringConversionExtensions.ToDateTimeExact( argInfo, format );
 
 		Assert.Equal( expectedResult, result.Value );
 	}
@@ -24,7 +24,7 @@ public sealed class ToDateTimeExact {
 		ArgInfo<string> argInfo = new( expectedResult.ToString( format ), null, null );
 		IFormatProvider provider = DateTimeFormatInfo.CurrentInfo;
 
-		ArgInfo<DateTime> result = StringExtensions.ToDateTimeExact( argInfo, format, provider );
+		ArgInfo<DateTime> result = StringConversionExtensions.ToDateTimeExact( argInfo, format, provider );
 
 		Assert.Equal( expectedResult, result.Value );
 	}
@@ -37,7 +37,7 @@ public sealed class ToDateTimeExact {
 		ArgInfo<string> argInfo = new( expectedResult.ToString( format ), null, null );
 		DateTimeStyles styles = DateTimeStyles.AdjustToUniversal;
 
-		ArgInfo<DateTime> result = StringExtensions.ToDateTimeExact( argInfo, format, styles: styles );
+		ArgInfo<DateTime> result = StringConversionExtensions.ToDateTimeExact( argInfo, format, styles: styles );
 
 		Assert.Equal( expectedResult, result.Value );
 	}
@@ -52,7 +52,7 @@ public sealed class ToDateTimeExact {
 		ArgumentException exception = Assert.Throws<ArgumentException>( name, () => {
 
 			ArgInfo<string> argInfo = new( argumentValue, name, null );
-			_ = StringExtensions.ToDateTimeExact( argInfo, format );
+			_ = StringConversionExtensions.ToDateTimeExact( argInfo, format );
 		} );
 
 		string expectedMessage = "Value must be a date/time.";
@@ -71,7 +71,7 @@ public sealed class ToDateTimeExact {
 		ArgumentException exception = Assert.Throws<ArgumentException>( name, () => {
 
 			ArgInfo<string> argInfo = new( argumentValue, name, message );
-			_ = StringExtensions.ToDateTimeExact( argInfo, format );
+			_ = StringConversionExtensions.ToDateTimeExact( argInfo, format );
 		} );
 
 		Assert.StartsWith( message, exception.Message );
@@ -85,9 +85,9 @@ public sealed class ToDateTimeExact {
 			"yyyy-MM-dd (hh:mm:ss)",
 			"MM/dd/yyyy hh:mm:ss"
 		};
-		ArgInfo<string> argInfo = new( expectedResult.ToString( formats[0] ), null, null );
+		ArgInfo<string> argInfo = new( expectedResult.ToString( formats[ 0 ] ), null, null );
 
-		ArgInfo<DateTime> result = StringExtensions.ToDateTimeExact( argInfo, formats );
+		ArgInfo<DateTime> result = StringConversionExtensions.ToDateTimeExact( argInfo, formats );
 
 		Assert.Equal( expectedResult, result.Value );
 	}
@@ -100,10 +100,10 @@ public sealed class ToDateTimeExact {
 			"yyyy-MM-dd (hh:mm:ss)",
 			"MM/dd/yyyy hh:mm:ss"
 		};
-		ArgInfo<string> argInfo = new( expectedResult.ToString( formats[0] ), null, null );
+		ArgInfo<string> argInfo = new( expectedResult.ToString( formats[ 0 ] ), null, null );
 		IFormatProvider provider = DateTimeFormatInfo.CurrentInfo;
 
-		ArgInfo<DateTime> result = StringExtensions.ToDateTimeExact( argInfo, formats, provider );
+		ArgInfo<DateTime> result = StringConversionExtensions.ToDateTimeExact( argInfo, formats, provider );
 
 		Assert.Equal( expectedResult, result.Value );
 	}
@@ -116,10 +116,10 @@ public sealed class ToDateTimeExact {
 			"yyyy-MM-dd (hh:mm:ss)",
 			"MM/dd/yyyy hh:mm:ss"
 		};
-		ArgInfo<string> argInfo = new( expectedResult.ToString( formats[0] ), null, null );
+		ArgInfo<string> argInfo = new( expectedResult.ToString( formats[ 0 ] ), null, null );
 		DateTimeStyles styles = DateTimeStyles.AdjustToUniversal;
 
-		ArgInfo<DateTime> result = StringExtensions.ToDateTimeExact( argInfo, formats, styles: styles );
+		ArgInfo<DateTime> result = StringConversionExtensions.ToDateTimeExact( argInfo, formats, styles: styles );
 
 		Assert.Equal( expectedResult, result.Value );
 	}
@@ -137,7 +137,7 @@ public sealed class ToDateTimeExact {
 		ArgumentException exception = Assert.Throws<ArgumentException>( name, () => {
 
 			ArgInfo<string> argInfo = new( argumentValue, name, null );
-			_ = StringExtensions.ToDateTimeExact( argInfo, formats );
+			_ = StringConversionExtensions.ToDateTimeExact( argInfo, formats );
 		} );
 
 		string expectedMessage = "Value must be a date/time.";
@@ -159,7 +159,7 @@ public sealed class ToDateTimeExact {
 		ArgumentException exception = Assert.Throws<ArgumentException>( name, () => {
 
 			ArgInfo<string> argInfo = new( argumentValue, name, message );
-			_ = StringExtensions.ToDateTimeExact( argInfo, formats );
+			_ = StringConversionExtensions.ToDateTimeExact( argInfo, formats );
 		} );
 
 		Assert.StartsWith( message, exception.Message );

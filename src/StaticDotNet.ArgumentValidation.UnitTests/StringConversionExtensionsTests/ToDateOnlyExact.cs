@@ -13,7 +13,7 @@ public sealed class ToDateOnlyExact {
 		string format = "yyyy-MM-dd";
 		ArgInfo<string> argInfo = new( expectedResult.ToString( format ), null, null );
 
-		ArgInfo<DateOnly> result = StringExtensions.ToDateOnlyExact( argInfo, format );
+		ArgInfo<DateOnly> result = StringConversionExtensions.ToDateOnlyExact( argInfo, format );
 
 		Assert.Equal( expectedResult, result.Value );
 	}
@@ -26,7 +26,7 @@ public sealed class ToDateOnlyExact {
 		ArgInfo<string> argInfo = new( expectedResult.ToString( format ), null, null );
 		IFormatProvider provider = DateTimeFormatInfo.CurrentInfo;
 
-		ArgInfo<DateOnly> result = StringExtensions.ToDateOnlyExact( argInfo, format, provider );
+		ArgInfo<DateOnly> result = StringConversionExtensions.ToDateOnlyExact( argInfo, format, provider );
 
 		Assert.Equal( expectedResult, result.Value );
 	}
@@ -39,7 +39,7 @@ public sealed class ToDateOnlyExact {
 		ArgInfo<string> argInfo = new( expectedResult.ToString( format ), null, null );
 		DateTimeStyles styles = DateTimeStyles.None;
 
-		ArgInfo<DateOnly> result = StringExtensions.ToDateOnlyExact( argInfo, format, styles: styles );
+		ArgInfo<DateOnly> result = StringConversionExtensions.ToDateOnlyExact( argInfo, format, styles: styles );
 
 		Assert.Equal( expectedResult, result.Value );
 	}
@@ -54,7 +54,7 @@ public sealed class ToDateOnlyExact {
 		ArgumentException exception = Assert.Throws<ArgumentException>( name, () => {
 
 			ArgInfo<string> argInfo = new( argumentValue, name, null );
-			_ = StringExtensions.ToDateOnlyExact( argInfo, format );
+			_ = StringConversionExtensions.ToDateOnlyExact( argInfo, format );
 		} );
 
 		string expectedMessage = "Value must be a date.";
@@ -73,7 +73,7 @@ public sealed class ToDateOnlyExact {
 		ArgumentException exception = Assert.Throws<ArgumentException>( name, () => {
 
 			ArgInfo<string> argInfo = new( argumentValue, name, message );
-			_ = StringExtensions.ToDateOnlyExact( argInfo, format );
+			_ = StringConversionExtensions.ToDateOnlyExact( argInfo, format );
 		} );
 
 		Assert.StartsWith( message, exception.Message );
@@ -89,7 +89,7 @@ public sealed class ToDateOnlyExact {
 		};
 		ArgInfo<string> argInfo = new( expectedResult.ToString( formats[0] ), null, null );
 
-		ArgInfo<DateOnly> result = StringExtensions.ToDateOnlyExact( argInfo, formats );
+		ArgInfo<DateOnly> result = StringConversionExtensions.ToDateOnlyExact( argInfo, formats );
 
 		Assert.Equal( expectedResult, result.Value );
 	}
@@ -105,7 +105,7 @@ public sealed class ToDateOnlyExact {
 		ArgInfo<string> argInfo = new( expectedResult.ToString( formats[0] ), null, null );
 		IFormatProvider provider = DateTimeFormatInfo.CurrentInfo;
 
-		ArgInfo<DateOnly> result = StringExtensions.ToDateOnlyExact( argInfo, formats, provider );
+		ArgInfo<DateOnly> result = StringConversionExtensions.ToDateOnlyExact( argInfo, formats, provider );
 
 		Assert.Equal( expectedResult, result.Value );
 	}
@@ -121,7 +121,7 @@ public sealed class ToDateOnlyExact {
 		ArgInfo<string> argInfo = new( expectedResult.ToString( formats[0] ), null, null );
 		DateTimeStyles styles = DateTimeStyles.None;
 
-		ArgInfo<DateOnly> result = StringExtensions.ToDateOnlyExact( argInfo, formats, styles: styles );
+		ArgInfo<DateOnly> result = StringConversionExtensions.ToDateOnlyExact( argInfo, formats, styles: styles );
 
 		Assert.Equal( expectedResult, result.Value );
 	}
@@ -139,7 +139,7 @@ public sealed class ToDateOnlyExact {
 		ArgumentException exception = Assert.Throws<ArgumentException>( name, () => {
 
 			ArgInfo<string> argInfo = new( argumentValue, name, null );
-			_ = StringExtensions.ToDateOnlyExact( argInfo, formats );
+			_ = StringConversionExtensions.ToDateOnlyExact( argInfo, formats );
 		} );
 
 		string expectedMessage = "Value must be a date.";
@@ -161,7 +161,7 @@ public sealed class ToDateOnlyExact {
 		ArgumentException exception = Assert.Throws<ArgumentException>( name, () => {
 
 			ArgInfo<string> argInfo = new( argumentValue, name, message );
-			_ = StringExtensions.ToDateOnlyExact( argInfo, formats );
+			_ = StringConversionExtensions.ToDateOnlyExact( argInfo, formats );
 		} );
 
 		Assert.StartsWith( message, exception.Message );

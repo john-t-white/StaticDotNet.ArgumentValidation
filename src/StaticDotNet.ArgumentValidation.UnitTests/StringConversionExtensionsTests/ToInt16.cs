@@ -1,4 +1,4 @@
-﻿namespace StaticDotNet.ArgumentValidation.UnitTests.StringExtensionsTests;
+﻿namespace StaticDotNet.ArgumentValidation.UnitTests.StringConversionExtensionsTests;
 
 public sealed class ToInt16 {
 
@@ -8,7 +8,7 @@ public sealed class ToInt16 {
 		short expectedResult = 1;
 		ArgInfo<string> argInfo = new( expectedResult.ToString(), null, null );
 
-		ArgInfo<short> result = StringExtensions.ToInt16( argInfo );
+		ArgInfo<short> result = StringConversionExtensions.ToInt16( argInfo );
 
 		Assert.Equal( expectedResult, result.Value );
 	}
@@ -22,7 +22,7 @@ public sealed class ToInt16 {
 		ArgumentException exception = Assert.Throws<ArgumentException>( name, () => {
 
 			ArgInfo<string> argInfo = new( argumentValue, name, null );
-			_ = StringExtensions.ToInt16( argInfo );
+			_ = StringConversionExtensions.ToInt16( argInfo );
 		} );
 
 		string expectedMessage = "Value must be an int16.";
@@ -40,7 +40,7 @@ public sealed class ToInt16 {
 		ArgumentException exception = Assert.Throws<ArgumentException>( name, () => {
 
 			ArgInfo<string> argInfo = new( argumentValue, name, message );
-			_ = StringExtensions.ToInt16( argInfo );
+			_ = StringConversionExtensions.ToInt16( argInfo );
 		} );
 
 		Assert.StartsWith( message, exception.Message );
