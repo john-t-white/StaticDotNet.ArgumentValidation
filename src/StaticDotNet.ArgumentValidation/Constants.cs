@@ -60,7 +60,7 @@ internal class Constants {
 
 	internal const string VALUE_MUST_START_WITH = "Value must start with {0}.";
 
-	internal const string VALUE_NOT_DEFINED_FOR_ENUM = "Value is not defined to enumeration.";
+	internal const string VALUE_NOT_DEFINED = "Value is not defined.";
 
 	internal const string VALUE_UNEXPECTED_NULL = "Value is unexpectedly null. Please use Arg.IsNotNull.";
 }
