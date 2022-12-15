@@ -26,10 +26,10 @@ public class IsNotNullOrWhiteSpace {
 	}
 
 	[Benchmark]
-	public string ArgumentValidation() => Arg.IsNotNullOrWhiteSpace( argumentValue ).Value;
+	public string ArgumentValidation_IsNotNullOrWhiteSpace() => Arg.IsNotNullOrWhiteSpace( argumentValue ).Value;
 
 	[Benchmark]
-	public string ArgumentValidation2() => Arg.IsNotNull( argumentValue ).NotWhiteSpace().Value;
+	public string ArgumentValidation_IsNotNull_NotWhiteSpace() => Arg.IsNotNull( argumentValue ).NotWhiteSpace().Value;
 
 	[Benchmark]
 	public string Dawn_Guard() => Dawn.Guard.Argument( argumentValue ).NotNull().NotWhiteSpace();
