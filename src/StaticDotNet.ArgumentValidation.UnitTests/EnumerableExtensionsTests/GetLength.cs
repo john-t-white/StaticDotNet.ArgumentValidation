@@ -1,4 +1,5 @@
-﻿using System.Collections.ObjectModel;
+﻿using System.Collections;
+using System.Collections.ObjectModel;
 
 namespace StaticDotNet.ArgumentValidation.UnitTests.EnumerableExtensionsTests;
 
@@ -77,7 +78,7 @@ public sealed class GetLength {
 	[Fact]
 	public void ICollectionValueReturnsCorrectly() {
 
-		ICollection<int> value = new Collection<int>() { 1, 2, 3 };
+		ICollection value = new StubCollection( new int[] { 1, 2, 3 });
 		int maxEnumeratorIterations = 0;
 
 		int result = EnumerableExtensions.GetLength( value, maxEnumeratorIterations );
@@ -88,7 +89,7 @@ public sealed class GetLength {
 	[Fact]
 	public void IReadOnlyCollectionValueReturnsCorrectly() {
 
-		IReadOnlyCollection<int> value = ( new List<int>() { 1, 2, 3 } ).AsReadOnly();
+		ReadOnlyCollection<int> value = ( new List<int>() { 1, 2, 3 } ).AsReadOnly();
 		int maxEnumeratorIterations = 0;
 
 		int result = EnumerableExtensions.GetLength( value, maxEnumeratorIterations );
@@ -118,5 +119,26 @@ public sealed class GetLength {
 		int result = EnumerableExtensions.GetLength( value, maxEnumeratorIterations );
 
 		Assert.Equal( maxEnumeratorIterations, result );
+	}
+
+	public class StubCollection
+		: ICollection {
+
+		public StubCollection( Array array ) {
+		
+			Array= array;
+		}
+
+		public Array Array { get; }
+
+		public int Count => Array.Length;
+
+		public bool IsSynchronized => Array.IsSynchronized;
+
+		public object SyncRoot => Array.SyncRoot;
+
+		public void CopyTo( Array array, int index ) => Array.CopyTo( array, index );
+
+		public IEnumerator GetEnumerator() => Array.GetEnumerator();
 	}
 }

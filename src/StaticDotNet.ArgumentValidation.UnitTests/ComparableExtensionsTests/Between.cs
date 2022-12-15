@@ -38,6 +38,42 @@ public sealed class Between {
 	}
 
 	[Fact]
+	public void WithNullMinValueThrowsArgumentOutOfRangeException() {
+
+		string argumentValue = "1";
+		string name = "Name";
+		string minValue = null!;
+		string maxValue = "4";
+
+		ArgumentOutOfRangeException exception = Assert.Throws<ArgumentOutOfRangeException>( name, () => {
+			ArgInfo<string> argInfo = new( argumentValue, name, null );
+			_ = argInfo.Between( minValue, maxValue );
+		} );
+
+		string expectedMessage = $"Value must be between <null> and {maxValue}.";
+
+		Assert.StartsWith( expectedMessage, exception.Message );
+	}
+
+	[Fact]
+	public void WithNullMaxValueThrowsArgumentOutOfRangeException() {
+
+		string argumentValue = "1";
+		string name = "Name";
+		string minValue = "2";
+		string maxValue = null!;
+
+		ArgumentOutOfRangeException exception = Assert.Throws<ArgumentOutOfRangeException>( name, () => {
+			ArgInfo<string> argInfo = new( argumentValue, name, null );
+			_ = argInfo.Between( minValue, maxValue );
+		} );
+
+		string expectedMessage = $"Value must be between {minValue} and <null>.";
+
+		Assert.StartsWith( expectedMessage, exception.Message );
+	}
+
+	[Fact]
 	public void WithValueNotBetweenAndMessageThrowsArgumentOutOfRangeException() {
 
 		int argumentValue = 1;
