@@ -19,7 +19,7 @@ public static class RegexExtensions {
 	/// <param name="pattern">The regular expression pattern.</param>
 	/// <param name="options">The regex options.</param>
 	/// <param name="matchTimeout">The timeout.</param>
-	/// <returns>The <see cref="ArgInfo{T}"/>.</returns>
+	/// <returns>The <paramref name="argInfo"/>.</returns>
 	/// <exception cref="ArgumentException">Thrown when <paramref name="argInfo.Value"/> does not match the <paramref name="pattern"/></exception>
 	public static ref readonly ArgInfo<string> Matches( in this ArgInfo<string> argInfo, [StringSyntax( StringSyntaxAttribute.Regex )] string pattern, RegexOptions options = RegexOptions.None, TimeSpan? matchTimeout = null ) {
 
@@ -36,7 +36,7 @@ public static class RegexExtensions {
 	/// </summary>
 	/// <param name="argInfo">The argument info.</param>
 	/// <param name="regex">The regular expression pattern.</param>
-	/// <returns>The <see cref="ArgInfo{T}"/>.</returns>
+	/// <returns>The <paramref name="argInfo"/>.</returns>
 	/// <exception cref="ArgumentException">Thrown when <paramref name="argInfo.Value"/> does not match the <paramref name="regex"/></exception>
 	public static ref readonly ArgInfo<string> Matches( in this ArgInfo<string> argInfo, Regex regex ) {
 
@@ -56,7 +56,7 @@ public static class RegexExtensions {
 	/// <param name="match">The match result.</param>
 	/// <param name="options">The regex options.</param>
 	/// <param name="matchTimeout">The timeout.</param>
-	/// <returns>The <see cref="ArgInfo{T}"/>.</returns>
+	/// <returns>The <paramref name="argInfo"/>.</returns>
 	/// <exception cref="ArgumentException">Thrown when <paramref name="argInfo.Value"/> does not match the <paramref name="pattern"/></exception>
 	public static ref readonly ArgInfo<string> Matches( in this ArgInfo<string> argInfo, [StringSyntax( StringSyntaxAttribute.Regex )] string pattern, out Match match, RegexOptions options = RegexOptions.None, TimeSpan? matchTimeout = null ) {
 
@@ -75,7 +75,7 @@ public static class RegexExtensions {
 	/// <param name="argInfo">The argument info.</param>
 	/// <param name="regex">The regular expression pattern.</param>
 	/// <param name="match">The match result.</param>
-	/// <returns>The <see cref="ArgInfo{T}"/>.</returns>
+	/// <returns>The <paramref name="argInfo"/>.</returns>
 	/// <exception cref="ArgumentException">Thrown when <paramref name="argInfo.Value"/> does not match the <paramref name="regex"/></exception>
 	public static ref readonly ArgInfo<string> Matches( in this ArgInfo<string> argInfo, Regex regex, out Match match ) {
 

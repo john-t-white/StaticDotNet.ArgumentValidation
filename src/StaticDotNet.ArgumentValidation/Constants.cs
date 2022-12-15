@@ -22,6 +22,10 @@ internal class Constants {
 
 	internal const string VALUE_MUST_BE_BYTE = "Value must be a byte.";
 
+	internal const string VALUE_MUST_BE_DATETIME = "Value must be a date/time.";
+
+	internal const string VALUE_MUST_BE_DATE = "Value must be a date.";
+
 	internal const string VALUE_MUST_BE_EQUAL_TO = "Value must be equal to {0}.";
 
 	internal const string VALUE_MUST_BE_FALSE = "Value must be false.";

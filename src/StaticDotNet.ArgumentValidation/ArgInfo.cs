@@ -43,7 +43,7 @@ public readonly ref struct ArgInfo<T>
 	/// Casts an argument to the type <typeparamref name="TType"/>, otherwise an <see cref="ArgumentException"/> is thrown.
 	/// </summary>
 	/// <typeparam name="TType">The type to cast to.</typeparam>
-	/// <returns>An <see cref="ArgInfo{TType}"/>.</returns>
+	/// <returns>A new <typeparamref name="TType"/> <see cref="ArgInfo{TType}"/>.</returns>
 	/// <exception cref="ArgumentException">Thrown when <see cref="Value"/> is not able to be cast to <typeparamref name="TType"/>.</exception>
 	public ArgInfo<TType> As<TType>()
 		where TType : notnull {

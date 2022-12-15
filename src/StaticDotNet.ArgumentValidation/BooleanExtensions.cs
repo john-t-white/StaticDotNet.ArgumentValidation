@@ -13,7 +13,7 @@ public static class BooleanExtensions {
 	/// Ensures an argument is true, otherwise an <see cref="ArgumentException"/> is thrown.
 	/// </summary>
 	/// <param name="argInfo">The argument info.</param>
-	/// <returns>The <see cref="ArgInfo{T}"/>.</returns>
+	/// <returns>The <paramref name="argInfo"/>.</returns>
 	/// <exception cref="ArgumentException">Thrown when <paramref name="argInfo.Value"/> is not true.</exception>
 	public static ref readonly ArgInfo<bool> True( in this ArgInfo<bool> argInfo ) {
 
@@ -29,7 +29,7 @@ public static class BooleanExtensions {
 	/// Ensures an argument is false, otherwise an <see cref="ArgumentException"/> is thrown.
 	/// </summary>
 	/// <param name="argInfo">The argument info.</param>
-	/// <returns>The <see cref="ArgInfo{T}"/>.</returns>
+	/// <returns>The <paramref name="argInfo"/>.</returns>
 	/// <exception cref="ArgumentException">Thrown when <paramref name="argInfo.Value"/> is not false.</exception>
 	public static ref readonly ArgInfo<bool> False( in this ArgInfo<bool> argInfo ) {
 

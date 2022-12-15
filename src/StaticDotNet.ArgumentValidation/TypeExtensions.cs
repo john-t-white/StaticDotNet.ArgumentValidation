@@ -17,7 +17,7 @@ public static class TypeExtensions {
 	/// </summary>
 	/// <typeparam name="T">The type it should be assignable to.</typeparam>
 	/// <param name="argInfo">The argument info.</param>
-	/// <returns>The <see cref="ArgInfo{T}"/>.</returns>
+	/// <returns>The <paramref name="argInfo"/>.</returns>
 	/// <exception cref="ArgumentException">Thrown when <paramref name="argInfo.Value"/> is not assignable to <typeparamref name="T"/>.</exception>
 	public static ref readonly ArgInfo<Type> AssignableTo<T>( in this ArgInfo<Type> argInfo )
 		=> ref TypeExtensions.AssignableTo( in argInfo, typeof( T ) );
@@ -27,7 +27,7 @@ public static class TypeExtensions {
 	/// </summary>
 	/// <param name="argInfo">The argument info.</param>
 	/// <param name="type">The type it should be assignable to.</param>
-	/// <returns>The <see cref="ArgInfo{T}"/>.</returns>
+	/// <returns>The <paramref name="argInfo"/>.</returns>
 	/// <exception cref="ArgumentException">Thrown when <paramref name="argInfo.Value"/> is not assignable to <paramref name="type"/>.</exception>
 
 	public static ref readonly ArgInfo<Type> AssignableTo( in this ArgInfo<Type> argInfo, Type type ) {
@@ -45,7 +45,7 @@ public static class TypeExtensions {
 	/// </summary>
 	/// <typeparam name="T">The type it should be assignable to.</typeparam>
 	/// <param name="argInfo">The argument info.</param>
-	/// <returns>The <see cref="ArgInfo{T}"/>.</returns>
+	/// <returns>The <paramref name="argInfo"/>.</returns>
 	/// <exception cref="ArgumentException">Thrown when <paramref name="argInfo.Value"/> is not assignable to <typeparamref name="T"/>.</exception>
 	public static ref readonly ArgInfo<TypeInfo> AssignableTo<T>( in this ArgInfo<TypeInfo> argInfo )
 		=> ref TypeExtensions.AssignableTo( in argInfo, typeof( T ) );
@@ -55,7 +55,7 @@ public static class TypeExtensions {
 	/// </summary>
 	/// <param name="argInfo">The argument info.</param>
 	/// <param name="type">The type it should be assignable to.</param>
-	/// <returns>The <see cref="ArgInfo{T}"/>.</returns>
+	/// <returns>The <paramref name="argInfo"/>.</returns>
 	/// <exception cref="ArgumentException">Thrown when <paramref name="argInfo.Value"/> is not assignable to <paramref name="type"/>.</exception>
 	public static ref readonly ArgInfo<TypeInfo> AssignableTo( in this ArgInfo<TypeInfo> argInfo, [DisallowNull] Type type ) {
 

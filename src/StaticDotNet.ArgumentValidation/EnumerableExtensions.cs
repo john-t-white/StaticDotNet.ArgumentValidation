@@ -18,7 +18,7 @@ public static class EnumerableExtensions {
 	/// </summary>
 	/// <typeparam name="TArg">The argument type.</typeparam>
 	/// <param name="argInfo">The argument info.</param>
-	/// <returns>The <see cref="ArgInfo{T}"/>.</returns>
+	/// <returns>The <paramref name="argInfo"/>.</returns>
 	/// <exception cref="ArgumentException">Thrown when <paramref name="argInfo.Value"/> is empty.</exception>
 	public static ref readonly ArgInfo<TArg> NotEmpty<TArg>( in this ArgInfo<TArg> argInfo )
 		where TArg : IEnumerable {
@@ -37,7 +37,7 @@ public static class EnumerableExtensions {
 	/// <typeparam name="TArg">The argument type.</typeparam>
 	/// <param name="argInfo">The argument info.</param>
 	/// <param name="length">The maximum length.</param>
-	/// <returns>The <see cref="ArgInfo{T}"/>.</returns>
+	/// <returns>The <paramref name="argInfo"/>.</returns>
 	/// <exception cref="ArgumentOutOfRangeException">Thrown when the length of <paramref name="argInfo.Value"/> does not equal <paramref name="length"/>.</exception>
 	public static ref readonly ArgInfo<TArg> Length<TArg>( in this ArgInfo<TArg> argInfo, int length )
 		where TArg : IEnumerable {
@@ -56,7 +56,7 @@ public static class EnumerableExtensions {
 	/// <typeparam name="TArg">The argument type.</typeparam>
 	/// <param name="argInfo">The argument info.</param>
 	/// <param name="length">The miniumum length.</param>
-	/// <returns>The <see cref="ArgInfo{T}"/>.</returns>
+	/// <returns>The <paramref name="argInfo"/>.</returns>
 	/// <exception cref="ArgumentOutOfRangeException">Thrown when the length of <paramref name="argInfo.Value"/> is less than <paramref name="length"/>.</exception>
 	public static ref readonly ArgInfo<TArg> MinLength<TArg>( in this ArgInfo<TArg> argInfo, int length )
 		where TArg : IEnumerable {
@@ -75,7 +75,7 @@ public static class EnumerableExtensions {
 	/// <typeparam name="TArg">The argument type.</typeparam>
 	/// <param name="argInfo">The argument info.</param>
 	/// <param name="length">The maximum length.</param>
-	/// <returns>The <see cref="ArgInfo{T}"/>.</returns>
+	/// <returns>The <paramref name="argInfo"/>.</returns>
 	/// <exception cref="ArgumentOutOfRangeException">Thrown when the length of <paramref name="argInfo.Value"/> greater than <paramref name="length"/>.</exception>
 	public static ref readonly ArgInfo<TArg> MaxLength<TArg>( in this ArgInfo<TArg> argInfo, int length )
 		where TArg : IEnumerable {
@@ -95,7 +95,7 @@ public static class EnumerableExtensions {
 	/// <param name="argInfo">The argument info.</param>
 	/// <param name="minLength">The miniumum length.</param>
 	/// <param name="maxLength">The maximum length.</param>
-	/// <returns>The <see cref="ArgInfo{T}"/>.</returns>
+	/// <returns>The <paramref name="argInfo"/>.</returns>
 	/// <exception cref="ArgumentOutOfRangeException">Thrown when the length of <paramref name="argInfo.Value"/> is not between <paramref name="minLength"/> and <paramref name="maxLength"/>.</exception>
 	public static ref readonly ArgInfo<TArg> LengthBetween<TArg>( in this ArgInfo<TArg> argInfo, int minLength, int maxLength )
 		where TArg : IEnumerable {
@@ -118,7 +118,7 @@ public static class EnumerableExtensions {
 	/// <param name="argInfo">The argument info.</param>
 	/// <param name="value">The value it should contain.</param>
 	/// <param name="comparer">The comparer.</param>
-	/// <returns>The <see cref="ArgInfo{T}"/>.</returns>
+	/// <returns>The <paramref name="argInfo"/>.</returns>
 	/// <exception cref="ArgumentException">Thrown when <paramref name="argInfo.Value"/> does not contain <paramref name="value"/>.</exception>
 	public static ref readonly ArgInfo<TArg> Contains<TArg, TItem>( in this ArgInfo<TArg> argInfo, TItem value, IEqualityComparer<TItem>? comparer = null )
 		where TArg : IEnumerable, IEnumerable<TItem> {

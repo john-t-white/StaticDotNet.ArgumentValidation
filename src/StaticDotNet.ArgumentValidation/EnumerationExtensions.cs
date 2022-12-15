@@ -14,7 +14,7 @@ public static class EnumerationExtensions {
 	/// </summary>
 	/// <typeparam name="T">The type of enumeration.</typeparam>
 	/// <param name="argInfo">The argument info.</param>
-	/// <returns>The <see cref="ArgInfo{T}"/>.</returns>
+	/// <returns>The <paramref name="argInfo"/>.</returns>
 	/// <exception cref="ArgumentException">Thrown when <paramref name="argInfo.Value"/> is not defined for <typeparamref name="T"/>.</exception>
 	public static ref readonly ArgInfo<T> Defined<T>( in this ArgInfo<T> argInfo )
 		where T : struct, Enum {

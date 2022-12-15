@@ -13,7 +13,7 @@ public static class ComparableExtensions {
 	/// <typeparam name="TArg">The argument type.</typeparam>
 	/// <param name="argInfo">The argument info.</param>
 	/// <param name="value">The value to compare against.</param>
-	/// <returns>The <see cref="ArgInfo{T}"/>.</returns>
+	/// <returns>The <paramref name="argInfo"/>.</returns>
 	/// <exception cref="ArgumentOutOfRangeException">Thrown when <paramref name="argInfo.Value"/> is not greater than <paramref name="value"/>.</exception>
 	public static ref readonly ArgInfo<TArg> GreaterThan<TArg>( in this ArgInfo<TArg> argInfo, [DisallowNull] TArg value )
 		where TArg : IComparable<TArg> {
@@ -32,7 +32,7 @@ public static class ComparableExtensions {
 	/// <typeparam name="TArg">The argument type.</typeparam>
 	/// <param name="argInfo">The argument info.</param>
 	/// <param name="value">The value to compare against.</param>
-	/// <returns>The <see cref="ArgInfo{T}"/>.</returns>
+	/// <returns>The <paramref name="argInfo"/>.</returns>
 	/// <exception cref="ArgumentOutOfRangeException">Thrown when <paramref name="argInfo.Value"/> is not greater than or equal to <paramref name="value"/>.</exception>
 	public static ref readonly ArgInfo<TArg> GreaterThanOrEqualTo<TArg>( in this ArgInfo<TArg> argInfo, [DisallowNull] TArg value )
 		where TArg : IComparable<TArg> {
@@ -51,7 +51,7 @@ public static class ComparableExtensions {
 	/// <typeparam name="TArg">The argument type.</typeparam>
 	/// <param name="argInfo">The argument info.</param>
 	/// <param name="value">The value to compare against.</param>
-	/// <returns>The <see cref="ArgInfo{T}"/>.</returns>
+	/// <returns>The <paramref name="argInfo"/>.</returns>
 	/// <exception cref="ArgumentOutOfRangeException">Thrown when <paramref name="argInfo.Value"/> is not less than <paramref name="value"/>.</exception>
 	public static ref readonly ArgInfo<TArg> LessThan<TArg>( in this ArgInfo<TArg> argInfo, [DisallowNull] TArg value )
 		where TArg : IComparable<TArg> {
@@ -70,7 +70,7 @@ public static class ComparableExtensions {
 	/// <typeparam name="TArg">The argument type.</typeparam>
 	/// <param name="argInfo">The argument info.</param>
 	/// <param name="value">The value to compare against.</param>
-	/// <returns>The <see cref="ArgInfo{T}"/>.</returns>
+	/// <returns>The <paramref name="argInfo"/>.</returns>
 	/// <exception cref="ArgumentOutOfRangeException">Thrown when <paramref name="argInfo.Value"/> is not less than or equal to <paramref name="value"/>.</exception>
 	public static ref readonly ArgInfo<TArg> LessThanOrEqualTo<TArg>( in this ArgInfo<TArg> argInfo, [DisallowNull] TArg value )
 		where TArg : IComparable<TArg> {
@@ -90,7 +90,7 @@ public static class ComparableExtensions {
 	/// <param name="argInfo">The argument info.</param>
 	/// <param name="minValue">The minimum value.</param>
 	/// <param name="maxValue">The minimum value.</param>
-	/// <returns>The <see cref="ArgInfo{T}"/>.</returns>
+	/// <returns>The <paramref name="argInfo"/>.</returns>
 	/// <exception cref="ArgumentOutOfRangeException">Thrown when <paramref name="argInfo.Value"/> is not between <paramref name="minValue"/> and <paramref name="maxValue"/>.</exception>
 	public static ref readonly ArgInfo<TArg> Between<TArg>( in this ArgInfo<TArg> argInfo, [DisallowNull] TArg minValue, [DisallowNull] TArg maxValue )
 		where TArg : IComparable<TArg> {
