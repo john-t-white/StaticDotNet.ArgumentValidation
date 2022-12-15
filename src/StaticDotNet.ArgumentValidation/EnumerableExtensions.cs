@@ -16,12 +16,12 @@ public static class EnumerableExtensions {
 	/// <summary>
 	/// Ensures an argument is empty, otherwise an <see cref="ArgumentException"/> is thrown.
 	/// </summary>
-	/// <typeparam name="T">The argument type.</typeparam>
+	/// <typeparam name="TArg">The argument type.</typeparam>
 	/// <param name="argInfo">The argument info.</param>
 	/// <returns>The <see cref="ArgInfo{T}"/>.</returns>
 	/// <exception cref="ArgumentException">Thrown when <paramref name="argInfo.Value"/> is empty.</exception>
-	public static ref readonly ArgInfo<T> NotEmpty<T>( in this ArgInfo<T> argInfo )
-		where T : IEnumerable {
+	public static ref readonly ArgInfo<TArg> NotEmpty<TArg>( in this ArgInfo<TArg> argInfo )
+		where TArg : IEnumerable {
 
 		if( GetLength( argInfo.Value, 1 ) > 0 ) {
 			return ref argInfo;
@@ -34,13 +34,13 @@ public static class EnumerableExtensions {
 	/// <summary>
 	/// Ensures an argument has a length of <paramref name="length"/>, otherwise an <see cref="ArgumentOutOfRangeException"/> is thrown.
 	/// </summary>
-	/// <typeparam name="T">The argument type.</typeparam>
+	/// <typeparam name="TArg">The argument type.</typeparam>
 	/// <param name="argInfo">The argument info.</param>
 	/// <param name="length">The maximum length.</param>
 	/// <returns>The <see cref="ArgInfo{T}"/>.</returns>
 	/// <exception cref="ArgumentOutOfRangeException">Thrown when the length of <paramref name="argInfo.Value"/> does not equal <paramref name="length"/>.</exception>
-	public static ref readonly ArgInfo<T> Length<T>( in this ArgInfo<T> argInfo, int length )
-		where T : IEnumerable {
+	public static ref readonly ArgInfo<TArg> Length<TArg>( in this ArgInfo<TArg> argInfo, int length )
+		where TArg : IEnumerable {
 
 		if( GetLength( argInfo.Value, length + 1 ) == length ) {
 			return ref argInfo;
@@ -53,13 +53,13 @@ public static class EnumerableExtensions {
 	/// <summary>
 	/// Ensures an argument has a mininum length of <paramref name="length"/>, otherwise an <see cref="ArgumentOutOfRangeException"/> is thrown.
 	/// </summary>
-	/// <typeparam name="T">The argument type.</typeparam>
+	/// <typeparam name="TArg">The argument type.</typeparam>
 	/// <param name="argInfo">The argument info.</param>
 	/// <param name="length">The miniumum length.</param>
 	/// <returns>The <see cref="ArgInfo{T}"/>.</returns>
 	/// <exception cref="ArgumentOutOfRangeException">Thrown when the length of <paramref name="argInfo.Value"/> is less than <paramref name="length"/>.</exception>
-	public static ref readonly ArgInfo<T> MinLength<T>( in this ArgInfo<T> argInfo, int length )
-		where T : IEnumerable {
+	public static ref readonly ArgInfo<TArg> MinLength<TArg>( in this ArgInfo<TArg> argInfo, int length )
+		where TArg : IEnumerable {
 
 		if( GetLength( argInfo.Value, length ) >= length ) {
 			return ref argInfo;
@@ -72,13 +72,13 @@ public static class EnumerableExtensions {
 	/// <summary>
 	/// Ensures an argument has a maximum length of <paramref name="length"/>, otherwise an <see cref="ArgumentOutOfRangeException"/> is thrown.
 	/// </summary>
-	/// <typeparam name="T">The argument type.</typeparam>
+	/// <typeparam name="TArg">The argument type.</typeparam>
 	/// <param name="argInfo">The argument info.</param>
 	/// <param name="length">The maximum length.</param>
 	/// <returns>The <see cref="ArgInfo{T}"/>.</returns>
 	/// <exception cref="ArgumentOutOfRangeException">Thrown when the length of <paramref name="argInfo.Value"/> greater than <paramref name="length"/>.</exception>
-	public static ref readonly ArgInfo<T> MaxLength<T>( in this ArgInfo<T> argInfo, int length )
-		where T : IEnumerable {
+	public static ref readonly ArgInfo<TArg> MaxLength<TArg>( in this ArgInfo<TArg> argInfo, int length )
+		where TArg : IEnumerable {
 
 		if( GetLength( argInfo.Value, length + 1 ) <= length ) {
 			return ref argInfo;
@@ -91,14 +91,14 @@ public static class EnumerableExtensions {
 	/// <summary>
 	/// Ensures an argument has a length inclusively between <paramref name="minLength"/> and <paramref name="maxLength"/>, otherwise an <see cref="ArgumentOutOfRangeException"/> is thrown.
 	/// </summary>
-	/// <typeparam name="T">The argument type.</typeparam>
+	/// <typeparam name="TArg">The argument type.</typeparam>
 	/// <param name="argInfo">The argument info.</param>
 	/// <param name="minLength">The miniumum length.</param>
 	/// <param name="maxLength">The maximum length.</param>
 	/// <returns>The <see cref="ArgInfo{T}"/>.</returns>
 	/// <exception cref="ArgumentOutOfRangeException">Thrown when the length of <paramref name="argInfo.Value"/> is not between <paramref name="minLength"/> and <paramref name="maxLength"/>.</exception>
-	public static ref readonly ArgInfo<T> LengthBetween<T>( in this ArgInfo<T> argInfo, int minLength, int maxLength )
-		where T : IEnumerable {
+	public static ref readonly ArgInfo<TArg> LengthBetween<TArg>( in this ArgInfo<TArg> argInfo, int minLength, int maxLength )
+		where TArg : IEnumerable {
 
 		int enumerableLength = GetLength( argInfo.Value, maxLength + 1 );
 
@@ -138,8 +138,8 @@ public static class EnumerableExtensions {
 	/// DisallowNullAttribute is needed because the constraint must also be IEnumerable? in order for the methods to call it
 	/// and <paramref name="value"/> should never be null when this is called.
 	/// </remarks>
-	internal static int GetLength<T>( [DisallowNull] T value, int maxEnumeratorIterations )
-		where T : IEnumerable {
+	internal static int GetLength<TArg>( [DisallowNull] TArg value, int maxEnumeratorIterations )
+		where TArg : IEnumerable {
 
 		int? enumerableLength = value switch {
 			string stringValue => stringValue.Length,
