@@ -29,17 +29,7 @@ public sealed class IsNotNull_Class {
 	}
 
 	[Fact]
-	public void WithNullableValueNotNullReturnsCorrectly() {
-
-		object? value = new();
-
-		ArgInfo<object> result = Arg.IsNotNull( value );
-
-		Assert.Same( value, result.Value );
-	}
-
-	[Fact]
-	public void WithNullableValueIsNullThrowsArgumentNullException() {
+	public void WithNullValueThrowsArgumentNullException() {
 
 		object? value = null;
 
@@ -47,7 +37,7 @@ public sealed class IsNotNull_Class {
 	}
 
 	[Fact]
-	public void WithNullableValueIsNullAndNameThrowsArgumentNullException() {
+	public void WithNullValueAndNameThrowsArgumentNullException() {
 
 		object? value = null;
 		string name = "Name";
@@ -56,7 +46,7 @@ public sealed class IsNotNull_Class {
 	}
 
 	[Fact]
-	public void WithNullableValueIsNullAndMessageThrowsArgumentNullException() {
+	public void WithNullValueAndMessageThrowsArgumentNullException() {
 
 		object? value = null;
 		string message = "Message";

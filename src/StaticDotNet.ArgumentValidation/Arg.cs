@@ -37,6 +37,27 @@ public static class Arg {
 			: throw ArgumentNullExceptionFactory.Create( name, message );
 
 	/// <summary>
+	/// Ensures the argument is not null or white space.
+	/// </summary>
+	/// <typeparam name="T">The type of <paramref name="value"/>.</typeparam>
+	/// <param name="value">The value of the argument.</param>
+	/// <param name="name">With C# 10, defaults to the expression of <paramref name="value"/>; otherwise specify the argument name.</param>
+	/// <param name="message">The exception message.  Null for for default message.</param>
+	/// <returns>A <see cref="ArgInfo{T}"/>.</returns>
+	/// <exception cref="ArgumentNullException">Thrown when <paramref name="value"/> is null.</exception>
+	public static ArgInfo<string> IsNotNullOrWhiteSpace( [NotNull] string? value, [CallerArgumentExpression( nameof( value ) )] string? name = null, string? message = null ) {
+		if( value is not null ) {
+
+			ArgInfo<string> argInfo = new( value, name, message );
+			_ = argInfo.NotWhiteSpace();
+
+			return argInfo;
+		}
+
+		throw ArgumentNullExceptionFactory.Create( name, message );
+	}
+
+	/// <summary>
 	/// Used for structs since they cannot be null.
 	/// </summary>
 	/// <typeparam name="T">The type of <paramref name="value"/>.</typeparam>
