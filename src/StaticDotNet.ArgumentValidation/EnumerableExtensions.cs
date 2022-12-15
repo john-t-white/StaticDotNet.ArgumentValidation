@@ -7,8 +7,9 @@ namespace StaticDotNet.ArgumentValidation;
 /// Extension methods for validating <see cref="IEnumerable"/> arguments.
 /// </summary>
 /// <remarks>
-/// In order to keep as much performance as possible, the methods try to cast the value to specific types in order to access certain properties without having to use the enumerator.  If the enumerator
-/// is used, it only iterates the smallest amount to keep performance.  Using the enumerator may also allocate memory.
+/// In order to keep as much performance as possible, the methods try to cast the value to specific types in order to access certain properties without
+/// having to use the enumerator.  If the enumerator is used, it only iterates the smallest amount to keep performance.  Using the enumerator
+/// may also allocate memory.
 /// </remarks>
 public static class EnumerableExtensions {
 

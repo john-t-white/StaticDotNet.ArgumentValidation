@@ -24,6 +24,8 @@ internal class Constants {
 
 	internal const string VALUE_MUST_BE_EQUAL_TO = "Value must be equal to {0}.";
 
+	internal const string VALUE_MUST_BE_FALSE = "Value must be false.";
+
 	internal const string VALUE_MUST_BE_GREATER_THAN = "Value must be greater than {0}.";
 
 	internal const string VALUE_MUST_BE_GREATER_THAN_OR_EQUAL_TO = "Value must be greater than or equal to {0}.";
@@ -41,6 +43,8 @@ internal class Constants {
 	internal const string VALUE_MUST_BE_NULL = "Value must be null.";
 
 	internal const string VALUE_MUST_BE_TYPE = "Value must be a type.";
+
+	internal const string VALUE_MUST_BE_TRUE = "Value must be true.";
 
 	internal const string VALUE_MUST_CONTAIN = "Value must contain {0}.";
 
