@@ -43,6 +43,23 @@ public sealed class StartsWith_String {
 	}
 
 	[Fact]
+	public void WithNullValueThrowsArgumentException() {
+
+		string argumentValue = "Value";
+		string name = "Name";
+		string value = null!;
+
+		ArgumentException exception = Assert.Throws<ArgumentException>( name, () => {
+			ArgInfo<string> argInfo = new( argumentValue, name, null );
+			_ = argInfo.StartsWith( value );
+		} );
+
+		string expectedMessage = "Value must start with <null>.";
+
+		Assert.StartsWith( expectedMessage, exception.Message );
+	}
+
+	[Fact]
 	public void WithInvalidValueAndMessageThrowsArgumentException() {
 
 		string argumentValue = "Value";

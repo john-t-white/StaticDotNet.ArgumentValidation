@@ -36,10 +36,27 @@ public sealed partial class Matches_Regex {
 
 		ArgumentException excetion = Assert.Throws<ArgumentException>( name, () => {
 			ArgInfo<string> argInfo = new( argumentValue, name, null );
-			_ = argInfo.Matches( DigitRegex() );
+			_ = argInfo.Matches( regex );
 		} );
 
 		string expectedMessage = $"Value must match the regex {regex}.";
+
+		Assert.StartsWith( expectedMessage, excetion.Message );
+	}
+
+	[Fact]
+	public void WithNullRegexThrowsArgumentException() {
+
+		string argumentValue = "a";
+		string name = "Name";
+		Regex regex = null!;
+
+		ArgumentException excetion = Assert.Throws<ArgumentException>( name, () => {
+			ArgInfo<string> argInfo = new( argumentValue, name, null );
+			_ = argInfo.Matches( regex );
+		} );
+
+		string expectedMessage = "Value must match the regex <null>.";
 
 		Assert.StartsWith( expectedMessage, excetion.Message );
 	}
@@ -87,6 +104,23 @@ public sealed partial class Matches_Regex {
 		} );
 
 		string expectedMessage = $"Value must match the regex {regex}.";
+
+		Assert.StartsWith( expectedMessage, excetion.Message );
+	}
+
+	[Fact]
+	public void WithOutMatchWithNullRegexThrowsArgumentException() {
+
+		string argumentValue = "a";
+		string name = "Name";
+		Regex regex = null!;
+
+		ArgumentException excetion = Assert.Throws<ArgumentException>( name, () => {
+			ArgInfo<string> argInfo = new( argumentValue, name, null );
+			_ = argInfo.Matches( regex, out Match _ );
+		} );
+
+		string expectedMessage = "Value must match the regex <null>.";
 
 		Assert.StartsWith( expectedMessage, excetion.Message );
 	}

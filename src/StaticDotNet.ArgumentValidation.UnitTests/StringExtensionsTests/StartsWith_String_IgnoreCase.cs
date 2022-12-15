@@ -60,6 +60,24 @@ public sealed class StartsWith_String_IgnoreCase {
 	}
 
 	[Fact]
+	public void WithNullValueThrowsArgumentException() {
+
+		string argumentValue = "Value";
+		string name = "Name";
+		string value = null!;
+		bool ignoreCase = false;
+
+		ArgumentException exception = Assert.Throws<ArgumentException>( name, () => {
+			ArgInfo<string> argInfo = new( argumentValue, name, null );
+			_ = argInfo.StartsWith( value, ignoreCase );
+		} );
+
+		string expectedMessage = "Value must start with <null>.";
+
+		Assert.StartsWith( expectedMessage, exception.Message );
+	}
+
+	[Fact]
 	public void WithInvalidValueAndMessageThrowsArgumentException() {
 
 		string argumentValue = "Value";

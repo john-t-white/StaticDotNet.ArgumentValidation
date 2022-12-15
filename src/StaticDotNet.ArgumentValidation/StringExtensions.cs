@@ -37,7 +37,7 @@ public static class StringExtensions {
 	[SuppressMessage( "Globalization", "CA1309:Use ordinal string comparison", Justification = "Does not assume default comparisonType if not specified." )]
 	public static ref readonly ArgInfo<string> EqualTo( in this ArgInfo<string> argInfo, string value, StringComparison? comparisonType = null ) {
 
-		if( comparisonType is null ? argInfo.Value.Equals( value ) : argInfo.Value.Equals( value, comparisonType.Value ) ) {
+		if( value is not null && ( comparisonType is null ? argInfo.Value.Equals( value ) : argInfo.Value.Equals( value, comparisonType.Value ) ) ) {
 			return ref argInfo;
 		}
 
@@ -77,7 +77,7 @@ public static class StringExtensions {
 	[SuppressMessage( "Globalization", "CA1310:Specify StringComparison for correctness", Justification = "Does not assume default comparisonType if not specified." )]
 	public static ref readonly ArgInfo<string> StartsWith( in this ArgInfo<string> argInfo, string value, StringComparison? comparisonType = null ) {
 
-		if( comparisonType == null ? argInfo.Value.StartsWith( value ) : argInfo.Value.StartsWith( value, comparisonType.Value ) ) {
+		if( value is not null && ( comparisonType == null ? argInfo.Value.StartsWith( value ) : argInfo.Value.StartsWith( value, comparisonType.Value ) ) ) {
 			return ref argInfo;
 		}
 
@@ -96,7 +96,7 @@ public static class StringExtensions {
 	/// <exception cref="ArgumentException">Thrown when <paramref name="argInfo.Value"/> does not start with <paramref name="value"/>.</exception>
 	public static ref readonly ArgInfo<string> StartsWith( in this ArgInfo<string> argInfo, string value, bool ignoreCase, CultureInfo? culture = null ) {
 
-		if( argInfo.Value.StartsWith( value, ignoreCase, culture ) ) {
+		if( value is not null && argInfo.Value.StartsWith( value, ignoreCase, culture ) ) {
 			return ref argInfo;
 		}
 
@@ -136,7 +136,7 @@ public static class StringExtensions {
 	[SuppressMessage( "Globalization", "CA1310:Specify StringComparison for correctness", Justification = "Does not assume default comparisonType if not specified." )]
 	public static ref readonly ArgInfo<string> EndsWith( in this ArgInfo<string> argInfo, string value, StringComparison? comparisonType = null ) {
 
-		if( comparisonType == null ? argInfo.Value.EndsWith( value ) : argInfo.Value.EndsWith( value, comparisonType.Value ) ) {
+		if( value is not null && ( comparisonType == null ? argInfo.Value.EndsWith( value ) : argInfo.Value.EndsWith( value, comparisonType.Value ) ) ) {
 			return ref argInfo;
 		}
 
@@ -155,7 +155,7 @@ public static class StringExtensions {
 	/// <exception cref="ArgumentException">Thrown when <paramref name="argInfo.Value"/> does not start with <paramref name="value"/>.</exception>
 	public static ref readonly ArgInfo<string> EndsWith( in this ArgInfo<string> argInfo, string value, bool ignoreCase, CultureInfo? culture = null ) {
 
-		if( argInfo.Value.EndsWith( value, ignoreCase, culture ) ) {
+		if( value is not null && argInfo.Value.EndsWith( value, ignoreCase, culture ) ) {
 			return ref argInfo;
 		}
 
