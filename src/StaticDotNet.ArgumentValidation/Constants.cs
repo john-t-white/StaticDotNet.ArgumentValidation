@@ -54,9 +54,15 @@ internal class Constants {
 
 	internal const string VALUE_MUST_BE_TIMESPAN = "Value must be a time span.";
 
+	internal const string VALUE_MUST_BE_READABLE = "Value must be readable.";
+
+	internal const string VALUE_MUST_BE_SAME = "Value must be the same.";
+
 	internal const string VALUE_MUST_BE_TYPE = "Value must be a type.";
 
 	internal const string VALUE_MUST_BE_TRUE = "Value must be true.";
+
+	internal const string VALUE_MUST_BE_WRITABLE = "Value must be writable.";
 
 	internal const string VALUE_MUST_CONTAIN = "Value must contain {0}.";
 
@@ -67,8 +73,6 @@ internal class Constants {
 	internal const string VALUE_MUST_HAVE_LENGTH_EQUAL_TO = "Value must have a length equal to {0}.";
 
 	internal const string VALUE_MUST_MATCH_REGEX = "Value must match the regex {0}.";
-
-	internal const string VALUE_MUST_BE_SAME = "Value must be the same.";
 
 	internal const string VALUE_MUST_START_WITH = "Value must start with {0}.";
 
