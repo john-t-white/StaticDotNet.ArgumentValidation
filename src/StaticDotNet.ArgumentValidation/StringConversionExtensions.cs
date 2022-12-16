@@ -258,6 +258,62 @@ public static class StringConversionExtensions {
 		throw new ArgumentException( message, argInfo.Name );
 	}
 
+	/// <summary>
+	/// Ensures an argument represents a <see cref="TimeOnly"/>, otherwise an <see cref="ArgumentException"/> is thrown.
+	/// </summary>
+	/// <param name="argInfo">The argument info.</param>
+	/// <param name="provider">The <see cref="IFormatProvider"/> to use.</param>
+	/// <param name="styles">The <see cref="DateTimeStyles"/> to use.</param>
+	/// <returns>A new <see cref="DateTime"/> <see cref="ArgInfo{T}"/>.</returns>
+	/// <exception cref="ArgumentException">Thrown when <paramref name="argInfo.Value"/> does not represent a <see cref="TimeOnly"/>.</exception>
+	public static ArgInfo<TimeOnly> ToTimeOnly( in this ArgInfo<string> argInfo, IFormatProvider? provider = null, DateTimeStyles styles = DateTimeStyles.None ) {
+
+		if( TimeOnly.TryParse( argInfo.Value, provider, styles, out TimeOnly result ) ) {
+			return new( result, argInfo.Name, argInfo.Message );
+		}
+
+		string message = argInfo.Message ?? Constants.VALUE_MUST_BE_TIME;
+		throw new ArgumentException( message, argInfo.Name );
+	}
+
+	/// <summary>
+	/// Ensures an argument represents a <see cref="TimeOnly"/>, otherwise an <see cref="ArgumentException"/> is thrown.
+	/// </summary>
+	/// <param name="argInfo">The argument info.</param>
+	/// <param name="format">The date time format.</param>
+	/// <param name="provider">The <see cref="IFormatProvider"/> to use.</param>
+	/// <param name="styles">The <see cref="DateTimeStyles"/> to use.</param>
+	/// <returns>A new <see cref="DateTime"/> <see cref="ArgInfo{T}"/>.</returns>
+	/// <exception cref="ArgumentException">Thrown when <paramref name="argInfo.Value"/> does not represent a <see cref="TimeOnly"/>.</exception>
+	public static ArgInfo<TimeOnly> ToTimeOnlyExact( in this ArgInfo<string> argInfo, string? format, IFormatProvider? provider = null, DateTimeStyles styles = DateTimeStyles.None ) {
+
+		if( TimeOnly.TryParseExact( argInfo.Value, format, provider, styles, out TimeOnly result ) ) {
+			return new( result, argInfo.Name, argInfo.Message );
+		}
+
+		string message = argInfo.Message ?? Constants.VALUE_MUST_BE_TIME;
+		throw new ArgumentException( message, argInfo.Name );
+	}
+
+	/// <summary>
+	/// Ensures an argument represents a <see cref="TimeOnly"/>, otherwise an <see cref="ArgumentException"/> is thrown.
+	/// </summary>
+	/// <param name="argInfo">The argument info.</param>
+	/// <param name="formats">The date time formats.</param>
+	/// <param name="provider">The <see cref="IFormatProvider"/> to use.</param>
+	/// <param name="styles">The <see cref="DateTimeStyles"/> to use.</param>
+	/// <returns>A new <see cref="DateTime"/> <see cref="ArgInfo{T}"/>.</returns>
+	/// <exception cref="ArgumentException">Thrown when <paramref name="argInfo.Value"/> does not represent a <see cref="TimeOnly"/>.</exception>
+	public static ArgInfo<TimeOnly> ToTimeOnlyExact( in this ArgInfo<string> argInfo, string?[]? formats, IFormatProvider? provider = null, DateTimeStyles styles = DateTimeStyles.None ) {
+
+		if( TimeOnly.TryParseExact( argInfo.Value, formats, provider, styles, out TimeOnly result ) ) {
+			return new( result, argInfo.Name, argInfo.Message );
+		}
+
+		string message = argInfo.Message ?? Constants.VALUE_MUST_BE_TIME;
+		throw new ArgumentException( message, argInfo.Name );
+	}
+
 #endif
 
 	/// <summary>

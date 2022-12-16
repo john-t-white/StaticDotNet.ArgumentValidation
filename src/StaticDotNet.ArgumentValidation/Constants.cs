@@ -48,6 +48,8 @@ internal class Constants {
 
 	internal const string VALUE_MUST_BE_NULL = "Value must be null.";
 
+	internal const string VALUE_MUST_BE_TIME = "Value must be a time.";
+
 	internal const string VALUE_MUST_BE_TYPE = "Value must be a type.";
 
 	internal const string VALUE_MUST_BE_TRUE = "Value must be true.";
