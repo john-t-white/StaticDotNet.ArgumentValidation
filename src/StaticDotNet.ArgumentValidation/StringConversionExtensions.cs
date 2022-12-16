@@ -20,7 +20,7 @@ public static class StringConversionExtensions {
 			return new( result, argInfo.Name, argInfo.Message );
 		}
 
-		string message = argInfo.Message ?? Constants.VALUE_MUST_BE_BOOL;
+		string message = argInfo.Message ?? Constants.VALUE_MUST_BE_BOOLEAN;
 		throw new ArgumentException( message, argInfo.Name );
 	}
 

@@ -14,11 +14,15 @@ internal class Constants {
 
 	internal const string VALUE_CANNOT_HAVE_LENGTH_LESS_THAN = "Value cannot have a length less than {0}.";
 
+	internal const string VALUE_MUST_BE_ABSOLUTE = "Value must be absolute.";
+
+	internal const string VALUE_MUST_BE_ABSOLUTE_WITH_SCHEME = "Value must be absolute with scheme {0}.";
+
 	internal const string VALUE_MUST_BE_ASSIGNABLE_TO = "Value must be assignable to {0}.";
 
 	internal const string VALUE_MUST_BE_BETWEEN = "Value must be between {0} and {1}.";
 
-	internal const string VALUE_MUST_BE_BOOL = "Value must be a boolean.";
+	internal const string VALUE_MUST_BE_BOOLEAN = "Value must be a boolean.";
 
 	internal const string VALUE_MUST_BE_BYTE = "Value must be a byte.";
 
@@ -49,6 +53,8 @@ internal class Constants {
 	internal const string VALUE_MUST_BE_LESS_THAN_OR_EQUAL_TO = "Value must be less than or equal to {0}.";
 
 	internal const string VALUE_MUST_BE_NULL = "Value must be null.";
+
+	internal const string VALUE_MUST_BE_RELATIVE = "Value must be relative.";
 
 	internal const string VALUE_MUST_BE_TIME = "Value must be a time.";
 
