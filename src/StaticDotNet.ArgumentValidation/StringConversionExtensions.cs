@@ -25,6 +25,60 @@ public static class StringConversionExtensions {
 	}
 
 	/// <summary>
+	/// Ensures an argument represents a <see cref="Guid"/>, otherwise an <see cref="ArgumentException"/> is thrown.
+	/// </summary>
+	/// <param name="argInfo">The argument info.</param>
+	/// <returns>A new <see cref="bool"/> <see cref="ArgInfo{T}"/>.</returns>
+	/// <exception cref="ArgumentException">Thrown when <paramref name="argInfo.Value"/> does not represent a <see cref="Guid"/>.</exception>
+	public static ArgInfo<Guid> ToGuid( in ArgInfo<string> argInfo ) {
+
+		if( Guid.TryParse( argInfo.Value, out Guid result ) ) {
+			return new( result, argInfo.Name, argInfo.Message );
+		}
+
+		string message = argInfo.Message ?? Constants.VALUE_MUST_BE_GUID;
+		throw new ArgumentException( message, argInfo.Name );
+	}
+
+#if NET7_0_OR_GREATER
+
+	/// <summary>
+	/// Ensures an argument represents a <see cref="Guid"/>, otherwise an <see cref="ArgumentException"/> is thrown.
+	/// </summary>
+	/// <param name="argInfo">The argument info.</param>
+	/// <param name="provider">The <see cref="IFormatProvider"/> to use.</param>
+	/// <returns>A new <see cref="bool"/> <see cref="ArgInfo{T}"/>.</returns>
+	/// <exception cref="ArgumentException">Thrown when <paramref name="argInfo.Value"/> does not represent a <see cref="Guid"/>.</exception>
+	public static ArgInfo<Guid> ToGuid( in ArgInfo<string> argInfo, IFormatProvider? provider = null ) {
+
+		if( Guid.TryParse( argInfo.Value, provider, out Guid result ) ) {
+			return new( result, argInfo.Name, argInfo.Message );
+		}
+
+		string message = argInfo.Message ?? Constants.VALUE_MUST_BE_GUID;
+		throw new ArgumentException( message, argInfo.Name );
+	}
+
+#endif
+
+	/// <summary>
+	/// Ensures an argument represents a <see cref="Guid"/>, otherwise an <see cref="ArgumentException"/> is thrown.
+	/// </summary>
+	/// <param name="argInfo">The argument info.</param>
+	///  <param name="format">The guid format.</param>
+	/// <returns>A new <see cref="DateTime"/> <see cref="ArgInfo{T}"/>.</returns>
+	/// <exception cref="ArgumentException">Thrown when <paramref name="argInfo.Value"/> does not represent a <see cref="Guid"/>.</exception>
+	public static ArgInfo<Guid> ToGuidExact( in ArgInfo<string> argInfo, string? format ) {
+
+		if( Guid.TryParseExact( argInfo.Value, format, out Guid result ) ) {
+			return new( result, argInfo.Name, argInfo.Message );
+		}
+
+		string message = argInfo.Message ?? Constants.VALUE_MUST_BE_GUID;
+		throw new ArgumentException( message, argInfo.Name );
+	}
+
+	/// <summary>
 	/// Ensures an argument represents a <see cref="byte"/>, otherwise an <see cref="ArgumentException"/> is thrown.
 	/// </summary>
 	/// <param name="argInfo">The argument info.</param>
@@ -179,7 +233,7 @@ public static class StringConversionExtensions {
 	/// <returns>A new <see cref="DateTime"/> <see cref="ArgInfo{T}"/>.</returns>
 	/// <exception cref="ArgumentException">Thrown when <paramref name="argInfo.Value"/> does not represent a <see cref="DateTime"/>.</exception>
 	public static ArgInfo<DateTime> ToDateTimeExact( in this ArgInfo<string> argInfo, string? format, IFormatProvider? provider = null, DateTimeStyles styles = DateTimeStyles.None ) {
-		
+
 		if( DateTime.TryParseExact( argInfo.Value, format, provider, styles, out DateTime result ) ) {
 			return new( result, argInfo.Name, argInfo.Message );
 		}

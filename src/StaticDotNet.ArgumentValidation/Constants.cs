@@ -36,6 +36,8 @@ internal class Constants {
 
 	internal const string VALUE_MUST_BE_GREATER_THAN_OR_EQUAL_TO = "Value must be greater than or equal to {0}.";
 
+	internal const string VALUE_MUST_BE_GUID = "Value must be a guid.";
+
 	internal const string VALUE_MUST_BE_INT16 = "Value must be an int16.";
 
 	internal const string VALUE_MUST_BE_INT32 = "Value must be an int32.";
