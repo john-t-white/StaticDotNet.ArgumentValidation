@@ -50,6 +50,8 @@ internal class Constants {
 
 	internal const string VALUE_MUST_BE_TIME = "Value must be a time.";
 
+	internal const string VALUE_MUST_BE_TIMESPAN = "Value must be a time span.";
+
 	internal const string VALUE_MUST_BE_TYPE = "Value must be a type.";
 
 	internal const string VALUE_MUST_BE_TRUE = "Value must be true.";

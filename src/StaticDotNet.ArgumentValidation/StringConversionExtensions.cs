@@ -89,6 +89,62 @@ public static class StringConversionExtensions {
 	}
 
 	/// <summary>
+	/// Ensures an argument represents a <see cref="TimeSpan"/>, otherwise an <see cref="ArgumentException"/> is thrown.
+	/// </summary>
+	/// <param name="argInfo">The argument info.</param>
+	/// <param name="provider">The <see cref="IFormatProvider"/> to use.</param>
+	/// <param name="styles">The <see cref="DateTimeStyles"/> to use.</param>
+	/// <returns>A new <see cref="DateTime"/> <see cref="ArgInfo{T}"/>.</returns>
+	/// <exception cref="ArgumentException">Thrown when <paramref name="argInfo.Value"/> does not represent a <see cref="TimeSpan"/>.</exception>
+	public static ArgInfo<TimeSpan> ToTimeSpan( in this ArgInfo<string> argInfo, IFormatProvider? provider = null ) {
+
+		if( TimeSpan.TryParse( argInfo.Value, provider, out TimeSpan result ) ) {
+			return new( result, argInfo.Name, argInfo.Message );
+		}
+
+		string message = argInfo.Message ?? Constants.VALUE_MUST_BE_TIMESPAN;
+		throw new ArgumentException( message, argInfo.Name );
+	}
+
+	/// <summary>
+	/// Ensures an argument represents a <see cref="TimeSpan"/>, otherwise an <see cref="ArgumentException"/> is thrown.
+	/// </summary>
+	/// <param name="argInfo">The argument info.</param>
+	///  <param name="formats">The time span format.</param>
+	/// <param name="provider">The <see cref="IFormatProvider"/> to use.</param>
+	/// <param name="styles">The <see cref="TimeSpanStyles"/> to use.</param>
+	/// <returns>A new <see cref="DateTime"/> <see cref="ArgInfo{T}"/>.</returns>
+	/// <exception cref="ArgumentException">Thrown when <paramref name="argInfo.Value"/> does not represent a <see cref="TimeSpan"/>.</exception>
+	public static ArgInfo<TimeSpan> ToTimeSpanExact( in this ArgInfo<string> argInfo, string formats, IFormatProvider? provider = null, TimeSpanStyles styles = TimeSpanStyles.None ) {
+
+		if( TimeSpan.TryParseExact( argInfo.Value, formats, provider, styles, out TimeSpan result ) ) {
+			return new( result, argInfo.Name, argInfo.Message );
+		}
+
+		string message = argInfo.Message ?? Constants.VALUE_MUST_BE_TIMESPAN;
+		throw new ArgumentException( message, argInfo.Name );
+	}
+
+	/// <summary>
+	/// Ensures an argument represents a <see cref="TimeSpan"/>, otherwise an <see cref="ArgumentException"/> is thrown.
+	/// </summary>
+	/// <param name="argInfo">The argument info.</param>
+	///  <param name="formats">The time span formats.</param>
+	/// <param name="provider">The <see cref="IFormatProvider"/> to use.</param>
+	/// <param name="styles">The <see cref="TimeSpanStyles"/> to use.</param>
+	/// <returns>A new <see cref="DateTime"/> <see cref="ArgInfo{T}"/>.</returns>
+	/// <exception cref="ArgumentException">Thrown when <paramref name="argInfo.Value"/> does not represent a <see cref="TimeSpan"/>.</exception>
+	public static ArgInfo<TimeSpan> ToTimeSpanExact( in this ArgInfo<string> argInfo, string?[]? formats, IFormatProvider? provider = null, TimeSpanStyles styles = TimeSpanStyles.None ) {
+
+		if( TimeSpan.TryParseExact( argInfo.Value, formats, provider, styles, out TimeSpan result ) ) {
+			return new( result, argInfo.Name, argInfo.Message );
+		}
+
+		string message = argInfo.Message ?? Constants.VALUE_MUST_BE_TIMESPAN;
+		throw new ArgumentException( message, argInfo.Name );
+	}
+
+	/// <summary>
 	/// Ensures an argument represents a <see cref="DateTime"/>, otherwise an <see cref="ArgumentException"/> is thrown.
 	/// </summary>
 	/// <param name="argInfo">The argument info.</param>
@@ -166,7 +222,7 @@ public static class StringConversionExtensions {
 	/// Ensures an argument represents a <see cref="DateTimeOffset"/>, otherwise an <see cref="ArgumentException"/> is thrown.
 	/// </summary>
 	/// <param name="argInfo">The argument info.</param>
-	/// <param name="format">The date time format.</param>
+	/// <param name="format">The date time offset format.</param>
 	/// <param name="provider">The <see cref="IFormatProvider"/> to use.</param>
 	/// <param name="styles">The <see cref="DateTimeStyles"/> to use.</param>
 	/// <returns>A new <see cref="DateTime"/> <see cref="ArgInfo{T}"/>.</returns>
@@ -185,7 +241,7 @@ public static class StringConversionExtensions {
 	/// Ensures an argument represents a <see cref="DateTimeOffset"/>, otherwise an <see cref="ArgumentException"/> is thrown.
 	/// </summary>
 	/// <param name="argInfo">The argument info.</param>
-	/// <param name="formats">The date time formats.</param>
+	/// <param name="formats">The date time offset formats.</param>
 	/// <param name="provider">The <see cref="IFormatProvider"/> to use.</param>
 	/// <param name="styles">The <see cref="DateTimeStyles"/> to use.</param>
 	/// <returns>A new <see cref="DateTime"/> <see cref="ArgInfo{T}"/>.</returns>
@@ -224,7 +280,7 @@ public static class StringConversionExtensions {
 	/// Ensures an argument represents a <see cref="DateOnly"/>, otherwise an <see cref="ArgumentException"/> is thrown.
 	/// </summary>
 	/// <param name="argInfo">The argument info.</param>
-	/// <param name="format">The date time format.</param>
+	/// <param name="format">The date format.</param>
 	/// <param name="provider">The <see cref="IFormatProvider"/> to use.</param>
 	/// <param name="styles">The <see cref="DateTimeStyles"/> to use.</param>
 	/// <returns>A new <see cref="DateTime"/> <see cref="ArgInfo{T}"/>.</returns>
@@ -243,7 +299,7 @@ public static class StringConversionExtensions {
 	/// Ensures an argument represents a <see cref="DateOnly"/>, otherwise an <see cref="ArgumentException"/> is thrown.
 	/// </summary>
 	/// <param name="argInfo">The argument info.</param>
-	/// <param name="formats">The date time formats.</param>
+	/// <param name="formats">The date formats.</param>
 	/// <param name="provider">The <see cref="IFormatProvider"/> to use.</param>
 	/// <param name="styles">The <see cref="DateTimeStyles"/> to use.</param>
 	/// <returns>A new <see cref="DateTime"/> <see cref="ArgInfo{T}"/>.</returns>
@@ -280,7 +336,7 @@ public static class StringConversionExtensions {
 	/// Ensures an argument represents a <see cref="TimeOnly"/>, otherwise an <see cref="ArgumentException"/> is thrown.
 	/// </summary>
 	/// <param name="argInfo">The argument info.</param>
-	/// <param name="format">The date time format.</param>
+	/// <param name="format">The time format.</param>
 	/// <param name="provider">The <see cref="IFormatProvider"/> to use.</param>
 	/// <param name="styles">The <see cref="DateTimeStyles"/> to use.</param>
 	/// <returns>A new <see cref="DateTime"/> <see cref="ArgInfo{T}"/>.</returns>
@@ -299,7 +355,7 @@ public static class StringConversionExtensions {
 	/// Ensures an argument represents a <see cref="TimeOnly"/>, otherwise an <see cref="ArgumentException"/> is thrown.
 	/// </summary>
 	/// <param name="argInfo">The argument info.</param>
-	/// <param name="formats">The date time formats.</param>
+	/// <param name="formats">The time formats.</param>
 	/// <param name="provider">The <see cref="IFormatProvider"/> to use.</param>
 	/// <param name="styles">The <see cref="DateTimeStyles"/> to use.</param>
 	/// <returns>A new <see cref="DateTime"/> <see cref="ArgInfo{T}"/>.</returns>
