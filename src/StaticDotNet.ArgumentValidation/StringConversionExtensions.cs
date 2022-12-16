@@ -14,7 +14,7 @@ public static class StringConversionExtensions {
 	/// <param name="argInfo">The argument info.</param>
 	/// <returns>A new <see cref="bool"/> <see cref="ArgInfo{T}"/>.</returns>
 	/// <exception cref="ArgumentException">Thrown when <paramref name="argInfo.Value"/> does not represent a <see cref="long"/>.</exception>
-	public static ArgInfo<bool> ToBool( in this ArgInfo<string> argInfo ) {
+	public static ArgInfo<bool> ToBoolean( in this ArgInfo<string> argInfo ) {
 
 		if( bool.TryParse( argInfo.Value, out bool result ) ) {
 			return new( result, argInfo.Name, argInfo.Message );
@@ -466,4 +466,42 @@ public static class StringConversionExtensions {
 
 		throw new ArgumentException( message, argInfo.Name, thrownException );
 	}
+
+	/// <summary>
+	/// Ensures an argument represents a <see cref="Uri"/>, otherwise an <see cref="ArgumentException"/> is thrown.
+	/// </summary>
+	/// <param name="argInfo">The argument info.</param>
+	/// <param name="uriKind">The <see cref="UriKind"/>.</param>
+	/// <returns>A new <see cref="DateTime"/> <see cref="ArgInfo{T}"/>.</returns>
+	/// <exception cref="ArgumentException">Thrown when <paramref name="argInfo.Value"/> does not represent a <see cref="Uri"/>.</exception>
+	public static ArgInfo<Uri> ToUri( in this ArgInfo<string> argInfo, UriKind uriKind ) {
+
+		if( Uri.TryCreate( argInfo.Value, uriKind, out Uri? result ) ) {
+			return new( result, argInfo.Name, argInfo.Message );
+		}
+
+		string message = argInfo.Message ?? Constants.VALUE_MUST_BE_URI;
+		throw new ArgumentException( message, argInfo.Name );
+	}
+
+#if NET6_0_OR_GREATER
+
+	/// <summary>
+	/// Ensures an argument represents a <see cref="Uri"/>, otherwise an <see cref="ArgumentException"/> is thrown.
+	/// </summary>
+	/// <param name="argInfo">The argument info.</param>
+	/// <param name="creationOptions">The <see cref="UriCreationOptions"/>.</param>
+	/// <returns>A new <see cref="DateTime"/> <see cref="ArgInfo{T}"/>.</returns>
+	/// <exception cref="ArgumentException">Thrown when <paramref name="argInfo.Value"/> does not represent a <see cref="Uri"/>.</exception>
+	public static ArgInfo<Uri> ToUri( in this ArgInfo<string> argInfo, UriCreationOptions creationOptions ) {
+
+		if( Uri.TryCreate( argInfo.Value, creationOptions, out Uri? result ) ) {
+			return new( result, argInfo.Name, argInfo.Message );
+		}
+
+		string message = argInfo.Message ?? Constants.VALUE_MUST_BE_URI;
+		throw new ArgumentException( message, argInfo.Name );
+	}
+
+#endif
 }

@@ -1,13 +1,13 @@
 ﻿namespace StaticDotNet.ArgumentValidation.UnitTests.StringConversionExtensionsTests;
 
-public sealed class ToBool {
+public sealed class ToBoolean {
 
 	[Fact]
 	public void ReturnsCorrectly() {
 
 		ArgInfo<string> argInfo = new( "true", null, null );
 
-		ArgInfo<bool> result = StringConversionExtensions.ToBool( argInfo );
+		ArgInfo<bool> result = StringConversionExtensions.ToBoolean( argInfo );
 
 		Assert.True( result.Value );
 	}
@@ -21,7 +21,7 @@ public sealed class ToBool {
 		ArgumentException exception = Assert.Throws<ArgumentException>( name, () => {
 
 			ArgInfo<string> argInfo = new( argumentValue, name, null );
-			_ = StringConversionExtensions.ToBool( argInfo );
+			_ = StringConversionExtensions.ToBoolean( argInfo );
 		} );
 
 		string expectedMessage = "Value must be a boolean.";
@@ -39,7 +39,7 @@ public sealed class ToBool {
 		ArgumentException exception = Assert.Throws<ArgumentException>( name, () => {
 
 			ArgInfo<string> argInfo = new( argumentValue, name, message );
-			_ = StringConversionExtensions.ToBool( argInfo );
+			_ = StringConversionExtensions.ToBoolean( argInfo );
 		} );
 
 		Assert.StartsWith( message, exception.Message );

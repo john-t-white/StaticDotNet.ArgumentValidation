@@ -64,6 +64,8 @@ internal class Constants {
 
 	internal const string VALUE_MUST_BE_WRITABLE = "Value must be writable.";
 
+	internal const string VALUE_MUST_BE_URI = "Value must be a uri.";
+
 	internal const string VALUE_MUST_CONTAIN = "Value must contain {0}.";
 
 	internal const string VALUE_MUST_END_WITH = "Value must end with {0}.";
