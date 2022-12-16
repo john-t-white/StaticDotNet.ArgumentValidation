@@ -1,4 +1,6 @@
-﻿namespace StaticDotNet.ArgumentValidation.UnitTests.StringConversionExtensionsTests;
+﻿using System.Globalization;
+
+namespace StaticDotNet.ArgumentValidation.UnitTests.StringConversionExtensionsTests;
 
 public sealed class ToInt32 {
 
@@ -9,6 +11,30 @@ public sealed class ToInt32 {
 		ArgInfo<string> argInfo = new( expectedResult.ToString(), null, null );
 
 		ArgInfo<int> result = StringConversionExtensions.ToInt32( argInfo );
+
+		Assert.Equal( expectedResult, result.Value );
+	}
+
+	[Fact]
+	public void WithStylesReturnsCorrectly() {
+
+		int expectedResult = 1;
+		ArgInfo<string> argInfo = new( expectedResult.ToString(), null, null );
+		NumberStyles styles = NumberStyles.None;
+
+		ArgInfo<int> result = StringConversionExtensions.ToInt32( argInfo, styles );
+
+		Assert.Equal( expectedResult, result.Value );
+	}
+
+	[Fact]
+	public void WithProviderReturnsCorrectly() {
+
+		int expectedResult = 1;
+		ArgInfo<string> argInfo = new( expectedResult.ToString(), null, null );
+		IFormatProvider provider = NumberFormatInfo.InvariantInfo;
+
+		ArgInfo<int> result = StringConversionExtensions.ToInt32( argInfo, provider: provider );
 
 		Assert.Equal( expectedResult, result.Value );
 	}

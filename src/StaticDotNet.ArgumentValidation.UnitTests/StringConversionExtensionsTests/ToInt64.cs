@@ -1,4 +1,6 @@
-﻿namespace StaticDotNet.ArgumentValidation.UnitTests.StringConversionExtensionsTests;
+﻿using System.Globalization;
+
+namespace StaticDotNet.ArgumentValidation.UnitTests.StringConversionExtensionsTests;
 
 public sealed class ToInt64 {
 
@@ -9,6 +11,30 @@ public sealed class ToInt64 {
 		ArgInfo<string> argInfo = new( expectedResult.ToString(), null, null );
 
 		ArgInfo<long> result = StringConversionExtensions.ToInt64( argInfo );
+
+		Assert.Equal( expectedResult, result.Value );
+	}
+
+	[Fact]
+	public void WithStylesReturnsCorrectly() {
+
+		long expectedResult = 1;
+		ArgInfo<string> argInfo = new( expectedResult.ToString(), null, null );
+		NumberStyles styles = NumberStyles.None;
+
+		ArgInfo<long> result = StringConversionExtensions.ToInt64( argInfo, styles );
+
+		Assert.Equal( expectedResult, result.Value );
+	}
+
+	[Fact]
+	public void WithProviderReturnsCorrectly() {
+
+		long expectedResult = 1;
+		ArgInfo<string> argInfo = new( expectedResult.ToString(), null, null );
+		IFormatProvider provider = NumberFormatInfo.InvariantInfo;
+
+		ArgInfo<long> result = StringConversionExtensions.ToInt64( argInfo, provider: provider );
 
 		Assert.Equal( expectedResult, result.Value );
 	}

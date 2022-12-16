@@ -9,70 +9,6 @@ namespace StaticDotNet.ArgumentValidation;
 public static class StringConversionExtensions {
 
 	/// <summary>
-	/// Ensures an argument represents a <see cref="byte"/>, otherwise an <see cref="ArgumentException"/> is thrown.
-	/// </summary>
-	/// <param name="argInfo">The argument info.</param>
-	/// <returns>A new <see cref="byte"/> <see cref="ArgInfo{T}"/>.</returns>
-	/// <exception cref="ArgumentException">Thrown when <paramref name="argInfo.Value"/> does not represent a <see cref="byte"/>.</exception>
-	public static ArgInfo<byte> ToByte( in this ArgInfo<string> argInfo ) {
-
-		if( byte.TryParse( argInfo.Value, out byte result ) ) {
-			return new( result, argInfo.Name, argInfo.Message );
-		}
-
-		string message = argInfo.Message ?? Constants.VALUE_MUST_BE_BYTE;
-		throw new ArgumentException( message, argInfo.Name );
-	}
-
-	/// <summary>
-	/// Ensures an argument represents a <see cref="short"/>, otherwise an <see cref="ArgumentException"/> is thrown.
-	/// </summary>
-	/// <param name="argInfo">The argument info.</param>
-	/// <returns>A new <see cref="short"/> <see cref="ArgInfo{T}"/>.</returns>
-	/// <exception cref="ArgumentException">Thrown when <paramref name="argInfo.Value"/> does not represent a <see cref="short"/>.</exception>
-	public static ArgInfo<short> ToInt16( in this ArgInfo<string> argInfo ) {
-
-		if( short.TryParse( argInfo.Value, out short result ) ) {
-			return new( result, argInfo.Name, argInfo.Message );
-		}
-
-		string message = argInfo.Message ?? Constants.VALUE_MUST_BE_INT16;
-		throw new ArgumentException( message, argInfo.Name );
-	}
-
-	/// <summary>
-	/// Ensures an argument represents a <see cref="int"/>, otherwise an <see cref="ArgumentException"/> is thrown.
-	/// </summary>
-	/// <param name="argInfo">The argument info.</param>
-	/// <returns>A new <see cref="int"/> <see cref="ArgInfo{T}"/>.</returns>
-	/// <exception cref="ArgumentException">Thrown when <paramref name="argInfo.Value"/> does not represent a <see cref="int"/>.</exception>
-	public static ArgInfo<int> ToInt32( in this ArgInfo<string> argInfo ) {
-
-		if( int.TryParse( argInfo.Value, out int result ) ) {
-			return new( result, argInfo.Name, argInfo.Message );
-		}
-
-		string message = argInfo.Message ?? Constants.VALUE_MUST_BE_INT32;
-		throw new ArgumentException( message, argInfo.Name );
-	}
-
-	/// <summary>
-	/// Ensures an argument represents a <see cref="long"/>, otherwise an <see cref="ArgumentException"/> is thrown.
-	/// </summary>
-	/// <param name="argInfo">The argument info.</param>
-	/// <returns>A new <see cref="long"/> <see cref="ArgInfo{T}"/>.</returns>
-	/// <exception cref="ArgumentException">Thrown when <paramref name="argInfo.Value"/> does not represent a <see cref="long"/>.</exception>
-	public static ArgInfo<long> ToInt64( in this ArgInfo<string> argInfo ) {
-
-		if( long.TryParse( argInfo.Value, out long result ) ) {
-			return new( result, argInfo.Name, argInfo.Message );
-		}
-
-		string message = argInfo.Message ?? Constants.VALUE_MUST_BE_INT64;
-		throw new ArgumentException( message, argInfo.Name );
-	}
-
-	/// <summary>
 	/// Ensures an argument represents a <see cref="long"/>, otherwise an <see cref="ArgumentException"/> is thrown.
 	/// </summary>
 	/// <param name="argInfo">The argument info.</param>
@@ -89,11 +25,82 @@ public static class StringConversionExtensions {
 	}
 
 	/// <summary>
+	/// Ensures an argument represents a <see cref="byte"/>, otherwise an <see cref="ArgumentException"/> is thrown.
+	/// </summary>
+	/// <param name="argInfo">The argument info.</param>
+	/// <param name="styles">The <see cref="NumberStyles"/> to use.</param>
+	/// <param name="provider">The <see cref="IFormatProvider"/> to use.</param>
+	/// <returns>A new <see cref="byte"/> <see cref="ArgInfo{T}"/>.</returns>
+	/// <exception cref="ArgumentException">Thrown when <paramref name="argInfo.Value"/> does not represent a <see cref="byte"/>.</exception>
+	public static ArgInfo<byte> ToByte( in this ArgInfo<string> argInfo, NumberStyles styles = NumberStyles.None, IFormatProvider? provider = null ) {
+
+		if( byte.TryParse( argInfo.Value, styles, provider, out byte result ) ) {
+			return new( result, argInfo.Name, argInfo.Message );
+		}
+
+		string message = argInfo.Message ?? Constants.VALUE_MUST_BE_BYTE;
+		throw new ArgumentException( message, argInfo.Name );
+	}
+
+	/// <summary>
+	/// Ensures an argument represents a <see cref="short"/>, otherwise an <see cref="ArgumentException"/> is thrown.
+	/// </summary>
+	/// <param name="argInfo">The argument info.</param>
+	/// <param name="styles">The <see cref="NumberStyles"/> to use.</param>
+	/// <param name="provider">The <see cref="IFormatProvider"/> to use.</param>
+	/// <returns>A new <see cref="short"/> <see cref="ArgInfo{T}"/>.</returns>
+	/// <exception cref="ArgumentException">Thrown when <paramref name="argInfo.Value"/> does not represent a <see cref="short"/>.</exception>
+	public static ArgInfo<short> ToInt16( in this ArgInfo<string> argInfo, NumberStyles styles = NumberStyles.None, IFormatProvider? provider = null ) {
+
+		if( short.TryParse( argInfo.Value, styles, provider, out short result ) ) {
+			return new( result, argInfo.Name, argInfo.Message );
+		}
+
+		string message = argInfo.Message ?? Constants.VALUE_MUST_BE_INT16;
+		throw new ArgumentException( message, argInfo.Name );
+	}
+
+	/// <summary>
+	/// Ensures an argument represents a <see cref="int"/>, otherwise an <see cref="ArgumentException"/> is thrown.
+	/// </summary>
+	/// <param name="argInfo">The argument info.</param>
+	/// <param name="styles">The <see cref="NumberStyles"/> to use.</param>
+	/// <param name="provider">The <see cref="IFormatProvider"/> to use.</param>
+	/// <returns>A new <see cref="int"/> <see cref="ArgInfo{T}"/>.</returns>
+	/// <exception cref="ArgumentException">Thrown when <paramref name="argInfo.Value"/> does not represent a <see cref="int"/>.</exception>
+	public static ArgInfo<int> ToInt32( in this ArgInfo<string> argInfo, NumberStyles styles = NumberStyles.None, IFormatProvider? provider = null ) {
+
+		if( int.TryParse( argInfo.Value, styles, provider, out int result ) ) {
+			return new( result, argInfo.Name, argInfo.Message );
+		}
+
+		string message = argInfo.Message ?? Constants.VALUE_MUST_BE_INT32;
+		throw new ArgumentException( message, argInfo.Name );
+	}
+
+	/// <summary>
+	/// Ensures an argument represents a <see cref="long"/>, otherwise an <see cref="ArgumentException"/> is thrown.
+	/// </summary>
+	/// <param name="argInfo">The argument info.</param>
+	/// <param name="styles">The <see cref="NumberStyles"/> to use.</param>
+	/// <param name="provider">The <see cref="IFormatProvider"/> to use.</param>
+	/// <returns>A new <see cref="long"/> <see cref="ArgInfo{T}"/>.</returns>
+	/// <exception cref="ArgumentException">Thrown when <paramref name="argInfo.Value"/> does not represent a <see cref="long"/>.</exception>
+	public static ArgInfo<long> ToInt64( in this ArgInfo<string> argInfo, NumberStyles styles = NumberStyles.None, IFormatProvider? provider = null ) {
+
+		if( long.TryParse( argInfo.Value, styles, provider, out long result ) ) {
+			return new( result, argInfo.Name, argInfo.Message );
+		}
+
+		string message = argInfo.Message ?? Constants.VALUE_MUST_BE_INT64;
+		throw new ArgumentException( message, argInfo.Name );
+	}
+
+	/// <summary>
 	/// Ensures an argument represents a <see cref="TimeSpan"/>, otherwise an <see cref="ArgumentException"/> is thrown.
 	/// </summary>
 	/// <param name="argInfo">The argument info.</param>
 	/// <param name="provider">The <see cref="IFormatProvider"/> to use.</param>
-	/// <param name="styles">The <see cref="DateTimeStyles"/> to use.</param>
 	/// <returns>A new <see cref="DateTime"/> <see cref="ArgInfo{T}"/>.</returns>
 	/// <exception cref="ArgumentException">Thrown when <paramref name="argInfo.Value"/> does not represent a <see cref="TimeSpan"/>.</exception>
 	public static ArgInfo<TimeSpan> ToTimeSpan( in this ArgInfo<string> argInfo, IFormatProvider? provider = null ) {

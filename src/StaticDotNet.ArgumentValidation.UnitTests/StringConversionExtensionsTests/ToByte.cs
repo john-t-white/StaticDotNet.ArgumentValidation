@@ -1,4 +1,6 @@
-﻿namespace StaticDotNet.ArgumentValidation.UnitTests.StringConversionExtensionsTests;
+﻿using System.Globalization;
+
+namespace StaticDotNet.ArgumentValidation.UnitTests.StringConversionExtensionsTests;
 
 public sealed class ToByte {
 
@@ -9,6 +11,30 @@ public sealed class ToByte {
 		ArgInfo<string> argInfo = new( expectedResult.ToString(), null, null );
 
 		ArgInfo<byte> result = StringConversionExtensions.ToByte( argInfo );
+
+		Assert.Equal( expectedResult, result.Value );
+	}
+
+	[Fact]
+	public void WithStylesReturnsCorrectly() {
+
+		byte expectedResult = 1;
+		ArgInfo<string> argInfo = new( expectedResult.ToString(), null, null );
+		NumberStyles styles = NumberStyles.None;
+
+		ArgInfo<byte> result = StringConversionExtensions.ToByte( argInfo, styles );
+
+		Assert.Equal( expectedResult, result.Value );
+	}
+
+	[Fact]
+	public void WithProviderReturnsCorrectly() {
+
+		byte expectedResult = 1;
+		ArgInfo<string> argInfo = new( expectedResult.ToString(), null, null );
+		IFormatProvider provider = NumberFormatInfo.InvariantInfo;
+
+		ArgInfo<byte> result = StringConversionExtensions.ToByte( argInfo, provider: provider );
 
 		Assert.Equal( expectedResult, result.Value );
 	}
