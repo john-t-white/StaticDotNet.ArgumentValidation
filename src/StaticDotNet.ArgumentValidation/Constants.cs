@@ -54,6 +54,8 @@ internal class Constants {
 
 	internal const string VALUE_MUST_BE_LETTER_OR_DIGIT = "Value must be a letter or digit.";
 
+	internal const string VALUE_MUST_BE_LOWER = "Value must be lower.";
+
 	internal const string VALUE_MUST_BE_LESS_THAN = "Value must be less than {0}.";
 
 	internal const string VALUE_MUST_BE_LESS_THAN_OR_EQUAL_TO = "Value must be less than or equal to {0}.";
@@ -75,6 +77,8 @@ internal class Constants {
 	internal const string VALUE_MUST_BE_TYPE = "Value must be a type.";
 
 	internal const string VALUE_MUST_BE_TRUE = "Value must be true.";
+
+	internal const string VALUE_MUST_BE_UPPER = "Value must be upper.";
 
 	internal const string VALUE_MUST_BE_WRITABLE = "Value must be writable.";
 
