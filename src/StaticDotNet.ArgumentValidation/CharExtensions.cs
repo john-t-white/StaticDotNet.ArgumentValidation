@@ -4,6 +4,9 @@ using System.Text;
 
 namespace StaticDotNet.ArgumentValidation;
 
+/// <summary>
+/// Extension methods for validating <see cref="char"/> arguments.
+/// </summary>
 public static class CharExtensions {
 
 	public static ref readonly ArgInfo<char> NotWhiteSpace( in this ArgInfo<char> argInfo ) {
