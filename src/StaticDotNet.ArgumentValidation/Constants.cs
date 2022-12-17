@@ -50,6 +50,8 @@ internal class Constants {
 
 	internal const string VALUE_MUST_BE_INT64 = "Value must be an int64.";
 
+	internal const string VALUE_MUST_BE_LETTER = "Value must be a letter.";
+
 	internal const string VALUE_MUST_BE_LESS_THAN = "Value must be less than {0}.";
 
 	internal const string VALUE_MUST_BE_LESS_THAN_OR_EQUAL_TO = "Value must be less than or equal to {0}.";
