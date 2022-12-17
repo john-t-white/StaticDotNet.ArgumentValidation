@@ -13,7 +13,7 @@ public sealed class Letter {
 	}
 
 	[Fact]
-	public void WithWhiteSpaceValueThrowsArgumentException() {
+	public void WithNotLetterValueThrowsArgumentException() {
 
 		char argumentValue = '1';
 		string name = "Name";

@@ -58,6 +58,22 @@ public static class CharExtensions {
 	}
 
 	/// <summary>
+	/// Ensures an argument is a letter or digit, otherwise an <see cref="ArgumentException"/> is thrown.
+	/// </summary>
+	/// <param name="argInfo">The argument info.</param>
+	/// <returns>The <paramref name="argInfo"/>.</returns>
+	/// <exception cref="ArgumentException">Thrown when <paramref name="argInfo.Value"/> is not a letter or digit.</exception>
+	public static ref readonly ArgInfo<char> LetterOrDigit( in this ArgInfo<char> argInfo ) {
+
+		if( char.IsLetterOrDigit( argInfo.Value ) ) {
+			return ref argInfo;
+		}
+
+		string message = argInfo.Message ?? Constants.VALUE_MUST_BE_LETTER_OR_DIGIT;
+		throw new ArgumentException( message, argInfo.Name );
+	}
+
+	/// <summary>
 	/// Ensures an argument is a letter, otherwise an <see cref="ArgumentException"/> is thrown.
 	/// </summary>
 	/// <param name="argInfo">The argument info.</param>

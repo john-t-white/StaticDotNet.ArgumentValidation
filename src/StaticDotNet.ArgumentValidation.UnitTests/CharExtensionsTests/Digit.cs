@@ -13,7 +13,7 @@ public sealed class Digit {
 	}
 
 	[Fact]
-	public void WithWhiteSpaceValueThrowsArgumentException() {
+	public void WithNotDigitValueThrowsArgumentException() {
 
 		char argumentValue = 'a';
 		string name = "Name";

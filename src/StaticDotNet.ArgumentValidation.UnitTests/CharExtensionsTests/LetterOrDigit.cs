@@ -1,29 +1,39 @@
 ﻿namespace StaticDotNet.ArgumentValidation.UnitTests.CharExtensionsTests;
 
-public sealed class Number {
+public sealed class LetterOrDigit {
 
 	[Fact]
-	public void ReturnsCorrectly() {
+	public void WithLetterReturnsCorrectly() {
 
-		ArgInfo<char> argInfo = new( '1', null, null );
+		ArgInfo<char> argInfo = new( 'a', null, null );
 
-		ArgInfo<char> result = argInfo.Number();
+		ArgInfo<char> result = argInfo.LetterOrDigit();
 
 		ArgInfoAssertions.Equal( argInfo, result );
 	}
 
 	[Fact]
-	public void WithNotNumberValueThrowsArgumentException() {
+	public void WithDigitReturnsCorrectly() {
 
-		char argumentValue = 'a';
+		ArgInfo<char> argInfo = new( '1', null, null );
+
+		ArgInfo<char> result = argInfo.LetterOrDigit();
+
+		ArgInfoAssertions.Equal( argInfo, result );
+	}
+
+	[Fact]
+	public void WithNotLetterOrDigitValueThrowsArgumentException() {
+
+		char argumentValue = ' ';
 		string name = "Name";
 
 		ArgumentException exception = Assert.Throws<ArgumentException>( name, () => {
 			ArgInfo<char> argInfo = new( argumentValue, name, null );
-			_ = argInfo.Number();
+			_ = argInfo.LetterOrDigit();
 		} );
 
-		string expectedMessage = "Value must be a number.";
+		string expectedMessage = "Value must be a letter or digit.";
 
 		Assert.StartsWith( expectedMessage, exception.Message );
 	}
@@ -31,13 +41,13 @@ public sealed class Number {
 	[Fact]
 	public void WithInvalidValueAndMessageThrowsArgumentException() {
 
-		char argumentValue = 'a';
+		char argumentValue = ' ';
 		string name = "Name";
 		string message = "Message";
 
 		ArgumentException exception = Assert.Throws<ArgumentException>( name, () => {
 			ArgInfo<char> argInfo = new( argumentValue, name, message );
-			_ = argInfo.Number();
+			_ = argInfo.LetterOrDigit();
 		} );
 
 		Assert.StartsWith( message, exception.Message );
