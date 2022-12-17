@@ -1,19 +1,8 @@
 # Arg class
 
-Arg is a static class that is the starting point for all argument validation. It has three basic methods, and all of them support nullability annontations.
+```StaticDotNet.ArgumentValidation.Arg``` is a static class that is the starting point for all argument validation. Additional validations can be chained using a fluent API.
 
-All of the methods allow for the value, name of the argument and a message if you don't want to use the default exception message.  If you are using c# 10, the [CallerArgumentExpressionAttribute](https://learn.microsoft.com/en-us/dotnet/api/system.runtime.compilerservices.callerargumentexpressionattribute) is supported and you don't need to supply the argument name. Everything is under the ```StaticDotNet.ArgumentValidation``` namespace.
-
-## Is
-
-Takes the nullability of the argument. If the argument is nullable, then all other validation checks are based on the argument possibly being null.
-
-``` c#
-Arg.Is( value );
-Arg.Is( value, nameof( value ) );
-Arg.Is( value, message: message );
-Arg.Is( value, nameof( value ) ), message );
-```
+All of the methods allow for the value, name of the argument and a message if you don't want to use the default exception message.  If you are using c# 10, the [CallerArgumentExpressionAttribute](https://learn.microsoft.com/en-us/dotnet/api/system.runtime.compilerservices.callerargumentexpressionattribute) is supported and you don't need to supply the argument name.
 
 ## IsNotNull
 
@@ -22,39 +11,68 @@ Ensures that the argument is not null, otherwise an ArgumentNullException is thr
 
 ``` c#
 Arg.IsNotNull( value );
-Arg.IsNotNull( value, nameof( value ) );
+Arg.IsNotNull( value, name );
 Arg.IsNotNull( value, message: message );
-Arg.IsNotNull( value, nameof( value ) ), message );
+Arg.IsNotNull( value, name, message );
+```
+
+## IsNotNull
+
+Ensures that the argument is not null or white space, otherwise an ArgumentNullException is thrown. Additional validation checks can be chained.
+
+
+``` c#
+Arg.IsNotNullOrWhiteSpace( value );
+Arg.IsNotNullOrWhiteSpace( value, name );
+Arg.IsNotNullOrWhiteSpace( value, message: message );
+Arg.IsNotNullOrWhiteSpace( value, name, message );
+```
+
+## Is
+
+Use for all value type arguments that aren't nullable, or any time you have already ensured the argument is not null.
+
+``` c#
+Arg.Is( value );
+Arg.Is( value, name );
+Arg.Is( value, message: message );
+Arg.Is( value, name, message );
 ```
 
 ## Null
 
-Ensures that the argument is null, otherwise an ArgumentException is thrown. As only null is acceptable, you do not need to use the Value property as null is returned instead.
+Ensures that the argument is null, otherwise an ArgumentException is thrown. ```null``` is returned as it's the only acceptable value.
 
 ``` c#
 Arg.Null( value );
-Arg.Null( value, nameof( value ) );
+Arg.Null( value, name );
 Arg.Null( value, message: message );
-Arg.Null( value, nameof( value ) ), message );
+Arg.Null( value, name ), message );
 ```
+
+All remaining validation checks are based on the argument value is not null. This was done for a couple of reasons:
+
+- The validation code becomes a lot simplier to write and maintain. Otherwise every validation check needs to have additional code to see if the argument is null.
+- Code is much easier to follow as it is more explicit in your code that the argument validation is only running if an argument is not null.
+- While it isn't a big performance hit, why have it run through every validation check when it will always be null.
 
 # ArgInfo\<T\>
 
-Every argument validation method returns a readonly ref struct, ArgInfo\<T\>, which allows for chaining additional validation methods based on the result of the previous one. Since it is a ref readonly struct it is only allocated to the stack and prevents copying.
+Every argument validation method, with the exception of ```IsNull```, returns a readonly ref struct, ```ArgInfo<T>```, which allows for chaining additional validation methods based on the result of the previous one. Since it is a ref readonly struct it is only allocated to the stack and prevents copying.
 
 If you want to use the value after all of the argument validations, you can use the Value property.
 
 ``` c#
-public class Person {
+public class User {
 
-	public Person( string? name ) {
+	public User( string? name ) {
 
 		// Nullability annontations let you set Name property
 		// as name argument is not null.
 		Name = Arg.IsNotNull( name ).NotWhiteSpace().Value;
 	}
 
-	public string Name { get; }
+	public string User { get; }
 }
 ```
 
