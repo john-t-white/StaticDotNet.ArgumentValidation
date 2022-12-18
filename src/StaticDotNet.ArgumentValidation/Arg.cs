@@ -80,8 +80,19 @@ public static class Arg {
 	/// <param name="name">With C# 10, defaults to the expression of <paramref name="value"/>; otherwise specify the argument name.</param>
 	/// <param name="message">The exception message.  Null for for default message.</param>
 	/// <returns>A <see cref="ArgInfo{T}"/>.</returns>
-	/// <exception cref="ArgumentNullException">Thrown when <paramref name="value"/> is unexpectedly null and shouldn't be.</exception>
 	public static ReadOnlySpanArgInfo<T> Is<T>( ReadOnlySpan<T> value, [CallerArgumentExpression( nameof( value ) )] string? name = null, string? message = null )
+		where T : notnull
+		=> new( value, name, message );
+
+	/// <summary>
+	/// Used for validating <see cref="Span{T}"/> arguments.
+	/// </summary>
+	/// <typeparam name="T">The type of value within the <see cref="ReadOnlySpan{T}"/>.</typeparam>
+	/// <param name="value">The value of the argument.</param>
+	/// <param name="name">With C# 10, defaults to the expression of <paramref name="value"/>; otherwise specify the argument name.</param>
+	/// <param name="message">The exception message.  Null for for default message.</param>
+	/// <returns>A <see cref="ArgInfo{T}"/>.</returns>
+	public static SpanArgInfo<T> Is<T>( Span<T> value, [CallerArgumentExpression( nameof( value ) )] string? name = null, string? message = null )
 		where T : notnull
 		=> new( value, name, message );
 
