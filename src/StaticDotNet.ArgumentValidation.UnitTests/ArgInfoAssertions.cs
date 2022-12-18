@@ -9,4 +9,16 @@ public static class ArgInfoAssertions {
 		Assert.Equal( expected.Name, actual.Name );
 		Assert.Equal( expected.Message, actual.Message );
 	}
+
+#if NET6_0_OR_GREATER
+
+	public static void Equal( ReadOnlySpanArgInfo<char> expected, ReadOnlySpanArgInfo<char> actual ) {
+
+		Assert.True( expected.Value == actual.Value );
+		Assert.Equal( expected.Name, actual.Name );
+		Assert.Equal( expected.Message, actual.Message );
+	}
+
+#endif
+
 }

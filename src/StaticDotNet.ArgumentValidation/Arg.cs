@@ -58,7 +58,7 @@ public static class Arg {
 	}
 
 	/// <summary>
-	/// Used for validating arguments where the caller has already verified the argument is not null.
+	/// Used for validating value arguments or arguments where the caller has already verified the argument is not null.
 	/// </summary>
 	/// <typeparam name="T">The type of <paramref name="value"/>.</typeparam>
 	/// <param name="value">The value of the argument.</param>
@@ -69,6 +69,23 @@ public static class Arg {
 	public static ArgInfo<T> Is<T>( T value, [CallerArgumentExpression( nameof( value ) )] string? name = null, string? message = null )
 		where T : notnull
 		=> value is not null ? new( value, name, message ) : throw new ArgumentNullException( name, Constants.VALUE_UNEXPECTED_NULL );
+
+#if NET6_0_OR_GREATER
+
+	/// <summary>
+	/// Used for validating <see cref="ReadOnlySpan{T}"/> arguments.
+	/// </summary>
+	/// <typeparam name="T">The type of value within the <see cref="ReadOnlySpan{T}"/>.</typeparam>
+	/// <param name="value">The value of the argument.</param>
+	/// <param name="name">With C# 10, defaults to the expression of <paramref name="value"/>; otherwise specify the argument name.</param>
+	/// <param name="message">The exception message.  Null for for default message.</param>
+	/// <returns>A <see cref="ArgInfo{T}"/>.</returns>
+	/// <exception cref="ArgumentNullException">Thrown when <paramref name="value"/> is unexpectedly null and shouldn't be.</exception>
+	public static ReadOnlySpanArgInfo<T> Is<T>( ReadOnlySpan<T> value, [CallerArgumentExpression( nameof( value ) )] string? name = null, string? message = null )
+		where T : notnull
+		=> new( value, name, message );
+
+#endif
 
 	/// <summary>
 	/// Ensures the argument is null, otherwise an <see cref="ArgumentNullException"/> is thrown.
