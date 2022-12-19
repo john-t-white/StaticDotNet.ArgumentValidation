@@ -32,7 +32,7 @@ public static class SpanExtensions {
 	/// <exception cref="ArgumentException">Thrown when <paramref name="argInfo.Value"/> is empty.</exception>
 	public static ref readonly SpanArgInfo<T> NotEmpty<T>( in this SpanArgInfo<T> argInfo ) {
 
-		if( argInfo.Value.Length > 0 ) {
+		if( !argInfo.Value.IsEmpty ) {
 			return ref argInfo;
 		}
 

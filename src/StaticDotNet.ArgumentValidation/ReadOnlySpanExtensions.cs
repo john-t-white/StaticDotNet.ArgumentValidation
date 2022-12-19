@@ -35,7 +35,7 @@ public static class ReadOnlySpanExtensions {
 	/// <exception cref="ArgumentException">Thrown when <paramref name="argInfo.Value"/> is empty.</exception>
 	public static ref readonly ReadOnlySpanArgInfo<T> NotEmpty<T>( in this ReadOnlySpanArgInfo<T> argInfo ) {
 
-		if( argInfo.Value.Length > 0 ) {
+		if( !argInfo.Value.IsEmpty ) {
 			return ref argInfo;
 		}
 
