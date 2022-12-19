@@ -70,7 +70,7 @@ public static class Arg {
 		where T : notnull
 		=> value is not null ? new( value, name, message ) : throw new ArgumentNullException( name, Constants.VALUE_UNEXPECTED_NULL );
 
-#if NET6_0_OR_GREATER
+#if NETSTANDARD2_1_OR_GREATER || NET6_0_OR_GREATER
 
 	/// <summary>
 	/// Used for validating <see cref="ReadOnlySpan{T}"/> arguments.
