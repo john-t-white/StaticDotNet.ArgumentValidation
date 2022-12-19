@@ -1,8 +1,8 @@
 ﻿using System.Globalization;
 
-namespace StaticDotNet.ArgumentValidation.UnitTests.StringConversionExtensionsTests;
+namespace StaticDotNet.ArgumentValidation.UnitTests.StringParsingExtensionsTests;
 
-public sealed class ToGuidExact {
+public sealed class ParseGuidExact {
 
 	[Fact]
 	public void ReturnsCorrectly() {
@@ -11,7 +11,7 @@ public sealed class ToGuidExact {
 		var expectedResult = Guid.NewGuid();
 		ArgInfo<string> argInfo = new( expectedResult.ToString( format ), null, null );
 
-		ArgInfo<Guid> result = StringConversionExtensions.ToGuidExact( argInfo, format );
+		ArgInfo<Guid> result = StringParsingExtensions.ParseGuidExact( argInfo, format );
 
 		Assert.Equal( expectedResult, result.Value );
 	}
@@ -26,10 +26,10 @@ public sealed class ToGuidExact {
 		ArgumentException exception = Assert.Throws<ArgumentException>( name, () => {
 
 			ArgInfo<string> argInfo = new( argumentValue, name, null );
-			_ = StringConversionExtensions.ToGuidExact( argInfo, format );
+			_ = StringParsingExtensions.ParseGuidExact( argInfo, format );
 		} );
 
-		string expectedMessage = "Value must be a guid.";
+		string expectedMessage = "Value must be parsable to System.Guid.";
 
 		Assert.StartsWith( expectedMessage, exception.Message );
 	}
@@ -45,7 +45,7 @@ public sealed class ToGuidExact {
 		ArgumentException exception = Assert.Throws<ArgumentException>( name, () => {
 
 			ArgInfo<string> argInfo = new( argumentValue, name, message );
-			_ = StringConversionExtensions.ToGuidExact( argInfo, format );
+			_ = StringParsingExtensions.ParseGuidExact( argInfo, format );
 		} );
 
 		Assert.StartsWith( message, exception.Message );

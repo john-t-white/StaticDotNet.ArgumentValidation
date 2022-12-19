@@ -1,28 +1,16 @@
 ﻿using System.Globalization;
 
-namespace StaticDotNet.ArgumentValidation.UnitTests.StringConversionExtensionsTests;
+namespace StaticDotNet.ArgumentValidation.UnitTests.StringParsingExtensionsTests;
 
-public sealed class ToInt64 {
+public sealed class ParseDateTime {
 
 	[Fact]
 	public void ReturnsCorrectly() {
 
-		long expectedResult = 1;
+		DateTime expectedResult = new( 2000, 1, 2, 3, 4, 5 );
 		ArgInfo<string> argInfo = new( expectedResult.ToString(), null, null );
 
-		ArgInfo<long> result = StringConversionExtensions.ToInt64( argInfo );
-
-		Assert.Equal( expectedResult, result.Value );
-	}
-
-	[Fact]
-	public void WithStylesReturnsCorrectly() {
-
-		long expectedResult = 1;
-		ArgInfo<string> argInfo = new( expectedResult.ToString(), null, null );
-		NumberStyles styles = NumberStyles.None;
-
-		ArgInfo<long> result = StringConversionExtensions.ToInt64( argInfo, styles );
+		ArgInfo<DateTime> result = StringParsingExtensions.ParseDateTime( argInfo );
 
 		Assert.Equal( expectedResult, result.Value );
 	}
@@ -30,11 +18,23 @@ public sealed class ToInt64 {
 	[Fact]
 	public void WithProviderReturnsCorrectly() {
 
-		long expectedResult = 1;
+		DateTime expectedResult = new( 2000, 1, 2, 3, 4, 5 );
 		ArgInfo<string> argInfo = new( expectedResult.ToString(), null, null );
-		IFormatProvider provider = NumberFormatInfo.InvariantInfo;
+		IFormatProvider provider = DateTimeFormatInfo.CurrentInfo;
 
-		ArgInfo<long> result = StringConversionExtensions.ToInt64( argInfo, provider: provider );
+		ArgInfo<DateTime> result = StringParsingExtensions.ParseDateTime( argInfo, provider );
+
+		Assert.Equal( expectedResult, result.Value );
+	}
+
+	[Fact]
+	public void WithStylesReturnsCorrectly() {
+
+		DateTime expectedResult = new( 2000, 1, 2, 3, 4, 5, DateTimeKind.Utc );
+		ArgInfo<string> argInfo = new( expectedResult.ToString(), null, null );
+		DateTimeStyles styles = DateTimeStyles.AdjustToUniversal;
+
+		ArgInfo<DateTime> result = StringParsingExtensions.ParseDateTime( argInfo, styles: styles );
 
 		Assert.Equal( expectedResult, result.Value );
 	}
@@ -48,10 +48,10 @@ public sealed class ToInt64 {
 		ArgumentException exception = Assert.Throws<ArgumentException>( name, () => {
 
 			ArgInfo<string> argInfo = new( argumentValue, name, null );
-			_ = StringConversionExtensions.ToInt64( argInfo );
+			_ = StringParsingExtensions.ParseDateTime( argInfo );
 		} );
 
-		string expectedMessage = "Value must be an int64.";
+		string expectedMessage = "Value must be parsable to System.DateTime.";
 
 		Assert.StartsWith( expectedMessage, exception.Message );
 	}
@@ -66,7 +66,7 @@ public sealed class ToInt64 {
 		ArgumentException exception = Assert.Throws<ArgumentException>( name, () => {
 
 			ArgInfo<string> argInfo = new( argumentValue, name, message );
-			_ = StringConversionExtensions.ToInt64( argInfo );
+			_ = StringParsingExtensions.ParseDateTime( argInfo );
 		} );
 
 		Assert.StartsWith( message, exception.Message );

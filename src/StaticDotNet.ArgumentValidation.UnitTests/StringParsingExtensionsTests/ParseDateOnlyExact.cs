@@ -1,17 +1,19 @@
-﻿using System.Globalization;
+﻿#if NET6_0_OR_GREATER
 
-namespace StaticDotNet.ArgumentValidation.UnitTests.StringConversionExtensionsTests;
+using System.Globalization;
 
-public sealed class ToDateTimeOffsetExact {
+namespace StaticDotNet.ArgumentValidation.UnitTests.StringExtensionsTests;
+
+public sealed class ParseDateOnlyExact {
 
 	[Fact]
 	public void ReturnsCorrectly() {
 
-		DateTimeOffset expectedResult = new( 2000, 1, 2, 3, 4, 5, TimeSpan.Zero );
-		string format = "yyyy-MM-dd (hh:mm:ss) K";
+		DateOnly expectedResult = new( 2000, 1, 2 );
+		string format = "yyyy-MM-dd";
 		ArgInfo<string> argInfo = new( expectedResult.ToString( format ), null, null );
 
-		ArgInfo<DateTimeOffset> result = StringConversionExtensions.ToDateTimeOffsetExact( argInfo, format );
+		ArgInfo<DateOnly> result = StringParsingExtensions.ParseDateOnlyExact( argInfo, format );
 
 		Assert.Equal( expectedResult, result.Value );
 	}
@@ -19,12 +21,12 @@ public sealed class ToDateTimeOffsetExact {
 	[Fact]
 	public void WithProviderReturnsCorrectly() {
 
-		DateTimeOffset expectedResult = new( 2000, 1, 2, 3, 4, 5, TimeSpan.Zero );
-		string format = "yyyy-MM-dd (hh:mm:ss) K";
+		DateOnly expectedResult = new( 2000, 1, 2 );
+		string format = "yyyy-MM-dd";
 		ArgInfo<string> argInfo = new( expectedResult.ToString( format ), null, null );
 		IFormatProvider provider = DateTimeFormatInfo.CurrentInfo;
 
-		ArgInfo<DateTimeOffset> result = StringConversionExtensions.ToDateTimeOffsetExact( argInfo, format, provider );
+		ArgInfo<DateOnly> result = StringParsingExtensions.ParseDateOnlyExact( argInfo, format, provider );
 
 		Assert.Equal( expectedResult, result.Value );
 	}
@@ -32,12 +34,12 @@ public sealed class ToDateTimeOffsetExact {
 	[Fact]
 	public void WithStylesReturnsCorrectly() {
 
-		DateTimeOffset expectedResult = new( 2000, 1, 2, 3, 4, 5, TimeSpan.Zero );
-		string format = "yyyy-MM-dd (hh:mm:ss) K";
+		DateOnly expectedResult = new( 2000, 1, 2 );
+		string format = "yyyy-MM-dd";
 		ArgInfo<string> argInfo = new( expectedResult.ToString( format ), null, null );
-		DateTimeStyles styles = DateTimeStyles.AdjustToUniversal;
+		DateTimeStyles styles = DateTimeStyles.None;
 
-		ArgInfo<DateTimeOffset> result = StringConversionExtensions.ToDateTimeOffsetExact( argInfo, format, styles: styles );
+		ArgInfo<DateOnly> result = StringParsingExtensions.ParseDateOnlyExact( argInfo, format, styles: styles );
 
 		Assert.Equal( expectedResult, result.Value );
 	}
@@ -47,15 +49,15 @@ public sealed class ToDateTimeOffsetExact {
 
 		string argumentValue = "Not valid";
 		string name = "Name";
-		string format = "yyyy-MM-dd (hh:mm:ss) K";
+		string format = "yyyy-MM-dd";
 
 		ArgumentException exception = Assert.Throws<ArgumentException>( name, () => {
 
 			ArgInfo<string> argInfo = new( argumentValue, name, null );
-			_ = StringConversionExtensions.ToDateTimeOffsetExact( argInfo, format );
+			_ = StringParsingExtensions.ParseDateOnlyExact( argInfo, format );
 		} );
 
-		string expectedMessage = "Value must be a date/time with offset.";
+		string expectedMessage = "Value must be parsable to System.DateOnly.";
 
 		Assert.StartsWith( expectedMessage, exception.Message );
 	}
@@ -66,12 +68,12 @@ public sealed class ToDateTimeOffsetExact {
 		string argumentValue = "Not valid";
 		string name = "Name";
 		string message = "Message";
-		string format = "yyyy-MM-dd (hh:mm:ss) K";
+		string format = "yyyy-MM-dd";
 
 		ArgumentException exception = Assert.Throws<ArgumentException>( name, () => {
 
 			ArgInfo<string> argInfo = new( argumentValue, name, message );
-			_ = StringConversionExtensions.ToDateTimeOffsetExact( argInfo, format );
+			_ = StringParsingExtensions.ParseDateOnlyExact( argInfo, format );
 		} );
 
 		Assert.StartsWith( message, exception.Message );
@@ -80,14 +82,14 @@ public sealed class ToDateTimeOffsetExact {
 	[Fact]
 	public void WithMultipleFormatsReturnsCorrectly() {
 
-		DateTimeOffset expectedResult = new( 2000, 1, 2, 3, 4, 5, TimeSpan.Zero );
+		DateOnly expectedResult = new( 2000, 1, 2 );
 		string[] formats = new[] {
-			"yyyy-MM-dd (hh:mm:ss) K",
-			"MM/dd/yyyy hh:mm:ss K"
+			"yyyy-MM-dd",
+			"MM/dd/yyyy"
 		};
-		ArgInfo<string> argInfo = new( expectedResult.ToString( formats[ 0 ] ), null, null );
+		ArgInfo<string> argInfo = new( expectedResult.ToString( formats[0] ), null, null );
 
-		ArgInfo<DateTimeOffset> result = StringConversionExtensions.ToDateTimeOffsetExact( argInfo, formats );
+		ArgInfo<DateOnly> result = StringParsingExtensions.ParseDateOnlyExact( argInfo, formats );
 
 		Assert.Equal( expectedResult, result.Value );
 	}
@@ -95,15 +97,15 @@ public sealed class ToDateTimeOffsetExact {
 	[Fact]
 	public void WithMultipleFormatsAndProviderReturnsCorrectly() {
 
-		DateTimeOffset expectedResult = new( 2000, 1, 2, 3, 4, 5, TimeSpan.Zero );
+		DateOnly expectedResult = new( 2000, 1, 2 );
 		string[] formats = new[] {
-			"yyyy-MM-dd (hh:mm:ss) K",
-			"MM/dd/yyyy hh:mm:ss K"
+			"yyyy-MM-dd",
+			"MM/dd/yyyy"
 		};
-		ArgInfo<string> argInfo = new( expectedResult.ToString( formats[ 0 ] ), null, null );
+		ArgInfo<string> argInfo = new( expectedResult.ToString( formats[0] ), null, null );
 		IFormatProvider provider = DateTimeFormatInfo.CurrentInfo;
 
-		ArgInfo<DateTimeOffset> result = StringConversionExtensions.ToDateTimeOffsetExact( argInfo, formats, provider );
+		ArgInfo<DateOnly> result = StringParsingExtensions.ParseDateOnlyExact( argInfo, formats, provider );
 
 		Assert.Equal( expectedResult, result.Value );
 	}
@@ -111,15 +113,15 @@ public sealed class ToDateTimeOffsetExact {
 	[Fact]
 	public void WithMultipleFormatsAndStylesReturnsCorrectly() {
 
-		DateTimeOffset expectedResult = new( 2000, 1, 2, 3, 4, 5, TimeSpan.Zero );
+		DateOnly expectedResult = new( 2000, 1, 2 );
 		string[] formats = new[] {
-			"yyyy-MM-dd (hh:mm:ss) K",
-			"MM/dd/yyyy hh:mm:ss K"
+			"yyyy-MM-dd",
+			"MM/dd/yyyy"
 		};
-		ArgInfo<string> argInfo = new( expectedResult.ToString( formats[ 0 ] ), null, null );
-		DateTimeStyles styles = DateTimeStyles.AdjustToUniversal;
+		ArgInfo<string> argInfo = new( expectedResult.ToString( formats[0] ), null, null );
+		DateTimeStyles styles = DateTimeStyles.None;
 
-		ArgInfo<DateTimeOffset> result = StringConversionExtensions.ToDateTimeOffsetExact( argInfo, formats, styles: styles );
+		ArgInfo<DateOnly> result = StringParsingExtensions.ParseDateOnlyExact( argInfo, formats, styles: styles );
 
 		Assert.Equal( expectedResult, result.Value );
 	}
@@ -130,17 +132,17 @@ public sealed class ToDateTimeOffsetExact {
 		string argumentValue = "Not valid";
 		string name = "Name";
 		string[] formats = new[] {
-			"yyyy-MM-dd (hh:mm:ss) K",
-			"MM/dd/yyyy hh:mm:ss K"
+			"yyyy-MM-dd",
+			"MM/dd/yyyy"
 		};
 
 		ArgumentException exception = Assert.Throws<ArgumentException>( name, () => {
 
 			ArgInfo<string> argInfo = new( argumentValue, name, null );
-			_ = StringConversionExtensions.ToDateTimeOffsetExact( argInfo, formats );
+			_ = StringParsingExtensions.ParseDateOnlyExact( argInfo, formats );
 		} );
 
-		string expectedMessage = "Value must be a date/time with offset.";
+		string expectedMessage = "Value must be parsable to System.DateOnly.";
 
 		Assert.StartsWith( expectedMessage, exception.Message );
 	}
@@ -152,16 +154,18 @@ public sealed class ToDateTimeOffsetExact {
 		string name = "Name";
 		string message = "Message";
 		string[] formats = new[] {
-			"yyyy-MM-dd (hh:mm:ss) K",
-			"MM/dd/yyyy hh:mm:ss K"
+			"yyyy-MM-dd",
+			"MM/dd/yyyy"
 		};
 
 		ArgumentException exception = Assert.Throws<ArgumentException>( name, () => {
 
 			ArgInfo<string> argInfo = new( argumentValue, name, message );
-			_ = StringConversionExtensions.ToDateTimeOffsetExact( argInfo, formats );
+			_ = StringParsingExtensions.ParseDateOnlyExact( argInfo, formats );
 		} );
 
 		Assert.StartsWith( message, exception.Message );
 	}
 }
+
+#endif

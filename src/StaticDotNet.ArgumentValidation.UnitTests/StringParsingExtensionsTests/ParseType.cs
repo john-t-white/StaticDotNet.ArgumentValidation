@@ -1,20 +1,16 @@
-﻿#if NET7_0_OR_GREATER
+﻿namespace StaticDotNet.ArgumentValidation.UnitTests.StringParsingExtensionsTests;
 
-using System.Globalization;
-
-namespace StaticDotNet.ArgumentValidation.UnitTests.StringConversionExtensionsTests;
-
-public sealed class Parse {
+public sealed class ParseType {
 
 	[Fact]
 	public void ReturnsCorrectly() {
 
-		var expectedResult = Guid.NewGuid();
-		ArgInfo<string> argInfo = new( expectedResult.ToString(), null, null );
+		Type expectedType = typeof( string );
+		ArgInfo<string> argInfo = new( expectedType.FullName ?? throw new InvalidOperationException( "Fullname not available." ), null, null );
 
-		ArgInfo<Guid> result = StringConversionExtensions.Parse<Guid>( argInfo );
+		ArgInfo<Type> result = StringParsingExtensions.ParseType( argInfo );
 
-		Assert.Equal( expectedResult, result.Value );
+		Assert.Same( expectedType, result.Value );
 	}
 
 	[Fact]
@@ -26,12 +22,13 @@ public sealed class Parse {
 		ArgumentException exception = Assert.Throws<ArgumentException>( name, () => {
 
 			ArgInfo<string> argInfo = new( argumentValue, name, null );
-			_ = StringConversionExtensions.Parse<Guid>( argInfo );
+			_ = StringParsingExtensions.ParseType( argInfo );
 		} );
 
-		string expectedMessage = $"Value must be parsable to {typeof( Guid ).FullName}.";
+		string expectedMessage = "Value must be parsable to System.Type.";
 
 		Assert.StartsWith( expectedMessage, exception.Message );
+		Assert.NotNull( exception.InnerException );
 	}
 
 	[Fact]
@@ -44,11 +41,10 @@ public sealed class Parse {
 		ArgumentException exception = Assert.Throws<ArgumentException>( name, () => {
 
 			ArgInfo<string> argInfo = new( argumentValue, name, message );
-			_ = StringConversionExtensions.Parse<Guid>( argInfo );
+			_ = StringParsingExtensions.ParseType( argInfo );
 		} );
 
 		Assert.StartsWith( message, exception.Message );
+		Assert.NotNull( exception.InnerException );
 	}
 }
-
-#endif

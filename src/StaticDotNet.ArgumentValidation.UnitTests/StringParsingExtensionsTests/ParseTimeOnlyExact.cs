@@ -4,16 +4,16 @@ using System.Globalization;
 
 namespace StaticDotNet.ArgumentValidation.UnitTests.StringExtensionsTests;
 
-public sealed class ToDateOnlyExact {
+public sealed class ParseTimeOnlyExact {
 
 	[Fact]
 	public void ReturnsCorrectly() {
 
-		DateOnly expectedResult = new( 2000, 1, 2 );
-		string format = "yyyy-MM-dd";
+		TimeOnly expectedResult = new( 1, 2, 3, 4 );
+		string format = "hh:mm:ss.ffffff";
 		ArgInfo<string> argInfo = new( expectedResult.ToString( format ), null, null );
 
-		ArgInfo<DateOnly> result = StringConversionExtensions.ToDateOnlyExact( argInfo, format );
+		ArgInfo<TimeOnly> result = StringParsingExtensions.ParseTimeOnlyExact( argInfo, format );
 
 		Assert.Equal( expectedResult, result.Value );
 	}
@@ -21,12 +21,12 @@ public sealed class ToDateOnlyExact {
 	[Fact]
 	public void WithProviderReturnsCorrectly() {
 
-		DateOnly expectedResult = new( 2000, 1, 2 );
-		string format = "yyyy-MM-dd";
+		TimeOnly expectedResult = new( 1, 2, 3, 4 );
+		string format = "hh:mm:ss.ffffff";
 		ArgInfo<string> argInfo = new( expectedResult.ToString( format ), null, null );
 		IFormatProvider provider = DateTimeFormatInfo.CurrentInfo;
 
-		ArgInfo<DateOnly> result = StringConversionExtensions.ToDateOnlyExact( argInfo, format, provider );
+		ArgInfo<TimeOnly> result = StringParsingExtensions.ParseTimeOnlyExact( argInfo, format, provider );
 
 		Assert.Equal( expectedResult, result.Value );
 	}
@@ -34,12 +34,12 @@ public sealed class ToDateOnlyExact {
 	[Fact]
 	public void WithStylesReturnsCorrectly() {
 
-		DateOnly expectedResult = new( 2000, 1, 2 );
-		string format = "yyyy-MM-dd";
+		TimeOnly expectedResult = new( 1, 2, 3, 4 );
+		string format = "hh:mm:ss.ffffff";
 		ArgInfo<string> argInfo = new( expectedResult.ToString( format ), null, null );
 		DateTimeStyles styles = DateTimeStyles.None;
 
-		ArgInfo<DateOnly> result = StringConversionExtensions.ToDateOnlyExact( argInfo, format, styles: styles );
+		ArgInfo<TimeOnly> result = StringParsingExtensions.ParseTimeOnlyExact( argInfo, format, styles: styles );
 
 		Assert.Equal( expectedResult, result.Value );
 	}
@@ -49,15 +49,15 @@ public sealed class ToDateOnlyExact {
 
 		string argumentValue = "Not valid";
 		string name = "Name";
-		string format = "yyyy-MM-dd";
+		string format = "hh:mm:ss.ffffff";
 
 		ArgumentException exception = Assert.Throws<ArgumentException>( name, () => {
 
 			ArgInfo<string> argInfo = new( argumentValue, name, null );
-			_ = StringConversionExtensions.ToDateOnlyExact( argInfo, format );
+			_ = StringParsingExtensions.ParseTimeOnlyExact( argInfo, format );
 		} );
 
-		string expectedMessage = "Value must be a date.";
+		string expectedMessage = "Value must be parsable to System.TimeOnly.";
 
 		Assert.StartsWith( expectedMessage, exception.Message );
 	}
@@ -68,12 +68,12 @@ public sealed class ToDateOnlyExact {
 		string argumentValue = "Not valid";
 		string name = "Name";
 		string message = "Message";
-		string format = "yyyy-MM-dd";
+		string format = "hh:mm:ss.ffffff";
 
 		ArgumentException exception = Assert.Throws<ArgumentException>( name, () => {
 
 			ArgInfo<string> argInfo = new( argumentValue, name, message );
-			_ = StringConversionExtensions.ToDateOnlyExact( argInfo, format );
+			_ = StringParsingExtensions.ParseTimeOnlyExact( argInfo, format );
 		} );
 
 		Assert.StartsWith( message, exception.Message );
@@ -82,14 +82,14 @@ public sealed class ToDateOnlyExact {
 	[Fact]
 	public void WithMultipleFormatsReturnsCorrectly() {
 
-		DateOnly expectedResult = new( 2000, 1, 2 );
+		TimeOnly expectedResult = new( 1, 2, 3, 4 );
 		string[] formats = new[] {
-			"yyyy-MM-dd",
-			"MM/dd/yyyy"
+			"hh:mm:ss.ffffff",
+			"hh:mm:ss"
 		};
 		ArgInfo<string> argInfo = new( expectedResult.ToString( formats[0] ), null, null );
 
-		ArgInfo<DateOnly> result = StringConversionExtensions.ToDateOnlyExact( argInfo, formats );
+		ArgInfo<TimeOnly> result = StringParsingExtensions.ParseTimeOnlyExact( argInfo, formats );
 
 		Assert.Equal( expectedResult, result.Value );
 	}
@@ -97,15 +97,15 @@ public sealed class ToDateOnlyExact {
 	[Fact]
 	public void WithMultipleFormatsAndProviderReturnsCorrectly() {
 
-		DateOnly expectedResult = new( 2000, 1, 2 );
+		TimeOnly expectedResult = new( 1, 2, 3, 4 );
 		string[] formats = new[] {
-			"yyyy-MM-dd",
-			"MM/dd/yyyy"
+			"hh:mm:ss.ffffff",
+			"hh:mm:ss"
 		};
 		ArgInfo<string> argInfo = new( expectedResult.ToString( formats[0] ), null, null );
 		IFormatProvider provider = DateTimeFormatInfo.CurrentInfo;
 
-		ArgInfo<DateOnly> result = StringConversionExtensions.ToDateOnlyExact( argInfo, formats, provider );
+		ArgInfo<TimeOnly> result = StringParsingExtensions.ParseTimeOnlyExact( argInfo, formats, provider );
 
 		Assert.Equal( expectedResult, result.Value );
 	}
@@ -113,15 +113,15 @@ public sealed class ToDateOnlyExact {
 	[Fact]
 	public void WithMultipleFormatsAndStylesReturnsCorrectly() {
 
-		DateOnly expectedResult = new( 2000, 1, 2 );
+		TimeOnly expectedResult = new( 1, 2, 3, 4 );
 		string[] formats = new[] {
-			"yyyy-MM-dd",
-			"MM/dd/yyyy"
+			"hh:mm:ss.ffffff",
+			"hh:mm:ss"
 		};
 		ArgInfo<string> argInfo = new( expectedResult.ToString( formats[0] ), null, null );
 		DateTimeStyles styles = DateTimeStyles.None;
 
-		ArgInfo<DateOnly> result = StringConversionExtensions.ToDateOnlyExact( argInfo, formats, styles: styles );
+		ArgInfo<TimeOnly> result = StringParsingExtensions.ParseTimeOnlyExact( argInfo, formats, styles: styles );
 
 		Assert.Equal( expectedResult, result.Value );
 	}
@@ -132,17 +132,17 @@ public sealed class ToDateOnlyExact {
 		string argumentValue = "Not valid";
 		string name = "Name";
 		string[] formats = new[] {
-			"yyyy-MM-dd",
-			"MM/dd/yyyy"
+			"hh:mm:ss.ffffff",
+			"hh:mm:ss"
 		};
 
 		ArgumentException exception = Assert.Throws<ArgumentException>( name, () => {
 
 			ArgInfo<string> argInfo = new( argumentValue, name, null );
-			_ = StringConversionExtensions.ToDateOnlyExact( argInfo, formats );
+			_ = StringParsingExtensions.ParseTimeOnlyExact( argInfo, formats );
 		} );
 
-		string expectedMessage = "Value must be a date.";
+		string expectedMessage = "Value must be parsable to System.TimeOnly.";
 
 		Assert.StartsWith( expectedMessage, exception.Message );
 	}
@@ -154,14 +154,14 @@ public sealed class ToDateOnlyExact {
 		string name = "Name";
 		string message = "Message";
 		string[] formats = new[] {
-			"yyyy-MM-dd",
-			"MM/dd/yyyy"
+			"hh:mm:ss.ffffff",
+			"hh:mm:ss"
 		};
 
 		ArgumentException exception = Assert.Throws<ArgumentException>( name, () => {
 
 			ArgInfo<string> argInfo = new( argumentValue, name, message );
-			_ = StringConversionExtensions.ToDateOnlyExact( argInfo, formats );
+			_ = StringParsingExtensions.ParseTimeOnlyExact( argInfo, formats );
 		} );
 
 		Assert.StartsWith( message, exception.Message );

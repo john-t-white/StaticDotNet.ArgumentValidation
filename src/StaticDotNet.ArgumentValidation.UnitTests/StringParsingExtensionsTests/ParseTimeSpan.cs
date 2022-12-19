@@ -1,28 +1,18 @@
-﻿using System.Globalization;
+﻿#if NET6_0_OR_GREATER
 
-namespace StaticDotNet.ArgumentValidation.UnitTests.StringConversionExtensionsTests;
+using System.Globalization;
 
-public sealed class ToByte {
+namespace StaticDotNet.ArgumentValidation.UnitTests.StringExtensionsTests;
+
+public sealed class ParseTimeSpan {
 
 	[Fact]
 	public void ReturnsCorrectly() {
 
-		byte expectedResult = 1;
+		TimeSpan expectedResult = new( 1, 2, 3 );
 		ArgInfo<string> argInfo = new( expectedResult.ToString(), null, null );
 
-		ArgInfo<byte> result = StringConversionExtensions.ToByte( argInfo );
-
-		Assert.Equal( expectedResult, result.Value );
-	}
-
-	[Fact]
-	public void WithStylesReturnsCorrectly() {
-
-		byte expectedResult = 1;
-		ArgInfo<string> argInfo = new( expectedResult.ToString(), null, null );
-		NumberStyles styles = NumberStyles.None;
-
-		ArgInfo<byte> result = StringConversionExtensions.ToByte( argInfo, styles );
+		ArgInfo<TimeSpan> result = StringParsingExtensions.ParseTimeSpan( argInfo );
 
 		Assert.Equal( expectedResult, result.Value );
 	}
@@ -30,11 +20,11 @@ public sealed class ToByte {
 	[Fact]
 	public void WithProviderReturnsCorrectly() {
 
-		byte expectedResult = 1;
+		TimeSpan expectedResult = new( 1, 2, 3 );
 		ArgInfo<string> argInfo = new( expectedResult.ToString(), null, null );
-		IFormatProvider provider = NumberFormatInfo.InvariantInfo;
+		IFormatProvider provider = DateTimeFormatInfo.CurrentInfo;
 
-		ArgInfo<byte> result = StringConversionExtensions.ToByte( argInfo, provider: provider );
+		ArgInfo<TimeSpan> result = StringParsingExtensions.ParseTimeSpan( argInfo, provider );
 
 		Assert.Equal( expectedResult, result.Value );
 	}
@@ -48,10 +38,10 @@ public sealed class ToByte {
 		ArgumentException exception = Assert.Throws<ArgumentException>( name, () => {
 
 			ArgInfo<string> argInfo = new( argumentValue, name, null );
-			_ = StringConversionExtensions.ToByte( argInfo );
+			_ = StringParsingExtensions.ParseTimeSpan( argInfo );
 		} );
 
-		string expectedMessage = "Value must be a byte.";
+		string expectedMessage = "Value must be parsable to System.TimeSpan.";
 
 		Assert.StartsWith( expectedMessage, exception.Message );
 	}
@@ -66,9 +56,11 @@ public sealed class ToByte {
 		ArgumentException exception = Assert.Throws<ArgumentException>( name, () => {
 
 			ArgInfo<string> argInfo = new( argumentValue, name, message );
-			_ = StringConversionExtensions.ToByte( argInfo );
+			_ = StringParsingExtensions.ParseTimeSpan( argInfo );
 		} );
 
 		Assert.StartsWith( message, exception.Message );
 	}
 }
+
+#endif

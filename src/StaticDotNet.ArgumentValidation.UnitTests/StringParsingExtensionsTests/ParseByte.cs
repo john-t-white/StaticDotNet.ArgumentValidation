@@ -1,30 +1,16 @@
-﻿#if NET6_0_OR_GREATER
+﻿using System.Globalization;
 
-using System.Globalization;
+namespace StaticDotNet.ArgumentValidation.UnitTests.StringParsingExtensionsTests;
 
-namespace StaticDotNet.ArgumentValidation.UnitTests.StringExtensionsTests;
-
-public sealed class ToDateOnly {
+public sealed class ParseByte {
 
 	[Fact]
 	public void ReturnsCorrectly() {
 
-		DateOnly expectedResult = new( 2000, 1, 2 );
+		byte expectedResult = 1;
 		ArgInfo<string> argInfo = new( expectedResult.ToString(), null, null );
 
-		ArgInfo<DateOnly> result = StringConversionExtensions.ToDateOnly( argInfo );
-
-		Assert.Equal( expectedResult, result.Value );
-	}
-
-	[Fact]
-	public void WithProviderReturnsCorrectly() {
-
-		DateOnly expectedResult = new( 2000, 1, 2 );
-		ArgInfo<string> argInfo = new( expectedResult.ToString(), null, null );
-		IFormatProvider provider = DateTimeFormatInfo.CurrentInfo;
-
-		ArgInfo<DateOnly> result = StringConversionExtensions.ToDateOnly( argInfo, provider );
+		ArgInfo<byte> result = StringParsingExtensions.ParseByte( argInfo );
 
 		Assert.Equal( expectedResult, result.Value );
 	}
@@ -32,11 +18,23 @@ public sealed class ToDateOnly {
 	[Fact]
 	public void WithStylesReturnsCorrectly() {
 
-		DateOnly expectedResult = new( 2000, 1, 2 );
+		byte expectedResult = 1;
 		ArgInfo<string> argInfo = new( expectedResult.ToString(), null, null );
-		DateTimeStyles styles = DateTimeStyles.None;
+		NumberStyles styles = NumberStyles.None;
 
-		ArgInfo<DateOnly> result = StringConversionExtensions.ToDateOnly( argInfo, styles: styles );
+		ArgInfo<byte> result = StringParsingExtensions.ParseByte( argInfo, styles );
+
+		Assert.Equal( expectedResult, result.Value );
+	}
+
+	[Fact]
+	public void WithProviderReturnsCorrectly() {
+
+		byte expectedResult = 1;
+		ArgInfo<string> argInfo = new( expectedResult.ToString(), null, null );
+		IFormatProvider provider = NumberFormatInfo.InvariantInfo;
+
+		ArgInfo<byte> result = StringParsingExtensions.ParseByte( argInfo, provider: provider );
 
 		Assert.Equal( expectedResult, result.Value );
 	}
@@ -50,10 +48,10 @@ public sealed class ToDateOnly {
 		ArgumentException exception = Assert.Throws<ArgumentException>( name, () => {
 
 			ArgInfo<string> argInfo = new( argumentValue, name, null );
-			_ = StringConversionExtensions.ToDateOnly( argInfo );
+			_ = StringParsingExtensions.ParseByte( argInfo );
 		} );
 
-		string expectedMessage = "Value must be a date.";
+		string expectedMessage = "Value must be parsable to System.Byte.";
 
 		Assert.StartsWith( expectedMessage, exception.Message );
 	}
@@ -68,11 +66,9 @@ public sealed class ToDateOnly {
 		ArgumentException exception = Assert.Throws<ArgumentException>( name, () => {
 
 			ArgInfo<string> argInfo = new( argumentValue, name, message );
-			_ = StringConversionExtensions.ToDateOnly( argInfo );
+			_ = StringParsingExtensions.ParseByte( argInfo );
 		} );
 
 		Assert.StartsWith( message, exception.Message );
 	}
 }
-
-#endif

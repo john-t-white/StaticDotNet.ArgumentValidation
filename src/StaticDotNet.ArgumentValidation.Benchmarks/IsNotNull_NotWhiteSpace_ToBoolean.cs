@@ -28,7 +28,7 @@ public class IsNotNull_NotWhiteSpace_ToBoolean {
 	}
 
 	[Benchmark]
-	public bool ArgumentValidation() => Arg.IsNotNull( argumentValue ).NotWhiteSpace().ToBoolean().Value;
+	public bool ArgumentValidation() => Arg.IsNotNull( argumentValue ).NotWhiteSpace().ParseBoolean().Value;
 
 	[Benchmark]
 	public bool Dawn_Guard() => Dawn.Guard.Argument( argumentValue ).NotNull().NotWhiteSpace().Wrap( x => bool.Parse( x ) );

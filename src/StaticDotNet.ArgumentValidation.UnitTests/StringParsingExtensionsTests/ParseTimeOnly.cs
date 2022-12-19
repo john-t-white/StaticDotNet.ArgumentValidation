@@ -1,16 +1,18 @@
-﻿using System.Globalization;
+﻿#if NET6_0_OR_GREATER
 
-namespace StaticDotNet.ArgumentValidation.UnitTests.StringConversionExtensionsTests;
+using System.Globalization;
 
-public sealed class ToDateTime {
+namespace StaticDotNet.ArgumentValidation.UnitTests.StringExtensionsTests;
+
+public sealed class ParseTimeOnly {
 
 	[Fact]
 	public void ReturnsCorrectly() {
 
-		DateTime expectedResult = new( 2000, 1, 2, 3, 4, 5 );
+		TimeOnly expectedResult = new( 1, 2 );
 		ArgInfo<string> argInfo = new( expectedResult.ToString(), null, null );
 
-		ArgInfo<DateTime> result = StringConversionExtensions.ToDateTime( argInfo );
+		ArgInfo<TimeOnly> result = StringParsingExtensions.ParseTimeOnly( argInfo );
 
 		Assert.Equal( expectedResult, result.Value );
 	}
@@ -18,11 +20,11 @@ public sealed class ToDateTime {
 	[Fact]
 	public void WithProviderReturnsCorrectly() {
 
-		DateTime expectedResult = new( 2000, 1, 2, 3, 4, 5 );
+		TimeOnly expectedResult = new( 1, 2 );
 		ArgInfo<string> argInfo = new( expectedResult.ToString(), null, null );
 		IFormatProvider provider = DateTimeFormatInfo.CurrentInfo;
 
-		ArgInfo<DateTime> result = StringConversionExtensions.ToDateTime( argInfo, provider );
+		ArgInfo<TimeOnly> result = StringParsingExtensions.ParseTimeOnly( argInfo, provider );
 
 		Assert.Equal( expectedResult, result.Value );
 	}
@@ -30,11 +32,11 @@ public sealed class ToDateTime {
 	[Fact]
 	public void WithStylesReturnsCorrectly() {
 
-		DateTime expectedResult = new( 2000, 1, 2, 3, 4, 5, DateTimeKind.Utc );
+		TimeOnly expectedResult = new( 1, 2 );
 		ArgInfo<string> argInfo = new( expectedResult.ToString(), null, null );
-		DateTimeStyles styles = DateTimeStyles.AdjustToUniversal;
+		DateTimeStyles styles = DateTimeStyles.None;
 
-		ArgInfo<DateTime> result = StringConversionExtensions.ToDateTime( argInfo, styles: styles );
+		ArgInfo<TimeOnly> result = StringParsingExtensions.ParseTimeOnly( argInfo, styles: styles );
 
 		Assert.Equal( expectedResult, result.Value );
 	}
@@ -48,10 +50,10 @@ public sealed class ToDateTime {
 		ArgumentException exception = Assert.Throws<ArgumentException>( name, () => {
 
 			ArgInfo<string> argInfo = new( argumentValue, name, null );
-			_ = StringConversionExtensions.ToDateTime( argInfo );
+			_ = StringParsingExtensions.ParseTimeOnly( argInfo );
 		} );
 
-		string expectedMessage = "Value must be a date/time.";
+		string expectedMessage = "Value must be parsable to System.TimeOnly.";
 
 		Assert.StartsWith( expectedMessage, exception.Message );
 	}
@@ -66,9 +68,11 @@ public sealed class ToDateTime {
 		ArgumentException exception = Assert.Throws<ArgumentException>( name, () => {
 
 			ArgInfo<string> argInfo = new( argumentValue, name, message );
-			_ = StringConversionExtensions.ToDateTime( argInfo );
+			_ = StringParsingExtensions.ParseTimeOnly( argInfo );
 		} );
 
 		Assert.StartsWith( message, exception.Message );
 	}
 }
+
+#endif

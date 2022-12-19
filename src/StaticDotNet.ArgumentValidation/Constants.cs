@@ -22,16 +22,6 @@ internal class Constants {
 
 	internal const string VALUE_MUST_BE_BETWEEN = "Value must be between {0} and {1}.";
 
-	internal const string VALUE_MUST_BE_BOOLEAN = "Value must be a boolean.";
-
-	internal const string VALUE_MUST_BE_BYTE = "Value must be a byte.";
-
-	internal const string VALUE_MUST_BE_DATETIME = "Value must be a date/time.";
-
-	internal const string VALUE_MUST_BE_DATETIME_OFFSET = "Value must be a date/time with offset.";
-
-	internal const string VALUE_MUST_BE_DATE = "Value must be a date.";
-
 	internal const string VALUE_MUST_BE_DIGIT = "Value must be a digit.";
 
 	internal const string VALUE_MUST_BE_EQUAL_TO = "Value must be equal to {0}.";
@@ -41,14 +31,6 @@ internal class Constants {
 	internal const string VALUE_MUST_BE_GREATER_THAN = "Value must be greater than {0}.";
 
 	internal const string VALUE_MUST_BE_GREATER_THAN_OR_EQUAL_TO = "Value must be greater than or equal to {0}.";
-
-	internal const string VALUE_MUST_BE_GUID = "Value must be a guid.";
-
-	internal const string VALUE_MUST_BE_INT16 = "Value must be an int16.";
-
-	internal const string VALUE_MUST_BE_INT32 = "Value must be an int32.";
-
-	internal const string VALUE_MUST_BE_INT64 = "Value must be an int64.";
 
 	internal const string VALUE_MUST_BE_LETTER = "Value must be a letter.";
 
@@ -68,23 +50,15 @@ internal class Constants {
 
 	internal const string VALUE_MUST_BE_RELATIVE = "Value must be relative.";
 
-	internal const string VALUE_MUST_BE_TIME = "Value must be a time.";
-
-	internal const string VALUE_MUST_BE_TIMESPAN = "Value must be a time span.";
-
 	internal const string VALUE_MUST_BE_READABLE = "Value must be readable.";
 
 	internal const string VALUE_MUST_BE_SAME = "Value must be the same.";
-
-	internal const string VALUE_MUST_BE_TYPE = "Value must be a type.";
 
 	internal const string VALUE_MUST_BE_TRUE = "Value must be true.";
 
 	internal const string VALUE_MUST_BE_UPPER = "Value must be upper.";
 
 	internal const string VALUE_MUST_BE_WRITABLE = "Value must be writable.";
-
-	internal const string VALUE_MUST_BE_URI = "Value must be a uri.";
 
 	internal const string VALUE_MUST_CONTAIN = "Value must contain {0}.";
 

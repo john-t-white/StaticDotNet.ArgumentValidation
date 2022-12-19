@@ -1,30 +1,18 @@
-﻿#if NET6_0_OR_GREATER
+﻿#if NET7_0_OR_GREATER
 
 using System.Globalization;
 
-namespace StaticDotNet.ArgumentValidation.UnitTests.StringExtensionsTests;
+namespace StaticDotNet.ArgumentValidation.UnitTests.StringParsingExtensionsTests;
 
-public sealed class ToTimeSpan {
+public sealed class Parse {
 
 	[Fact]
 	public void ReturnsCorrectly() {
 
-		TimeSpan expectedResult = new( 1, 2, 3 );
+		var expectedResult = Guid.NewGuid();
 		ArgInfo<string> argInfo = new( expectedResult.ToString(), null, null );
 
-		ArgInfo<TimeSpan> result = StringConversionExtensions.ToTimeSpan( argInfo );
-
-		Assert.Equal( expectedResult, result.Value );
-	}
-
-	[Fact]
-	public void WithProviderReturnsCorrectly() {
-
-		TimeSpan expectedResult = new( 1, 2, 3 );
-		ArgInfo<string> argInfo = new( expectedResult.ToString(), null, null );
-		IFormatProvider provider = DateTimeFormatInfo.CurrentInfo;
-
-		ArgInfo<TimeSpan> result = StringConversionExtensions.ToTimeSpan( argInfo, provider );
+		ArgInfo<Guid> result = StringParsingExtensions.Parse<Guid>( argInfo );
 
 		Assert.Equal( expectedResult, result.Value );
 	}
@@ -38,10 +26,10 @@ public sealed class ToTimeSpan {
 		ArgumentException exception = Assert.Throws<ArgumentException>( name, () => {
 
 			ArgInfo<string> argInfo = new( argumentValue, name, null );
-			_ = StringConversionExtensions.ToTimeSpan( argInfo );
+			_ = StringParsingExtensions.Parse<Guid>( argInfo );
 		} );
 
-		string expectedMessage = "Value must be a time span.";
+		string expectedMessage = $"Value must be parsable to {typeof( Guid ).FullName}.";
 
 		Assert.StartsWith( expectedMessage, exception.Message );
 	}
@@ -56,7 +44,7 @@ public sealed class ToTimeSpan {
 		ArgumentException exception = Assert.Throws<ArgumentException>( name, () => {
 
 			ArgInfo<string> argInfo = new( argumentValue, name, message );
-			_ = StringConversionExtensions.ToTimeSpan( argInfo );
+			_ = StringParsingExtensions.Parse<Guid>( argInfo );
 		} );
 
 		Assert.StartsWith( message, exception.Message );

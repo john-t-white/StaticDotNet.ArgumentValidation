@@ -1,16 +1,16 @@
 ﻿using System.Globalization;
 
-namespace StaticDotNet.ArgumentValidation.UnitTests.StringConversionExtensionsTests;
+namespace StaticDotNet.ArgumentValidation.UnitTests.StringParsingExtensionsTests;
 
-public sealed class ToInt16 {
+public sealed class ParseInt32 {
 
 	[Fact]
 	public void ReturnsCorrectly() {
 
-		short expectedResult = 1;
+		int expectedResult = 1;
 		ArgInfo<string> argInfo = new( expectedResult.ToString(), null, null );
 
-		ArgInfo<short> result = StringConversionExtensions.ToInt16( argInfo );
+		ArgInfo<int> result = StringParsingExtensions.ParseInt32( argInfo );
 
 		Assert.Equal( expectedResult, result.Value );
 	}
@@ -18,11 +18,11 @@ public sealed class ToInt16 {
 	[Fact]
 	public void WithStylesReturnsCorrectly() {
 
-		short expectedResult = 1;
+		int expectedResult = 1;
 		ArgInfo<string> argInfo = new( expectedResult.ToString(), null, null );
 		NumberStyles styles = NumberStyles.None;
 
-		ArgInfo<short> result = StringConversionExtensions.ToInt16( argInfo, styles );
+		ArgInfo<int> result = StringParsingExtensions.ParseInt32( argInfo, styles );
 
 		Assert.Equal( expectedResult, result.Value );
 	}
@@ -30,11 +30,11 @@ public sealed class ToInt16 {
 	[Fact]
 	public void WithProviderReturnsCorrectly() {
 
-		short expectedResult = 1;
+		int expectedResult = 1;
 		ArgInfo<string> argInfo = new( expectedResult.ToString(), null, null );
 		IFormatProvider provider = NumberFormatInfo.InvariantInfo;
 
-		ArgInfo<short> result = StringConversionExtensions.ToInt16( argInfo, provider: provider );
+		ArgInfo<int> result = StringParsingExtensions.ParseInt32( argInfo, provider: provider );
 
 		Assert.Equal( expectedResult, result.Value );
 	}
@@ -48,10 +48,10 @@ public sealed class ToInt16 {
 		ArgumentException exception = Assert.Throws<ArgumentException>( name, () => {
 
 			ArgInfo<string> argInfo = new( argumentValue, name, null );
-			_ = StringConversionExtensions.ToInt16( argInfo );
+			_ = StringParsingExtensions.ParseInt32( argInfo );
 		} );
 
-		string expectedMessage = "Value must be an int16.";
+		string expectedMessage = "Value must be parsable to System.Int32.";
 
 		Assert.StartsWith( expectedMessage, exception.Message );
 	}
@@ -66,7 +66,7 @@ public sealed class ToInt16 {
 		ArgumentException exception = Assert.Throws<ArgumentException>( name, () => {
 
 			ArgInfo<string> argInfo = new( argumentValue, name, message );
-			_ = StringConversionExtensions.ToInt16( argInfo );
+			_ = StringParsingExtensions.ParseInt32( argInfo );
 		} );
 
 		Assert.StartsWith( message, exception.Message );

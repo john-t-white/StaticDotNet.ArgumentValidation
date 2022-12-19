@@ -1,16 +1,16 @@
 ﻿using System.Globalization;
 
-namespace StaticDotNet.ArgumentValidation.UnitTests.StringConversionExtensionsTests;
+namespace StaticDotNet.ArgumentValidation.UnitTests.StringParsingExtensionsTests;
 
-public sealed class ToInt32 {
+public sealed class ParseInt64 {
 
 	[Fact]
 	public void ReturnsCorrectly() {
 
-		int expectedResult = 1;
+		long expectedResult = 1;
 		ArgInfo<string> argInfo = new( expectedResult.ToString(), null, null );
 
-		ArgInfo<int> result = StringConversionExtensions.ToInt32( argInfo );
+		ArgInfo<long> result = StringParsingExtensions.ParseInt64( argInfo );
 
 		Assert.Equal( expectedResult, result.Value );
 	}
@@ -18,11 +18,11 @@ public sealed class ToInt32 {
 	[Fact]
 	public void WithStylesReturnsCorrectly() {
 
-		int expectedResult = 1;
+		long expectedResult = 1;
 		ArgInfo<string> argInfo = new( expectedResult.ToString(), null, null );
 		NumberStyles styles = NumberStyles.None;
 
-		ArgInfo<int> result = StringConversionExtensions.ToInt32( argInfo, styles );
+		ArgInfo<long> result = StringParsingExtensions.ParseInt64( argInfo, styles );
 
 		Assert.Equal( expectedResult, result.Value );
 	}
@@ -30,11 +30,11 @@ public sealed class ToInt32 {
 	[Fact]
 	public void WithProviderReturnsCorrectly() {
 
-		int expectedResult = 1;
+		long expectedResult = 1;
 		ArgInfo<string> argInfo = new( expectedResult.ToString(), null, null );
 		IFormatProvider provider = NumberFormatInfo.InvariantInfo;
 
-		ArgInfo<int> result = StringConversionExtensions.ToInt32( argInfo, provider: provider );
+		ArgInfo<long> result = StringParsingExtensions.ParseInt64( argInfo, provider: provider );
 
 		Assert.Equal( expectedResult, result.Value );
 	}
@@ -48,10 +48,10 @@ public sealed class ToInt32 {
 		ArgumentException exception = Assert.Throws<ArgumentException>( name, () => {
 
 			ArgInfo<string> argInfo = new( argumentValue, name, null );
-			_ = StringConversionExtensions.ToInt32( argInfo );
+			_ = StringParsingExtensions.ParseInt64( argInfo );
 		} );
 
-		string expectedMessage = "Value must be an int32.";
+		string expectedMessage = "Value must be parsable to System.Int64.";
 
 		Assert.StartsWith( expectedMessage, exception.Message );
 	}
@@ -66,7 +66,7 @@ public sealed class ToInt32 {
 		ArgumentException exception = Assert.Throws<ArgumentException>( name, () => {
 
 			ArgInfo<string> argInfo = new( argumentValue, name, message );
-			_ = StringConversionExtensions.ToInt32( argInfo );
+			_ = StringParsingExtensions.ParseInt64( argInfo );
 		} );
 
 		Assert.StartsWith( message, exception.Message );

@@ -4,7 +4,7 @@ using System.Globalization;
 
 namespace StaticDotNet.ArgumentValidation.UnitTests.StringExtensionsTests;
 
-public sealed class ToTimeSpanExact {
+public sealed class ParseTimeSpanExact {
 
 	[Fact]
 	public void ReturnsCorrectly() {
@@ -13,7 +13,7 @@ public sealed class ToTimeSpanExact {
 		string format = @"d\.hh\:mm\:ss\.ffffff";
 		ArgInfo<string> argInfo = new( expectedResult.ToString( format ), null, null );
 
-		ArgInfo<TimeSpan> result = StringConversionExtensions.ToTimeSpanExact( argInfo, format );
+		ArgInfo<TimeSpan> result = StringParsingExtensions.ParseTimeSpanExact( argInfo, format );
 
 		Assert.Equal( expectedResult, result.Value );
 	}
@@ -26,7 +26,7 @@ public sealed class ToTimeSpanExact {
 		ArgInfo<string> argInfo = new( expectedResult.ToString( format ), null, null );
 		IFormatProvider provider = DateTimeFormatInfo.CurrentInfo;
 
-		ArgInfo<TimeSpan> result = StringConversionExtensions.ToTimeSpanExact( argInfo, format, provider );
+		ArgInfo<TimeSpan> result = StringParsingExtensions.ParseTimeSpanExact( argInfo, format, provider );
 
 		Assert.Equal( expectedResult, result.Value );
 	}
@@ -39,7 +39,7 @@ public sealed class ToTimeSpanExact {
 		ArgInfo<string> argInfo = new( expectedResult.ToString( format ), null, null );
 		TimeSpanStyles styles = TimeSpanStyles.None;
 
-		ArgInfo<TimeSpan> result = StringConversionExtensions.ToTimeSpanExact( argInfo, format, styles: styles );
+		ArgInfo<TimeSpan> result = StringParsingExtensions.ParseTimeSpanExact( argInfo, format, styles: styles );
 
 		Assert.Equal( expectedResult, result.Value );
 	}
@@ -54,10 +54,10 @@ public sealed class ToTimeSpanExact {
 		ArgumentException exception = Assert.Throws<ArgumentException>( name, () => {
 
 			ArgInfo<string> argInfo = new( argumentValue, name, null );
-			_ = StringConversionExtensions.ToTimeSpanExact( argInfo, format );
+			_ = StringParsingExtensions.ParseTimeSpanExact( argInfo, format );
 		} );
 
-		string expectedMessage = "Value must be a time span.";
+		string expectedMessage = "Value must be parsable to System.TimeSpan.";
 
 		Assert.StartsWith( expectedMessage, exception.Message );
 	}
@@ -73,7 +73,7 @@ public sealed class ToTimeSpanExact {
 		ArgumentException exception = Assert.Throws<ArgumentException>( name, () => {
 
 			ArgInfo<string> argInfo = new( argumentValue, name, message );
-			_ = StringConversionExtensions.ToTimeSpanExact( argInfo, format );
+			_ = StringParsingExtensions.ParseTimeSpanExact( argInfo, format );
 		} );
 
 		Assert.StartsWith( message, exception.Message );
@@ -89,7 +89,7 @@ public sealed class ToTimeSpanExact {
 		};
 		ArgInfo<string> argInfo = new( expectedResult.ToString( formats[0] ), null, null );
 
-		ArgInfo<TimeSpan> result = StringConversionExtensions.ToTimeSpanExact( argInfo, formats );
+		ArgInfo<TimeSpan> result = StringParsingExtensions.ParseTimeSpanExact( argInfo, formats );
 
 		Assert.Equal( expectedResult, result.Value );
 	}
@@ -105,7 +105,7 @@ public sealed class ToTimeSpanExact {
 		ArgInfo<string> argInfo = new( expectedResult.ToString( formats[0] ), null, null );
 		IFormatProvider provider = DateTimeFormatInfo.CurrentInfo;
 
-		ArgInfo<TimeSpan> result = StringConversionExtensions.ToTimeSpanExact( argInfo, formats, provider );
+		ArgInfo<TimeSpan> result = StringParsingExtensions.ParseTimeSpanExact( argInfo, formats, provider );
 
 		Assert.Equal( expectedResult, result.Value );
 	}
@@ -121,7 +121,7 @@ public sealed class ToTimeSpanExact {
 		ArgInfo<string> argInfo = new( expectedResult.ToString( formats[0] ), null, null );
 		TimeSpanStyles styles = TimeSpanStyles.None;
 
-		ArgInfo<TimeSpan> result = StringConversionExtensions.ToTimeSpanExact( argInfo, formats, styles: styles );
+		ArgInfo<TimeSpan> result = StringParsingExtensions.ParseTimeSpanExact( argInfo, formats, styles: styles );
 
 		Assert.Equal( expectedResult, result.Value );
 	}
@@ -139,10 +139,10 @@ public sealed class ToTimeSpanExact {
 		ArgumentException exception = Assert.Throws<ArgumentException>( name, () => {
 
 			ArgInfo<string> argInfo = new( argumentValue, name, null );
-			_ = StringConversionExtensions.ToTimeSpanExact( argInfo, formats );
+			_ = StringParsingExtensions.ParseTimeSpanExact( argInfo, formats );
 		} );
 
-		string expectedMessage = "Value must be a time span.";
+		string expectedMessage = "Value must be parsable to System.TimeSpan.";
 
 		Assert.StartsWith( expectedMessage, exception.Message );
 	}
@@ -161,7 +161,7 @@ public sealed class ToTimeSpanExact {
 		ArgumentException exception = Assert.Throws<ArgumentException>( name, () => {
 
 			ArgInfo<string> argInfo = new( argumentValue, name, message );
-			_ = StringConversionExtensions.ToTimeSpanExact( argInfo, formats );
+			_ = StringParsingExtensions.ParseTimeSpanExact( argInfo, formats );
 		} );
 
 		Assert.StartsWith( message, exception.Message );

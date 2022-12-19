@@ -1,16 +1,18 @@
-﻿namespace StaticDotNet.ArgumentValidation.UnitTests.StringConversionExtensionsTests;
+﻿using System.Globalization;
 
-public sealed class ToType {
+namespace StaticDotNet.ArgumentValidation.UnitTests.StringParsingExtensionsTests;
+
+public sealed class ParseGuid {
 
 	[Fact]
 	public void ReturnsCorrectly() {
 
-		Type expectedType = typeof( string );
-		ArgInfo<string> argInfo = new( expectedType.FullName ?? throw new InvalidOperationException( "Fullname not available." ), null, null );
+		var expectedResult = Guid.NewGuid();
+		ArgInfo<string> argInfo = new( expectedResult.ToString(), null, null );
 
-		ArgInfo<Type> result = StringConversionExtensions.ToType( argInfo );
+		ArgInfo<Guid> result = StringParsingExtensions.ParseGuid( argInfo );
 
-		Assert.Same( expectedType, result.Value );
+		Assert.Equal( expectedResult, result.Value );
 	}
 
 	[Fact]
@@ -22,13 +24,12 @@ public sealed class ToType {
 		ArgumentException exception = Assert.Throws<ArgumentException>( name, () => {
 
 			ArgInfo<string> argInfo = new( argumentValue, name, null );
-			_ = StringConversionExtensions.ToType( argInfo );
+			_ = StringParsingExtensions.ParseGuid( argInfo );
 		} );
 
-		string expectedMessage = "Value must be a type.";
+		string expectedMessage = "Value must be parsable to System.Guid.";
 
 		Assert.StartsWith( expectedMessage, exception.Message );
-		Assert.NotNull( exception.InnerException );
 	}
 
 	[Fact]
@@ -41,10 +42,9 @@ public sealed class ToType {
 		ArgumentException exception = Assert.Throws<ArgumentException>( name, () => {
 
 			ArgInfo<string> argInfo = new( argumentValue, name, message );
-			_ = StringConversionExtensions.ToType( argInfo );
+			_ = StringParsingExtensions.ParseGuid( argInfo );
 		} );
 
 		Assert.StartsWith( message, exception.Message );
-		Assert.NotNull( exception.InnerException );
 	}
 }

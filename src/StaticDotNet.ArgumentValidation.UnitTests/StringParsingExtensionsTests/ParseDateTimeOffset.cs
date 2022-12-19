@@ -1,8 +1,8 @@
 ﻿using System.Globalization;
 
-namespace StaticDotNet.ArgumentValidation.UnitTests.StringConversionExtensionsTests;
+namespace StaticDotNet.ArgumentValidation.UnitTests.StringParsingExtensionsTests;
 
-public sealed class ToDateTimeOffset {
+public sealed class ParseDateTimeOffset {
 
 	[Fact]
 	public void ReturnsCorrectly() {
@@ -10,7 +10,7 @@ public sealed class ToDateTimeOffset {
 		DateTime expectedResult = new( 2000, 1, 2, 3, 4, 5 );
 		ArgInfo<string> argInfo = new( expectedResult.ToString(), null, null );
 
-		ArgInfo<DateTimeOffset> result = StringConversionExtensions.ToDateTimeOffset( argInfo );
+		ArgInfo<DateTimeOffset> result = StringParsingExtensions.ParseDateTimeOffset( argInfo );
 
 		Assert.Equal( expectedResult, result.Value );
 	}
@@ -22,7 +22,7 @@ public sealed class ToDateTimeOffset {
 		ArgInfo<string> argInfo = new( expectedResult.ToString(), null, null );
 		IFormatProvider provider = DateTimeFormatInfo.CurrentInfo;
 
-		ArgInfo<DateTimeOffset> result = StringConversionExtensions.ToDateTimeOffset( argInfo, provider );
+		ArgInfo<DateTimeOffset> result = StringParsingExtensions.ParseDateTimeOffset( argInfo, provider );
 
 		Assert.Equal( expectedResult, result.Value );
 	}
@@ -34,7 +34,7 @@ public sealed class ToDateTimeOffset {
 		ArgInfo<string> argInfo = new( expectedResult.ToString(), null, null );
 		DateTimeStyles styles = DateTimeStyles.AssumeUniversal;
 
-		ArgInfo<DateTimeOffset> result = StringConversionExtensions.ToDateTimeOffset( argInfo, styles: styles );
+		ArgInfo<DateTimeOffset> result = StringParsingExtensions.ParseDateTimeOffset( argInfo, styles: styles );
 
 		Assert.Equal( expectedResult, result.Value );
 	}
@@ -48,10 +48,10 @@ public sealed class ToDateTimeOffset {
 		ArgumentException exception = Assert.Throws<ArgumentException>( name, () => {
 
 			ArgInfo<string> argInfo = new( argumentValue, name, null );
-			_ = StringConversionExtensions.ToDateTimeOffset( argInfo );
+			_ = StringParsingExtensions.ParseDateTimeOffset( argInfo );
 		} );
 
-		string expectedMessage = "Value must be a date/time with offset.";
+		string expectedMessage = "Value must be parsable to System.DateTimeOffset.";
 
 		Assert.StartsWith( expectedMessage, exception.Message );
 	}
@@ -66,7 +66,7 @@ public sealed class ToDateTimeOffset {
 		ArgumentException exception = Assert.Throws<ArgumentException>( name, () => {
 
 			ArgInfo<string> argInfo = new( argumentValue, name, message );
-			_ = StringConversionExtensions.ToDateTimeOffset( argInfo );
+			_ = StringParsingExtensions.ParseDateTimeOffset( argInfo );
 		} );
 
 		Assert.StartsWith( message, exception.Message );
