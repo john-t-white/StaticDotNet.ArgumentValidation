@@ -81,7 +81,6 @@ public static class Arg {
 	/// <param name="message">The exception message.  Null for for default message.</param>
 	/// <returns>A <see cref="ArgInfo{T}"/>.</returns>
 	public static ReadOnlySpanArgInfo<T> Is<T>( ReadOnlySpan<T> value, [CallerArgumentExpression( nameof( value ) )] string? name = null, string? message = null )
-		where T : notnull
 		=> new( value, name, message );
 
 	/// <summary>
@@ -93,7 +92,6 @@ public static class Arg {
 	/// <param name="message">The exception message.  Null for for default message.</param>
 	/// <returns>A <see cref="ArgInfo{T}"/>.</returns>
 	public static SpanArgInfo<T> Is<T>( Span<T> value, [CallerArgumentExpression( nameof( value ) )] string? name = null, string? message = null )
-		where T : notnull
 		=> new( value, name, message );
 
 #endif

@@ -10,8 +10,7 @@ namespace StaticDotNet.ArgumentValidation;
 /// </summary>
 /// <typeparam name="T">The type of <see cref="Value"/>.</typeparam>
 [StructLayout( LayoutKind.Auto )]
-public readonly ref struct SpanArgInfo<T>
-	where T : notnull {
+public readonly ref struct SpanArgInfo<T> {
 
 	/// <summary>
 	/// Instantiates an instance of <see cref="ArgInfo{T}"/>.
