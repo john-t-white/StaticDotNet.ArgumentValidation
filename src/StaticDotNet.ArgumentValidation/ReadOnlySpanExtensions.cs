@@ -68,7 +68,6 @@ public static class ReadOnlySpanExtensions {
 	/// </summary>
 	/// <param name="argInfo">The argument info.</param>
 	/// <param name="value">The value it should start with.</param>
-	/// <param name="comparisonType">The type of comparison.</param>
 	/// <returns>The <paramref name="argInfo"/>.</returns>
 	/// <exception cref="ArgumentException">Thrown when <paramref name="argInfo.Value"/> does not end with <paramref name="value"/>.</exception>
 	public static ref readonly ReadOnlySpanArgInfo<T> EndsWith<T>( in this ReadOnlySpanArgInfo<T> argInfo, ReadOnlySpan<T> value )
