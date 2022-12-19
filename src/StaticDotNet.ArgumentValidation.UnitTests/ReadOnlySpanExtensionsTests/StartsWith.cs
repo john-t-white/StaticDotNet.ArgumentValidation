@@ -7,39 +7,28 @@ public sealed class StartsWith {
 	[Fact]
 	public void ReturnsCorrectly() {
 
-		ReadOnlySpanArgInfo<char> argInfo = new( "Value", null, null );
-		string value = "Va";
+		ReadOnlySpanArgInfo<byte> argInfo = new( new byte[] { 1, 2, 3 }, null, null );
+		ReadOnlySpan<byte> value = new( new byte[] { 1 } );
 
-		ReadOnlySpanArgInfo<char> result = argInfo.StartsWith( value );
-
-		ArgInfoAssertions.Equal( argInfo, result );
-	}
-
-	[Fact]
-	public void WithComparisonTypeReturnsCorrectly() {
-
-		ReadOnlySpanArgInfo<char> argInfo = new( "Value", null, null );
-		string value = "va";
-		StringComparison comparisonType = StringComparison.OrdinalIgnoreCase;
-
-		ReadOnlySpanArgInfo<char> result = argInfo.StartsWith( value, comparisonType );
+		ReadOnlySpanArgInfo<byte> result = argInfo.StartsWith( value );
 
 		ArgInfoAssertions.Equal( argInfo, result );
 	}
 
 	[Fact]
-	public void WithValueNotEqualToValueThrowsArgumentException() {
+	public void WithValueNotStartsWithValueThrowsArgumentException() {
 
-		string argumentValue = "Value";
+		byte[] argumentValue = new byte[] { 1, 2, 3 };
 		string name = "Name";
-		string value = "Does Not Start With";
+		byte[] value = new byte[] { 2 };
 
 		ArgumentException exception = Assert.Throws<ArgumentException>( name, () => {
-			ReadOnlySpanArgInfo<char> argInfo = new( argumentValue, name, null );
+			ReadOnlySpan<byte> spanValue = new( value );
+			ReadOnlySpanArgInfo<byte> argInfo = new( argumentValue, name, null );
 			_ = argInfo.StartsWith( value );
 		} );
 
-		string expectedMessage = $"Value must start with {value}.";
+		string expectedMessage = $"Value must start with {string.Join( ", ", value )}.";
 
 		Assert.StartsWith( expectedMessage, exception.Message );
 	}
@@ -47,13 +36,13 @@ public sealed class StartsWith {
 	[Fact]
 	public void WithInvalidValueAndMessageThrowsArgumentException() {
 
-		string argumentValue = "Value";
+		byte[] argumentValue = new byte[] { 1, 2, 3 };
 		string name = "Name";
 		string message = "Message";
-		string value = "Does Not Start With";
+		byte[] value = new byte[] { 2 };
 
 		ArgumentException exception = Assert.Throws<ArgumentException>( name, () => {
-			ReadOnlySpanArgInfo<char> argInfo = new( argumentValue, name, message );
+			ReadOnlySpanArgInfo<byte> argInfo = new( argumentValue, name, message );
 			_ = argInfo.StartsWith( value );
 		} );
 

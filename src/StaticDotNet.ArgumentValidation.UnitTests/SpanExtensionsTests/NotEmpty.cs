@@ -7,9 +7,9 @@ public sealed class NotEmpty {
 	[Fact]
 	public void ReturnsCorrectly() {
 
-		SpanArgInfo<char> argInfo = new( "Value".ToCharArray(), null, null );
+		SpanArgInfo<byte> argInfo = new( new byte[] { 1 }, null, null );
 
-		SpanArgInfo<char> result = argInfo.NotEmpty();
+		SpanArgInfo<byte> result = argInfo.NotEmpty();
 
 		ArgInfoAssertions.Equal( argInfo, result );
 	}
@@ -17,11 +17,11 @@ public sealed class NotEmpty {
 	[Fact]
 	public void WithEmptyValueThrowsArgumentException() {
 
-		string argumentValue = string.Empty;
+		byte[] argumentValue = Array.Empty<byte>();
 		string name = "Name";
 
 		ArgumentException exception = Assert.Throws<ArgumentException>( name, () => {
-			SpanArgInfo<char> argInfo = new( argumentValue.ToCharArray(), name, null );
+			SpanArgInfo<byte> argInfo = new( argumentValue, name, null );
 			_ = argInfo.NotEmpty();
 		} );
 
@@ -33,12 +33,12 @@ public sealed class NotEmpty {
 	[Fact]
 	public void WithInvalidValueAndMessageThrowsArgumentException() {
 
-		string argumentValue = string.Empty;
+		byte[] argumentValue = Array.Empty<byte>();
 		string name = "Name";
 		string message = "Message";
 
 		ArgumentException exception = Assert.Throws<ArgumentException>( name, () => {
-			SpanArgInfo<char> argInfo = new( argumentValue.ToCharArray(), name, message );
+			SpanArgInfo<byte> argInfo = new( argumentValue, name, message );
 			_ = argInfo.NotEmpty();
 		} );
 

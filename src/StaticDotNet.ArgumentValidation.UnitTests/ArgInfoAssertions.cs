@@ -12,14 +12,14 @@ public static class ArgInfoAssertions {
 
 #if NETCOREAPP3_1_OR_GREATER
 
-	public static void Equal( ReadOnlySpanArgInfo<char> expected, ReadOnlySpanArgInfo<char> actual ) {
+	public static void Equal<T>( ReadOnlySpanArgInfo<T> expected, ReadOnlySpanArgInfo<T> actual ) {
 
 		Assert.True( expected.Value == actual.Value );
 		Assert.Equal( expected.Name, actual.Name );
 		Assert.Equal( expected.Message, actual.Message );
 	}
 
-	public static void Equal( SpanArgInfo<char> expected, SpanArgInfo<char> actual ) {
+	public static void Equal<T>( SpanArgInfo<T> expected, SpanArgInfo<T> actual ) {
 
 		Assert.True( expected.Value == actual.Value );
 		Assert.Equal( expected.Name, actual.Name );

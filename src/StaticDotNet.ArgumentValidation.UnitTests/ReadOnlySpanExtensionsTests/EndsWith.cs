@@ -7,25 +7,44 @@ public sealed class EndsWith {
 	[Fact]
 	public void ReturnsCorrectly() {
 
-		ReadOnlySpanArgInfo<char> argInfo = new( "Value", null, null );
-		string value = "ue";
+		ReadOnlySpanArgInfo<byte> argInfo = new( new byte[] { 1, 2, 3 }, null, null );
+		ReadOnlySpan<byte> value = new( new byte[] { 3 } );
 
-		ReadOnlySpanArgInfo<char> result = argInfo.EndsWith( value );
+		ReadOnlySpanArgInfo<byte> result = argInfo.EndsWith( value );
 
 		ArgInfoAssertions.Equal( argInfo, result );
 	}
 
 	[Fact]
-	public void WithInvalidValueAndMessageThrowsArgumentException() {
+	public void WithNotEndsWithValueThrowsArgumentException() {
 
-		string argumentValue = "Value";
+		byte[] argumentValue = new byte[] { 1, 2, 3 };
 		string name = "Name";
-		string message = "Message";
-		string value = "Does Not End With";
+		byte[] value = new byte[] { 2 };
 
 		ArgumentException exception = Assert.Throws<ArgumentException>( name, () => {
-			ReadOnlySpanArgInfo<char> argInfo = new( argumentValue, name, message );
-			_ = argInfo.EndsWith( value );
+			ReadOnlySpan<byte> spanValue = new( value );
+			ReadOnlySpanArgInfo<byte> argInfo = new( argumentValue, name, null );
+			_ = argInfo.EndsWith( spanValue );
+		} );
+
+		string expectedMessage = $"Value must end with {string.Join( ", ", value )}.";
+
+		Assert.StartsWith( expectedMessage, exception.Message );
+	}
+
+	[Fact]
+	public void WithInvalidValueAndMessageThrowsArgumentException() {
+
+		byte[] argumentValue = new byte[] { 1, 2, 3 };
+		string name = "Name";
+		string message = "Message";
+		byte[] value = new byte[] { 2 };
+
+		ArgumentException exception = Assert.Throws<ArgumentException>( name, () => {
+			ReadOnlySpan<byte> spanValue = new( value );
+			ReadOnlySpanArgInfo<byte> argInfo = new( argumentValue, name, message );
+			_ = argInfo.EndsWith( spanValue );
 		} );
 
 		Assert.StartsWith( message, exception.Message );

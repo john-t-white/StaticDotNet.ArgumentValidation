@@ -10,6 +10,22 @@ namespace StaticDotNet.ArgumentValidation;
 public static class ReadOnlySpanExtensions {
 
 	/// <summary>
+	/// Ensures an argument is not empty, otherwise an <see cref="ArgumentException"/> is thrown.
+	/// </summary>
+	/// <param name="argInfo">The argument info.</param>
+	/// <returns>The <paramref name="argInfo"/>.</returns>
+	/// <exception cref="ArgumentException">Thrown when <paramref name="argInfo.Value"/> is empty.</exception>
+	public static ref readonly ReadOnlySpanArgInfo<T> NotEmpty<T>( in this ReadOnlySpanArgInfo<T> argInfo ) {
+
+		if( !argInfo.Value.IsEmpty ) {
+			return ref argInfo;
+		}
+
+		string message = argInfo.Message ?? Constants.VALUE_CANNOT_BE_EMPTY;
+		throw new ArgumentException( message, argInfo.Name );
+	}
+
+	/// <summary>
 	/// Ensures an argument starts with <paramref name="value"/>, otherwise an <see cref="ArgumentException"/> is thrown.
 	/// </summary>
 	/// <param name="argInfo">The argument info.</param>
@@ -23,7 +39,7 @@ public static class ReadOnlySpanExtensions {
 			return ref argInfo;
 		}
 
-		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, Constants.VALUE_MUST_START_WITH, value.ToString() );
+		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, Constants.VALUE_MUST_START_WITH, string.Join( ", ", value.ToArray() ) );
 		throw new ArgumentException( message, argInfo.Name );
 	}
 
@@ -41,23 +57,7 @@ public static class ReadOnlySpanExtensions {
 			return ref argInfo;
 		}
 
-		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, Constants.VALUE_MUST_END_WITH, value.ToString() );
-		throw new ArgumentException( message, argInfo.Name );
-	}
-
-	/// <summary>
-	/// Ensures an argument is not empty, otherwise an <see cref="ArgumentException"/> is thrown.
-	/// </summary>
-	/// <param name="argInfo">The argument info.</param>
-	/// <returns>The <paramref name="argInfo"/>.</returns>
-	/// <exception cref="ArgumentException">Thrown when <paramref name="argInfo.Value"/> is empty.</exception>
-	public static ref readonly ReadOnlySpanArgInfo<T> NotEmpty<T>( in this ReadOnlySpanArgInfo<T> argInfo ) {
-
-		if( !argInfo.Value.IsEmpty ) {
-			return ref argInfo;
-		}
-
-		string message = argInfo.Message ?? Constants.VALUE_CANNOT_BE_EMPTY;
+		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, Constants.VALUE_MUST_END_WITH, string.Join( ", ", value.ToArray() ) );
 		throw new ArgumentException( message, argInfo.Name );
 	}
 }
