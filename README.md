@@ -1,5 +1,6 @@
-StaticDotNet.ArgumentValiation is a nullability annotation supported guard library with performance and ease of use in mind.
+StaticDotNet.ArgumentValiation is a nullability annotation supported fluent guard library with performance and ease of use in mind.
 
+**Supports:**
 - Nullability
 - CallerArgumentExpressionAttribute
 - Span/ReadOnlySpan
