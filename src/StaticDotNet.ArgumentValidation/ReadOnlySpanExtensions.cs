@@ -21,7 +21,24 @@ public static class ReadOnlySpanExtensions {
 			}
 		}
 
-		throw new ArgumentException( argInfo.Message ?? Constants.VALUE_CANNOT_BE_WHITE_SPACE, argInfo.Name );
+		string message = argInfo.Message ?? Constants.VALUE_CANNOT_BE_WHITE_SPACE;
+		throw new ArgumentException( message, argInfo.Name );
+	}
+
+	/// <summary>
+	/// Ensures an argument is not empty, otherwise an <see cref="ArgumentException"/> is thrown.
+	/// </summary>
+	/// <param name="argInfo">The argument info.</param>
+	/// <returns>The <paramref name="argInfo"/>.</returns>
+	/// <exception cref="ArgumentException">Thrown when <paramref name="argInfo.Value"/> is empty.</exception>
+	public static ref readonly ReadOnlySpanArgInfo<char> NotEmpty( in this ReadOnlySpanArgInfo<char> argInfo ) {
+
+		if( argInfo.Value.Length > 0 ) {
+			return ref argInfo;
+		}
+
+		string message = argInfo.Message ?? Constants.VALUE_CANNOT_BE_EMPTY;
+		throw new ArgumentException( message, argInfo.Name );
 	}
 }
 

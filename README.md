@@ -1,5 +1,10 @@
 StaticDotNet.ArgumentValiation is a nullability annotation supported guard library with performance and ease of use in mind.
 
+- Nullability
+- CallerArgumentExpressionAttribute
+- Span/ReadOnlySpan
+- Trimming
+
 # Installation
 
 Package can install via NuGet and can be found at https://www.nuget.org/packages/StaticDotNet.ArgumentValidation.
@@ -19,8 +24,6 @@ Validation is focused on the end user, guard clauses are focused on developers. 
 # Performance
 
 Since the point of guard clauses are to ensure the developer doesn't write bad code, ideally they should never throw an exception.  This library is built around the idea that it should be just as fast as possible and avoid allocating any memory with the idea that the exception will not happen.
-
-The library also fully supports trimming so you can only include the code that is actually used.
 
 It also uses a readonly ref struct so as much as possible stays on the stack without copying the struct on every call.
 
