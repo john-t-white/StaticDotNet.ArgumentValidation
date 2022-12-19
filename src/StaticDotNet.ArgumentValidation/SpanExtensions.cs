@@ -39,7 +39,7 @@ public static class SpanExtensions {
 			return ref argInfo;
 		}
 
-		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, Constants.VALUE_MUST_START_WITH, value.ToString() );
+		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, Constants.VALUE_MUST_START_WITH, string.Join( ", ", value.ToArray() ) );
 		throw new ArgumentException( message, argInfo.Name );
 	}
 
@@ -57,7 +57,7 @@ public static class SpanExtensions {
 			return ref argInfo;
 		}
 
-		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, Constants.VALUE_MUST_END_WITH, value.ToString() );
+		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, Constants.VALUE_MUST_END_WITH, string.Join( ", ", value.ToArray() ) );
 		throw new ArgumentException( message, argInfo.Name );
 	}
 }
