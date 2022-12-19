@@ -1,6 +1,8 @@
-﻿using System.Globalization;
+﻿#if NETCOREAPP3_1_OR_GREATER
 
-namespace StaticDotNet.ArgumentValidation.UnitTests.StringParsingExtensionsTests;
+using System.Globalization;
+
+namespace StaticDotNet.ArgumentValidation.UnitTests.ReadOnlySpanParsingExtensionsTests;
 
 public sealed class ParseTimeSpanExact {
 
@@ -9,9 +11,9 @@ public sealed class ParseTimeSpanExact {
 
 		TimeSpan expectedResult = new( 1, 2, 3, 4 );
 		string format = @"d\.hh\:mm\:ss\.ffffff";
-		ArgInfo<string> argInfo = new( expectedResult.ToString( format ), null, null );
+		ReadOnlySpanArgInfo<char> argInfo = new( expectedResult.ToString( format ), null, null );
 
-		ArgInfo<TimeSpan> result = StringParsingExtensions.ParseTimeSpanExact( argInfo, format );
+		ArgInfo<TimeSpan> result = ReadOnlySpanParsingExtensions.ParseTimeSpanExact( argInfo, format );
 
 		Assert.Equal( expectedResult, result.Value );
 	}
@@ -21,10 +23,10 @@ public sealed class ParseTimeSpanExact {
 
 		TimeSpan expectedResult = new( 1, 2, 3, 4 );
 		string format = @"d\.hh\:mm\:ss\.ffffff";
-		ArgInfo<string> argInfo = new( expectedResult.ToString( format ), null, null );
+		ReadOnlySpanArgInfo<char> argInfo = new( expectedResult.ToString( format ), null, null );
 		IFormatProvider provider = DateTimeFormatInfo.CurrentInfo;
 
-		ArgInfo<TimeSpan> result = StringParsingExtensions.ParseTimeSpanExact( argInfo, format, provider );
+		ArgInfo<TimeSpan> result = ReadOnlySpanParsingExtensions.ParseTimeSpanExact( argInfo, format, provider );
 
 		Assert.Equal( expectedResult, result.Value );
 	}
@@ -34,10 +36,10 @@ public sealed class ParseTimeSpanExact {
 
 		TimeSpan expectedResult = new( 1, 2, 3, 4 );
 		string format = @"d\.hh\:mm\:ss\.ffffff";
-		ArgInfo<string> argInfo = new( expectedResult.ToString( format ), null, null );
+		ReadOnlySpanArgInfo<char> argInfo = new( expectedResult.ToString( format ), null, null );
 		TimeSpanStyles styles = TimeSpanStyles.None;
 
-		ArgInfo<TimeSpan> result = StringParsingExtensions.ParseTimeSpanExact( argInfo, format, styles: styles );
+		ArgInfo<TimeSpan> result = ReadOnlySpanParsingExtensions.ParseTimeSpanExact( argInfo, format, styles: styles );
 
 		Assert.Equal( expectedResult, result.Value );
 	}
@@ -51,8 +53,8 @@ public sealed class ParseTimeSpanExact {
 
 		ArgumentException exception = Assert.Throws<ArgumentException>( name, () => {
 
-			ArgInfo<string> argInfo = new( argumentValue, name, null );
-			_ = StringParsingExtensions.ParseTimeSpanExact( argInfo, format );
+			ReadOnlySpanArgInfo<char> argInfo = new( argumentValue, name, null );
+			_ = ReadOnlySpanParsingExtensions.ParseTimeSpanExact( argInfo, format );
 		} );
 
 		string expectedMessage = "Value must be parsable to System.TimeSpan.";
@@ -70,8 +72,8 @@ public sealed class ParseTimeSpanExact {
 
 		ArgumentException exception = Assert.Throws<ArgumentException>( name, () => {
 
-			ArgInfo<string> argInfo = new( argumentValue, name, message );
-			_ = StringParsingExtensions.ParseTimeSpanExact( argInfo, format );
+			ReadOnlySpanArgInfo<char> argInfo = new( argumentValue, name, message );
+			_ = ReadOnlySpanParsingExtensions.ParseTimeSpanExact( argInfo, format );
 		} );
 
 		Assert.StartsWith( message, exception.Message );
@@ -85,9 +87,9 @@ public sealed class ParseTimeSpanExact {
 			@"d\.hh\:mm\:ss\.ffffff",
 			@"hh\:mm\:ss"
 		};
-		ArgInfo<string> argInfo = new( expectedResult.ToString( formats[0] ), null, null );
+		ReadOnlySpanArgInfo<char> argInfo = new( expectedResult.ToString( formats[0] ), null, null );
 
-		ArgInfo<TimeSpan> result = StringParsingExtensions.ParseTimeSpanExact( argInfo, formats );
+		ArgInfo<TimeSpan> result = ReadOnlySpanParsingExtensions.ParseTimeSpanExact( argInfo, formats );
 
 		Assert.Equal( expectedResult, result.Value );
 	}
@@ -100,10 +102,10 @@ public sealed class ParseTimeSpanExact {
 			@"d\.hh\:mm\:ss\.ffffff",
 			@"hh\:mm\:ss"
 		};
-		ArgInfo<string> argInfo = new( expectedResult.ToString( formats[0] ), null, null );
+		ReadOnlySpanArgInfo<char> argInfo = new( expectedResult.ToString( formats[0] ), null, null );
 		IFormatProvider provider = DateTimeFormatInfo.CurrentInfo;
 
-		ArgInfo<TimeSpan> result = StringParsingExtensions.ParseTimeSpanExact( argInfo, formats, provider );
+		ArgInfo<TimeSpan> result = ReadOnlySpanParsingExtensions.ParseTimeSpanExact( argInfo, formats, provider );
 
 		Assert.Equal( expectedResult, result.Value );
 	}
@@ -116,10 +118,10 @@ public sealed class ParseTimeSpanExact {
 			@"d\.hh\:mm\:ss\.ffffff",
 			@"hh\:mm\:ss"
 		};
-		ArgInfo<string> argInfo = new( expectedResult.ToString( formats[0] ), null, null );
+		ReadOnlySpanArgInfo<char> argInfo = new( expectedResult.ToString( formats[0] ), null, null );
 		TimeSpanStyles styles = TimeSpanStyles.None;
 
-		ArgInfo<TimeSpan> result = StringParsingExtensions.ParseTimeSpanExact( argInfo, formats, styles: styles );
+		ArgInfo<TimeSpan> result = ReadOnlySpanParsingExtensions.ParseTimeSpanExact( argInfo, formats, styles: styles );
 
 		Assert.Equal( expectedResult, result.Value );
 	}
@@ -136,8 +138,8 @@ public sealed class ParseTimeSpanExact {
 
 		ArgumentException exception = Assert.Throws<ArgumentException>( name, () => {
 
-			ArgInfo<string> argInfo = new( argumentValue, name, null );
-			_ = StringParsingExtensions.ParseTimeSpanExact( argInfo, formats );
+			ReadOnlySpanArgInfo<char> argInfo = new( argumentValue, name, null );
+			_ = ReadOnlySpanParsingExtensions.ParseTimeSpanExact( argInfo, formats );
 		} );
 
 		string expectedMessage = "Value must be parsable to System.TimeSpan.";
@@ -158,10 +160,12 @@ public sealed class ParseTimeSpanExact {
 
 		ArgumentException exception = Assert.Throws<ArgumentException>( name, () => {
 
-			ArgInfo<string> argInfo = new( argumentValue, name, message );
-			_ = StringParsingExtensions.ParseTimeSpanExact( argInfo, formats );
+			ReadOnlySpanArgInfo<char> argInfo = new( argumentValue, name, message );
+			_ = ReadOnlySpanParsingExtensions.ParseTimeSpanExact( argInfo, formats );
 		} );
 
 		Assert.StartsWith( message, exception.Message );
 	}
 }
+
+#endif

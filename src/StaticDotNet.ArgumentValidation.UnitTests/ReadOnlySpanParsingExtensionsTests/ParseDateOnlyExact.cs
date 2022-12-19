@@ -2,7 +2,7 @@
 
 using System.Globalization;
 
-namespace StaticDotNet.ArgumentValidation.UnitTests.StringParsingExtensionsTests;
+namespace StaticDotNet.ArgumentValidation.UnitTests.ReadOnlySpanExtensionsTests;
 
 public sealed class ParseDateOnlyExact {
 
@@ -11,9 +11,9 @@ public sealed class ParseDateOnlyExact {
 
 		DateOnly expectedResult = new( 2000, 1, 2 );
 		string format = "yyyy-MM-dd";
-		ArgInfo<string> argInfo = new( expectedResult.ToString( format ), null, null );
+		ReadOnlySpanArgInfo<char> argInfo = new( expectedResult.ToString( format ), null, null );
 
-		ArgInfo<DateOnly> result = StringParsingExtensions.ParseDateOnlyExact( argInfo, format );
+		ArgInfo<DateOnly> result = ReadOnlySpanParsingExtensions.ParseDateOnlyExact( argInfo, format );
 
 		Assert.Equal( expectedResult, result.Value );
 	}
@@ -23,10 +23,10 @@ public sealed class ParseDateOnlyExact {
 
 		DateOnly expectedResult = new( 2000, 1, 2 );
 		string format = "yyyy-MM-dd";
-		ArgInfo<string> argInfo = new( expectedResult.ToString( format ), null, null );
+		ReadOnlySpanArgInfo<char> argInfo = new( expectedResult.ToString( format ), null, null );
 		IFormatProvider provider = DateTimeFormatInfo.CurrentInfo;
 
-		ArgInfo<DateOnly> result = StringParsingExtensions.ParseDateOnlyExact( argInfo, format, provider );
+		ArgInfo<DateOnly> result = ReadOnlySpanParsingExtensions.ParseDateOnlyExact( argInfo, format, provider );
 
 		Assert.Equal( expectedResult, result.Value );
 	}
@@ -36,10 +36,10 @@ public sealed class ParseDateOnlyExact {
 
 		DateOnly expectedResult = new( 2000, 1, 2 );
 		string format = "yyyy-MM-dd";
-		ArgInfo<string> argInfo = new( expectedResult.ToString( format ), null, null );
+		ReadOnlySpanArgInfo<char> argInfo = new( expectedResult.ToString( format ), null, null );
 		DateTimeStyles styles = DateTimeStyles.None;
 
-		ArgInfo<DateOnly> result = StringParsingExtensions.ParseDateOnlyExact( argInfo, format, styles: styles );
+		ArgInfo<DateOnly> result = ReadOnlySpanParsingExtensions.ParseDateOnlyExact( argInfo, format, styles: styles );
 
 		Assert.Equal( expectedResult, result.Value );
 	}
@@ -53,8 +53,8 @@ public sealed class ParseDateOnlyExact {
 
 		ArgumentException exception = Assert.Throws<ArgumentException>( name, () => {
 
-			ArgInfo<string> argInfo = new( argumentValue, name, null );
-			_ = StringParsingExtensions.ParseDateOnlyExact( argInfo, format );
+			ReadOnlySpanArgInfo<char> argInfo = new( argumentValue, name, null );
+			_ = ReadOnlySpanParsingExtensions.ParseDateOnlyExact( argInfo, format );
 		} );
 
 		string expectedMessage = "Value must be parsable to System.DateOnly.";
@@ -72,8 +72,8 @@ public sealed class ParseDateOnlyExact {
 
 		ArgumentException exception = Assert.Throws<ArgumentException>( name, () => {
 
-			ArgInfo<string> argInfo = new( argumentValue, name, message );
-			_ = StringParsingExtensions.ParseDateOnlyExact( argInfo, format );
+			ReadOnlySpanArgInfo<char> argInfo = new( argumentValue, name, message );
+			_ = ReadOnlySpanParsingExtensions.ParseDateOnlyExact( argInfo, format );
 		} );
 
 		Assert.StartsWith( message, exception.Message );
@@ -87,9 +87,9 @@ public sealed class ParseDateOnlyExact {
 			"yyyy-MM-dd",
 			"MM/dd/yyyy"
 		};
-		ArgInfo<string> argInfo = new( expectedResult.ToString( formats[0] ), null, null );
+		ReadOnlySpanArgInfo<char> argInfo = new( expectedResult.ToString( formats[0] ), null, null );
 
-		ArgInfo<DateOnly> result = StringParsingExtensions.ParseDateOnlyExact( argInfo, formats );
+		ArgInfo<DateOnly> result = ReadOnlySpanParsingExtensions.ParseDateOnlyExact( argInfo, formats );
 
 		Assert.Equal( expectedResult, result.Value );
 	}
@@ -102,10 +102,10 @@ public sealed class ParseDateOnlyExact {
 			"yyyy-MM-dd",
 			"MM/dd/yyyy"
 		};
-		ArgInfo<string> argInfo = new( expectedResult.ToString( formats[0] ), null, null );
+		ReadOnlySpanArgInfo<char> argInfo = new( expectedResult.ToString( formats[0] ), null, null );
 		IFormatProvider provider = DateTimeFormatInfo.CurrentInfo;
 
-		ArgInfo<DateOnly> result = StringParsingExtensions.ParseDateOnlyExact( argInfo, formats, provider );
+		ArgInfo<DateOnly> result = ReadOnlySpanParsingExtensions.ParseDateOnlyExact( argInfo, formats, provider );
 
 		Assert.Equal( expectedResult, result.Value );
 	}
@@ -118,10 +118,10 @@ public sealed class ParseDateOnlyExact {
 			"yyyy-MM-dd",
 			"MM/dd/yyyy"
 		};
-		ArgInfo<string> argInfo = new( expectedResult.ToString( formats[0] ), null, null );
+		ReadOnlySpanArgInfo<char> argInfo = new( expectedResult.ToString( formats[0] ), null, null );
 		DateTimeStyles styles = DateTimeStyles.None;
 
-		ArgInfo<DateOnly> result = StringParsingExtensions.ParseDateOnlyExact( argInfo, formats, styles: styles );
+		ArgInfo<DateOnly> result = ReadOnlySpanParsingExtensions.ParseDateOnlyExact( argInfo, formats, styles: styles );
 
 		Assert.Equal( expectedResult, result.Value );
 	}
@@ -138,8 +138,8 @@ public sealed class ParseDateOnlyExact {
 
 		ArgumentException exception = Assert.Throws<ArgumentException>( name, () => {
 
-			ArgInfo<string> argInfo = new( argumentValue, name, null );
-			_ = StringParsingExtensions.ParseDateOnlyExact( argInfo, formats );
+			ReadOnlySpanArgInfo<char> argInfo = new( argumentValue, name, null );
+			_ = ReadOnlySpanParsingExtensions.ParseDateOnlyExact( argInfo, formats );
 		} );
 
 		string expectedMessage = "Value must be parsable to System.DateOnly.";
@@ -160,8 +160,8 @@ public sealed class ParseDateOnlyExact {
 
 		ArgumentException exception = Assert.Throws<ArgumentException>( name, () => {
 
-			ArgInfo<string> argInfo = new( argumentValue, name, message );
-			_ = StringParsingExtensions.ParseDateOnlyExact( argInfo, formats );
+			ReadOnlySpanArgInfo<char> argInfo = new( argumentValue, name, message );
+			_ = ReadOnlySpanParsingExtensions.ParseDateOnlyExact( argInfo, formats );
 		} );
 
 		Assert.StartsWith( message, exception.Message );

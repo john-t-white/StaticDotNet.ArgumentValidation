@@ -1,6 +1,8 @@
-﻿using System.Globalization;
+﻿#if NETCOREAPP3_1_OR_GREATER
 
-namespace StaticDotNet.ArgumentValidation.UnitTests.StringParsingExtensionsTests;
+using System.Globalization;
+
+namespace StaticDotNet.ArgumentValidation.UnitTests.ReadOnlySpanExtensionsTests;
 
 public sealed class ParseTimeSpan {
 
@@ -8,9 +10,9 @@ public sealed class ParseTimeSpan {
 	public void ReturnsCorrectly() {
 
 		TimeSpan expectedResult = new( 1, 2, 3 );
-		ArgInfo<string> argInfo = new( expectedResult.ToString(), null, null );
+		ReadOnlySpanArgInfo<char> argInfo = new( expectedResult.ToString(), null, null );
 
-		ArgInfo<TimeSpan> result = StringParsingExtensions.ParseTimeSpan( argInfo );
+		ArgInfo<TimeSpan> result = ReadOnlySpanParsingExtensions.ParseTimeSpan( argInfo );
 
 		Assert.Equal( expectedResult, result.Value );
 	}
@@ -19,10 +21,10 @@ public sealed class ParseTimeSpan {
 	public void WithProviderReturnsCorrectly() {
 
 		TimeSpan expectedResult = new( 1, 2, 3 );
-		ArgInfo<string> argInfo = new( expectedResult.ToString(), null, null );
+		ReadOnlySpanArgInfo<char> argInfo = new( expectedResult.ToString(), null, null );
 		IFormatProvider provider = DateTimeFormatInfo.CurrentInfo;
 
-		ArgInfo<TimeSpan> result = StringParsingExtensions.ParseTimeSpan( argInfo, provider );
+		ArgInfo<TimeSpan> result = ReadOnlySpanParsingExtensions.ParseTimeSpan( argInfo, provider );
 
 		Assert.Equal( expectedResult, result.Value );
 	}
@@ -35,8 +37,8 @@ public sealed class ParseTimeSpan {
 
 		ArgumentException exception = Assert.Throws<ArgumentException>( name, () => {
 
-			ArgInfo<string> argInfo = new( argumentValue, name, null );
-			_ = StringParsingExtensions.ParseTimeSpan( argInfo );
+			ReadOnlySpanArgInfo<char> argInfo = new( argumentValue, name, null );
+			_ = ReadOnlySpanParsingExtensions.ParseTimeSpan( argInfo );
 		} );
 
 		string expectedMessage = "Value must be parsable to System.TimeSpan.";
@@ -53,10 +55,12 @@ public sealed class ParseTimeSpan {
 
 		ArgumentException exception = Assert.Throws<ArgumentException>( name, () => {
 
-			ArgInfo<string> argInfo = new( argumentValue, name, message );
-			_ = StringParsingExtensions.ParseTimeSpan( argInfo );
+			ReadOnlySpanArgInfo<char> argInfo = new( argumentValue, name, message );
+			_ = ReadOnlySpanParsingExtensions.ParseTimeSpan( argInfo );
 		} );
 
 		Assert.StartsWith( message, exception.Message );
 	}
 }
+
+#endif

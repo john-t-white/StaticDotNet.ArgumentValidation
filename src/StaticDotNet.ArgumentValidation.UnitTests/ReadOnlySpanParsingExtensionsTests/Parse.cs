@@ -1,6 +1,6 @@
 ﻿#if NET7_0_OR_GREATER
 
-namespace StaticDotNet.ArgumentValidation.UnitTests.ReadOnlySpanExtensionsTests;
+namespace StaticDotNet.ArgumentValidation.UnitTests.ReadOnlySpanParsingExtensionsTests;
 
 public sealed class Parse {
 

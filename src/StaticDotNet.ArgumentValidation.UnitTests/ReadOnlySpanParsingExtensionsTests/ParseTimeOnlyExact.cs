@@ -2,7 +2,7 @@
 
 using System.Globalization;
 
-namespace StaticDotNet.ArgumentValidation.UnitTests.StringParsingExtensionsTests;
+namespace StaticDotNet.ArgumentValidation.UnitTests.ReadOnlySpanParsingExtensionsTests;
 
 public sealed class ParseTimeOnlyExact {
 
@@ -11,9 +11,9 @@ public sealed class ParseTimeOnlyExact {
 
 		TimeOnly expectedResult = new( 1, 2, 3, 4 );
 		string format = "hh:mm:ss.ffffff";
-		ArgInfo<string> argInfo = new( expectedResult.ToString( format ), null, null );
+		ReadOnlySpanArgInfo<char> argInfo = new( expectedResult.ToString( format ), null, null );
 
-		ArgInfo<TimeOnly> result = StringParsingExtensions.ParseTimeOnlyExact( argInfo, format );
+		ArgInfo<TimeOnly> result = ReadOnlySpanParsingExtensions.ParseTimeOnlyExact( argInfo, format );
 
 		Assert.Equal( expectedResult, result.Value );
 	}
@@ -23,10 +23,10 @@ public sealed class ParseTimeOnlyExact {
 
 		TimeOnly expectedResult = new( 1, 2, 3, 4 );
 		string format = "hh:mm:ss.ffffff";
-		ArgInfo<string> argInfo = new( expectedResult.ToString( format ), null, null );
+		ReadOnlySpanArgInfo<char> argInfo = new( expectedResult.ToString( format ), null, null );
 		IFormatProvider provider = DateTimeFormatInfo.CurrentInfo;
 
-		ArgInfo<TimeOnly> result = StringParsingExtensions.ParseTimeOnlyExact( argInfo, format, provider );
+		ArgInfo<TimeOnly> result = ReadOnlySpanParsingExtensions.ParseTimeOnlyExact( argInfo, format, provider );
 
 		Assert.Equal( expectedResult, result.Value );
 	}
@@ -36,10 +36,10 @@ public sealed class ParseTimeOnlyExact {
 
 		TimeOnly expectedResult = new( 1, 2, 3, 4 );
 		string format = "hh:mm:ss.ffffff";
-		ArgInfo<string> argInfo = new( expectedResult.ToString( format ), null, null );
+		ReadOnlySpanArgInfo<char> argInfo = new( expectedResult.ToString( format ), null, null );
 		DateTimeStyles styles = DateTimeStyles.None;
 
-		ArgInfo<TimeOnly> result = StringParsingExtensions.ParseTimeOnlyExact( argInfo, format, styles: styles );
+		ArgInfo<TimeOnly> result = ReadOnlySpanParsingExtensions.ParseTimeOnlyExact( argInfo, format, styles: styles );
 
 		Assert.Equal( expectedResult, result.Value );
 	}
@@ -53,8 +53,8 @@ public sealed class ParseTimeOnlyExact {
 
 		ArgumentException exception = Assert.Throws<ArgumentException>( name, () => {
 
-			ArgInfo<string> argInfo = new( argumentValue, name, null );
-			_ = StringParsingExtensions.ParseTimeOnlyExact( argInfo, format );
+			ReadOnlySpanArgInfo<char> argInfo = new( argumentValue, name, null );
+			_ = ReadOnlySpanParsingExtensions.ParseTimeOnlyExact( argInfo, format );
 		} );
 
 		string expectedMessage = "Value must be parsable to System.TimeOnly.";
@@ -72,8 +72,8 @@ public sealed class ParseTimeOnlyExact {
 
 		ArgumentException exception = Assert.Throws<ArgumentException>( name, () => {
 
-			ArgInfo<string> argInfo = new( argumentValue, name, message );
-			_ = StringParsingExtensions.ParseTimeOnlyExact( argInfo, format );
+			ReadOnlySpanArgInfo<char> argInfo = new( argumentValue, name, message );
+			_ = ReadOnlySpanParsingExtensions.ParseTimeOnlyExact( argInfo, format );
 		} );
 
 		Assert.StartsWith( message, exception.Message );
@@ -87,9 +87,9 @@ public sealed class ParseTimeOnlyExact {
 			"hh:mm:ss.ffffff",
 			"hh:mm:ss"
 		};
-		ArgInfo<string> argInfo = new( expectedResult.ToString( formats[0] ), null, null );
+		ReadOnlySpanArgInfo<char> argInfo = new( expectedResult.ToString( formats[0] ), null, null );
 
-		ArgInfo<TimeOnly> result = StringParsingExtensions.ParseTimeOnlyExact( argInfo, formats );
+		ArgInfo<TimeOnly> result = ReadOnlySpanParsingExtensions.ParseTimeOnlyExact( argInfo, formats );
 
 		Assert.Equal( expectedResult, result.Value );
 	}
@@ -102,10 +102,10 @@ public sealed class ParseTimeOnlyExact {
 			"hh:mm:ss.ffffff",
 			"hh:mm:ss"
 		};
-		ArgInfo<string> argInfo = new( expectedResult.ToString( formats[0] ), null, null );
+		ReadOnlySpanArgInfo<char> argInfo = new( expectedResult.ToString( formats[0] ), null, null );
 		IFormatProvider provider = DateTimeFormatInfo.CurrentInfo;
 
-		ArgInfo<TimeOnly> result = StringParsingExtensions.ParseTimeOnlyExact( argInfo, formats, provider );
+		ArgInfo<TimeOnly> result = ReadOnlySpanParsingExtensions.ParseTimeOnlyExact( argInfo, formats, provider );
 
 		Assert.Equal( expectedResult, result.Value );
 	}
@@ -118,10 +118,10 @@ public sealed class ParseTimeOnlyExact {
 			"hh:mm:ss.ffffff",
 			"hh:mm:ss"
 		};
-		ArgInfo<string> argInfo = new( expectedResult.ToString( formats[0] ), null, null );
+		ReadOnlySpanArgInfo<char> argInfo = new( expectedResult.ToString( formats[0] ), null, null );
 		DateTimeStyles styles = DateTimeStyles.None;
 
-		ArgInfo<TimeOnly> result = StringParsingExtensions.ParseTimeOnlyExact( argInfo, formats, styles: styles );
+		ArgInfo<TimeOnly> result = ReadOnlySpanParsingExtensions.ParseTimeOnlyExact( argInfo, formats, styles: styles );
 
 		Assert.Equal( expectedResult, result.Value );
 	}
@@ -138,8 +138,8 @@ public sealed class ParseTimeOnlyExact {
 
 		ArgumentException exception = Assert.Throws<ArgumentException>( name, () => {
 
-			ArgInfo<string> argInfo = new( argumentValue, name, null );
-			_ = StringParsingExtensions.ParseTimeOnlyExact( argInfo, formats );
+			ReadOnlySpanArgInfo<char> argInfo = new( argumentValue, name, null );
+			_ = ReadOnlySpanParsingExtensions.ParseTimeOnlyExact( argInfo, formats );
 		} );
 
 		string expectedMessage = "Value must be parsable to System.TimeOnly.";
@@ -160,8 +160,8 @@ public sealed class ParseTimeOnlyExact {
 
 		ArgumentException exception = Assert.Throws<ArgumentException>( name, () => {
 
-			ArgInfo<string> argInfo = new( argumentValue, name, message );
-			_ = StringParsingExtensions.ParseTimeOnlyExact( argInfo, formats );
+			ReadOnlySpanArgInfo<char> argInfo = new( argumentValue, name, message );
+			_ = ReadOnlySpanParsingExtensions.ParseTimeOnlyExact( argInfo, formats );
 		} );
 
 		Assert.StartsWith( message, exception.Message );
