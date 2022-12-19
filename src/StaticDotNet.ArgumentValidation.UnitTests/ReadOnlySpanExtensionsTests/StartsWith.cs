@@ -2,46 +2,44 @@
 
 namespace StaticDotNet.ArgumentValidation.UnitTests.ReadOnlySpanExtensionsTests;
 
-public sealed class NotWhiteSpace {
+public sealed class StartsWith {
 
 	[Fact]
 	public void ReturnsCorrectly() {
 
 		ReadOnlySpanArgInfo<char> argInfo = new( "Value", null, null );
+		string value = "Va";
 
-		ReadOnlySpanArgInfo<char> result = argInfo.NotWhiteSpace();
+		ReadOnlySpanArgInfo<char> result = argInfo.StartsWith( value );
 
 		ArgInfoAssertions.Equal( argInfo, result );
 	}
 
 	[Fact]
-	public void WithEmptyValueThrowsArgumentException() {
+	public void WithComparisonTypeReturnsCorrectly() {
 
-		string argumentValue = string.Empty;
-		string name = "Name";
+		ReadOnlySpanArgInfo<char> argInfo = new( "Value", null, null );
+		string value = "va";
+		StringComparison comparisonType = StringComparison.OrdinalIgnoreCase;
 
-		ArgumentException exception = Assert.Throws<ArgumentException>( name, () => {
-			ReadOnlySpanArgInfo<char> argInfo = new( argumentValue, name, null );
-			_ = argInfo.NotWhiteSpace();
-		} );
+		ReadOnlySpanArgInfo<char> result = argInfo.StartsWith( value, comparisonType );
 
-		string expectedMessage = "Value cannot be white space.";
-
-		Assert.StartsWith( expectedMessage, exception.Message );
+		ArgInfoAssertions.Equal( argInfo, result );
 	}
 
 	[Fact]
-	public void WithWhiteSpaceValueThrowsArgumentException() {
+	public void WithValueNotEqualToValueThrowsArgumentException() {
 
-		string argumentValue = " ";
+		string argumentValue = "Value";
 		string name = "Name";
+		string value = "Does Not Start With";
 
 		ArgumentException exception = Assert.Throws<ArgumentException>( name, () => {
 			ReadOnlySpanArgInfo<char> argInfo = new( argumentValue, name, null );
-			_ = argInfo.NotWhiteSpace();
+			_ = argInfo.StartsWith( value );
 		} );
 
-		string expectedMessage = "Value cannot be white space.";
+		string expectedMessage = $"Value must start with {value}.";
 
 		Assert.StartsWith( expectedMessage, exception.Message );
 	}
@@ -49,13 +47,14 @@ public sealed class NotWhiteSpace {
 	[Fact]
 	public void WithInvalidValueAndMessageThrowsArgumentException() {
 
-		string argumentValue = string.Empty;
+		string argumentValue = "Value";
 		string name = "Name";
 		string message = "Message";
+		string value = "Does Not Start With";
 
 		ArgumentException exception = Assert.Throws<ArgumentException>( name, () => {
 			ReadOnlySpanArgInfo<char> argInfo = new( argumentValue, name, message );
-			_ = argInfo.NotWhiteSpace();
+			_ = argInfo.StartsWith( value );
 		} );
 
 		Assert.StartsWith( message, exception.Message );

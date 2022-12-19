@@ -10,7 +10,7 @@ public static class ArgInfoAssertions {
 		Assert.Equal( expected.Message, actual.Message );
 	}
 
-#if NET6_0_OR_GREATER
+#if NETCOREAPP3_1_OR_GREATER
 
 	public static void Equal( ReadOnlySpanArgInfo<char> expected, ReadOnlySpanArgInfo<char> actual ) {
 
