@@ -32,12 +32,30 @@ public static class ReadOnlySpanExtensions {
 	/// </summary>
 	/// <param name="argInfo">The argument info.</param>
 	/// <param name="value">The value it should start with.</param>
+	/// <returns>The <paramref name="argInfo"/>.</returns>
+	/// <exception cref="ArgumentException">Thrown when <paramref name="argInfo.Value"/> does not start with <paramref name="value"/>.</exception>
+	public static ref readonly ReadOnlySpanArgInfo<T> StartsWith<T>( in this ReadOnlySpanArgInfo<T> argInfo, ReadOnlySpan<T> value )
+		where T : IEquatable<T> {
+
+		if( argInfo.Value.StartsWith( value ) ) {
+			return ref argInfo;
+		}
+
+		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, Constants.VALUE_MUST_START_WITH, value.ToString() );
+		throw new ArgumentException( message, argInfo.Name );
+	}
+
+	/// <summary>
+	/// Ensures an argument starts with <paramref name="value"/>, otherwise an <see cref="ArgumentException"/> is thrown.
+	/// </summary>
+	/// <param name="argInfo">The argument info.</param>
+	/// <param name="value">The value it should start with.</param>
 	/// <param name="comparisonType">The type of comparison.</param>
 	/// <returns>The <paramref name="argInfo"/>.</returns>
 	/// <exception cref="ArgumentException">Thrown when <paramref name="argInfo.Value"/> does not start with <paramref name="value"/>.</exception>
-	public static ref readonly ReadOnlySpanArgInfo<char> StartsWith( in this ReadOnlySpanArgInfo<char> argInfo, ReadOnlySpan<char> value, StringComparison? comparisonType = null ) {
+	public static ref readonly ReadOnlySpanArgInfo<char> StartsWith( in this ReadOnlySpanArgInfo<char> argInfo, ReadOnlySpan<char> value, StringComparison comparisonType ) {
 
-		if( comparisonType == null ? argInfo.Value.StartsWith( value ) : argInfo.Value.StartsWith( value, comparisonType.Value ) ) {
+		if( argInfo.Value.StartsWith( value, comparisonType ) ) {
 			return ref argInfo;
 		}
 
@@ -53,9 +71,28 @@ public static class ReadOnlySpanExtensions {
 	/// <param name="comparisonType">The type of comparison.</param>
 	/// <returns>The <paramref name="argInfo"/>.</returns>
 	/// <exception cref="ArgumentException">Thrown when <paramref name="argInfo.Value"/> does not end with <paramref name="value"/>.</exception>
-	public static ref readonly ReadOnlySpanArgInfo<char> EndsWith( in this ReadOnlySpanArgInfo<char> argInfo, ReadOnlySpan<char> value, StringComparison? comparisonType = null ) {
+	public static ref readonly ReadOnlySpanArgInfo<T> EndsWith<T>( in this ReadOnlySpanArgInfo<T> argInfo, ReadOnlySpan<T> value )
+		where T : IEquatable<T> {
 
-		if( comparisonType == null ? argInfo.Value.EndsWith( value ) : argInfo.Value.EndsWith( value, comparisonType.Value ) ) {
+		if( argInfo.Value.EndsWith( value ) ) {
+			return ref argInfo;
+		}
+
+		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, Constants.VALUE_MUST_END_WITH, value.ToString() );
+		throw new ArgumentException( message, argInfo.Name );
+	}
+
+	/// <summary>
+	/// Ensures an argument ends with <paramref name="value"/>, otherwise an <see cref="ArgumentException"/> is thrown.
+	/// </summary>
+	/// <param name="argInfo">The argument info.</param>
+	/// <param name="value">The value it should start with.</param>
+	/// <param name="comparisonType">The type of comparison.</param>
+	/// <returns>The <paramref name="argInfo"/>.</returns>
+	/// <exception cref="ArgumentException">Thrown when <paramref name="argInfo.Value"/> does not end with <paramref name="value"/>.</exception>
+	public static ref readonly ReadOnlySpanArgInfo<char> EndsWith( in this ReadOnlySpanArgInfo<char> argInfo, ReadOnlySpan<char> value, StringComparison comparisonType ) {
+
+		if( argInfo.Value.EndsWith( value, comparisonType ) ) {
 			return ref argInfo;
 		}
 
