@@ -8,6 +8,28 @@ namespace StaticDotNet.ArgumentValidation;
 /// </summary>
 public static class StringConversionExtensions {
 
+#if NET7_0_OR_GREATER
+
+	/// <summary>
+	/// Ensures an argument is parsable to a <see cref="Guid"/>, otherwise an <see cref="ArgumentException"/> is thrown.
+	/// </summary>
+	/// <param name="argInfo">The argument info.</param>
+	/// <param name="provider">The <see cref="IFormatProvider"/> to use.</param>
+	/// <returns>A new <see cref="bool"/> <see cref="ArgInfo{T}"/>.</returns>
+	/// <exception cref="ArgumentException">Thrown when <paramref name="argInfo.Value"/> does not represent a <see cref="Guid"/>.</exception>
+	public static ArgInfo<T> Parse<T>( in ArgInfo<string> argInfo, IFormatProvider? provider = null )
+		where T : IParsable<T> {
+
+		if( T.TryParse( argInfo.Value, provider, out T? result ) ) {
+			return new( result, argInfo.Name, argInfo.Message );
+		}
+
+		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, Constants.VALUE_MUST_BE_PARSABLE_TO, typeof( T ).FullName );
+		throw new ArgumentException( message, argInfo.Name );
+	}
+
+#endif
+
 	/// <summary>
 	/// Ensures an argument represents a <see cref="long"/>, otherwise an <see cref="ArgumentException"/> is thrown.
 	/// </summary>
