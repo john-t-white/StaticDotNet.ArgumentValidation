@@ -62,6 +62,24 @@ public static class ReadOnlySpanCharExtensions {
 		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, Constants.VALUE_MUST_END_WITH, value.ToString() );
 		throw new ArgumentException( message, argInfo.Name );
 	}
+
+	/// <summary>
+	/// Ensures an argument contains <paramref name="value"/>, otherwise an <see cref="ArgumentException"/> is thrown.
+	/// </summary>
+	/// <param name="argInfo">The argument info.</param>
+	/// <param name="value">The value it should contain.</param>
+	/// <param name="comparisonType">The type of comparison.</param>
+	/// <returns>The <paramref name="argInfo"/>.</returns>
+	/// <exception cref="ArgumentException">Thrown when <paramref name="argInfo.Value"/> does not end with <paramref name="value"/>.</exception>
+	public static ref readonly ReadOnlySpanArgInfo<char> Contains( in this ReadOnlySpanArgInfo<char> argInfo, ReadOnlySpan<char> value, StringComparison comparisonType ) {
+
+		if( argInfo.Value.Contains( value, comparisonType ) ) {
+			return ref argInfo;
+		}
+
+		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, Constants.VALUE_MUST_CONTAIN, value.ToString() );
+		throw new ArgumentException( message, argInfo.Name );
+	}
 }
 
 #endif

@@ -60,6 +60,29 @@ public static class ReadOnlySpanExtensions {
 		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, Constants.VALUE_MUST_END_WITH, string.Join( ", ", value.ToArray() ) );
 		throw new ArgumentException( message, argInfo.Name );
 	}
+
+#if NET6_0_OR_GREATER
+
+	/// <summary>
+	/// Ensures an argument contains <paramref name="value"/>, otherwise an <see cref="ArgumentException"/> is thrown.
+	/// </summary>
+	/// <param name="argInfo">The argument info.</param>
+	/// <param name="value">The value it should contain.</param>
+	/// <returns>The <paramref name="argInfo"/>.</returns>
+	/// <exception cref="ArgumentException">Thrown when <paramref name="argInfo.Value"/> does not end with <paramref name="value"/>.</exception>
+	public static ref readonly ReadOnlySpanArgInfo<T> Contains<T>( in this ReadOnlySpanArgInfo<T> argInfo, T value )
+		where T : IEquatable<T> {
+
+		if( value is not null && argInfo.Value.Contains( value ) ) {
+			return ref argInfo;
+		}
+
+		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, Constants.VALUE_MUST_CONTAIN, value?.ToString() ?? Constants.NULL );
+		throw new ArgumentException( message, argInfo.Name );
+	}
+
+#endif
+
 }
 
 #endif
