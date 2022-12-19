@@ -2,7 +2,7 @@
 
 using System.Globalization;
 
-namespace StaticDotNet.ArgumentValidation.UnitTests.ReadOnlySpanParsingExtensionsTests;
+namespace StaticDotNet.ArgumentValidation.UnitTests.ReadOnlySpanCharParsingExtensionsTests;
 
 public sealed class ParseInt16 {
 
@@ -12,7 +12,7 @@ public sealed class ParseInt16 {
 		short expectedResult = 1;
 		ReadOnlySpanArgInfo<char> argInfo = new( expectedResult.ToString(), null, null );
 
-		ArgInfo<short> result = ReadOnlySpanParsingExtensions.ParseInt16( argInfo );
+		ArgInfo<short> result = ReadOnlySpanCharParsingExtensions.ParseInt16( argInfo );
 
 		Assert.Equal( expectedResult, result.Value );
 	}
@@ -24,7 +24,7 @@ public sealed class ParseInt16 {
 		ReadOnlySpanArgInfo<char> argInfo = new( expectedResult.ToString(), null, null );
 		NumberStyles styles = NumberStyles.None;
 
-		ArgInfo<short> result = ReadOnlySpanParsingExtensions.ParseInt16( argInfo, styles );
+		ArgInfo<short> result = ReadOnlySpanCharParsingExtensions.ParseInt16( argInfo, styles );
 
 		Assert.Equal( expectedResult, result.Value );
 	}
@@ -36,7 +36,7 @@ public sealed class ParseInt16 {
 		ReadOnlySpanArgInfo<char> argInfo = new( expectedResult.ToString(), null, null );
 		IFormatProvider provider = NumberFormatInfo.InvariantInfo;
 
-		ArgInfo<short> result = ReadOnlySpanParsingExtensions.ParseInt16( argInfo, provider: provider );
+		ArgInfo<short> result = ReadOnlySpanCharParsingExtensions.ParseInt16( argInfo, provider: provider );
 
 		Assert.Equal( expectedResult, result.Value );
 	}
@@ -50,7 +50,7 @@ public sealed class ParseInt16 {
 		ArgumentException exception = Assert.Throws<ArgumentException>( name, () => {
 
 			ReadOnlySpanArgInfo<char> argInfo = new( argumentValue, name, null );
-			_ = ReadOnlySpanParsingExtensions.ParseInt16( argInfo );
+			_ = ReadOnlySpanCharParsingExtensions.ParseInt16( argInfo );
 		} );
 
 		string expectedMessage = "Value must be parsable to System.Int16.";
@@ -68,7 +68,7 @@ public sealed class ParseInt16 {
 		ArgumentException exception = Assert.Throws<ArgumentException>( name, () => {
 
 			ReadOnlySpanArgInfo<char> argInfo = new( argumentValue, name, message );
-			_ = ReadOnlySpanParsingExtensions.ParseInt16( argInfo );
+			_ = ReadOnlySpanCharParsingExtensions.ParseInt16( argInfo );
 		} );
 
 		Assert.StartsWith( message, exception.Message );

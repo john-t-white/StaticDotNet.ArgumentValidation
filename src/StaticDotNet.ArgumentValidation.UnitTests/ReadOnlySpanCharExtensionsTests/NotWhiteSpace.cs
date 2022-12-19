@@ -1,6 +1,6 @@
 ﻿#if NETCOREAPP3_1_OR_GREATER
 
-namespace StaticDotNet.ArgumentValidation.UnitTests.ReadOnlySpanExtensionsTests;
+namespace StaticDotNet.ArgumentValidation.UnitTests.ReadOnlySpanCharExtensionsTests;
 
 public sealed class NotWhiteSpace {
 

@@ -1,18 +1,18 @@
-﻿#if NETCOREAPP3_1_OR_GREATER
+﻿#if NET6_0_OR_GREATER
 
 using System.Globalization;
 
-namespace StaticDotNet.ArgumentValidation.UnitTests.ReadOnlySpanExtensionsTests;
+namespace StaticDotNet.ArgumentValidation.UnitTests.ReadOnlySpanCharParsingExtensionsTests;
 
-public sealed class ParseTimeSpan {
+public sealed class ParseDateOnly {
 
 	[Fact]
 	public void ReturnsCorrectly() {
 
-		TimeSpan expectedResult = new( 1, 2, 3 );
+		DateOnly expectedResult = new( 2000, 1, 2 );
 		ReadOnlySpanArgInfo<char> argInfo = new( expectedResult.ToString(), null, null );
 
-		ArgInfo<TimeSpan> result = ReadOnlySpanParsingExtensions.ParseTimeSpan( argInfo );
+		ArgInfo<DateOnly> result = ReadOnlySpanCharParsingExtensions.ParseDateOnly( argInfo );
 
 		Assert.Equal( expectedResult, result.Value );
 	}
@@ -20,11 +20,23 @@ public sealed class ParseTimeSpan {
 	[Fact]
 	public void WithProviderReturnsCorrectly() {
 
-		TimeSpan expectedResult = new( 1, 2, 3 );
+		DateOnly expectedResult = new( 2000, 1, 2 );
 		ReadOnlySpanArgInfo<char> argInfo = new( expectedResult.ToString(), null, null );
 		IFormatProvider provider = DateTimeFormatInfo.CurrentInfo;
 
-		ArgInfo<TimeSpan> result = ReadOnlySpanParsingExtensions.ParseTimeSpan( argInfo, provider );
+		ArgInfo<DateOnly> result = ReadOnlySpanCharParsingExtensions.ParseDateOnly( argInfo, provider );
+
+		Assert.Equal( expectedResult, result.Value );
+	}
+
+	[Fact]
+	public void WithStylesReturnsCorrectly() {
+
+		DateOnly expectedResult = new( 2000, 1, 2 );
+		ReadOnlySpanArgInfo<char> argInfo = new( expectedResult.ToString(), null, null );
+		DateTimeStyles styles = DateTimeStyles.None;
+
+		ArgInfo<DateOnly> result = ReadOnlySpanCharParsingExtensions.ParseDateOnly( argInfo, styles: styles );
 
 		Assert.Equal( expectedResult, result.Value );
 	}
@@ -38,10 +50,10 @@ public sealed class ParseTimeSpan {
 		ArgumentException exception = Assert.Throws<ArgumentException>( name, () => {
 
 			ReadOnlySpanArgInfo<char> argInfo = new( argumentValue, name, null );
-			_ = ReadOnlySpanParsingExtensions.ParseTimeSpan( argInfo );
+			_ = ReadOnlySpanCharParsingExtensions.ParseDateOnly( argInfo );
 		} );
 
-		string expectedMessage = "Value must be parsable to System.TimeSpan.";
+		string expectedMessage = "Value must be parsable to System.DateOnly.";
 
 		Assert.StartsWith( expectedMessage, exception.Message );
 	}
@@ -56,7 +68,7 @@ public sealed class ParseTimeSpan {
 		ArgumentException exception = Assert.Throws<ArgumentException>( name, () => {
 
 			ReadOnlySpanArgInfo<char> argInfo = new( argumentValue, name, message );
-			_ = ReadOnlySpanParsingExtensions.ParseTimeSpan( argInfo );
+			_ = ReadOnlySpanCharParsingExtensions.ParseDateOnly( argInfo );
 		} );
 
 		Assert.StartsWith( message, exception.Message );

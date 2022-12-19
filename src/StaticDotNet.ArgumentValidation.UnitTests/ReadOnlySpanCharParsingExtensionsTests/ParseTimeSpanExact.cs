@@ -2,7 +2,7 @@
 
 using System.Globalization;
 
-namespace StaticDotNet.ArgumentValidation.UnitTests.ReadOnlySpanParsingExtensionsTests;
+namespace StaticDotNet.ArgumentValidation.UnitTests.ReadOnlySpanCharParsingExtensionsTests;
 
 public sealed class ParseTimeSpanExact {
 
@@ -13,7 +13,7 @@ public sealed class ParseTimeSpanExact {
 		string format = @"d\.hh\:mm\:ss\.ffffff";
 		ReadOnlySpanArgInfo<char> argInfo = new( expectedResult.ToString( format ), null, null );
 
-		ArgInfo<TimeSpan> result = ReadOnlySpanParsingExtensions.ParseTimeSpanExact( argInfo, format );
+		ArgInfo<TimeSpan> result = ReadOnlySpanCharParsingExtensions.ParseTimeSpanExact( argInfo, format );
 
 		Assert.Equal( expectedResult, result.Value );
 	}
@@ -26,7 +26,7 @@ public sealed class ParseTimeSpanExact {
 		ReadOnlySpanArgInfo<char> argInfo = new( expectedResult.ToString( format ), null, null );
 		IFormatProvider provider = DateTimeFormatInfo.CurrentInfo;
 
-		ArgInfo<TimeSpan> result = ReadOnlySpanParsingExtensions.ParseTimeSpanExact( argInfo, format, provider );
+		ArgInfo<TimeSpan> result = ReadOnlySpanCharParsingExtensions.ParseTimeSpanExact( argInfo, format, provider );
 
 		Assert.Equal( expectedResult, result.Value );
 	}
@@ -39,7 +39,7 @@ public sealed class ParseTimeSpanExact {
 		ReadOnlySpanArgInfo<char> argInfo = new( expectedResult.ToString( format ), null, null );
 		TimeSpanStyles styles = TimeSpanStyles.None;
 
-		ArgInfo<TimeSpan> result = ReadOnlySpanParsingExtensions.ParseTimeSpanExact( argInfo, format, styles: styles );
+		ArgInfo<TimeSpan> result = ReadOnlySpanCharParsingExtensions.ParseTimeSpanExact( argInfo, format, styles: styles );
 
 		Assert.Equal( expectedResult, result.Value );
 	}
@@ -54,7 +54,7 @@ public sealed class ParseTimeSpanExact {
 		ArgumentException exception = Assert.Throws<ArgumentException>( name, () => {
 
 			ReadOnlySpanArgInfo<char> argInfo = new( argumentValue, name, null );
-			_ = ReadOnlySpanParsingExtensions.ParseTimeSpanExact( argInfo, format );
+			_ = ReadOnlySpanCharParsingExtensions.ParseTimeSpanExact( argInfo, format );
 		} );
 
 		string expectedMessage = "Value must be parsable to System.TimeSpan.";
@@ -73,7 +73,7 @@ public sealed class ParseTimeSpanExact {
 		ArgumentException exception = Assert.Throws<ArgumentException>( name, () => {
 
 			ReadOnlySpanArgInfo<char> argInfo = new( argumentValue, name, message );
-			_ = ReadOnlySpanParsingExtensions.ParseTimeSpanExact( argInfo, format );
+			_ = ReadOnlySpanCharParsingExtensions.ParseTimeSpanExact( argInfo, format );
 		} );
 
 		Assert.StartsWith( message, exception.Message );
@@ -89,7 +89,7 @@ public sealed class ParseTimeSpanExact {
 		};
 		ReadOnlySpanArgInfo<char> argInfo = new( expectedResult.ToString( formats[0] ), null, null );
 
-		ArgInfo<TimeSpan> result = ReadOnlySpanParsingExtensions.ParseTimeSpanExact( argInfo, formats );
+		ArgInfo<TimeSpan> result = ReadOnlySpanCharParsingExtensions.ParseTimeSpanExact( argInfo, formats );
 
 		Assert.Equal( expectedResult, result.Value );
 	}
@@ -105,7 +105,7 @@ public sealed class ParseTimeSpanExact {
 		ReadOnlySpanArgInfo<char> argInfo = new( expectedResult.ToString( formats[0] ), null, null );
 		IFormatProvider provider = DateTimeFormatInfo.CurrentInfo;
 
-		ArgInfo<TimeSpan> result = ReadOnlySpanParsingExtensions.ParseTimeSpanExact( argInfo, formats, provider );
+		ArgInfo<TimeSpan> result = ReadOnlySpanCharParsingExtensions.ParseTimeSpanExact( argInfo, formats, provider );
 
 		Assert.Equal( expectedResult, result.Value );
 	}
@@ -121,7 +121,7 @@ public sealed class ParseTimeSpanExact {
 		ReadOnlySpanArgInfo<char> argInfo = new( expectedResult.ToString( formats[0] ), null, null );
 		TimeSpanStyles styles = TimeSpanStyles.None;
 
-		ArgInfo<TimeSpan> result = ReadOnlySpanParsingExtensions.ParseTimeSpanExact( argInfo, formats, styles: styles );
+		ArgInfo<TimeSpan> result = ReadOnlySpanCharParsingExtensions.ParseTimeSpanExact( argInfo, formats, styles: styles );
 
 		Assert.Equal( expectedResult, result.Value );
 	}
@@ -139,7 +139,7 @@ public sealed class ParseTimeSpanExact {
 		ArgumentException exception = Assert.Throws<ArgumentException>( name, () => {
 
 			ReadOnlySpanArgInfo<char> argInfo = new( argumentValue, name, null );
-			_ = ReadOnlySpanParsingExtensions.ParseTimeSpanExact( argInfo, formats );
+			_ = ReadOnlySpanCharParsingExtensions.ParseTimeSpanExact( argInfo, formats );
 		} );
 
 		string expectedMessage = "Value must be parsable to System.TimeSpan.";
@@ -161,7 +161,7 @@ public sealed class ParseTimeSpanExact {
 		ArgumentException exception = Assert.Throws<ArgumentException>( name, () => {
 
 			ReadOnlySpanArgInfo<char> argInfo = new( argumentValue, name, message );
-			_ = ReadOnlySpanParsingExtensions.ParseTimeSpanExact( argInfo, formats );
+			_ = ReadOnlySpanCharParsingExtensions.ParseTimeSpanExact( argInfo, formats );
 		} );
 
 		Assert.StartsWith( message, exception.Message );

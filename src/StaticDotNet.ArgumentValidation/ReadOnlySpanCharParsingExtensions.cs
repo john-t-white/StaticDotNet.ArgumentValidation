@@ -7,7 +7,7 @@ namespace StaticDotNet.ArgumentValidation;
 /// <summary>
 /// Extension methods for validating <see cref="ReadOnlySpan{T}"/> arguments.
 /// </summary>
-public static class ReadOnlySpanParsingExtensions {
+public static class ReadOnlySpanCharParsingExtensions {
 
 #if NET7_0_OR_GREATER
 

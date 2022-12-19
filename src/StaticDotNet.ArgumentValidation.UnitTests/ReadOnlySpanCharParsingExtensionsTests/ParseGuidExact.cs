@@ -2,17 +2,18 @@
 
 using System.Globalization;
 
-namespace StaticDotNet.ArgumentValidation.UnitTests.ReadOnlySpanParsingExtensionsTests;
+namespace StaticDotNet.ArgumentValidation.UnitTests.ReadOnlySpanCharParsingExtensionsTests;
 
-public sealed class ParseGuid {
+public sealed class ParseGuidExact {
 
 	[Fact]
 	public void ReturnsCorrectly() {
 
+		string format = "N";
 		var expectedResult = Guid.NewGuid();
-		ReadOnlySpanArgInfo<char> argInfo = new( expectedResult.ToString(), null, null );
+		ReadOnlySpanArgInfo<char> argInfo = new( expectedResult.ToString( format ), null, null );
 
-		ArgInfo<Guid> result = ReadOnlySpanParsingExtensions.ParseGuid( argInfo );
+		ArgInfo<Guid> result = ReadOnlySpanCharParsingExtensions.ParseGuidExact( argInfo, format );
 
 		Assert.Equal( expectedResult, result.Value );
 	}
@@ -20,13 +21,14 @@ public sealed class ParseGuid {
 	[Fact]
 	public void WithInvalidValueThrowsArgumentException() {
 
+		string format = "N";
 		string argumentValue = "Not valid";
 		string name = "Name";
 
 		ArgumentException exception = Assert.Throws<ArgumentException>( name, () => {
 
 			ReadOnlySpanArgInfo<char> argInfo = new( argumentValue, name, null );
-			_ = ReadOnlySpanParsingExtensions.ParseGuid( argInfo );
+			_ = ReadOnlySpanCharParsingExtensions.ParseGuidExact( argInfo, format );
 		} );
 
 		string expectedMessage = "Value must be parsable to System.Guid.";
@@ -37,6 +39,7 @@ public sealed class ParseGuid {
 	[Fact]
 	public void WithInvalidValueAndMessageThrowsArgumentException() {
 
+		string format = "N";
 		string argumentValue = "Not valid";
 		string name = "Name";
 		string message = "Message";
@@ -44,7 +47,7 @@ public sealed class ParseGuid {
 		ArgumentException exception = Assert.Throws<ArgumentException>( name, () => {
 
 			ReadOnlySpanArgInfo<char> argInfo = new( argumentValue, name, message );
-			_ = ReadOnlySpanParsingExtensions.ParseGuid( argInfo );
+			_ = ReadOnlySpanCharParsingExtensions.ParseGuidExact( argInfo, format );
 		} );
 
 		Assert.StartsWith( message, exception.Message );

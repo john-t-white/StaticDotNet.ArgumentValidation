@@ -2,17 +2,17 @@
 
 using System.Globalization;
 
-namespace StaticDotNet.ArgumentValidation.UnitTests.ReadOnlySpanParsingExtensionsTests;
+namespace StaticDotNet.ArgumentValidation.UnitTests.ReadOnlySpanCharParsingExtensionsTests;
 
-public sealed class ParseByte {
+public sealed class ParseInt32 {
 
 	[Fact]
 	public void ReturnsCorrectly() {
 
-		byte expectedResult = 1;
+		int expectedResult = 1;
 		ReadOnlySpanArgInfo<char> argInfo = new( expectedResult.ToString(), null, null );
 
-		ArgInfo<byte> result = ReadOnlySpanParsingExtensions.ParseByte( argInfo );
+		ArgInfo<int> result = ReadOnlySpanCharParsingExtensions.ParseInt32( argInfo );
 
 		Assert.Equal( expectedResult, result.Value );
 	}
@@ -20,11 +20,11 @@ public sealed class ParseByte {
 	[Fact]
 	public void WithStylesReturnsCorrectly() {
 
-		byte expectedResult = 1;
+		int expectedResult = 1;
 		ReadOnlySpanArgInfo<char> argInfo = new( expectedResult.ToString(), null, null );
 		NumberStyles styles = NumberStyles.None;
 
-		ArgInfo<byte> result = ReadOnlySpanParsingExtensions.ParseByte( argInfo, styles );
+		ArgInfo<int> result = ReadOnlySpanCharParsingExtensions.ParseInt32( argInfo, styles );
 
 		Assert.Equal( expectedResult, result.Value );
 	}
@@ -32,11 +32,11 @@ public sealed class ParseByte {
 	[Fact]
 	public void WithProviderReturnsCorrectly() {
 
-		byte expectedResult = 1;
+		int expectedResult = 1;
 		ReadOnlySpanArgInfo<char> argInfo = new( expectedResult.ToString(), null, null );
 		IFormatProvider provider = NumberFormatInfo.InvariantInfo;
 
-		ArgInfo<byte> result = ReadOnlySpanParsingExtensions.ParseByte( argInfo, provider: provider );
+		ArgInfo<int> result = ReadOnlySpanCharParsingExtensions.ParseInt32( argInfo, provider: provider );
 
 		Assert.Equal( expectedResult, result.Value );
 	}
@@ -50,10 +50,10 @@ public sealed class ParseByte {
 		ArgumentException exception = Assert.Throws<ArgumentException>( name, () => {
 
 			ReadOnlySpanArgInfo<char> argInfo = new( argumentValue, name, null );
-			_ = ReadOnlySpanParsingExtensions.ParseByte( argInfo );
+			_ = ReadOnlySpanCharParsingExtensions.ParseInt32( argInfo );
 		} );
 
-		string expectedMessage = "Value must be parsable to System.Byte.";
+		string expectedMessage = "Value must be parsable to System.Int32.";
 
 		Assert.StartsWith( expectedMessage, exception.Message );
 	}
@@ -68,7 +68,7 @@ public sealed class ParseByte {
 		ArgumentException exception = Assert.Throws<ArgumentException>( name, () => {
 
 			ReadOnlySpanArgInfo<char> argInfo = new( argumentValue, name, message );
-			_ = ReadOnlySpanParsingExtensions.ParseByte( argInfo );
+			_ = ReadOnlySpanCharParsingExtensions.ParseInt32( argInfo );
 		} );
 
 		Assert.StartsWith( message, exception.Message );

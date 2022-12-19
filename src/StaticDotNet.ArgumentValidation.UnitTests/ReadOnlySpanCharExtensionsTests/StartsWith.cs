@@ -1,17 +1,17 @@
 ﻿#if NETCOREAPP3_1_OR_GREATER
 
-namespace StaticDotNet.ArgumentValidation.UnitTests.ReadOnlySpanExtensionsTests;
+namespace StaticDotNet.ArgumentValidation.UnitTests.ReadOnlySpanCharExtensionsTests;
 
-public sealed class EndsWith_Char {
+public sealed class StartsWith {
 
 	[Fact]
 	public void ReturnsCorrectly() {
 
 		ReadOnlySpanArgInfo<char> argInfo = new( "Value", null, null );
-		string value = "UE";
+		string value = "va";
 		StringComparison comparisonType = StringComparison.OrdinalIgnoreCase;
 
-		ReadOnlySpanArgInfo<char> result = argInfo.EndsWith( value, comparisonType );
+		ReadOnlySpanArgInfo<char> result = argInfo.StartsWith( value, comparisonType );
 
 		ArgInfoAssertions.Equal( argInfo, result );
 	}
@@ -21,15 +21,15 @@ public sealed class EndsWith_Char {
 
 		string argumentValue = "Value";
 		string name = "Name";
-		string value = "Does Not End With";
+		string value = "Does Not Start With";
 		StringComparison comparisonType = StringComparison.OrdinalIgnoreCase;
 
 		ArgumentException exception = Assert.Throws<ArgumentException>( name, () => {
 			ReadOnlySpanArgInfo<char> argInfo = new( argumentValue, name, null );
-			_ = argInfo.EndsWith( value, comparisonType );
+			_ = argInfo.StartsWith( value, comparisonType );
 		} );
 
-		string expectedMessage = $"Value must end with {value}.";
+		string expectedMessage = $"Value must start with {value}.";
 
 		Assert.StartsWith( expectedMessage, exception.Message );
 	}
@@ -40,12 +40,12 @@ public sealed class EndsWith_Char {
 		string argumentValue = "Value";
 		string name = "Name";
 		string message = "Message";
-		string value = "Does Not End With";
+		string value = "Does Not Start With";
 		StringComparison comparisonType = StringComparison.OrdinalIgnoreCase;
 
 		ArgumentException exception = Assert.Throws<ArgumentException>( name, () => {
 			ReadOnlySpanArgInfo<char> argInfo = new( argumentValue, name, message );
-			_ = argInfo.EndsWith( value, comparisonType );
+			_ = argInfo.StartsWith( value, comparisonType );
 		} );
 
 		Assert.StartsWith( message, exception.Message );

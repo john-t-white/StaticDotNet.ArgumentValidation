@@ -1,19 +1,19 @@
-﻿#if NET6_0_OR_GREATER
+﻿#if NETCOREAPP3_1_OR_GREATER
 
 using System.Globalization;
 
-namespace StaticDotNet.ArgumentValidation.UnitTests.ReadOnlySpanParsingExtensionsTests;
+namespace StaticDotNet.ArgumentValidation.UnitTests.ReadOnlySpanCharParsingExtensionsTests;
 
-public sealed class ParseTimeOnlyExact {
+public sealed class ParseDateTimeOffsetExact {
 
 	[Fact]
 	public void ReturnsCorrectly() {
 
-		TimeOnly expectedResult = new( 1, 2, 3, 4 );
-		string format = "hh:mm:ss.ffffff";
+		DateTimeOffset expectedResult = new( 2000, 1, 2, 3, 4, 5, TimeSpan.Zero );
+		string format = "yyyy-MM-dd (hh:mm:ss) K";
 		ReadOnlySpanArgInfo<char> argInfo = new( expectedResult.ToString( format ), null, null );
 
-		ArgInfo<TimeOnly> result = ReadOnlySpanParsingExtensions.ParseTimeOnlyExact( argInfo, format );
+		ArgInfo<DateTimeOffset> result = ReadOnlySpanCharParsingExtensions.ParseDateTimeOffsetExact( argInfo, format );
 
 		Assert.Equal( expectedResult, result.Value );
 	}
@@ -21,12 +21,12 @@ public sealed class ParseTimeOnlyExact {
 	[Fact]
 	public void WithProviderReturnsCorrectly() {
 
-		TimeOnly expectedResult = new( 1, 2, 3, 4 );
-		string format = "hh:mm:ss.ffffff";
+		DateTimeOffset expectedResult = new( 2000, 1, 2, 3, 4, 5, TimeSpan.Zero );
+		string format = "yyyy-MM-dd (hh:mm:ss) K";
 		ReadOnlySpanArgInfo<char> argInfo = new( expectedResult.ToString( format ), null, null );
 		IFormatProvider provider = DateTimeFormatInfo.CurrentInfo;
 
-		ArgInfo<TimeOnly> result = ReadOnlySpanParsingExtensions.ParseTimeOnlyExact( argInfo, format, provider );
+		ArgInfo<DateTimeOffset> result = ReadOnlySpanCharParsingExtensions.ParseDateTimeOffsetExact( argInfo, format, provider );
 
 		Assert.Equal( expectedResult, result.Value );
 	}
@@ -34,12 +34,12 @@ public sealed class ParseTimeOnlyExact {
 	[Fact]
 	public void WithStylesReturnsCorrectly() {
 
-		TimeOnly expectedResult = new( 1, 2, 3, 4 );
-		string format = "hh:mm:ss.ffffff";
+		DateTimeOffset expectedResult = new( 2000, 1, 2, 3, 4, 5, TimeSpan.Zero );
+		string format = "yyyy-MM-dd (hh:mm:ss) K";
 		ReadOnlySpanArgInfo<char> argInfo = new( expectedResult.ToString( format ), null, null );
-		DateTimeStyles styles = DateTimeStyles.None;
+		DateTimeStyles styles = DateTimeStyles.AdjustToUniversal;
 
-		ArgInfo<TimeOnly> result = ReadOnlySpanParsingExtensions.ParseTimeOnlyExact( argInfo, format, styles: styles );
+		ArgInfo<DateTimeOffset> result = ReadOnlySpanCharParsingExtensions.ParseDateTimeOffsetExact( argInfo, format, styles: styles );
 
 		Assert.Equal( expectedResult, result.Value );
 	}
@@ -49,15 +49,15 @@ public sealed class ParseTimeOnlyExact {
 
 		string argumentValue = "Not valid";
 		string name = "Name";
-		string format = "hh:mm:ss.ffffff";
+		string format = "yyyy-MM-dd (hh:mm:ss) K";
 
 		ArgumentException exception = Assert.Throws<ArgumentException>( name, () => {
 
 			ReadOnlySpanArgInfo<char> argInfo = new( argumentValue, name, null );
-			_ = ReadOnlySpanParsingExtensions.ParseTimeOnlyExact( argInfo, format );
+			_ = ReadOnlySpanCharParsingExtensions.ParseDateTimeOffsetExact( argInfo, format );
 		} );
 
-		string expectedMessage = "Value must be parsable to System.TimeOnly.";
+		string expectedMessage = "Value must be parsable to System.DateTimeOffset.";
 
 		Assert.StartsWith( expectedMessage, exception.Message );
 	}
@@ -68,12 +68,12 @@ public sealed class ParseTimeOnlyExact {
 		string argumentValue = "Not valid";
 		string name = "Name";
 		string message = "Message";
-		string format = "hh:mm:ss.ffffff";
+		string format = "yyyy-MM-dd (hh:mm:ss) K";
 
 		ArgumentException exception = Assert.Throws<ArgumentException>( name, () => {
 
 			ReadOnlySpanArgInfo<char> argInfo = new( argumentValue, name, message );
-			_ = ReadOnlySpanParsingExtensions.ParseTimeOnlyExact( argInfo, format );
+			_ = ReadOnlySpanCharParsingExtensions.ParseDateTimeOffsetExact( argInfo, format );
 		} );
 
 		Assert.StartsWith( message, exception.Message );
@@ -82,14 +82,14 @@ public sealed class ParseTimeOnlyExact {
 	[Fact]
 	public void WithMultipleFormatsReturnsCorrectly() {
 
-		TimeOnly expectedResult = new( 1, 2, 3, 4 );
+		DateTimeOffset expectedResult = new( 2000, 1, 2, 3, 4, 5, TimeSpan.Zero );
 		string[] formats = new[] {
-			"hh:mm:ss.ffffff",
-			"hh:mm:ss"
+			"yyyy-MM-dd (hh:mm:ss) K",
+			"MM/dd/yyyy hh:mm:ss K"
 		};
-		ReadOnlySpanArgInfo<char> argInfo = new( expectedResult.ToString( formats[0] ), null, null );
+		ReadOnlySpanArgInfo<char> argInfo = new( expectedResult.ToString( formats[ 0 ] ), null, null );
 
-		ArgInfo<TimeOnly> result = ReadOnlySpanParsingExtensions.ParseTimeOnlyExact( argInfo, formats );
+		ArgInfo<DateTimeOffset> result = ReadOnlySpanCharParsingExtensions.ParseDateTimeOffsetExact( argInfo, formats );
 
 		Assert.Equal( expectedResult, result.Value );
 	}
@@ -97,15 +97,15 @@ public sealed class ParseTimeOnlyExact {
 	[Fact]
 	public void WithMultipleFormatsAndProviderReturnsCorrectly() {
 
-		TimeOnly expectedResult = new( 1, 2, 3, 4 );
+		DateTimeOffset expectedResult = new( 2000, 1, 2, 3, 4, 5, TimeSpan.Zero );
 		string[] formats = new[] {
-			"hh:mm:ss.ffffff",
-			"hh:mm:ss"
+			"yyyy-MM-dd (hh:mm:ss) K",
+			"MM/dd/yyyy hh:mm:ss K"
 		};
-		ReadOnlySpanArgInfo<char> argInfo = new( expectedResult.ToString( formats[0] ), null, null );
+		ReadOnlySpanArgInfo<char> argInfo = new( expectedResult.ToString( formats[ 0 ] ), null, null );
 		IFormatProvider provider = DateTimeFormatInfo.CurrentInfo;
 
-		ArgInfo<TimeOnly> result = ReadOnlySpanParsingExtensions.ParseTimeOnlyExact( argInfo, formats, provider );
+		ArgInfo<DateTimeOffset> result = ReadOnlySpanCharParsingExtensions.ParseDateTimeOffsetExact( argInfo, formats, provider );
 
 		Assert.Equal( expectedResult, result.Value );
 	}
@@ -113,15 +113,15 @@ public sealed class ParseTimeOnlyExact {
 	[Fact]
 	public void WithMultipleFormatsAndStylesReturnsCorrectly() {
 
-		TimeOnly expectedResult = new( 1, 2, 3, 4 );
+		DateTimeOffset expectedResult = new( 2000, 1, 2, 3, 4, 5, TimeSpan.Zero );
 		string[] formats = new[] {
-			"hh:mm:ss.ffffff",
-			"hh:mm:ss"
+			"yyyy-MM-dd (hh:mm:ss) K",
+			"MM/dd/yyyy hh:mm:ss K"
 		};
-		ReadOnlySpanArgInfo<char> argInfo = new( expectedResult.ToString( formats[0] ), null, null );
-		DateTimeStyles styles = DateTimeStyles.None;
+		ReadOnlySpanArgInfo<char> argInfo = new( expectedResult.ToString( formats[ 0 ] ), null, null );
+		DateTimeStyles styles = DateTimeStyles.AdjustToUniversal;
 
-		ArgInfo<TimeOnly> result = ReadOnlySpanParsingExtensions.ParseTimeOnlyExact( argInfo, formats, styles: styles );
+		ArgInfo<DateTimeOffset> result = ReadOnlySpanCharParsingExtensions.ParseDateTimeOffsetExact( argInfo, formats, styles: styles );
 
 		Assert.Equal( expectedResult, result.Value );
 	}
@@ -132,17 +132,17 @@ public sealed class ParseTimeOnlyExact {
 		string argumentValue = "Not valid";
 		string name = "Name";
 		string[] formats = new[] {
-			"hh:mm:ss.ffffff",
-			"hh:mm:ss"
+			"yyyy-MM-dd (hh:mm:ss) K",
+			"MM/dd/yyyy hh:mm:ss K"
 		};
 
 		ArgumentException exception = Assert.Throws<ArgumentException>( name, () => {
 
 			ReadOnlySpanArgInfo<char> argInfo = new( argumentValue, name, null );
-			_ = ReadOnlySpanParsingExtensions.ParseTimeOnlyExact( argInfo, formats );
+			_ = ReadOnlySpanCharParsingExtensions.ParseDateTimeOffsetExact( argInfo, formats );
 		} );
 
-		string expectedMessage = "Value must be parsable to System.TimeOnly.";
+		string expectedMessage = "Value must be parsable to System.DateTimeOffset.";
 
 		Assert.StartsWith( expectedMessage, exception.Message );
 	}
@@ -154,14 +154,14 @@ public sealed class ParseTimeOnlyExact {
 		string name = "Name";
 		string message = "Message";
 		string[] formats = new[] {
-			"hh:mm:ss.ffffff",
-			"hh:mm:ss"
+			"yyyy-MM-dd (hh:mm:ss) K",
+			"MM/dd/yyyy hh:mm:ss K"
 		};
 
 		ArgumentException exception = Assert.Throws<ArgumentException>( name, () => {
 
 			ReadOnlySpanArgInfo<char> argInfo = new( argumentValue, name, message );
-			_ = ReadOnlySpanParsingExtensions.ParseTimeOnlyExact( argInfo, formats );
+			_ = ReadOnlySpanCharParsingExtensions.ParseDateTimeOffsetExact( argInfo, formats );
 		} );
 
 		Assert.StartsWith( message, exception.Message );
