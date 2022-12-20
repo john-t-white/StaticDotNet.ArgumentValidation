@@ -16,7 +16,7 @@ Arg.IsNotNull( value, message: message );
 Arg.IsNotNull( value, name, message );
 ```
 
-## IsNotNull
+## IsNotNullOrWhiteSpace
 
 Ensures that the argument is not null or white space, otherwise an ArgumentNullException is thrown. Additional validation checks can be chained.
 
