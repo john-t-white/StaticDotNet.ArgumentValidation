@@ -2,7 +2,7 @@
 
 namespace StaticDotNet.ArgumentValidation.UnitTests.SpanExtensionsTests;
 
-public sealed class Length {
+public sealed class MaxLength {
 
 	[Fact]
 	public void ReturnsCorrectly() {
@@ -10,7 +10,7 @@ public sealed class Length {
 		SpanArgInfo<byte> argInfo = new( new byte[] { 1, 2, 3 }, null, null );
 		int length = 3;
 
-		SpanArgInfo<byte> result = SpanExtensions.Length( argInfo, length );
+		SpanArgInfo<byte> result = SpanExtensions.MaxLength( argInfo, length );
 
 		ArgInfoAssertions.Equal( argInfo, result );
 	}
@@ -24,10 +24,10 @@ public sealed class Length {
 
 		ArgumentOutOfRangeException exception = Assert.Throws<ArgumentOutOfRangeException>( name, () => {
 			SpanArgInfo<byte> argInfo = new( argumentValue, name, null );
-			_ = SpanExtensions.Length( argInfo, length );
+			_ = SpanExtensions.MaxLength( argInfo, length );
 		} );
 
-		string expectedMessage = $"Value must have a length equal to {length}.";
+		string expectedMessage = $"Value cannot have a length greater than {length}.";
 
 		Assert.StartsWith( expectedMessage, exception.Message );
 	}
@@ -42,7 +42,7 @@ public sealed class Length {
 
 		ArgumentOutOfRangeException exception = Assert.Throws<ArgumentOutOfRangeException>( name, () => {
 			SpanArgInfo<byte> argInfo = new( argumentValue, name, message );
-			_ = SpanExtensions.Length( argInfo, length );
+			_ = SpanExtensions.MaxLength( argInfo, length );
 		} );
 
 		Assert.StartsWith( message, exception.Message );

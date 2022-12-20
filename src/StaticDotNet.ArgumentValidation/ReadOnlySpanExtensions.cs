@@ -43,6 +43,40 @@ public static class ReadOnlySpanExtensions {
 	}
 
 	/// <summary>
+	/// Ensures an argument has a maximum length of <paramref name="length"/>, otherwise an <see cref="ArgumentOutOfRangeException"/> is thrown.
+	/// </summary>
+	/// <param name="argInfo">The argument info.</param>
+	/// <param name="length">The maximum length.</param>
+	/// <returns>The <paramref name="argInfo"/>.</returns>
+	/// <exception cref="ArgumentOutOfRangeException">Thrown when the length of <paramref name="argInfo.Value"/> greater than <paramref name="length"/>.</exception>
+	public static ref readonly ReadOnlySpanArgInfo<T> MaxLength<T>( in this ReadOnlySpanArgInfo<T> argInfo, int length ) {
+
+		if( argInfo.Value.Length <= length ) {
+			return ref argInfo;
+		}
+
+		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, Constants.VALUE_CANNOT_HAVE_LENGTH_GREATER_THAN, length );
+		throw new ArgumentOutOfRangeException( argInfo.Name, message );
+	}
+
+	/// <summary>
+	/// Ensures an argument has a minium length of <paramref name="length"/>, otherwise an <see cref="ArgumentOutOfRangeException"/> is thrown.
+	/// </summary>
+	/// <param name="argInfo">The argument info.</param>
+	/// <param name="length">The minium length.</param>
+	/// <returns>The <paramref name="argInfo"/>.</returns>
+	/// <exception cref="ArgumentOutOfRangeException">Thrown when the length of <paramref name="argInfo.Value"/> less than <paramref name="length"/>.</exception>
+	public static ref readonly ReadOnlySpanArgInfo<T> MinLength<T>( in this ReadOnlySpanArgInfo<T> argInfo, int length ) {
+
+		if( argInfo.Value.Length >= length ) {
+			return ref argInfo;
+		}
+
+		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, Constants.VALUE_CANNOT_HAVE_LENGTH_LESS_THAN, length );
+		throw new ArgumentOutOfRangeException( argInfo.Name, message );
+	}
+
+	/// <summary>
 	/// Ensures an argument starts with <paramref name="value"/>, otherwise an <see cref="ArgumentException"/> is thrown.
 	/// </summary>
 	/// <param name="argInfo">The argument info.</param>

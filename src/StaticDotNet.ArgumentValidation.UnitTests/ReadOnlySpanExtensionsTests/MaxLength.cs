@@ -1,16 +1,16 @@
 ﻿#if NETCOREAPP3_1_OR_GREATER
 
-namespace StaticDotNet.ArgumentValidation.UnitTests.SpanExtensionsTests;
+namespace StaticDotNet.ArgumentValidation.UnitTests.ReadOnlySpanExtensionsTests;
 
-public sealed class Length {
+public sealed class MaxLength {
 
 	[Fact]
 	public void ReturnsCorrectly() {
 
-		SpanArgInfo<byte> argInfo = new( new byte[] { 1, 2, 3 }, null, null );
+		ReadOnlySpanArgInfo<byte> argInfo = new( new byte[] { 1, 2, 3 }, null, null );
 		int length = 3;
 
-		SpanArgInfo<byte> result = SpanExtensions.Length( argInfo, length );
+		ReadOnlySpanArgInfo<byte> result = ReadOnlySpanExtensions.MaxLength( argInfo, length );
 
 		ArgInfoAssertions.Equal( argInfo, result );
 	}
@@ -23,11 +23,11 @@ public sealed class Length {
 		int length = 2;
 
 		ArgumentOutOfRangeException exception = Assert.Throws<ArgumentOutOfRangeException>( name, () => {
-			SpanArgInfo<byte> argInfo = new( argumentValue, name, null );
-			_ = SpanExtensions.Length( argInfo, length );
+			ReadOnlySpanArgInfo<byte> argInfo = new( argumentValue, name, null );
+			_ = ReadOnlySpanExtensions.MaxLength( argInfo, length );
 		} );
 
-		string expectedMessage = $"Value must have a length equal to {length}.";
+		string expectedMessage = $"Value cannot have a length greater than {length}.";
 
 		Assert.StartsWith( expectedMessage, exception.Message );
 	}
@@ -41,8 +41,8 @@ public sealed class Length {
 		int length = 2;
 
 		ArgumentOutOfRangeException exception = Assert.Throws<ArgumentOutOfRangeException>( name, () => {
-			SpanArgInfo<byte> argInfo = new( argumentValue, name, message );
-			_ = SpanExtensions.Length( argInfo, length );
+			ReadOnlySpanArgInfo<byte> argInfo = new( argumentValue, name, message );
+			_ = ReadOnlySpanExtensions.MaxLength( argInfo, length );
 		} );
 
 		Assert.StartsWith( message, exception.Message );

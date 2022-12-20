@@ -2,7 +2,7 @@
 
 namespace StaticDotNet.ArgumentValidation.UnitTests.SpanExtensionsTests;
 
-public sealed class Length {
+public sealed class MinLength {
 
 	[Fact]
 	public void ReturnsCorrectly() {
@@ -10,7 +10,7 @@ public sealed class Length {
 		SpanArgInfo<byte> argInfo = new( new byte[] { 1, 2, 3 }, null, null );
 		int length = 3;
 
-		SpanArgInfo<byte> result = SpanExtensions.Length( argInfo, length );
+		SpanArgInfo<byte> result = SpanExtensions.MinLength( argInfo, length );
 
 		ArgInfoAssertions.Equal( argInfo, result );
 	}
@@ -20,14 +20,14 @@ public sealed class Length {
 
 		byte[] argumentValue = new byte[] { 1, 2, 3 };
 		string name = "Name";
-		int length = 2;
+		int length = 4;
 
 		ArgumentOutOfRangeException exception = Assert.Throws<ArgumentOutOfRangeException>( name, () => {
 			SpanArgInfo<byte> argInfo = new( argumentValue, name, null );
-			_ = SpanExtensions.Length( argInfo, length );
+			_ = SpanExtensions.MinLength( argInfo, length );
 		} );
 
-		string expectedMessage = $"Value must have a length equal to {length}.";
+		string expectedMessage = $"Value cannot have a length less than {length}.";
 
 		Assert.StartsWith( expectedMessage, exception.Message );
 	}
@@ -38,11 +38,11 @@ public sealed class Length {
 		byte[] argumentValue = new byte[] { 1, 2, 3 };
 		string name = "Name";
 		string message = "Message";
-		int length = 2;
+		int length = 4;
 
 		ArgumentOutOfRangeException exception = Assert.Throws<ArgumentOutOfRangeException>( name, () => {
 			SpanArgInfo<byte> argInfo = new( argumentValue, name, message );
-			_ = SpanExtensions.Length( argInfo, length );
+			_ = SpanExtensions.MinLength( argInfo, length );
 		} );
 
 		Assert.StartsWith( message, exception.Message );
