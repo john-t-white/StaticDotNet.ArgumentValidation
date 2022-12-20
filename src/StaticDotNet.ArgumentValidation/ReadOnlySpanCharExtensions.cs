@@ -28,6 +28,24 @@ public static class ReadOnlySpanCharExtensions {
 	}
 
 	/// <summary>
+	/// Ensures an argument is equal to <paramref name="value"/>, otherwise an <see cref="ArgumentException"/> is thrown.
+	/// </summary>
+	/// <param name="argInfo">The argument info.</param>
+	/// <param name="value">The value to compare against.</param>
+	/// <param name="comparisonType">The type of comparison.</param>
+	/// <returns>The <paramref name="argInfo"/>.</returns>
+	/// <exception cref="ArgumentException">Thrown when <paramref name="argInfo.Value"/> does not equal <paramref name="value"/>.</exception>
+	public static ref readonly ReadOnlySpanArgInfo<char> EqualTo( in this ReadOnlySpanArgInfo<char> argInfo, ReadOnlySpan<char> value, StringComparison comparisonType ) {
+
+		if( argInfo.Value.Equals( value, comparisonType ) ) {
+			return ref argInfo;
+		}
+
+		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, Constants.VALUE_MUST_BE_EQUAL_TO, value.ToString() );
+		throw new ArgumentException( message, argInfo.Name );
+	}
+
+	/// <summary>
 	/// Ensures an argument starts with <paramref name="value"/>, otherwise an <see cref="ArgumentException"/> is thrown.
 	/// </summary>
 	/// <param name="argInfo">The argument info.</param>
