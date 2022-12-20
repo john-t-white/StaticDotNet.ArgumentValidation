@@ -12,6 +12,7 @@ public static class ReadOnlySpanExtensions {
 	/// <summary>
 	/// Ensures an argument is not empty, otherwise an <see cref="ArgumentException"/> is thrown.
 	/// </summary>
+	/// <typeparam name="T">The span type.</typeparam>
 	/// <param name="argInfo">The argument info.</param>
 	/// <returns>The <paramref name="argInfo"/>.</returns>
 	/// <exception cref="ArgumentException">Thrown when <paramref name="argInfo.Value"/> is empty.</exception>
@@ -28,6 +29,7 @@ public static class ReadOnlySpanExtensions {
 	/// <summary>
 	/// Ensures an argument has a length of <paramref name="length"/>, otherwise an <see cref="ArgumentOutOfRangeException"/> is thrown.
 	/// </summary>
+	/// <typeparam name="T">The span type.</typeparam>
 	/// <param name="argInfo">The argument info.</param>
 	/// <param name="length">The length.</param>
 	/// <returns>The <paramref name="argInfo"/>.</returns>
@@ -45,6 +47,7 @@ public static class ReadOnlySpanExtensions {
 	/// <summary>
 	/// Ensures an argument has a maximum length of <paramref name="length"/>, otherwise an <see cref="ArgumentOutOfRangeException"/> is thrown.
 	/// </summary>
+	/// <typeparam name="T">The span type.</typeparam>
 	/// <param name="argInfo">The argument info.</param>
 	/// <param name="length">The maximum length.</param>
 	/// <returns>The <paramref name="argInfo"/>.</returns>
@@ -62,6 +65,7 @@ public static class ReadOnlySpanExtensions {
 	/// <summary>
 	/// Ensures an argument has a minium length of <paramref name="length"/>, otherwise an <see cref="ArgumentOutOfRangeException"/> is thrown.
 	/// </summary>
+	/// <typeparam name="T">The span type.</typeparam>
 	/// <param name="argInfo">The argument info.</param>
 	/// <param name="length">The minium length.</param>
 	/// <returns>The <paramref name="argInfo"/>.</returns>
@@ -77,8 +81,28 @@ public static class ReadOnlySpanExtensions {
 	}
 
 	/// <summary>
+	/// Ensures an argument has a length inclusively between <paramref name="minLength"/> and <paramref name="maxLength"/>, otherwise an <see cref="ArgumentOutOfRangeException"/> is thrown.
+	/// </summary>
+	/// <typeparam name="T">The span type.</typeparam>
+	/// <param name="argInfo">The argument info.</param>
+	/// <param name="minLength">The miniumum length.</param>
+	/// <param name="maxLength">The maximum length.</param>
+	/// <returns>The <paramref name="argInfo"/>.</returns>
+	/// <exception cref="ArgumentOutOfRangeException">Thrown when the length of <paramref name="argInfo.Value"/> is not between <paramref name="minLength"/> and <paramref name="maxLength"/>.</exception>
+	public static ref readonly ReadOnlySpanArgInfo<T> LengthBetween<T>( in this ReadOnlySpanArgInfo<T> argInfo, int minLength, int maxLength ) {
+
+		if( argInfo.Value.Length >= minLength && argInfo.Value.Length <= maxLength ) {
+			return ref argInfo;
+		}
+
+		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, Constants.VALUE_MUST_HAVE_LENGTH_BETWEEN, minLength, maxLength );
+		throw new ArgumentOutOfRangeException( argInfo.Name, message );
+	}
+
+	/// <summary>
 	/// Ensures an argument starts with <paramref name="value"/>, otherwise an <see cref="ArgumentException"/> is thrown.
 	/// </summary>
+	/// <typeparam name="T">The span type.</typeparam>
 	/// <param name="argInfo">The argument info.</param>
 	/// <param name="value">The value it should start with.</param>
 	/// <returns>The <paramref name="argInfo"/>.</returns>
@@ -97,6 +121,7 @@ public static class ReadOnlySpanExtensions {
 	/// <summary>
 	/// Ensures an argument ends with <paramref name="value"/>, otherwise an <see cref="ArgumentException"/> is thrown.
 	/// </summary>
+	/// <typeparam name="T">The span type.</typeparam>
 	/// <param name="argInfo">The argument info.</param>
 	/// <param name="value">The value it should start with.</param>
 	/// <returns>The <paramref name="argInfo"/>.</returns>
@@ -117,6 +142,7 @@ public static class ReadOnlySpanExtensions {
 	/// <summary>
 	/// Ensures an argument contains <paramref name="value"/>, otherwise an <see cref="ArgumentException"/> is thrown.
 	/// </summary>
+	/// <typeparam name="T">The span type.</typeparam>
 	/// <param name="argInfo">The argument info.</param>
 	/// <param name="value">The value it should contain.</param>
 	/// <returns>The <paramref name="argInfo"/>.</returns>
