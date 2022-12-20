@@ -36,7 +36,7 @@ public static class EnumerableExtensions {
 	/// </summary>
 	/// <typeparam name="TArg">The argument type.</typeparam>
 	/// <param name="argInfo">The argument info.</param>
-	/// <param name="length">The maximum length.</param>
+	/// <param name="length">The length.</param>
 	/// <returns>The <paramref name="argInfo"/>.</returns>
 	/// <exception cref="ArgumentOutOfRangeException">Thrown when the length of <paramref name="argInfo.Value"/> does not equal <paramref name="length"/>.</exception>
 	public static ref readonly ArgInfo<TArg> Length<TArg>( in this ArgInfo<TArg> argInfo, int length )
