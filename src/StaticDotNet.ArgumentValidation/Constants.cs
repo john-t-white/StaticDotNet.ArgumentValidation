@@ -58,6 +58,8 @@ internal class Constants {
 
 	internal const string VALUE_MUST_BE_UPPER = "Value must be upper.";
 
+	internal const string VALUE_MUST_BE_UTC = "Value must be UTC.";
+
 	internal const string VALUE_MUST_BE_WRITABLE = "Value must be writable.";
 
 	internal const string VALUE_MUST_CONTAIN = "Value must contain {0}.";
