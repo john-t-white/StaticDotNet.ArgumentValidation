@@ -58,13 +58,15 @@ internal class Constants {
 
 	internal const string VALUE_MUST_BE_UPPER = "Value must be upper.";
 
-	internal const string VALUE_MUST_BE_UTC = "Value must be UTC.";
-
 	internal const string VALUE_MUST_BE_WRITABLE = "Value must be writable.";
 
 	internal const string VALUE_MUST_CONTAIN = "Value must contain {0}.";
 
 	internal const string VALUE_MUST_END_WITH = "Value must end with {0}.";
+
+	internal const string VALUE_MUST_HAVE_DATETIMEKIND_LOCAL = "Value must have DateTimeKind.Local.";
+
+	internal const string VALUE_MUST_HAVE_DATETIMEKIND_UTC = "Value must have DateTimeKind.Utc.";
 
 	internal const string VALUE_MUST_HAVE_LENGTH_BETWEEN = "Value must have a length between {0} and {1}.";
 
