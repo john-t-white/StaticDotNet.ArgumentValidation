@@ -4,7 +4,9 @@
 
 All of the methods allow for the value, name of the argument and a message if you don't want to use the default exception message.  If you are using c# 10, the [CallerArgumentExpressionAttribute](https://learn.microsoft.com/en-us/dotnet/api/system.runtime.compilerservices.callerargumentexpressionattribute) is supported and you don't need to supply the argument name.
 
-Also, none of the validations will ever require you to cast the argument back to your specific type.  For example, if you have your own class that implements IList\<T\>, you shouldn't have to cast it back to your type after validating.
+None of the validations will ever require you to cast the argument back to your specific type.  For example, if you have your own class that implements IList\<T\>, you shouldn't have to cast it back to your type after validating.
+
+Uknown types are also fully supported.  So if your class has a generic type that could be either a class or a struct, this library fully supports that.
 
 ## IsNotNull
 
