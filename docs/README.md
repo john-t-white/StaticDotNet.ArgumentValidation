@@ -4,6 +4,8 @@
 
 All of the methods allow for the value, name of the argument and a message if you don't want to use the default exception message.  If you are using c# 10, the [CallerArgumentExpressionAttribute](https://learn.microsoft.com/en-us/dotnet/api/system.runtime.compilerservices.callerargumentexpressionattribute) is supported and you don't need to supply the argument name.
 
+Also, none of the validations will ever require you to cast the argument back to your specific type.  For example, if you have your own class that implements IList\<T\>, you shouldn't have to cast it back to your type after validating.
+
 ## IsNotNull
 
 Ensures that the argument is not null, otherwise an ArgumentNullException is thrown. Additional validation checks can be chained.
