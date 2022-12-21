@@ -56,23 +56,29 @@ All remaining validation checks are based on the argument value is not null. Thi
 - Code is much easier to follow as it is more explicit in your code that the argument validation is only running if an argument is not null.
 - While it isn't a big performance hit, why have it run through every validation check when it will always be null.
 
-# ArgInfo\<T\>
+# ArgInfo\<T\> / SpanArgInfo\<T\> / ReadOnlySpanArgInfo\<T\>
 
-Every argument validation method, with the exception of ```IsNull```, returns a readonly ref struct, ```ArgInfo<T>```, which allows for chaining additional validation methods based on the result of the previous one. Since it is a ref readonly struct it is only allocated to the stack and prevents copying.
+Every ```Arg``` validation method, with the exception of ```IsNull```, returns a readonly ref struct, ```ArgInfo<T>```, ```SpanArgInfo<T>``` or ```ReadOnlySpanArgInfo<T>```, which allows for chaining additional validation methods based on the result of the previous one. Since it is a ref readonly struct it is only allocated to the stack and prevents copying.
 
 If you want to use the value after all of the argument validations, you can use the Value property.
 
 ``` c#
 public class User {
 
-	public User( string? name ) {
+	public User( string? name, int age, string phoneNumber ) {
 
 		// Nullability annontations let you set Name property
 		// as name argument is not null.
 		Name = Arg.IsNotNullOrWhiteSpace( name ).Value;
+		Age = Arg.Is( age ).GreaterThan( 0 ).Value;
+		PhoneNumber = Arg.IsNotNullOrWhiteSpace( phoneNumber ).Matches( phoneNumberRegex ).Value;
 	}
 
 	public string User { get; }
+
+	public int Age { get; }
+
+	public string PhoneNumber { get; }
 }
 ```
 
