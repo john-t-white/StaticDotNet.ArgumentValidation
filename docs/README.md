@@ -89,7 +89,7 @@ public string AppendLetterA( string? value ) {
 
 # Included Validations
 
-While the following are included with the library, you can extend the library with your own extension methods for more specific cases. All validation checks will return null if the argument is allowed to be null. This allows you to validate arguments if they aren't null, but still allow them to be null.
+While the following are included with the library, you can extend the library with your own extension methods for more specific cases.
 
 ## Boolean
 
