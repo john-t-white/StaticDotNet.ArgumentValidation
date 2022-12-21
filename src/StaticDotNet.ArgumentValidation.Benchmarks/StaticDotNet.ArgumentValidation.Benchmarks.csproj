@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<TargetFrameworks>net481; net7.0; net6.0; netcoreapp3.1</TargetFrameworks>
+		<TargetFrameworks>net7.0; net6.0;</TargetFrameworks>
 		<LangVersion>11.0</LangVersion>
 		<OutputType>Exe</OutputType>
 		<ImplicitUsings>enable</ImplicitUsings>
@@ -16,6 +16,7 @@
 	<ItemGroup>
 		<PackageReference Include="Ardalis.GuardClauses" Version="4.0.1" />
 		<PackageReference Include="BenchmarkDotNet" Version="0.13.2" />
+		<PackageReference Include="CommunityToolkit.Diagnostics" Version="8.0.0" />
 		<PackageReference Include="Dawn.Guard" Version="1.12.0" />
 		<PackageReference Include="Ensure.That" Version="10.1.0" />
 	</ItemGroup>

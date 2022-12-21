@@ -248,3 +248,7 @@ While the following are included with the library, you can extend the library wi
 
 - Absolute
 - Relative
+
+# Benchmarks
+
+You can find benchmark results [here](Benchmarks.md).

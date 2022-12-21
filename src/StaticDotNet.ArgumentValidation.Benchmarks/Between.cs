@@ -9,8 +9,7 @@ namespace StaticDotNet.ArgumentValidation.Benchmarks;
 [MemoryDiagnoser]
 [SimpleJob( RuntimeMoniker.Net70 )]
 [SimpleJob( RuntimeMoniker.Net60 )]
-[SimpleJob( RuntimeMoniker.NetCoreApp31 )]
-public class Is_Between {
+public class Between {
 
 	public int argumentValue = 2;
 	public int minValue = 1;
@@ -27,6 +26,13 @@ public class Is_Between {
 
 	[Benchmark]
 	public int Ardalis_GuardClauses() => Ardalis.GuardClauses.Guard.Against.OutOfRange( argumentValue, nameof( argumentValue ), minValue, maxValue );
+
+	[Benchmark]
+	public int CommunityToolkit_Diagnostics() {
+		CommunityToolkit.Diagnostics.Guard.IsBetweenOrEqualTo( argumentValue, minValue, maxValue );
+
+		return argumentValue;
+	}
 
 	[Benchmark]
 	public int Ensure_That() {
