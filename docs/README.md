@@ -69,7 +69,7 @@ public class User {
 
 		// Nullability annontations let you set Name property
 		// as name argument is not null.
-		Name = Arg.IsNotNull( name ).NotWhiteSpace().Value;
+		Name = Arg.IsNotNullOrWhiteSpace( name ).Value;
 	}
 
 	public string User { get; }
@@ -81,41 +81,149 @@ Nullability annontations are also fully supported when you don't use the Value p
 ``` c#
 
 public string AppendLetterA( string? value ) {
-	_ = Arg.IsNotNull( value ).NotWhiteSpace();
+	_ = Arg.IsNotNullOrWhiteSpace( value );
 	// Nullability annontations will say value is not null.
 	return value + 'a';
 }
 ```
 
-The Value property will always be the specific type for that argument.  For example, if you have a custom class that implements IList, the value should always return the your custom class, not IList, unless a specific argument validation is used to change to a different type.  For example, ToType allows you to validate a string argument represents a type which will then have the value as System.Type.
-
-``` c#
-
-public string MyMethod( string typeFullName ) {
-	Type type = Arg.IsNotNull( typeFullName ).ToType();
-}
-```
-
 # Included Validations
 
-While the following are included with the library, you can add extend the library with your own extension methods for more specific cases. All validation checks will return null if the argument is allowed to be null. This allows you to validate arguments if they aren't null, but still allow them to be null.
+While the following are included with the library, you can extend the library with your own extension methods for more specific cases. All validation checks will return null if the argument is allowed to be null. This allows you to validate arguments if they aren't null, but still allow them to be null.
 
-- [AssignableTo](AssignableTo.md)
-- [Between](Between.md)
-- [Contains](Contains.md)
-- [EndsWith](EndsWith.md)
-- [EqualTo](EqualTo.md)
-- [GreaterThan](GreaterThan.md)
-- [GreaterThanOrEqualTo](GreaterThanOrEqualTo.md)
-- [Length](Length.md)
-- [LengthBetween](LengthBetween.md)
-- [LessThan](LessThan.md)
-- [LessThanOrEqualTo](LessThanOrEqualTo.md)
-- [Matches](Matches.md)
-- [MaxLength](MaxLength.md)
-- [MinLength](MinLength.md)
-- [NotEmpty](NotEmpty.md)
-- [NotWhiteSpace](NotWhiteSpace.md)
-- [StartsWith](StartsWith.md)
-- ToInt32
-- [ToType / ToTypeMaybeNull](ToType.md)
+## Boolean
+
+- False
+- True
+
+## Char
+
+- Digit
+- Letter
+- LetterOrDigit
+- Lower
+- NotWhiteSpace
+- Number
+- Upper
+
+## IComparable
+
+- Between
+- GreaterThan
+- GreaterThanOrEqualTo
+- LessThan
+- LessThanOrEqualTo
+
+## DateTime
+
+- Local
+- Utc
+
+## IEnumerable
+
+- Contains
+- Length
+- LengthBetween
+- MinLength
+- MaxLength
+- NotEmpty
+
+## Enumeration
+
+- Defined
+
+## Object
+
+- As
+- EqualTo
+- Same
+
+## ReadOnlySpan
+
+- Contains
+- EndsWith
+- Length
+- LengthBetween
+- MaxLength
+- MinLength
+- NotEmpty
+- StartsWith
+
+## ReadOnlySpan\<char\>
+
+- Contains
+- EndsWith
+- EqualTo
+- NotWhiteSpace
+- Parse
+- ParseByte
+- ParseDateOnly
+- ParseDateOnlyExact
+- ParseDateTime
+- ParseDateTimeExact
+- ParseDateTimeOffset
+- ParseDateTimeOffsetExact
+- ParseGuid
+- ParseGuidExact
+- ParseInt16
+- ParseInt32
+- ParseInt64
+- ParseTimeOnly
+- ParseTimeOnyExact
+- ParseTimeSpan
+- ParseTimeSpanExact
+- StartsWith
+
+## Span
+
+- Contains
+- EndsWith
+- Length
+- LengthBetween
+- MaxLength
+- MinLength
+- NotEmpty
+- StartsWith
+
+## Stream
+
+- Readable
+- Writable
+
+## String
+
+- Contains
+- EndsWith
+- EqualTo
+- Matches
+- NotWhiteSpace
+- Parse
+- ParseBoolean
+- ParseByte
+- ParseDateOnly
+- ParseDateOnlyExact
+- ParseDateTime
+- ParseDateTimeExact
+- ParseDateTimeOffset
+- ParseDateTimeOffsetExact
+- ParseGuid
+- ParseGuidExact
+- ParseInt16
+- ParseInt32
+- ParseInt64
+- ParseTimeOnly
+- ParseTimeOnyExact
+- ParseTimeSpan
+- ParseTimeSpanExact
+- ParseType
+- ParseUri
+- StartsWith
+
+## Type
+
+- AssignableTo
+
+## Uri
+
+- Absolute
+- Relative
