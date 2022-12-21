@@ -45,7 +45,7 @@ public static class StringExtensions {
 		throw new ArgumentException( message, argInfo.Name );
 	}
 
-#if !NETSTANDARD2_0
+#if NETSTANDARD2_1_OR_GREATER || NET5_0_OR_GREATER
 
 	/// <summary>
 	/// Ensures an argument starts with <paramref name="value"/>, otherwise an <see cref="ArgumentException"/> is thrown.
@@ -104,7 +104,7 @@ public static class StringExtensions {
 		throw new ArgumentException( message, argInfo.Name );
 	}
 
-#if !NETSTANDARD2_0
+#if NETSTANDARD2_1_OR_GREATER || NET5_0_OR_GREATER
 
 	/// <summary>
 	/// Ensures an argument ends with <paramref name="value"/>, otherwise an <see cref="ArgumentException"/> is thrown.
@@ -181,7 +181,7 @@ public static class StringExtensions {
 		throw new ArgumentException( message, argInfo.Name );
 	}
 
-#if !NETSTANDARD2_0
+#if NETSTANDARD2_1_OR_GREATER || NET5_0_OR_GREATER
 
 	/// <summary>
 	/// Ensures an argument contains <paramref name="value"/>, otherwise an <see cref="ArgumentException"/> is thrown.
@@ -221,7 +221,7 @@ public static class StringExtensions {
 		throw new ArgumentException( message, argInfo.Name );
 	}
 
-#if !NETSTANDARD2_0
+#if NETSTANDARD2_1_OR_GREATER || NET5_0_OR_GREATER
 
 	/// <summary>
 	/// Ensures an argument contains <paramref name="value"/>, otherwise an <see cref="ArgumentException"/> is thrown.

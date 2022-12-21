@@ -1,4 +1,4 @@
-﻿#if NETSTANDARD2_0_OR_GREATER
+﻿#if NETSTANDARD1_1_OR_GREATER
 
 namespace System.Diagnostics.CodeAnalysis;
 
