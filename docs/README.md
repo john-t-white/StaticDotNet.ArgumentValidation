@@ -70,7 +70,12 @@ public class User {
 		// Nullability annontations let you set Name property
 		// as name argument is not null.
 		Name = Arg.IsNotNullOrWhiteSpace( name ).Value;
+
+		// Since age is an int, there is no need to check for null.
 		Age = Arg.Is( age ).GreaterThan( 0 ).Value;
+
+		// While phoneNumber isn't nullable, it's always still best practice
+		// to check for null.
 		PhoneNumber = Arg.IsNotNullOrWhiteSpace( phoneNumber ).Matches( phoneNumberRegex ).Value;
 	}
 
@@ -91,6 +96,12 @@ public string AppendLetterA( string? value ) {
 	// Nullability annontations will say value is not null.
 	return value + 'a';
 }
+```
+
+There are also certain validations which will change the argument type, For example ```ParseInt32```, which will ensure the argument can be parsed into an int and the resulting argument value will be an int.
+
+``` c#
+int intValue = Arg.IsNotNullOrWhiteSpace( stringArgument ).ParseInt32().Value;
 ```
 
 # Included Validations
