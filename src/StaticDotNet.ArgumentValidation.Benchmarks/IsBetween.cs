@@ -9,7 +9,7 @@ namespace StaticDotNet.ArgumentValidation.Benchmarks;
 [MemoryDiagnoser]
 [SimpleJob( RuntimeMoniker.Net70 )]
 [SimpleJob( RuntimeMoniker.Net60 )]
-public class Between {
+public class IsBetween {
 
 	public int argumentValue = 2;
 	public int minValue = 1;

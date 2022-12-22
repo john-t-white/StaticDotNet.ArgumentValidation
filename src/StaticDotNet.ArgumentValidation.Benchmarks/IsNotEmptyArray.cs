@@ -11,7 +11,7 @@ namespace StaticDotNet.ArgumentValidation.Benchmarks;
 [SimpleJob( RuntimeMoniker.Net60 )]
 public class IsNotEmptyArray {
 
-	public int[] argumentValue = new[] { 1, 2, 3 } ;
+	public int[] argumentValue = new[] { 1, 2, 3 };
 
 	[Benchmark( Baseline = true )]
 	public int[] Baseline() => argumentValue.Length > 0 ? argumentValue : throw new ArgumentException();
