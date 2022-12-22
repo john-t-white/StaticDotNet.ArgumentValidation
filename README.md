@@ -41,3 +41,9 @@ The library is built using fluent syntax as that allows the developer a lot of f
 # Documentation
 
 All documentation can be found at [here](https://github.com/john-t-white/StaticDotNet.ArgumentValidation/blob/main/docs/README.md).
+
+# Release Notes
+
+**0.5.1**
+
+- Performance improvements for Array and String validation checks.
