@@ -1,4 +1,4 @@
-﻿namespace StaticDotNet.ArgumentValidation.UnitTests.EnumerableExtensionsTests;
+﻿namespace StaticDotNet.ArgumentValidation.UnitTests.ArrayExtensionsTests;
 
 public sealed class LengthBetween {
 
@@ -8,27 +8,11 @@ public sealed class LengthBetween {
 	[InlineData( "A", "B", "C", "D" )]
 	public void ReturnsCorrectly( params string[] argumentValue ) {
 
-		ArgInfo<List<string>> argInfo = new( new( argumentValue ), null, null );
+		ArgInfo<string[]> argInfo = new( argumentValue, null, null );
 		int minLength = 2;
 		int maxLength = 4;
 
-		ArgInfo<List<string>> result = EnumerableExtensions.LengthBetween( argInfo, minLength, maxLength );
-
-		ArgInfoAssertions.Equal( argInfo, result );
-	}
-
-	[Theory]
-	[InlineData( "A", "B" )]
-	[InlineData( "A", "B", "C" )]
-	[InlineData( "A", "B", "C", "D" )]
-	public void IEnumerableReturnsCorrectly( params string[] argumentValue ) {
-
-		EnumerableTestClass enumerableValue = new( argumentValue );
-		ArgInfo<EnumerableTestClass> argInfo = new( enumerableValue, null, null );
-		int minLength = 2;
-		int maxLength = 4;
-
-		ArgInfo<EnumerableTestClass> result = EnumerableExtensions.LengthBetween( argInfo, minLength, maxLength );
+		ArgInfo<string[]> result = ArrayExtensions.LengthBetween( argInfo, minLength, maxLength );
 
 		ArgInfoAssertions.Equal( argInfo, result );
 	}
@@ -43,8 +27,8 @@ public sealed class LengthBetween {
 		int maxLength = 4;
 
 		ArgumentOutOfRangeException exception = Assert.Throws<ArgumentOutOfRangeException>( name, () => {
-			ArgInfo<List<string>> argInfo = new( new( argumentValue ), name, null );
-			_ = EnumerableExtensions.LengthBetween( argInfo, minLength, maxLength );
+			ArgInfo<string[]> argInfo = new( argumentValue, name, null );
+			_ = ArrayExtensions.LengthBetween( argInfo, minLength, maxLength );
 		} );
 
 		string expectedMessage = $"Value must have a length between {minLength} and {maxLength}.";
@@ -55,15 +39,15 @@ public sealed class LengthBetween {
 	[Fact]
 	public void WithInvalidValueAndMessageThrowsArgumentOutOfRangeException() {
 
-		List<string> argumentValue = new() { "A" };
+		string[] argumentValue = new[] { "A" };
 		string name = "Name";
 		string message = "Message";
 		int minLength = 2;
 		int maxLength = 4;
 
 		ArgumentOutOfRangeException exception = Assert.Throws<ArgumentOutOfRangeException>( name, () => {
-			ArgInfo<List<string>> argInfo = new( argumentValue, name, message );
-			_ = EnumerableExtensions.LengthBetween( argInfo, minLength, maxLength );
+			ArgInfo<string[]> argInfo = new( argumentValue, name, message );
+			_ = ArrayExtensions.LengthBetween( argInfo, minLength, maxLength );
 		} );
 
 		Assert.StartsWith( message, exception.Message );

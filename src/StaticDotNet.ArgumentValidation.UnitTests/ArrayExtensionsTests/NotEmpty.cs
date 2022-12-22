@@ -1,13 +1,13 @@
-﻿namespace StaticDotNet.ArgumentValidation.UnitTests.EnumerableExtensionsTests;
+﻿namespace StaticDotNet.ArgumentValidation.UnitTests.ArrayExtensionsTests;
 
 public sealed class NotEmpty {
 
 	[Fact]
 	public void ReturnsCorrectly() {
 
-		ArgInfo<List<string>> argInfo = new( new() { "A" }, null, null );
+		ArgInfo<string[]> argInfo = new( new[] { "A" }, null, null );
 
-		ArgInfo<List<string>> result = EnumerableExtensions.NotEmpty( argInfo );
+		ArgInfo<string[]> result = ArrayExtensions.NotEmpty( argInfo );
 
 		ArgInfoAssertions.Equal( argInfo, result );
 	}
@@ -15,12 +15,12 @@ public sealed class NotEmpty {
 	[Fact]
 	public void WithEmptyValueThrowsArgumentException() {
 
-		List<string> argumentValue = new();
+		string[] argumentValue = Array.Empty<string>();
 		string name = "Name";
 
 		ArgumentException exception = Assert.Throws<ArgumentException>( name, () => {
-			ArgInfo<List<string>> argInfo = new( argumentValue, name, null );
-			_ = EnumerableExtensions.NotEmpty( argInfo );
+			ArgInfo<string[]> argInfo = new( argumentValue, name, null );
+			_ = ArrayExtensions.NotEmpty( argInfo );
 		} );
 
 		string expectedMessage = "Value cannot be empty.";
@@ -31,13 +31,13 @@ public sealed class NotEmpty {
 	[Fact]
 	public void WithInvalidValueAndMessageThrowsArgumentException() {
 
-		List<string> argumentValue = new();
+		string[] argumentValue = Array.Empty<string>();
 		string name = "Name";
 		string message = "Message";
 
 		ArgumentException exception = Assert.Throws<ArgumentException>( name, () => {
-			ArgInfo<List<string>> argInfo = new( argumentValue, name, message );
-			_ = EnumerableExtensions.NotEmpty( argInfo );
+			ArgInfo<string[]> argInfo = new( argumentValue, name, message );
+			_ = ArrayExtensions.NotEmpty( argInfo );
 		} );
 
 		Assert.StartsWith( message, exception.Message );

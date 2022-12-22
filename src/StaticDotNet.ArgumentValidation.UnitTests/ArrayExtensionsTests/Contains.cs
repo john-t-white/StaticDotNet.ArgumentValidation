@@ -1,4 +1,4 @@
-﻿namespace StaticDotNet.ArgumentValidation.UnitTests.EnumerableExtensionsTests;
+﻿namespace StaticDotNet.ArgumentValidation.UnitTests.ArrayExtensionsTests;
 
 public sealed class Contains {
 
@@ -7,10 +7,10 @@ public sealed class Contains {
 
 		string value = "B";
 
-		IList<string> argumentValue = new[] { "A", "B", "C" };
-		ArgInfo<IEnumerable<string>> argInfo = new( argumentValue, null, null );
+		string[] argumentValue = new[] { "A", "B", "C" };
+		ArgInfo<string[]> argInfo = new( argumentValue, null, null );
 
-		ArgInfo<IEnumerable<string>> result = EnumerableExtensions.Contains( argInfo, value );
+		ArgInfo<string[]> result = ArrayExtensions.Contains( argInfo, value );
 
 		ArgInfoAssertions.Equal( argInfo, result );
 	}
@@ -19,11 +19,11 @@ public sealed class Contains {
 	public void WithNullValueAndEnumerableContainsNullReturnsCorrectly() {
 
 		string? value = null;
-		IEnumerable<string?> argumentValue = new List<string?>() { "a", null, "c" };
+		string?[] argumentValue = new[] { "a", null, "c" };
 
-		ArgInfo<IEnumerable<string?>> argInfo = new( argumentValue, null, null );
+		ArgInfo<string?[]> argInfo = new( argumentValue, null, null );
 
-		ArgInfo<IEnumerable<string?>> result = EnumerableExtensions.Contains( argInfo, value );
+		ArgInfo<string?[]> result = ArrayExtensions.Contains( argInfo, value );
 
 		ArgInfoAssertions.Equal( argInfo, result );
 	}
@@ -34,10 +34,10 @@ public sealed class Contains {
 		string value = "b";
 		IEqualityComparer<string> comparer = StringComparer.OrdinalIgnoreCase;
 
-		IList<string> argumentValue = new[] { "A", "B", "C" };
-		ArgInfo<IList<string>> argInfo = new( argumentValue, null, null );
+		string[] argumentValue = new[] { "A", "B", "C" };
+		ArgInfo<string[]> argInfo = new( argumentValue, null, null );
 
-		ArgInfo<IList<string>> result = EnumerableExtensions.Contains( argInfo, value, comparer );
+		ArgInfo<string[]> result = ArrayExtensions.Contains( argInfo, value, comparer );
 
 		ArgInfoAssertions.Equal( argInfo, result );
 	}
@@ -45,13 +45,13 @@ public sealed class Contains {
 	[Fact]
 	public void WithNotContainsValueThrowsArgumentException() {
 
-		IList<string> argumentValue = new[] { "A", "B", "C" };
+		string[] argumentValue = new[] { "A", "B", "C" };
 		string name = "Name";
 		string value = "D";
 
 		ArgumentException exception = Assert.Throws<ArgumentException>( name, () => {
-			ArgInfo<IEnumerable<string>> argInfo = new( argumentValue, name, null );
-			_ = EnumerableExtensions.Contains( argInfo, value );
+			ArgInfo<string[]> argInfo = new( argumentValue, name, null );
+			_ = ArrayExtensions.Contains( argInfo, value );
 		} );
 
 		string expectedMessage = $"Value must contain {value}.";
@@ -62,13 +62,13 @@ public sealed class Contains {
 	[Fact]
 	public void WithNullValueThrowsArgumentException() {
 
-		IList<string> argumentValue = new[] { "A", "B", "C" };
+		string[] argumentValue = new[] { "A", "B", "C" };
 		string name = "Name";
 		string value = null!;
 
 		ArgumentException exception = Assert.Throws<ArgumentException>( name, () => {
-			ArgInfo<IEnumerable<string>> argInfo = new( argumentValue, name, null );
-			_ = EnumerableExtensions.Contains( argInfo, value );
+			ArgInfo<string[]> argInfo = new( argumentValue, name, null );
+			_ = ArrayExtensions.Contains( argInfo, value );
 		} );
 
 		string expectedMessage = "Value must contain <null>.";
@@ -79,14 +79,14 @@ public sealed class Contains {
 	[Fact]
 	public void WithInvalidValueAndMessageThrowsArgumentException() {
 
-		IList<string> argumentValue = new[] { "A", "B", "C" };
+		string[] argumentValue = new[] { "A", "B", "C" };
 		string name = "Name";
 		string message = "Message";
 		string value = "D";
 
 		ArgumentException exception = Assert.Throws<ArgumentException>( name, () => {
-			ArgInfo<IEnumerable<string>> argInfo = new( argumentValue, name, message );
-			_ = EnumerableExtensions.Contains( argInfo, value );
+			ArgInfo<string[]> argInfo = new( argumentValue, name, message );
+			_ = ArrayExtensions.Contains( argInfo, value );
 		} );
 
 		Assert.StartsWith( message, exception.Message );

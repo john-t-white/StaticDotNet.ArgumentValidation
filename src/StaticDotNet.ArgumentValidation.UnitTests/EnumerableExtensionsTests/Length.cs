@@ -5,10 +5,10 @@ public sealed class Length {
 	[Fact]
 	public void ReturnsCorrectly() {
 
-		ArgInfo<string> argInfo = new( "123", null, null );
+		ArgInfo<List<string>> argInfo = new( new() { "A", "B", "C" }, null, null );
 		int length = 3;
 
-		ArgInfo<string> result = argInfo.Length( length );
+		ArgInfo<List<string>> result = EnumerableExtensions.Length( argInfo, length );
 
 		ArgInfoAssertions.Equal( argInfo, result );
 	}
@@ -20,7 +20,7 @@ public sealed class Length {
 		ArgInfo<EnumerableTestClass> argInfo = new( argumentValue, null, null );
 		int length = 3;
 
-		ArgInfo<EnumerableTestClass> result = argInfo.Length( length );
+		ArgInfo<EnumerableTestClass> result = EnumerableExtensions.Length( argInfo, length );
 
 		ArgInfoAssertions.Equal( argInfo, result );
 	}
@@ -28,13 +28,13 @@ public sealed class Length {
 	[Fact]
 	public void WithValueLengthNotEqualToThrowsArgumentOutOfRangeException() {
 
-		string argumentValue = "12";
+		List<string> argumentValue = new() { "A", "B", "C" };
 		string name = "Name";
-		int length = 3;
+		int length = 4;
 
 		ArgumentOutOfRangeException exception = Assert.Throws<ArgumentOutOfRangeException>( name, () => {
-			ArgInfo<string> argInfo = new( argumentValue, name, null );
-			_ = argInfo.Length( length );
+			ArgInfo<List<string>> argInfo = new( argumentValue, name, null );
+			_ = EnumerableExtensions.Length( argInfo, length );
 		} );
 
 		string expectedMessage = $"Value must have a length equal to {length}.";
@@ -45,14 +45,14 @@ public sealed class Length {
 	[Fact]
 	public void WithInvalidValueAndMessageThrowsArgumentOutOfRangeException() {
 
-		string argumentValue = "12";
+		List<string> argumentValue = new() { "A", "B", "C" };
 		string name = "Name";
 		string message = "Message";
-		int length = 3;
+		int length = 4;
 
 		ArgumentOutOfRangeException exception = Assert.Throws<ArgumentOutOfRangeException>( name, () => {
-			ArgInfo<string> argInfo = new( argumentValue, name, message );
-			_ = argInfo.Length( length );
+			ArgInfo<List<string>> argInfo = new( argumentValue, name, message );
+			_ = EnumerableExtensions.Length( argInfo, length );
 		} );
 
 		Assert.StartsWith( message, exception.Message );

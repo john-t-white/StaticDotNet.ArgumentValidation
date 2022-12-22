@@ -3,29 +3,29 @@
 public sealed class MinLength {
 
 	[Theory]
-	[InlineData( "12" )]
-	[InlineData( "123" )]
-	public void ReturnsCorrectly( string argumentValue ) {
+	[InlineData( "A", "B" )]
+	[InlineData( "A", "B", "C" )]
+	public void ReturnsCorrectly( params string[] argumentValue ) {
 
 		int length = 2;
 
-		ArgInfo<string> argInfo = new( argumentValue, null, null );
+		ArgInfo<List<string>> argInfo = new( new( argumentValue ), null, null );
 
-		ArgInfo<string> result = argInfo.MinLength( length );
+		ArgInfo<List<string>> result = EnumerableExtensions.MinLength( argInfo, length );
 
 		ArgInfoAssertions.Equal( argInfo, result );
 	}
 
 	[Theory]
-	[InlineData( "12" )]
-	[InlineData( "123" )]
-	public void IEnumerableReturnsCorrectly( string argumentValue ) {
+	[InlineData( "A", "B" )]
+	[InlineData( "A", "B", "C" )]
+	public void IEnumerableReturnsCorrectly( params string[] argumentValue ) {
 
-		EnumerableTestClass enumerableValue = new( argumentValue.ToCharArray() );
+		EnumerableTestClass enumerableValue = new( argumentValue );
 		ArgInfo<EnumerableTestClass> argInfo = new( enumerableValue, null, null );
 		int length = 2;
 
-		ArgInfo<EnumerableTestClass> result = argInfo.MinLength( length );
+		ArgInfo<EnumerableTestClass> result = EnumerableExtensions.MinLength( argInfo, length );
 
 		ArgInfoAssertions.Equal( argInfo, result );
 	}
@@ -33,13 +33,13 @@ public sealed class MinLength {
 	[Fact]
 	public void WithValueLengthLessThanMinLengthThrowsArgumentOutOfRangeException() {
 
-		string argumentValue = "1";
+		List<string> argumentValue = new() { "A" };
 		string name = "Name";
 		int length = 2;
 
 		ArgumentOutOfRangeException exception = Assert.Throws<ArgumentOutOfRangeException>( name, () => {
-			ArgInfo<string> argInfo = new( argumentValue, name, null );
-			_ = argInfo.MinLength( length );
+			ArgInfo<List<string>> argInfo = new( argumentValue, name, null );
+			_ = EnumerableExtensions.MinLength( argInfo, length );
 		} );
 
 		string expectedMessage = $"Value cannot have a length less than {length}.";
@@ -50,14 +50,14 @@ public sealed class MinLength {
 	[Fact]
 	public void WithInvalidValueAndMessageThrowsArgumentOutOfRangeException() {
 
-		string argumentValue = "1";
+		List<string> argumentValue = new() { "A" };
 		string name = "Name";
 		string message = "Message";
 		int length = 2;
 
 		ArgumentOutOfRangeException exception = Assert.Throws<ArgumentOutOfRangeException>( name, () => {
-			ArgInfo<string> argInfo = new( argumentValue, name, message );
-			_ = argInfo.MinLength( length );
+			ArgInfo<List<string>> argInfo = new( argumentValue, name, message );
+			_ = EnumerableExtensions.MinLength( argInfo, length );
 		} );
 
 		Assert.StartsWith( message, exception.Message );

@@ -86,3 +86,27 @@ Intel Core i7-10750H CPU 2.60GHz, 1 CPU, 12 logical and 6 physical cores
 |         Ardalis_GuardClauses | 2.2606 ns | 0.0668 ns | 0.0625 ns | 2.2301 ns | 23.58 |    3.72 |         - |          NA |
 | CommunityToolkit_Diagnostics | 0.5532 ns | 0.0099 ns | 0.0088 ns | 0.5525 ns |  5.80 |    0.98 |         - |          NA |
 |                  Ensure_That | 2.5407 ns | 0.0649 ns | 0.0607 ns | 2.5187 ns | 26.51 |    4.22 |         - |          NA |
+
+## NotEmpty (Array)
+
+**.NET 7.0**
+
+|                       Method |       Mean |     Error |    StdDev |     Median | Ratio | RatioSD | Allocated | Alloc Ratio |
+|----------------------------- |-----------:|----------:|----------:|-----------:|------:|--------:|----------:|------------:|
+|                     Baseline |  0.7688 ns | 0.0181 ns | 0.0142 ns |  0.7730 ns |  1.00 |    0.00 |         - |          NA |
+|           ArgumentValidation |  2.4578 ns | 0.1030 ns | 0.0964 ns |  2.4297 ns |  3.20 |    0.15 |         - |          NA |
+|                   Dawn_Guard |  7.3657 ns | 0.1973 ns | 0.1845 ns |  7.4235 ns |  9.52 |    0.26 |         - |          NA |
+|         Ardalis_GuardClauses |  9.3892 ns | 0.0719 ns | 0.0672 ns |  9.3811 ns | 12.22 |    0.22 |         - |          NA |
+| CommunityToolkit_Diagnostics |  0.6573 ns | 0.0227 ns | 0.0212 ns |  0.6544 ns |  0.85 |    0.03 |         - |          NA |
+|                  Ensure_That |  3.0095 ns | 0.0492 ns | 0.0460 ns |  2.9987 ns |  3.92 |    0.08 |         - |          NA |
+
+**.NET 6.0**
+
+|                       Method |       Mean |     Error |    StdDev |     Median | Ratio | RatioSD | Allocated | Alloc Ratio |
+|----------------------------- |-----------:|----------:|----------:|-----------:|------:|--------:|----------:|------------:|
+|                     Baseline |  0.0019 ns | 0.0046 ns | 0.0043 ns |  0.0000 ns |     ? |       ? |         - |           ? |
+|           ArgumentValidation |  6.9347 ns | 0.0972 ns | 0.0909 ns |  6.9425 ns |     ? |       ? |         - |           ? |
+|                   Dawn_Guard |  6.9180 ns | 0.0853 ns | 0.0756 ns |  6.9056 ns |     ? |       ? |         - |           ? |
+|         Ardalis_GuardClauses | 15.5611 ns | 0.1655 ns | 0.1467 ns | 15.5066 ns |     ? |       ? |         - |           ? |
+| CommunityToolkit_Diagnostics |  0.3880 ns | 0.0178 ns | 0.0158 ns |  0.3862 ns |     ? |       ? |         - |           ? |
+|                  Ensure_That |  2.6520 ns | 0.0429 ns | 0.0402 ns |  2.6421 ns |     ? |       ? |         - |           ? |
