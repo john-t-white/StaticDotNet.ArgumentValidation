@@ -63,7 +63,7 @@ Intel Core i7-10750H CPU 2.60GHz, 1 CPU, 12 logical and 6 physical cores
 | CommunityToolkit_Diagnostics | 1.909 ns | 0.0793 ns | 0.0742 ns |  1.13 |    0.04 |         - |          NA |
 |                  Ensure_That | 3.141 ns | 0.1176 ns | 0.1100 ns |  1.86 |    0.08 |         - |          NA |
 
-## Between
+## Is_Between
 
 **.NET 7.0**
 
@@ -87,7 +87,7 @@ Intel Core i7-10750H CPU 2.60GHz, 1 CPU, 12 logical and 6 physical cores
 | CommunityToolkit_Diagnostics | 0.5532 ns | 0.0099 ns | 0.0088 ns | 0.5525 ns |  5.80 |    0.98 |         - |          NA |
 |                  Ensure_That | 2.5407 ns | 0.0649 ns | 0.0607 ns | 2.5187 ns | 26.51 |    4.22 |         - |          NA |
 
-## NotEmpty (Array)
+## Is_NotEmpty (Array)
 
 **.NET 7.0**
 
@@ -110,3 +110,25 @@ Intel Core i7-10750H CPU 2.60GHz, 1 CPU, 12 logical and 6 physical cores
 |         Ardalis_GuardClauses | 15.5611 ns | 0.1655 ns | 0.1467 ns | 15.5066 ns |     ? |       ? |         - |           ? |
 | CommunityToolkit_Diagnostics |  0.3880 ns | 0.0178 ns | 0.0158 ns |  0.3862 ns |     ? |       ? |         - |           ? |
 |                  Ensure_That |  2.6520 ns | 0.0429 ns | 0.0402 ns |  2.6421 ns |     ? |       ? |         - |           ? |
+
+## IsNotNullOrWhiteSpace_Length (String)
+
+**.NET 7.0**
+
+|                       Method |     Mean |     Error |    StdDev | Ratio | RatioSD | Allocated | Alloc Ratio |
+|----------------------------- |---------:|----------:|----------:|------:|--------:|----------:|------------:|
+|                     Baseline | 2.431 ns | 0.1078 ns | 0.1324 ns |  1.00 |    0.00 |         - |          NA |
+|           ArgumentValidation | 4.098 ns | 0.1362 ns | 0.1722 ns |  1.69 |    0.09 |         - |          NA |
+|                   Dawn_Guard | 7.344 ns | 0.2048 ns | 0.2663 ns |  3.04 |    0.21 |         - |          NA |
+| CommunityToolkit_Diagnostics | 2.544 ns | 0.0553 ns | 0.0518 ns |  1.03 |    0.05 |         - |          NA |
+|                  Ensure_That | 4.872 ns | 0.1549 ns | 0.2222 ns |  2.03 |    0.13 |         - |          NA |
+
+**.NET 6.0**
+
+|                       Method |     Mean |     Error |    StdDev | Ratio | RatioSD | Allocated | Alloc Ratio |
+|----------------------------- |---------:|----------:|----------:|------:|--------:|----------:|------------:|
+|                     Baseline | 1.739 ns | 0.0831 ns | 0.0777 ns |  1.00 |    0.00 |         - |          NA |
+|           ArgumentValidation | 3.962 ns | 0.1391 ns | 0.1546 ns |  2.29 |    0.13 |         - |          NA |
+|                   Dawn_Guard | 7.027 ns | 0.2054 ns | 0.2523 ns |  4.06 |    0.22 |         - |          NA |
+| CommunityToolkit_Diagnostics | 2.373 ns | 0.1069 ns | 0.1000 ns |  1.37 |    0.08 |         - |          NA |
+|                  Ensure_That | 5.063 ns | 0.1631 ns | 0.2539 ns |  2.91 |    0.20 |         - |          NA |
