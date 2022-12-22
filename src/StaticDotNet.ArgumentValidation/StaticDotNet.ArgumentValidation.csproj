@@ -25,6 +25,7 @@
 		<IncludeSymbols>True</IncludeSymbols>
 		<SymbolPackageFormat>snupkg</SymbolPackageFormat>
 		<EmbedUntrackedSources>true</EmbedUntrackedSources>
+		<PackageReleaseNotes>See README for release notes.</PackageReleaseNotes>
 	</PropertyGroup>
 
 	<ItemGroup>
