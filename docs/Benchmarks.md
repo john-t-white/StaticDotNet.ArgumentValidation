@@ -111,6 +111,30 @@ Intel Core i7-10750H CPU 2.60GHz, 1 CPU, 12 logical and 6 physical cores
 | CommunityToolkit_Diagnostics |  0.3880 ns | 0.0178 ns | 0.0158 ns |  0.3862 ns |     ? |       ? |         - |           ? |
 |                  Ensure_That |  2.6520 ns | 0.0429 ns | 0.0402 ns |  2.6421 ns |     ? |       ? |         - |           ? |
 
+## IsNotNull_NotEmpty (IList)
+
+**.NET 7.0**
+
+|                       Method |      Mean |     Error |    StdDev | Ratio | RatioSD | Allocated | Alloc Ratio |
+|----------------------------- |----------:|----------:|----------:|------:|--------:|----------:|------------:|
+|                     Baseline |  2.400 ns | 0.0372 ns | 0.0330 ns |  1.00 |    0.00 |         - |          NA |
+|           ArgumentValidation | 11.039 ns | 0.2811 ns | 0.3941 ns |  4.54 |    0.22 |         - |          NA |
+|                   Dawn_Guard | 58.875 ns | 1.2308 ns | 2.1557 ns | 24.56 |    0.64 |         - |          NA |
+|         Ardalis_GuardClauses |  6.870 ns | 0.0799 ns | 0.0748 ns |  2.86 |    0.06 |         - |          NA |
+| CommunityToolkit_Diagnostics |  2.384 ns | 0.0185 ns | 0.0164 ns |  0.99 |    0.01 |         - |          NA |
+|                  Ensure_That |  4.600 ns | 0.0728 ns | 0.0645 ns |  1.92 |    0.04 |         - |          NA |
+
+**.NET 6.0**
+
+|                       Method |      Mean |     Error |    StdDev | Ratio | RatioSD | Allocated | Alloc Ratio |
+|----------------------------- |----------:|----------:|----------:|------:|--------:|----------:|------------:|
+|                     Baseline |  1.631 ns | 0.0395 ns | 0.0351 ns |  1.00 |    0.00 |         - |          NA |
+|           ArgumentValidation | 10.126 ns | 0.1285 ns | 0.1073 ns |  6.22 |    0.19 |         - |          NA |
+|                   Dawn_Guard | 56.431 ns | 1.1911 ns | 1.5901 ns | 34.05 |    0.93 |         - |          NA |
+|         Ardalis_GuardClauses | 10.033 ns | 0.2520 ns | 0.2475 ns |  6.15 |    0.17 |         - |          NA |
+| CommunityToolkit_Diagnostics |  1.955 ns | 0.0999 ns | 0.1026 ns |  1.19 |    0.07 |         - |          NA |
+|                  Ensure_That |  4.015 ns | 0.0530 ns | 0.0470 ns |  2.46 |    0.06 |         - |          NA |
+
 ## IsNotNullOrWhiteSpace_Length (String)
 
 **.NET 7.0**
