@@ -286,6 +286,15 @@ namespace StaticDotNet.ArgumentValidation.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Value must be seekable..
+        /// </summary>
+        internal static string VALUE_MUST_BE_SEEKABLE {
+            get {
+                return ResourceManager.GetString("VALUE_MUST_BE_SEEKABLE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Value must be true..
         /// </summary>
         internal static string VALUE_MUST_BE_TRUE {
