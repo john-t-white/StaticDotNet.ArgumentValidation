@@ -7,14 +7,14 @@ using System.Threading.Tasks;
 
 namespace StaticDotNet.ArgumentValidation.UnitTests.StreamExtensionsTests;
 
-public sealed class Writable {
+public sealed class CanRead {
 
 	[Fact]
 	public void ReturnsCorrectly() {
 
 		ArgInfo<Stream> argInfo = new( new MemoryStream(), null, null );
 
-		ArgInfo<Stream> result = argInfo.Writable();
+		ArgInfo<Stream> result = argInfo.CanRead();
 
 		ArgInfoAssertions.Equal( argInfo, result );
 	}
@@ -23,17 +23,17 @@ public sealed class Writable {
 	public void WithNotReadableThrowsArgumentException() {
 
 		Stream argumentValue = Substitute.For<Stream>();
-		_ = argumentValue.CanWrite.Returns( false );
+		_ = argumentValue.CanRead.Returns( false );
 
 		string name = "Name";
 
 		ArgumentException exception = Assert.Throws<ArgumentException>( name, () => {
 
 			ArgInfo<Stream> argInfo = new( argumentValue, name, null );
-			_ = argInfo.Writable();
+			_ = argInfo.CanRead();
 		} );
 
-		string expectedMessage = "Value must be writable.";
+		string expectedMessage = "Value must be readable.";
 
 		Assert.StartsWith( expectedMessage, exception.Message );
 	}
@@ -42,7 +42,7 @@ public sealed class Writable {
 	public void WithNotReadableAndMessageThrowsArgumentException() {
 
 		Stream argumentValue = Substitute.For<Stream>();
-		_ = argumentValue.CanWrite.Returns( false );
+		_ = argumentValue.CanRead.Returns( false );
 
 		string name = "Name";
 		string message = "Message";
@@ -50,7 +50,7 @@ public sealed class Writable {
 		ArgumentException exception = Assert.Throws<ArgumentException>( name, () => {
 
 			ArgInfo<Stream> argInfo = new( argumentValue, name, message );
-			_ = argInfo.Writable();
+			_ = argInfo.CanRead();
 		} );
 
 		Assert.StartsWith( message, exception.Message );

@@ -16,7 +16,19 @@ public static class StreamExtensions {
 	/// <param name="argInfo">The argument info.</param>
 	/// <returns>The <paramref name="argInfo"/>.</returns>
 	/// <exception cref="ArgumentException">Thrown when <paramref name="argInfo.Value"/> is not readable.</exception>
+	[Obsolete( "Use CanRead instead." )]
 	public static ref readonly ArgInfo<TArg> Readable<TArg>( in this ArgInfo<TArg> argInfo )
+		where TArg : Stream
+		=> ref CanRead( argInfo );
+
+	/// <summary>
+	/// Ensures a stream argument is readable, otherwise an <see cref="ArgumentException"/> is thrown.
+	/// </summary>
+	/// <typeparam name="TArg">The argument type.</typeparam>
+	/// <param name="argInfo">The argument info.</param>
+	/// <returns>The <paramref name="argInfo"/>.</returns>
+	/// <exception cref="ArgumentException">Thrown when <paramref name="argInfo.Value"/> is not readable.</exception>
+	public static ref readonly ArgInfo<TArg> CanRead<TArg>( in this ArgInfo<TArg> argInfo )
 		where TArg: Stream {
 
 		if( argInfo.Value.CanRead ) {
@@ -34,7 +46,19 @@ public static class StreamExtensions {
 	/// <param name="argInfo">The argument info.</param>
 	/// <returns>The <paramref name="argInfo"/>.</returns>
 	/// <exception cref="ArgumentException">Thrown when <paramref name="argInfo.Value"/> is not writable.</exception>
+	[Obsolete( "Use CanWrite instead." )]
 	public static ref readonly ArgInfo<TArg> Writable<TArg>( in this ArgInfo<TArg> argInfo )
+		where TArg : Stream
+		=> ref CanWrite( argInfo );
+
+	/// <summary>
+	/// Ensures a stream argument is writable, otherwise an <see cref="ArgumentException"/> is thrown.
+	/// </summary>
+	/// <typeparam name="TArg">The argument type.</typeparam>
+	/// <param name="argInfo">The argument info.</param>
+	/// <returns>The <paramref name="argInfo"/>.</returns>
+	/// <exception cref="ArgumentException">Thrown when <paramref name="argInfo.Value"/> is not writable.</exception>
+	public static ref readonly ArgInfo<TArg> CanWrite<TArg>( in this ArgInfo<TArg> argInfo )
 		where TArg : Stream {
 
 		if( argInfo.Value.CanWrite ) {
