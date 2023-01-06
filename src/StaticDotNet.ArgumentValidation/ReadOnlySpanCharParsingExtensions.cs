@@ -25,7 +25,7 @@ public static class ReadOnlySpanCharParsingExtensions {
 			return new( result, argInfo.Name, argInfo.Message );
 		}
 
-		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, Constants.VALUE_MUST_BE_PARSABLE_TO, typeof( T ).FullName );
+		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessages.VALUE_MUST_BE_PARSABLE_TO, typeof( T ).FullName );
 		throw new ArgumentException( message, argInfo.Name );
 	}
 
@@ -43,7 +43,7 @@ public static class ReadOnlySpanCharParsingExtensions {
 			return new( result, argInfo.Name, argInfo.Message );
 		}
 
-		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, Constants.VALUE_MUST_BE_PARSABLE_TO, typeof( Guid ).FullName );
+		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessages.VALUE_MUST_BE_PARSABLE_TO, typeof( Guid ).FullName );
 		throw new ArgumentException( message, argInfo.Name );
 	}
 
@@ -60,7 +60,7 @@ public static class ReadOnlySpanCharParsingExtensions {
 			return new( result, argInfo.Name, argInfo.Message );
 		}
 
-		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, Constants.VALUE_MUST_BE_PARSABLE_TO, typeof( Guid ).FullName );
+		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessages.VALUE_MUST_BE_PARSABLE_TO, typeof( Guid ).FullName );
 		throw new ArgumentException( message, argInfo.Name );
 	}
 
@@ -78,7 +78,7 @@ public static class ReadOnlySpanCharParsingExtensions {
 			return new( result, argInfo.Name, argInfo.Message );
 		}
 
-		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, Constants.VALUE_MUST_BE_PARSABLE_TO, typeof( byte ).FullName );
+		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessages.VALUE_MUST_BE_PARSABLE_TO, typeof( byte ).FullName );
 		throw new ArgumentException( message, argInfo.Name );
 	}
 
@@ -96,7 +96,7 @@ public static class ReadOnlySpanCharParsingExtensions {
 			return new( result, argInfo.Name, argInfo.Message );
 		}
 
-		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, Constants.VALUE_MUST_BE_PARSABLE_TO, typeof( short ).FullName );
+		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessages.VALUE_MUST_BE_PARSABLE_TO, typeof( short ).FullName );
 		throw new ArgumentException( message, argInfo.Name );
 	}
 
@@ -114,7 +114,7 @@ public static class ReadOnlySpanCharParsingExtensions {
 			return new( result, argInfo.Name, argInfo.Message );
 		}
 
-		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, Constants.VALUE_MUST_BE_PARSABLE_TO, typeof( int ).FullName );
+		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessages.VALUE_MUST_BE_PARSABLE_TO, typeof( int ).FullName );
 		throw new ArgumentException( message, argInfo.Name );
 	}
 
@@ -132,7 +132,7 @@ public static class ReadOnlySpanCharParsingExtensions {
 			return new( result, argInfo.Name, argInfo.Message );
 		}
 
-		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, Constants.VALUE_MUST_BE_PARSABLE_TO, typeof( long ).FullName );
+		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessages.VALUE_MUST_BE_PARSABLE_TO, typeof( long ).FullName );
 		throw new ArgumentException( message, argInfo.Name );
 	}
 
@@ -149,7 +149,7 @@ public static class ReadOnlySpanCharParsingExtensions {
 			return new( result, argInfo.Name, argInfo.Message );
 		}
 
-		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, Constants.VALUE_MUST_BE_PARSABLE_TO, typeof( TimeSpan ).FullName );
+		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessages.VALUE_MUST_BE_PARSABLE_TO, typeof( TimeSpan ).FullName );
 		throw new ArgumentException( message, argInfo.Name );
 	}
 
@@ -168,7 +168,7 @@ public static class ReadOnlySpanCharParsingExtensions {
 			return new( result, argInfo.Name, argInfo.Message );
 		}
 
-		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, Constants.VALUE_MUST_BE_PARSABLE_TO, typeof( TimeSpan ).FullName );
+		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessages.VALUE_MUST_BE_PARSABLE_TO, typeof( TimeSpan ).FullName );
 		throw new ArgumentException( message, argInfo.Name );
 	}
 
@@ -187,7 +187,7 @@ public static class ReadOnlySpanCharParsingExtensions {
 			return new( result, argInfo.Name, argInfo.Message );
 		}
 
-		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, Constants.VALUE_MUST_BE_PARSABLE_TO, typeof( TimeSpan ).FullName );
+		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessages.VALUE_MUST_BE_PARSABLE_TO, typeof( TimeSpan ).FullName );
 		throw new ArgumentException( message, argInfo.Name );
 	}
 
@@ -205,7 +205,7 @@ public static class ReadOnlySpanCharParsingExtensions {
 			return new( result, argInfo.Name, argInfo.Message );
 		}
 
-		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, Constants.VALUE_MUST_BE_PARSABLE_TO, typeof( DateTime ).FullName );
+		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessages.VALUE_MUST_BE_PARSABLE_TO, typeof( DateTime ).FullName );
 		throw new ArgumentException( message, argInfo.Name );
 	}
 
@@ -224,7 +224,7 @@ public static class ReadOnlySpanCharParsingExtensions {
 			return new( result, argInfo.Name, argInfo.Message );
 		}
 
-		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, Constants.VALUE_MUST_BE_PARSABLE_TO, typeof( DateTime ).FullName );
+		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessages.VALUE_MUST_BE_PARSABLE_TO, typeof( DateTime ).FullName );
 		throw new ArgumentException( message, argInfo.Name );
 	}
 
@@ -243,7 +243,7 @@ public static class ReadOnlySpanCharParsingExtensions {
 			return new( result, argInfo.Name, argInfo.Message );
 		}
 
-		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, Constants.VALUE_MUST_BE_PARSABLE_TO, typeof( DateTime ).FullName );
+		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessages.VALUE_MUST_BE_PARSABLE_TO, typeof( DateTime ).FullName );
 		throw new ArgumentException( message, argInfo.Name );
 	}
 
@@ -261,7 +261,7 @@ public static class ReadOnlySpanCharParsingExtensions {
 			return new( result, argInfo.Name, argInfo.Message );
 		}
 
-		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, Constants.VALUE_MUST_BE_PARSABLE_TO, typeof( DateTimeOffset ).FullName );
+		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessages.VALUE_MUST_BE_PARSABLE_TO, typeof( DateTimeOffset ).FullName );
 		throw new ArgumentException( message, argInfo.Name );
 	}
 
@@ -280,7 +280,7 @@ public static class ReadOnlySpanCharParsingExtensions {
 			return new( result, argInfo.Name, argInfo.Message );
 		}
 
-		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, Constants.VALUE_MUST_BE_PARSABLE_TO, typeof( DateTimeOffset ).FullName );
+		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessages.VALUE_MUST_BE_PARSABLE_TO, typeof( DateTimeOffset ).FullName );
 		throw new ArgumentException( message, argInfo.Name );
 	}
 
@@ -299,7 +299,7 @@ public static class ReadOnlySpanCharParsingExtensions {
 			return new( result, argInfo.Name, argInfo.Message );
 		}
 
-		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, Constants.VALUE_MUST_BE_PARSABLE_TO, typeof( DateTimeOffset ).FullName );
+		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessages.VALUE_MUST_BE_PARSABLE_TO, typeof( DateTimeOffset ).FullName );
 		throw new ArgumentException( message, argInfo.Name );
 	}
 
@@ -319,7 +319,7 @@ public static class ReadOnlySpanCharParsingExtensions {
 			return new( result, argInfo.Name, argInfo.Message );
 		}
 
-		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, Constants.VALUE_MUST_BE_PARSABLE_TO, typeof( DateOnly ).FullName );
+		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessages.VALUE_MUST_BE_PARSABLE_TO, typeof( DateOnly ).FullName );
 		throw new ArgumentException( message, argInfo.Name );
 	}
 
@@ -338,7 +338,7 @@ public static class ReadOnlySpanCharParsingExtensions {
 			return new( result, argInfo.Name, argInfo.Message );
 		}
 
-		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, Constants.VALUE_MUST_BE_PARSABLE_TO, typeof( DateOnly ).FullName );
+		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessages.VALUE_MUST_BE_PARSABLE_TO, typeof( DateOnly ).FullName );
 		throw new ArgumentException( message, argInfo.Name );
 	}
 
@@ -357,7 +357,7 @@ public static class ReadOnlySpanCharParsingExtensions {
 			return new( result, argInfo.Name, argInfo.Message );
 		}
 
-		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, Constants.VALUE_MUST_BE_PARSABLE_TO, typeof( DateOnly ).FullName );
+		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessages.VALUE_MUST_BE_PARSABLE_TO, typeof( DateOnly ).FullName );
 		throw new ArgumentException( message, argInfo.Name );
 	}
 
@@ -375,7 +375,7 @@ public static class ReadOnlySpanCharParsingExtensions {
 			return new( result, argInfo.Name, argInfo.Message );
 		}
 
-		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, Constants.VALUE_MUST_BE_PARSABLE_TO, typeof( TimeOnly ).FullName );
+		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessages.VALUE_MUST_BE_PARSABLE_TO, typeof( TimeOnly ).FullName );
 		throw new ArgumentException( message, argInfo.Name );
 	}
 
@@ -394,7 +394,7 @@ public static class ReadOnlySpanCharParsingExtensions {
 			return new( result, argInfo.Name, argInfo.Message );
 		}
 
-		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, Constants.VALUE_MUST_BE_PARSABLE_TO, typeof( TimeOnly ).FullName );
+		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessages.VALUE_MUST_BE_PARSABLE_TO, typeof( TimeOnly ).FullName );
 		throw new ArgumentException( message, argInfo.Name );
 	}
 
@@ -413,7 +413,7 @@ public static class ReadOnlySpanCharParsingExtensions {
 			return new( result, argInfo.Name, argInfo.Message );
 		}
 
-		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, Constants.VALUE_MUST_BE_PARSABLE_TO, typeof( TimeOnly ).FullName );
+		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessages.VALUE_MUST_BE_PARSABLE_TO, typeof( TimeOnly ).FullName );
 		throw new ArgumentException( message, argInfo.Name );
 	}
 

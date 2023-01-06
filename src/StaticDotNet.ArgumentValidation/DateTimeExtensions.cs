@@ -21,7 +21,7 @@ public static class DateTimeExtensions {
 			return ref argInfo;
 		}
 
-		string message = argInfo.Message ?? Constants.VALUE_MUST_HAVE_DATETIMEKIND_UTC;
+		string message = argInfo.Message ?? ExceptionMessages.VALUE_MUST_HAVE_DATETIMEKIND_UTC;
 		throw new ArgumentException( message, argInfo.Name );
 	}
 
@@ -37,7 +37,7 @@ public static class DateTimeExtensions {
 			return ref argInfo;
 		}
 
-		string message = argInfo.Message ?? Constants.VALUE_MUST_HAVE_DATETIMEKIND_LOCAL;
+		string message = argInfo.Message ?? ExceptionMessages.VALUE_MUST_HAVE_DATETIMEKIND_LOCAL;
 		throw new ArgumentException( message, argInfo.Name );
 	}
 }

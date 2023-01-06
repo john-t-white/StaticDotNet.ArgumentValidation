@@ -23,7 +23,7 @@ public static class StreamExtensions {
 			return ref argInfo;
 		}
 
-		string message = argInfo.Message ?? Constants.VALUE_MUST_BE_READABLE;
+		string message = argInfo.Message ?? ExceptionMessages.VALUE_MUST_BE_READABLE;
 		throw new ArgumentException( message, argInfo.Name );
 	}
 
@@ -41,7 +41,7 @@ public static class StreamExtensions {
 			return ref argInfo;
 		}
 
-		string message = argInfo.Message ?? Constants.VALUE_MUST_BE_WRITABLE;
+		string message = argInfo.Message ?? ExceptionMessages.VALUE_MUST_BE_WRITABLE;
 		throw new ArgumentException( message, argInfo.Name );
 	}
 }

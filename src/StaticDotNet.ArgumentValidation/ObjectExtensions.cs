@@ -23,7 +23,7 @@ public static class ObjectExtensions {
 			return ref argInfo;
 		}
 
-		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, Constants.VALUE_MUST_BE_EQUAL_TO, value?.ToString() ?? Constants.NULL );
+		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessages.VALUE_MUST_BE_EQUAL_TO, value?.ToString() ?? Constants.NULL );
 		throw new ArgumentException( message, argInfo.Name );
 	}
 
@@ -42,7 +42,7 @@ public static class ObjectExtensions {
 			return ref argInfo;
 		}
 
-		string message = argInfo.Message ?? Constants.VALUE_MUST_BE_SAME;
+		string message = argInfo.Message ?? ExceptionMessages.VALUE_MUST_BE_SAME;
 		throw new ArgumentException( message, argInfo.Name );
 	}
 }

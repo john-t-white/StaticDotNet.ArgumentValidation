@@ -36,7 +36,7 @@ public static class TypeExtensions {
 			return ref argInfo;
 		}
 
-		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, Constants.VALUE_MUST_BE_ASSIGNABLE_TO, type?.FullName ?? Constants.NULL );
+		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessages.VALUE_MUST_BE_ASSIGNABLE_TO, type?.FullName ?? Constants.NULL );
 		throw new ArgumentException( message, argInfo.Name );
 	}
 
@@ -63,7 +63,7 @@ public static class TypeExtensions {
 			return ref argInfo;
 		}
 
-		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, Constants.VALUE_MUST_BE_ASSIGNABLE_TO, type?.FullName ?? Constants.NULL );
+		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessages.VALUE_MUST_BE_ASSIGNABLE_TO, type?.FullName ?? Constants.NULL );
 		throw new ArgumentException( message, argInfo.Name );
 	}
 }

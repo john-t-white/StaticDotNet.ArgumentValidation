@@ -68,7 +68,7 @@ public static class Arg {
 	/// <exception cref="ArgumentNullException">Thrown when <paramref name="value"/> is unexpectedly null and shouldn't be.</exception>
 	public static ArgInfo<T> Is<T>( T value, [CallerArgumentExpression( nameof( value ) )] string? name = null, string? message = null )
 		where T : notnull
-		=> value is not null ? new( value, name, message ) : throw new ArgumentNullException( name, Constants.VALUE_UNEXPECTED_NULL );
+		=> value is not null ? new( value, name, message ) : throw new ArgumentNullException( name, ExceptionMessages.VALUE_UNEXPECTED_NULL );
 
 #if NETSTANDARD2_1_OR_GREATER || NET5_0_OR_GREATER
 
@@ -108,5 +108,5 @@ public static class Arg {
 	public static T? IsNull<T>( T? value, [CallerArgumentExpression( nameof( value ) )] string? name = null, string? message = null )
 		=> value is null
 			? default
-			: throw new ArgumentException( message ?? Constants.VALUE_MUST_BE_NULL, name );
+			: throw new ArgumentException( message ?? ExceptionMessages.VALUE_MUST_BE_NULL, name );
 }

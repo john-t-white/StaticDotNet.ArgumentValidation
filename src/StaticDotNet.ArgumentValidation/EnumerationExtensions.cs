@@ -28,7 +28,7 @@ public static class EnumerationExtensions {
 			return ref argInfo;
 		}
 #endif
-		string message = argInfo.Message ?? Constants.VALUE_NOT_DEFINED;
+		string message = argInfo.Message ?? ExceptionMessages.VALUE_NOT_DEFINED;
 		throw new ArgumentException( message, argInfo.Name );
 	}
 }

@@ -21,7 +21,7 @@ public static class CharExtensions {
 			return ref argInfo;
 		}
 
-		string message = argInfo.Message ?? Constants.VALUE_CANNOT_BE_WHITE_SPACE;
+		string message = argInfo.Message ?? ExceptionMessages.VALUE_CANNOT_BE_WHITE_SPACE;
 		throw new ArgumentException( message, argInfo.Name );
 	}
 
@@ -37,7 +37,7 @@ public static class CharExtensions {
 			return ref argInfo;
 		}
 
-		string message = argInfo.Message ?? Constants.VALUE_MUST_BE_DIGIT;
+		string message = argInfo.Message ?? ExceptionMessages.VALUE_MUST_BE_DIGIT;
 		throw new ArgumentException( message, argInfo.Name );
 	}
 
@@ -53,7 +53,7 @@ public static class CharExtensions {
 			return ref argInfo;
 		}
 
-		string message = argInfo.Message ?? Constants.VALUE_MUST_BE_LETTER;
+		string message = argInfo.Message ?? ExceptionMessages.VALUE_MUST_BE_LETTER;
 		throw new ArgumentException( message, argInfo.Name );
 	}
 
@@ -69,7 +69,7 @@ public static class CharExtensions {
 			return ref argInfo;
 		}
 
-		string message = argInfo.Message ?? Constants.VALUE_MUST_BE_LETTER_OR_DIGIT;
+		string message = argInfo.Message ?? ExceptionMessages.VALUE_MUST_BE_LETTER_OR_DIGIT;
 		throw new ArgumentException( message, argInfo.Name );
 	}
 
@@ -85,7 +85,7 @@ public static class CharExtensions {
 			return ref argInfo;
 		}
 
-		string message = argInfo.Message ?? Constants.VALUE_MUST_BE_NUMBER;
+		string message = argInfo.Message ?? ExceptionMessages.VALUE_MUST_BE_NUMBER;
 		throw new ArgumentException( message, argInfo.Name );
 	}
 
@@ -101,7 +101,7 @@ public static class CharExtensions {
 			return ref argInfo;
 		}
 
-		string message = argInfo.Message ?? Constants.VALUE_MUST_BE_LOWER;
+		string message = argInfo.Message ?? ExceptionMessages.VALUE_MUST_BE_LOWER;
 		throw new ArgumentException( message, argInfo.Name );
 	}
 
@@ -117,7 +117,7 @@ public static class CharExtensions {
 			return ref argInfo;
 		}
 
-		string message = argInfo.Message ?? Constants.VALUE_MUST_BE_UPPER;
+		string message = argInfo.Message ?? ExceptionMessages.VALUE_MUST_BE_UPPER;
 		throw new ArgumentException( message, argInfo.Name );
 	}
 }

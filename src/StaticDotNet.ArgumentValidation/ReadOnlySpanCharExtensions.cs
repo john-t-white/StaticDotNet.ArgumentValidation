@@ -23,7 +23,7 @@ public static class ReadOnlySpanCharExtensions {
 			}
 		}
 
-		string message = argInfo.Message ?? Constants.VALUE_CANNOT_BE_WHITE_SPACE;
+		string message = argInfo.Message ?? ExceptionMessages.VALUE_CANNOT_BE_WHITE_SPACE;
 		throw new ArgumentException( message, argInfo.Name );
 	}
 
@@ -41,7 +41,7 @@ public static class ReadOnlySpanCharExtensions {
 			return ref argInfo;
 		}
 
-		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, Constants.VALUE_MUST_BE_EQUAL_TO, value.ToString() );
+		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessages.VALUE_MUST_BE_EQUAL_TO, value.ToString() );
 		throw new ArgumentException( message, argInfo.Name );
 	}
 
@@ -59,7 +59,7 @@ public static class ReadOnlySpanCharExtensions {
 			return ref argInfo;
 		}
 
-		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, Constants.VALUE_MUST_START_WITH, value.ToString() );
+		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessages.VALUE_MUST_START_WITH, value.ToString() );
 		throw new ArgumentException( message, argInfo.Name );
 	}
 
@@ -77,7 +77,7 @@ public static class ReadOnlySpanCharExtensions {
 			return ref argInfo;
 		}
 
-		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, Constants.VALUE_MUST_END_WITH, value.ToString() );
+		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessages.VALUE_MUST_END_WITH, value.ToString() );
 		throw new ArgumentException( message, argInfo.Name );
 	}
 
@@ -95,7 +95,7 @@ public static class ReadOnlySpanCharExtensions {
 			return ref argInfo;
 		}
 
-		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, Constants.VALUE_MUST_CONTAIN, value.ToString() );
+		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessages.VALUE_MUST_CONTAIN, value.ToString() );
 		throw new ArgumentException( message, argInfo.Name );
 	}
 }

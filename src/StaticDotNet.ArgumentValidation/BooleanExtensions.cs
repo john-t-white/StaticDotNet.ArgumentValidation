@@ -21,7 +21,7 @@ public static class BooleanExtensions {
 			return ref argInfo;
 		}
 
-		string message = argInfo.Message ?? Constants.VALUE_MUST_BE_TRUE;
+		string message = argInfo.Message ?? ExceptionMessages.VALUE_MUST_BE_TRUE;
 		throw new ArgumentException( message, argInfo.Name );
 	}
 
@@ -37,7 +37,7 @@ public static class BooleanExtensions {
 			return ref argInfo;
 		}
 
-		string message = argInfo.Message ?? Constants.VALUE_MUST_BE_FALSE;
+		string message = argInfo.Message ?? ExceptionMessages.VALUE_MUST_BE_FALSE;
 		throw new ArgumentException( message, argInfo.Name );
 	}
 }
