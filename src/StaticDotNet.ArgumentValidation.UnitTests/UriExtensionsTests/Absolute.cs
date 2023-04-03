@@ -34,7 +34,7 @@ public sealed class Absolute {
 	[Fact]
 	public void WithNotAbsoluteThrowsArgumentException() {
 
-		Uri argumentValue = new( "/relative", UriKind.Relative );
+		Uri argumentValue = new( "relative", UriKind.Relative );
 		string name = "Name";
 
 		ArgumentException exception = Assert.Throws<ArgumentException>( name, () => {
@@ -42,7 +42,7 @@ public sealed class Absolute {
 			_ = argInfo.Absolute();
 		} );
 
-		string expectedMessage = "Value must be absolute.";
+		string expectedMessage = $"\"{argumentValue}\" must be an absolute uri.";
 
 		Assert.StartsWith( expectedMessage, exception.Message );
 	}
@@ -59,7 +59,7 @@ public sealed class Absolute {
 			_ = argInfo.Absolute( scheme );
 		} );
 
-		string expectedMessage = $"Value must be absolute with scheme {scheme}.";
+		string expectedMessage = $"\"{argumentValue}\" must be an absolute uri with scheme {scheme}.";
 
 		Assert.StartsWith( expectedMessage, exception.Message );
 	}
@@ -67,7 +67,7 @@ public sealed class Absolute {
 	[Fact]
 	public void WithNotAbsoluteAndMessageThrowsArgumentException() {
 
-		Uri argumentValue = new( "/relative", UriKind.Relative );
+		Uri argumentValue = new( "relative", UriKind.Relative );
 		string name = "Name";
 		string message = "Message";
 

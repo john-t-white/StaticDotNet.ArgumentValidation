@@ -132,11 +132,14 @@
   <data name="VALUE_CANNOT_HAVE_LENGTH_LESS_THAN" xml:space="preserve">
     <value>Value cannot have a length less than {0}.</value>
   </data>
-  <data name="VALUE_MUST_BE_ABSOLUTE" xml:space="preserve">
-    <value>Value must be absolute.</value>
+  <data name="VALUE_MUST_BE_ABSOLUTE_URI" xml:space="preserve">
+    <value>"{0}" must be an absolute uri.</value>
+    <comment>{0} - Argument Value</comment>
   </data>
   <data name="VALUE_MUST_BE_ABSOLUTE_WITH_SCHEME" xml:space="preserve">
-    <value>Value must be absolute with scheme {0}.</value>
+    <value>"{0}" must be an absolute uri with scheme {1}.</value>
+    <comment>{0} - Argument Value
+{1} - Expected Scheme</comment>
   </data>
   <data name="VALUE_MUST_BE_ASSIGNABLE_TO" xml:space="preserve">
     <value>Value must be assignable to {0}.</value>
@@ -187,7 +190,8 @@
     <value>Value must be readable.</value>
   </data>
   <data name="VALUE_MUST_BE_RELATIVE" xml:space="preserve">
-    <value>Value must be relative.</value>
+    <value>"{0}" must be a relative uri.</value>
+    <comment>{0} - Argument Value</comment>
   </data>
   <data name="VALUE_MUST_BE_SAME" xml:space="preserve">
     <value>Value must be the same.</value>

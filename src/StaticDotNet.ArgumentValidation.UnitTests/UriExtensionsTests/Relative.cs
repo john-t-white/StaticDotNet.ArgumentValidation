@@ -30,7 +30,7 @@ public sealed class Relative {
 			_ = argInfo.Relative();
 		} );
 
-		string expectedMessage = "Value must be relative.";
+		string expectedMessage = $"\"{ argumentValue}\" must be a relative uri.";
 
 		Assert.StartsWith( expectedMessage, exception.Message );
 	}

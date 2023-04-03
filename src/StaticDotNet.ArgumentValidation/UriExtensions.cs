@@ -26,8 +26,8 @@ public static class UriExtensions {
 		}
 
 		string message = argInfo.Message ?? ( scheme is not null
-												? string.Format( CultureInfo.InvariantCulture, ExceptionMessages.VALUE_MUST_BE_ABSOLUTE_WITH_SCHEME, scheme )
-												: ExceptionMessages.VALUE_MUST_BE_ABSOLUTE );
+												? string.Format( CultureInfo.InvariantCulture, ExceptionMessages.VALUE_MUST_BE_ABSOLUTE_WITH_SCHEME, argInfo.Value, scheme )
+												: string.Format( CultureInfo.InvariantCulture, ExceptionMessages.VALUE_MUST_BE_ABSOLUTE_URI, argInfo.Value ) );
 
 		throw new ArgumentException( message, argInfo.Name );
 	}
@@ -46,7 +46,7 @@ public static class UriExtensions {
 			return ref argInfo;
 		}
 
-		string message = argInfo.Message ?? ExceptionMessages.VALUE_MUST_BE_RELATIVE;
+		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessages.VALUE_MUST_BE_RELATIVE, argInfo.Value );
 		throw new ArgumentException( message, argInfo.Name );
 	}
 }

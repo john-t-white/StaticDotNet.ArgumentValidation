@@ -106,16 +106,16 @@ namespace StaticDotNet.ArgumentValidation.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Value must be absolute..
+        ///   Looks up a localized string similar to &quot;{0}&quot; must be an absolute uri..
         /// </summary>
-        internal static string VALUE_MUST_BE_ABSOLUTE {
+        internal static string VALUE_MUST_BE_ABSOLUTE_URI {
             get {
-                return ResourceManager.GetString("VALUE_MUST_BE_ABSOLUTE", resourceCulture);
+                return ResourceManager.GetString("VALUE_MUST_BE_ABSOLUTE_URI", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Value must be absolute with scheme {0}..
+        ///   Looks up a localized string similar to &quot;{0}&quot; must be an absolute uri with scheme {1}..
         /// </summary>
         internal static string VALUE_MUST_BE_ABSOLUTE_WITH_SCHEME {
             get {
@@ -268,7 +268,7 @@ namespace StaticDotNet.ArgumentValidation.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Value must be relative..
+        ///   Looks up a localized string similar to &quot;{0}&quot; must be a relative uri..
         /// </summary>
         internal static string VALUE_MUST_BE_RELATIVE {
             get {
