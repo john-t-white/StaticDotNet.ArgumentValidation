@@ -70,6 +70,24 @@ namespace StaticDotNet.ArgumentValidation.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Value &quot;{0}&quot; with a length of {1} is below the minimum length of {2}..
+        /// </summary>
+        internal static string STRING_LENGTH_BELOW_MIN_LENGTH {
+            get {
+                return ResourceManager.GetString("STRING_LENGTH_BELOW_MIN_LENGTH", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Value &quot;{0}&quot; with a length of {1} exceeds the maximum length of {2}..
+        /// </summary>
+        internal static string STRING_LENGTH_EXCEEDS_MAX_LENGTH {
+            get {
+                return ResourceManager.GetString("STRING_LENGTH_EXCEEDS_MAX_LENGTH", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Value cannot be empty..
         /// </summary>
         internal static string VALUE_CANNOT_BE_EMPTY {
@@ -90,9 +108,9 @@ namespace StaticDotNet.ArgumentValidation.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Value with a length of {0} is below the minimum length of {1}..
         /// </summary>
-        internal static string VALUE_LENGTH_BELOW_MINIMUM_LENGTH {
+        internal static string VALUE_LENGTH_BELOW_MIN_LENGTH {
             get {
-                return ResourceManager.GetString("VALUE_LENGTH_BELOW_MINIMUM_LENGTH", resourceCulture);
+                return ResourceManager.GetString("VALUE_LENGTH_BELOW_MIN_LENGTH", resourceCulture);
             }
         }
         

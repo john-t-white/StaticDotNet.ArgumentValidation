@@ -120,13 +120,25 @@
   <data name="SEE_INNER_EXCEPTION_FOR_DETAILS" xml:space="preserve">
     <value>See inner excepetion for details.</value>
   </data>
+  <data name="STRING_LENGTH_BELOW_MIN_LENGTH" xml:space="preserve">
+    <value>Value "{0}" with a length of {1} is below the minimum length of {2}.</value>
+    <comment>{0} - Value
+{1} - Array Value Length
+{2} - Minimum Length</comment>
+  </data>
+  <data name="STRING_LENGTH_EXCEEDS_MAX_LENGTH" xml:space="preserve">
+    <value>Value "{0}" with a length of {1} exceeds the maximum length of {2}.</value>
+    <comment>{0} - Value
+{1} - Array Value Length
+{2} - Maximum Length</comment>
+  </data>
   <data name="VALUE_CANNOT_BE_EMPTY" xml:space="preserve">
     <value>Value cannot be empty.</value>
   </data>
   <data name="VALUE_CANNOT_BE_WHITE_SPACE" xml:space="preserve">
     <value>Value cannot be white space.</value>
   </data>
-  <data name="VALUE_LENGTH_BELOW_MINIMUM_LENGTH" xml:space="preserve">
+  <data name="VALUE_LENGTH_BELOW_MIN_LENGTH" xml:space="preserve">
     <value>Value with a length of {0} is below the minimum length of {1}.</value>
     <comment>{0} - Array Value Length
 {1} - Minimum Length</comment>

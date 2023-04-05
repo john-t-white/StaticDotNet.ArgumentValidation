@@ -47,6 +47,23 @@ public sealed class MaxLength {
 
 		Assert.StartsWith( message, exception.Message );
 	}
+
+	[Fact]
+	public void WithInvalidStringLengthThrowsArgumentOutOfRangeException() {
+
+		string argumentValue = "12345";
+		string name = "Name";
+		int length = 4;
+
+		ArgumentOutOfRangeException exception = Assert.Throws<ArgumentOutOfRangeException>( name, () => {
+			SpanArgInfo<char> argInfo = new( argumentValue.ToCharArray(), name, null );
+			_ = SpanExtensions.MaxLength( argInfo, length );
+		} );
+
+		string expectedMessage = $"Value \"{argumentValue}\" with a length of {argumentValue.Length} exceeds the maximum length of {length}.";
+
+		Assert.StartsWith( expectedMessage, exception.Message );
+	}
 }
 
 #endif

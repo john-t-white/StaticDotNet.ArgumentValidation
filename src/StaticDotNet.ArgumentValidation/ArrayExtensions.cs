@@ -60,7 +60,7 @@ public static class ArrayExtensions {
 			return ref argInfo;
 		}
 
-		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessages.VALUE_LENGTH_BELOW_MINIMUM_LENGTH, argInfo.Value.Length, length );
+		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessages.VALUE_LENGTH_BELOW_MIN_LENGTH, argInfo.Value.Length, length );
 		throw new ArgumentOutOfRangeException( argInfo.Name, message );
 	}
 

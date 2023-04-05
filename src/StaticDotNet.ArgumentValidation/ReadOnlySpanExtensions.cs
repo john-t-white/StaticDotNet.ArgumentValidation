@@ -58,7 +58,12 @@ public static class ReadOnlySpanExtensions {
 			return ref argInfo;
 		}
 
-		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessages.VALUE_LENGTH_EXCEEDS_MAX_LENGTH, argInfo.Value.Length, length );
+		string? message = argInfo.Message;
+
+		message ??= typeof( T ) != typeof( char )
+				? string.Format( CultureInfo.InvariantCulture, ExceptionMessages.VALUE_LENGTH_EXCEEDS_MAX_LENGTH, argInfo.Value.Length, length )
+				: string.Format( CultureInfo.InvariantCulture, ExceptionMessages.STRING_LENGTH_EXCEEDS_MAX_LENGTH, argInfo.Value.ToString(), argInfo.Value.Length, length );
+
 		throw new ArgumentOutOfRangeException( argInfo.Name, message );
 	}
 
@@ -76,7 +81,12 @@ public static class ReadOnlySpanExtensions {
 			return ref argInfo;
 		}
 
-		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessages.VALUE_LENGTH_BELOW_MINIMUM_LENGTH, argInfo.Value.Length, length );
+		string? message = argInfo.Message;
+
+		message ??= typeof( T ) != typeof( char )
+				? string.Format( CultureInfo.InvariantCulture, ExceptionMessages.VALUE_LENGTH_BELOW_MIN_LENGTH, argInfo.Value.Length, length )
+				: string.Format( CultureInfo.InvariantCulture, ExceptionMessages.STRING_LENGTH_BELOW_MIN_LENGTH, argInfo.Value.ToString(), argInfo.Value.Length, length );
+
 		throw new ArgumentOutOfRangeException( argInfo.Name, message );
 	}
 

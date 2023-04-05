@@ -28,7 +28,7 @@ public sealed class MinLength {
 			_ = StringExtensions.MinLength( argInfo, length );
 		} );
 
-		string expectedMessage = $"Value with a length of {argumentValue.Length} is below the minimum length of {length}.";
+		string expectedMessage = $"Value \"{argumentValue}\" with a length of {argumentValue.Length} is below the minimum length of {length}.";
 
 		Assert.StartsWith( expectedMessage, exception.Message );
 	}

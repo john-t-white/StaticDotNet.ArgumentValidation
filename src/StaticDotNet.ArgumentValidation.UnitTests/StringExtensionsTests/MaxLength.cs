@@ -28,7 +28,7 @@ public sealed class MaxLength {
 			_ = StringExtensions.MaxLength( argInfo, length );
 		} );
 
-		string expectedMessage = $"Value with a length of {argumentValue.Length} exceeds the maximum length of {length}.";
+		string expectedMessage = $"Value \"{argumentValue}\" with a length of {argumentValue.Length} exceeds the maximum length of {length}.";
 
 		Assert.StartsWith( expectedMessage, exception.Message );
 	}
