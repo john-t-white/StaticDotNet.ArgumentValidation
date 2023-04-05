@@ -126,11 +126,15 @@
   <data name="VALUE_CANNOT_BE_WHITE_SPACE" xml:space="preserve">
     <value>Value cannot be white space.</value>
   </data>
-  <data name="VALUE_CANNOT_HAVE_LENGTH_GREATER_THAN" xml:space="preserve">
-    <value>Value cannot have a length greater than {0}.</value>
+  <data name="VALUE_LENGTH_BELOW_MINIMUM_LENGTH" xml:space="preserve">
+    <value>Value with a length of {0} is below the minimum length of {1}.</value>
+    <comment>{0} - Array Value Length
+{1} - Minimum Length</comment>
   </data>
-  <data name="VALUE_CANNOT_HAVE_LENGTH_LESS_THAN" xml:space="preserve">
-    <value>Value cannot have a length less than {0}.</value>
+  <data name="VALUE_LENGTH_EXCEEDS_MAX_LENGTH" xml:space="preserve">
+    <value>Value with a length of {0} exceeds the maximum length of {1}.</value>
+    <comment>{0} - Array Value Length
+{1} - Maximum Length</comment>
   </data>
   <data name="VALUE_MUST_BE_ABSOLUTE_URI" xml:space="preserve">
     <value>"{0}" must be an absolute uri.</value>

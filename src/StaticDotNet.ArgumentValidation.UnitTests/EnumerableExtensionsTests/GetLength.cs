@@ -110,6 +110,18 @@ public sealed class GetLength {
 	}
 
 	[Fact]
+	public void IEnumerableWithNullMaxEnumeratorIterationsReturnsCorrectly() {
+
+		char[] enumerable = new string( 'A', 1000 ).ToCharArray();
+		EnumerableTestClass value = new( enumerable );
+		int? maxEnumeratorIterations = null;
+
+		int result = EnumerableExtensions.GetLength( value, maxEnumeratorIterations );
+
+		Assert.Equal( enumerable.Length, result );
+	}
+
+	[Fact]
 	public void EnumeratorExceedsMaxEnumeratorIterationsReturnsCorrectly() {
 
 		int[] enumerable = new int[] { 1, 2, 3 };

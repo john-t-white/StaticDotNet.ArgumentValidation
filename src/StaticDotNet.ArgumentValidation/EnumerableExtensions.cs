@@ -65,7 +65,7 @@ public static class EnumerableExtensions {
 			return ref argInfo;
 		}
 
-		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessages.VALUE_CANNOT_HAVE_LENGTH_LESS_THAN, length );
+		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessages.VALUE_LENGTH_BELOW_MINIMUM_LENGTH, GetLength( argInfo.Value, null ), length );
 		throw new ArgumentOutOfRangeException( argInfo.Name, message );
 	}
 
@@ -84,7 +84,7 @@ public static class EnumerableExtensions {
 			return ref argInfo;
 		}
 
-		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessages.VALUE_CANNOT_HAVE_LENGTH_GREATER_THAN, length );
+		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessages.VALUE_LENGTH_EXCEEDS_MAX_LENGTH, GetLength( argInfo.Value, null ), length );
 		throw new ArgumentOutOfRangeException( argInfo.Name, message );
 	}
 
@@ -138,7 +138,7 @@ public static class EnumerableExtensions {
 	/// DisallowNullAttribute is needed because the constraint must also be IEnumerable? in order for the methods to call it
 	/// and <paramref name="value"/> should never be null when this is called.
 	/// </remarks>
-	internal static int GetLength<TArg>( [DisallowNull] TArg value, int maxEnumeratorIterations )
+	internal static int GetLength<TArg>( [DisallowNull] TArg value, int? maxEnumeratorIterations )
 		where TArg : IEnumerable {
 
 		int? enumerableLength = value switch {

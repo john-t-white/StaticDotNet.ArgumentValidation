@@ -27,7 +27,7 @@ public sealed class MaxLength {
 			_ = SpanExtensions.MaxLength( argInfo, length );
 		} );
 
-		string expectedMessage = $"Value cannot have a length greater than {length}.";
+		string expectedMessage = $"Value with a length of {argumentValue.Length} exceeds the maximum length of {length}.";
 
 		Assert.StartsWith( expectedMessage, exception.Message );
 	}

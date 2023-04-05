@@ -88,20 +88,20 @@ namespace StaticDotNet.ArgumentValidation.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Value cannot have a length greater than {0}..
+        ///   Looks up a localized string similar to Value with a length of {0} is below the minimum length of {1}..
         /// </summary>
-        internal static string VALUE_CANNOT_HAVE_LENGTH_GREATER_THAN {
+        internal static string VALUE_LENGTH_BELOW_MINIMUM_LENGTH {
             get {
-                return ResourceManager.GetString("VALUE_CANNOT_HAVE_LENGTH_GREATER_THAN", resourceCulture);
+                return ResourceManager.GetString("VALUE_LENGTH_BELOW_MINIMUM_LENGTH", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Value cannot have a length less than {0}..
+        ///   Looks up a localized string similar to Value with a length of {0} exceeds the maximum length of {1}..
         /// </summary>
-        internal static string VALUE_CANNOT_HAVE_LENGTH_LESS_THAN {
+        internal static string VALUE_LENGTH_EXCEEDS_MAX_LENGTH {
             get {
-                return ResourceManager.GetString("VALUE_CANNOT_HAVE_LENGTH_LESS_THAN", resourceCulture);
+                return ResourceManager.GetString("VALUE_LENGTH_EXCEEDS_MAX_LENGTH", resourceCulture);
             }
         }
         
