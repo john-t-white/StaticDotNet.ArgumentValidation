@@ -106,6 +106,15 @@ namespace StaticDotNet.ArgumentValidation.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Value {0} must be assignable to {1}..
+        /// </summary>
+        internal static string TYPE_MUST_BE_ASSIGNABLE_TO {
+            get {
+                return ResourceManager.GetString("TYPE_MUST_BE_ASSIGNABLE_TO", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Value cannot be empty..
         /// </summary>
         internal static string VALUE_CANNOT_BE_EMPTY {
@@ -178,7 +187,7 @@ namespace StaticDotNet.ArgumentValidation.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Value must be assignable to {0}..
+        ///   Looks up a localized string similar to Value of type {0} must be assignable to {1}..
         /// </summary>
         internal static string VALUE_MUST_BE_ASSIGNABLE_TO {
             get {

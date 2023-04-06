@@ -145,6 +145,11 @@
 {1} - Value Length
 {2} - Expected Length</comment>
   </data>
+  <data name="TYPE_MUST_BE_ASSIGNABLE_TO" xml:space="preserve">
+    <value>Value {0} must be assignable to {1}.</value>
+    <comment>{0} - Value
+{1} - Expected Type</comment>
+  </data>
   <data name="VALUE_CANNOT_BE_EMPTY" xml:space="preserve">
     <value>Value cannot be empty.</value>
   </data>
@@ -182,7 +187,9 @@
 {1} - Expected Scheme</comment>
   </data>
   <data name="VALUE_MUST_BE_ASSIGNABLE_TO" xml:space="preserve">
-    <value>Value must be assignable to {0}.</value>
+    <value>Value of type {0} must be assignable to {1}.</value>
+    <comment>{0} - Value Type
+{1} - Expected Type</comment>
   </data>
   <data name="VALUE_MUST_BE_BETWEEN" xml:space="preserve">
     <value>Value must be between {0} and {1}.</value>

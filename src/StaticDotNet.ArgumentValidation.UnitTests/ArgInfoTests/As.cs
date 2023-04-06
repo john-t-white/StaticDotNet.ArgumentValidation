@@ -31,7 +31,7 @@ public sealed class As {
 			_ = argInfo.As<string>();
 		} );
 
-		string expectedMessage = $"Value must be assignable to {typeof( string ).FullName}.";
+		string expectedMessage = $"Value of type {argumentValue.GetType().FullName} must be assignable to {typeof( string ).FullName}.";
 
 		Assert.StartsWith( expectedMessage, exception.Message );
 	}

@@ -52,7 +52,7 @@ public readonly ref struct ArgInfo<T>
 			return new( asValue, Name, Message );
 		}
 
-		string message = Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessages.VALUE_MUST_BE_ASSIGNABLE_TO, typeof(TType).FullName ?? Constants.NULL );
+		string message = Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessages.VALUE_MUST_BE_ASSIGNABLE_TO, typeof(T).FullName, typeof(TType).FullName ?? Constants.NULL );
 		throw new ArgumentException( message, Name );
 	}
 }
