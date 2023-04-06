@@ -29,7 +29,7 @@ public sealed class LengthBetween {
 			_ = SpanExtensions.LengthBetween( argInfo, minLength, maxLength );
 		} );
 
-		string expectedMessage = $"Value must have a length between {minLength} and {maxLength}.";
+		string expectedMessage = $"Value with a length of {argumentValue.Length} must have a length between {minLength} and {maxLength}.";
 
 		Assert.StartsWith( expectedMessage, exception.Message );
 	}
@@ -49,6 +49,24 @@ public sealed class LengthBetween {
 		} );
 
 		Assert.StartsWith( message, exception.Message );
+	}
+
+	[Fact]
+	public void WithInvalidStringThrowsArgumentOutOfRangeException() {
+
+		string argumentValue = "1234";
+		string name = "Name";
+		int minLength = 1;
+		int maxLength = 3;
+
+		ArgumentOutOfRangeException exception = Assert.Throws<ArgumentOutOfRangeException>( name, () => {
+			SpanArgInfo<char> argInfo = new( argumentValue.ToCharArray(), name, null );
+			_ = SpanExtensions.LengthBetween( argInfo, minLength, maxLength );
+		} );
+
+		string expectedMessage = $"Value \"{argumentValue}\" with a length of {argumentValue.Length} must have a length between {minLength} and {maxLength}.";
+
+		Assert.StartsWith( expectedMessage, exception.Message );
 	}
 }
 

@@ -47,7 +47,7 @@ public sealed class LengthBetween {
 			_ = EnumerableExtensions.LengthBetween( argInfo, minLength, maxLength );
 		} );
 
-		string expectedMessage = $"Value must have a length between {minLength} and {maxLength}.";
+		string expectedMessage = $"Value with a length of {argumentValue.Length} must have a length between {minLength} and {maxLength}.";
 
 		Assert.StartsWith( expectedMessage, exception.Message );
 	}

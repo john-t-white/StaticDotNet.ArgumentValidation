@@ -46,7 +46,7 @@ public static class EnumerableExtensions {
 			return ref argInfo;
 		}
 
-		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessages.VALUE_MUST_HAVE_LENGTH_EQUAL_TO, length );
+		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessages.VALUE_LENGTH_MUST_BE_EQUAL_TO, GetLength( argInfo.Value, null ), length );
 		throw new ArgumentOutOfRangeException( argInfo.Name, message );
 	}
 
@@ -106,7 +106,7 @@ public static class EnumerableExtensions {
 			return ref argInfo;
 		}
 
-		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessages.VALUE_MUST_HAVE_LENGTH_BETWEEN, minLength, maxLength );
+		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessages.VALUE_LENGTH_MUST_BE_BETWEEN, GetLength( argInfo.Value, null ), minLength, maxLength );
 		throw new ArgumentOutOfRangeException( argInfo.Name, message );
 	}
 

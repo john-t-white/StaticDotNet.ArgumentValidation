@@ -88,6 +88,24 @@ namespace StaticDotNet.ArgumentValidation.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Value &quot;{0}&quot; with a length of {1} must have a length between {2} and {3}..
+        /// </summary>
+        internal static string STRING_LENGTH_MUST_BE_BETWEEN {
+            get {
+                return ResourceManager.GetString("STRING_LENGTH_MUST_BE_BETWEEN", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Value &quot;{0}&quot; with a length of {1} must have a length equal to {2}..
+        /// </summary>
+        internal static string STRING_LENGTH_MUST_BE_EQUAL_TO {
+            get {
+                return ResourceManager.GetString("STRING_LENGTH_MUST_BE_EQUAL_TO", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Value cannot be empty..
         /// </summary>
         internal static string VALUE_CANNOT_BE_EMPTY {
@@ -120,6 +138,24 @@ namespace StaticDotNet.ArgumentValidation.Resources {
         internal static string VALUE_LENGTH_EXCEEDS_MAX_LENGTH {
             get {
                 return ResourceManager.GetString("VALUE_LENGTH_EXCEEDS_MAX_LENGTH", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Value with a length of {0} must have a length between {1} and {2}..
+        /// </summary>
+        internal static string VALUE_LENGTH_MUST_BE_BETWEEN {
+            get {
+                return ResourceManager.GetString("VALUE_LENGTH_MUST_BE_BETWEEN", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Value with a length of {0} must have a length equal to {1}..
+        /// </summary>
+        internal static string VALUE_LENGTH_MUST_BE_EQUAL_TO {
+            get {
+                return ResourceManager.GetString("VALUE_LENGTH_MUST_BE_EQUAL_TO", resourceCulture);
             }
         }
         
@@ -372,24 +408,6 @@ namespace StaticDotNet.ArgumentValidation.Resources {
         internal static string VALUE_MUST_HAVE_DATETIMEKIND_UTC {
             get {
                 return ResourceManager.GetString("VALUE_MUST_HAVE_DATETIMEKIND_UTC", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Value must have a length between {0} and {1}..
-        /// </summary>
-        internal static string VALUE_MUST_HAVE_LENGTH_BETWEEN {
-            get {
-                return ResourceManager.GetString("VALUE_MUST_HAVE_LENGTH_BETWEEN", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Value must have a length equal to {0}..
-        /// </summary>
-        internal static string VALUE_MUST_HAVE_LENGTH_EQUAL_TO {
-            get {
-                return ResourceManager.GetString("VALUE_MUST_HAVE_LENGTH_EQUAL_TO", resourceCulture);
             }
         }
         

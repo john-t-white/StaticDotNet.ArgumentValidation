@@ -42,7 +42,7 @@ public static class ArrayExtensions {
 			return ref argInfo;
 		}
 
-		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessages.VALUE_MUST_HAVE_LENGTH_EQUAL_TO, length );
+		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessages.VALUE_LENGTH_MUST_BE_EQUAL_TO, argInfo.Value.Length, length );
 		throw new ArgumentOutOfRangeException( argInfo.Name, message );
 	}
 
@@ -97,7 +97,7 @@ public static class ArrayExtensions {
 			return ref argInfo;
 		}
 
-		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessages.VALUE_MUST_HAVE_LENGTH_BETWEEN, minLength, maxLength );
+		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessages.VALUE_LENGTH_MUST_BE_BETWEEN, argInfo.Value.Length, minLength, maxLength );
 		throw new ArgumentOutOfRangeException( argInfo.Name, message );
 	}
 

@@ -25,7 +25,7 @@ public sealed class Length {
 			_ = ArrayExtensions.Length( argInfo, length );
 		} );
 
-		string expectedMessage = $"Value must have a length equal to {length}.";
+		string expectedMessage = $"Value with a length of {argumentValue.Length} must have a length equal to {length}.";
 
 		Assert.StartsWith( expectedMessage, exception.Message );
 	}

@@ -27,7 +27,7 @@ public sealed class Length {
 			_ = SpanExtensions.Length( argInfo, length );
 		} );
 
-		string expectedMessage = $"Value must have a length equal to {length}.";
+		string expectedMessage = $"Value with a length of {argumentValue.Length} must have a length equal to {length}.";
 
 		Assert.StartsWith( expectedMessage, exception.Message );
 	}
@@ -46,6 +46,23 @@ public sealed class Length {
 		} );
 
 		Assert.StartsWith( message, exception.Message );
+	}
+
+	[Fact]
+	public void WithInvalidStringThrowsArgumentOutOfRangeException() {
+
+		string argumentValue = "123";
+		string name = "Name";
+		int length = 2;
+
+		ArgumentOutOfRangeException exception = Assert.Throws<ArgumentOutOfRangeException>( name, () => {
+			SpanArgInfo<char> argInfo = new( argumentValue.ToCharArray(), name, null );
+			_ = SpanExtensions.Length( argInfo, length );
+		} );
+
+		string expectedMessage = $"Value \"{argumentValue}\" with a length of {argumentValue.Length} must have a length equal to {length}.";
+
+		Assert.StartsWith( expectedMessage, exception.Message );
 	}
 }
 
