@@ -38,7 +38,7 @@ public static class CharExtensions {
 			return ref argInfo;
 		}
 
-		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessages.VALUE_MUST_BE_DIGIT, argInfo.Value );
+		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessages.VALUE_MUST_BE_DIGIT, argInfo.Value.ToString() );
 		throw new ArgumentException( message, argInfo.Name );
 	}
 
@@ -54,7 +54,7 @@ public static class CharExtensions {
 			return ref argInfo;
 		}
 
-		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessages.VALUE_MUST_BE_LETTER, argInfo.Value );
+		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessages.VALUE_MUST_BE_LETTER, argInfo.Value.ToString() );
 		throw new ArgumentException( message, argInfo.Name );
 	}
 
@@ -70,7 +70,7 @@ public static class CharExtensions {
 			return ref argInfo;
 		}
 
-		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessages.VALUE_MUST_BE_LETTER_OR_DIGIT, argInfo.Value );
+		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessages.VALUE_MUST_BE_LETTER_OR_DIGIT, argInfo.Value.ToString() );
 		throw new ArgumentException( message, argInfo.Name );
 	}
 
@@ -86,7 +86,7 @@ public static class CharExtensions {
 			return ref argInfo;
 		}
 
-		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessages.VALUE_MUST_BE_NUMBER, argInfo.Value );
+		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessages.VALUE_MUST_BE_NUMBER, argInfo.Value.ToString() );
 		throw new ArgumentException( message, argInfo.Name );
 	}
 
@@ -102,7 +102,7 @@ public static class CharExtensions {
 			return ref argInfo;
 		}
 
-		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessages.VALUE_MUST_BE_LOWER, argInfo.Value );
+		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessages.VALUE_MUST_BE_LOWER, argInfo.Value.ToString() );
 		throw new ArgumentException( message, argInfo.Name );
 	}
 
@@ -118,7 +118,7 @@ public static class CharExtensions {
 			return ref argInfo;
 		}
 
-		string message = argInfo.Message ?? ExceptionMessages.VALUE_MUST_BE_UPPER;
+		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessages.VALUE_MUST_BE_UPPER, argInfo.Value.ToString() );
 		throw new ArgumentException( message, argInfo.Name );
 	}
 }

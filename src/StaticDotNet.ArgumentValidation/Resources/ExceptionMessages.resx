@@ -270,7 +270,7 @@
     <value>Value must be true.</value>
   </data>
   <data name="VALUE_MUST_BE_UPPER" xml:space="preserve">
-    <value>Value must be upper.</value>
+    <value>Value "{0}" must be upper.</value>
   </data>
   <data name="VALUE_MUST_BE_WRITABLE" xml:space="preserve">
     <value>Value must be writable.</value>

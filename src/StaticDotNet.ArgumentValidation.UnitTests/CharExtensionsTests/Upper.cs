@@ -23,7 +23,7 @@ public sealed class Upper {
 			_ = argInfo.Upper();
 		} );
 
-		string expectedMessage = "Value must be upper.";
+		string expectedMessage = $"Value \"{argumentValue}\" must be upper.";
 
 		Assert.StartsWith( expectedMessage, exception.Message );
 	}
