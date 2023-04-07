@@ -43,7 +43,24 @@ public sealed class Contains {
 	}
 
 	[Fact]
-	public void WithNotContainsValueThrowsArgumentException() {
+	public void NotContainsValueThrowsArgumentException() {
+
+		int[] argumentValue = new[] { 1, 2, 3 };
+		string name = "Name";
+		int value = 4;
+
+		ArgumentException exception = Assert.Throws<ArgumentException>( name, () => {
+			ArgInfo<int[]> argInfo = new( argumentValue, name, null );
+			_ = ArrayExtensions.Contains( argInfo, value );
+		} );
+
+		string expectedMessage = $"Value must contain {value}.";
+
+		Assert.StartsWith( expectedMessage, exception.Message );
+	}
+
+	[Fact]
+	public void NotContainsStringThrowsArgumentException() {
 
 		string[] argumentValue = new[] { "A", "B", "C" };
 		string name = "Name";
@@ -54,7 +71,24 @@ public sealed class Contains {
 			_ = ArrayExtensions.Contains( argInfo, value );
 		} );
 
-		string expectedMessage = $"Value must contain {value}.";
+		string expectedMessage = $"Value must contain \"{value}\".";
+
+		Assert.StartsWith( expectedMessage, exception.Message );
+	}
+
+	[Fact]
+	public void NotContainsCharThrowsArgumentException() {
+
+		char[] argumentValue = new[] { 'A', 'B', 'C' };
+		string name = "Name";
+		char value = 'D';
+
+		ArgumentException exception = Assert.Throws<ArgumentException>( name, () => {
+			ArgInfo<char[]> argInfo = new( argumentValue, name, null );
+			_ = ArrayExtensions.Contains( argInfo, value );
+		} );
+
+		string expectedMessage = $"Value must contain \"{value}\".";
 
 		Assert.StartsWith( expectedMessage, exception.Message );
 	}

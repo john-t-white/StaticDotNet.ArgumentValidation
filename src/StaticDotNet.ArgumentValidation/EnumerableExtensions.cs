@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using StaticDotNet.ArgumentValidation.Infrastructure;
+using System.Collections;
 using System.Globalization;
 
 namespace StaticDotNet.ArgumentValidation;
@@ -128,7 +129,7 @@ public static class EnumerableExtensions {
 			return ref argInfo;
 		}
 
-		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessages.VALUE_MUST_CONTAIN, value?.ToString() ?? Constants.NULL );
+		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessages.VALUE_MUST_CONTAIN, Stringify.Value( value ) );
 		throw new ArgumentException( message, argInfo.Name );
 	}
 

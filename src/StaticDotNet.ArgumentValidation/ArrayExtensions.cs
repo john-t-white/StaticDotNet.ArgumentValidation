@@ -1,4 +1,5 @@
-﻿using System;
+﻿using StaticDotNet.ArgumentValidation.Infrastructure;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Globalization;
@@ -117,7 +118,7 @@ public static class ArrayExtensions {
 			return ref argInfo;
 		}
 
-		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessages.VALUE_MUST_CONTAIN, value?.ToString() ?? Constants.NULL );
+		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessages.VALUE_MUST_CONTAIN, Stringify.Value( value ) );
 		throw new ArgumentException( message, argInfo.Name );
 	}
 }

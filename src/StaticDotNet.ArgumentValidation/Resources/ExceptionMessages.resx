@@ -145,6 +145,11 @@
 {1} - Value Length
 {2} - Expected Length</comment>
   </data>
+  <data name="STRING_MUST_CONTAIN" xml:space="preserve">
+    <value>Value "{0}" must contain {1}.</value>
+    <comment>{0} - Value
+{1} - Contains</comment>
+  </data>
   <data name="TYPE_MUST_BE_ASSIGNABLE_TO" xml:space="preserve">
     <value>Value {0} must be assignable to {1}.</value>
     <comment>{0} - Value
@@ -277,6 +282,7 @@
   </data>
   <data name="VALUE_MUST_CONTAIN" xml:space="preserve">
     <value>Value must contain {0}.</value>
+    <comment>{0} - Contains</comment>
   </data>
   <data name="VALUE_MUST_END_WITH" xml:space="preserve">
     <value>Value must end with {0}.</value>

@@ -25,7 +25,7 @@ public sealed class Contains_String {
 			_ = StringExtensions.Contains( argInfo, value );
 		} );
 
-		string expectedMessage = $"Value must contain {value}.";
+		string expectedMessage = $"Value \"{argumentValue}\" must contain \"{value}\".";
 
 		Assert.StartsWith( expectedMessage, exception.Message );
 	}
@@ -42,7 +42,7 @@ public sealed class Contains_String {
 			_ = StringExtensions.Contains( argInfo, value );
 		} );
 
-		string expectedMessage = "Value must contain <null>.";
+		string expectedMessage = $"Value \"{argumentValue}\" must contain <null>.";
 
 		Assert.StartsWith( expectedMessage, exception.Message );
 	}
@@ -90,7 +90,7 @@ public sealed class Contains_String {
 			_ = StringExtensions.Contains( argInfo, value, comparisonType );
 		} );
 
-		string expectedMessage = $"Value must contain {value}.";
+		string expectedMessage = $"Value \"{argumentValue}\" must contain \"{value}\".";
 
 		Assert.StartsWith( expectedMessage, exception.Message );
 	}
@@ -108,7 +108,7 @@ public sealed class Contains_String {
 			_ = StringExtensions.Contains( argInfo, value, comparisonType );
 		} );
 
-		string expectedMessage = "Value must contain <null>.";
+		string expectedMessage = $"Value \"{argumentValue}\" must contain <null>.";
 
 		Assert.StartsWith( expectedMessage, exception.Message );
 	}

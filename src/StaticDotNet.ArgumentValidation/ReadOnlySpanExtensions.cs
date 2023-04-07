@@ -1,5 +1,6 @@
 ﻿#if NETSTANDARD2_1_OR_GREATER || NET5_0_OR_GREATER
 
+using StaticDotNet.ArgumentValidation.Infrastructure;
 using System.Globalization;
 
 namespace StaticDotNet.ArgumentValidation;
@@ -174,7 +175,12 @@ public static class ReadOnlySpanExtensions {
 			return ref argInfo;
 		}
 
-		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessages.VALUE_MUST_CONTAIN, value?.ToString() ?? Constants.NULL );
+		string? message = argInfo.Message;
+
+		message ??= typeof( T ) != typeof( char )
+				? string.Format( CultureInfo.InvariantCulture, ExceptionMessages.VALUE_MUST_CONTAIN, value )
+				: string.Format( CultureInfo.InvariantCulture, ExceptionMessages.STRING_MUST_CONTAIN, Stringify.Value( value ) );
+
 		throw new ArgumentException( message, argInfo.Name );
 	}
 

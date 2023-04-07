@@ -1,5 +1,6 @@
 ﻿#if NETSTANDARD2_1_OR_GREATER || NET5_0_OR_GREATER
 
+using StaticDotNet.ArgumentValidation.Infrastructure;
 using System.Globalization;
 
 namespace StaticDotNet.ArgumentValidation;
@@ -174,7 +175,13 @@ public static class SpanExtensions {
 			return ref argInfo;
 		}
 
-		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessages.VALUE_MUST_CONTAIN, value?.ToString() ?? Constants.NULL );
+		string? message = argInfo.Message;
+		if( message is null ) {
+			message = value is string or char
+				? string.Format( CultureInfo.InvariantCulture, ExceptionMessages.STRING_MUST_CONTAIN, Stringify.Value( argInfo.Value ), Stringify.Value( value ) )
+				: string.Format( CultureInfo.InvariantCulture, ExceptionMessages.VALUE_MUST_CONTAIN, Stringify.Value( value ) );
+		}
+
 		throw new ArgumentException( message, argInfo.Name );
 	}
 

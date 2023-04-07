@@ -54,7 +54,7 @@ public sealed class Contains {
 			_ = EnumerableExtensions.Contains( argInfo, value );
 		} );
 
-		string expectedMessage = $"Value must contain {value}.";
+		string expectedMessage = $"Value must contain \"{value}\".";
 
 		Assert.StartsWith( expectedMessage, exception.Message );
 	}

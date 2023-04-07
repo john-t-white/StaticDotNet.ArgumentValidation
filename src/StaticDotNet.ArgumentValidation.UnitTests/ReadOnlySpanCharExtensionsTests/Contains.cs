@@ -29,7 +29,7 @@ public sealed class Contains {
 			_ = ReadOnlySpanCharExtensions.Contains( argInfo, value, comparisonType );
 		} );
 
-		string expectedMessage = $"Value must contain {value}.";
+		string expectedMessage = $"Value \"{argumentValue}\" must contain \"{value}\".";
 
 		Assert.StartsWith( expectedMessage, exception.Message );
 	}

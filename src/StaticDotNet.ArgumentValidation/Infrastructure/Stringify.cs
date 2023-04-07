@@ -31,6 +31,14 @@ public static class Stringify {
 	/// <returns>string/char values with quotes, otherwise the value as a string.</returns>
 	public static string Value<T>( ReadOnlySpan<T> value ) => Value( value.ToString() );
 
+	/// <summary>
+	/// Returns a string version of the value.
+	/// </summary>
+	/// <typeparam name="T">The type of value.</typeparam>
+	/// <param name="value">The value.</param>
+	/// <returns>string/char values with quotes, otherwise the value as a string.</returns>
+	public static string Value<T>( Span<T> value ) => Value( value.ToString() );
+
 #endif
 
 }

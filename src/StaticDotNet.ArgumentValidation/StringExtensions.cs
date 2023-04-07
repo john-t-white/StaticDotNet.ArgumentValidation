@@ -263,7 +263,7 @@ public static class StringExtensions {
 			return ref argInfo;
 		}
 
-		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessages.VALUE_MUST_CONTAIN, value.ToString() );
+		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessages.STRING_MUST_CONTAIN, argInfo.Value.ToString(), Stringify.Value( value ) );
 		throw new ArgumentException( message, argInfo.Name );
 	}
 
@@ -283,7 +283,7 @@ public static class StringExtensions {
 			return ref argInfo;
 		}
 
-		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessages.VALUE_MUST_CONTAIN, value.ToString() );
+		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessages.STRING_MUST_CONTAIN, argInfo.Value.ToString(), Stringify.Value( value ) );
 		throw new ArgumentException( message, argInfo.Name );
 	}
 
@@ -303,7 +303,7 @@ public static class StringExtensions {
 			return ref argInfo;
 		}
 
-		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessages.VALUE_MUST_CONTAIN, value?.ToString() ?? Constants.NULL );
+		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessages.STRING_MUST_CONTAIN, argInfo.Value, Stringify.Value( value ) );
 		throw new ArgumentException( message, argInfo.Name );
 	}
 
@@ -323,7 +323,7 @@ public static class StringExtensions {
 			return ref argInfo;
 		}
 
-		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessages.VALUE_MUST_CONTAIN, value?.ToString() ?? Constants.NULL );
+		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessages.STRING_MUST_CONTAIN, argInfo.Value, Stringify.Value( value ) );
 		throw new ArgumentException( message, argInfo.Name );
 	}
 
