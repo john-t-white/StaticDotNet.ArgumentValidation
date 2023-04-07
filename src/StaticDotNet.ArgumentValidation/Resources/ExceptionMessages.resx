@@ -249,7 +249,9 @@
     <comment>{0} - Value</comment>
   </data>
   <data name="VALUE_MUST_BE_PARSABLE_TO" xml:space="preserve">
-    <value>Value must be parsable to {0}.</value>
+    <value>Value "{0}" must be parsable to {1}.</value>
+    <comment>{0} - Value
+{1} - Expected Type</comment>
   </data>
   <data name="VALUE_MUST_BE_READABLE" xml:space="preserve">
     <value>Value must be readable.</value>

@@ -55,7 +55,7 @@ public sealed class ParseDateTimeOffsetExact {
 			_ = StringParsingExtensions.ParseDateTimeOffsetExact( argInfo, format );
 		} );
 
-		string expectedMessage = "Value must be parsable to System.DateTimeOffset.";
+		string expectedMessage = $"Value \"{argumentValue}\" must be parsable to System.DateTimeOffset.";
 
 		Assert.StartsWith( expectedMessage, exception.Message );
 	}
@@ -140,7 +140,7 @@ public sealed class ParseDateTimeOffsetExact {
 			_ = StringParsingExtensions.ParseDateTimeOffsetExact( argInfo, formats );
 		} );
 
-		string expectedMessage = "Value must be parsable to System.DateTimeOffset.";
+		string expectedMessage = $"Value \"{argumentValue}\" must be parsable to System.DateTimeOffset.";
 
 		Assert.StartsWith( expectedMessage, exception.Message );
 	}

@@ -53,7 +53,7 @@ public sealed class ParseDateTimeOffset {
 			_ = ReadOnlySpanCharParsingExtensions.ParseDateTimeOffset( argInfo );
 		} );
 
-		string expectedMessage = "Value must be parsable to System.DateTimeOffset.";
+		string expectedMessage = $"Value \"{argumentValue}\" must be parsable to System.DateTimeOffset.";
 
 		Assert.StartsWith( expectedMessage, exception.Message );
 	}

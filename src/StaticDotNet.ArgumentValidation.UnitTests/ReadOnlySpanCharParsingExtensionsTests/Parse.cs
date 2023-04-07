@@ -29,7 +29,7 @@ public sealed class Parse {
 			_ = argInfo.Parse<int>();
 		} );
 
-		string expectedMessage = $"Value must be parsable to {typeof( int ).FullName}.";
+		string expectedMessage = $"Value \"{argumentValue}\" must be parsable to {typeof( int ).FullName}.";
 
 		Assert.StartsWith( expectedMessage, exception.Message );
 	}

@@ -53,7 +53,7 @@ public sealed class ParseDateTime {
 			_ = ReadOnlySpanCharParsingExtensions.ParseDateTime( argInfo );
 		} );
 
-		string expectedMessage = "Value must be parsable to System.DateTime.";
+		string expectedMessage = $"Value \"{argumentValue}\" must be parsable to System.DateTime.";
 
 		Assert.StartsWith( expectedMessage, exception.Message );
 	}

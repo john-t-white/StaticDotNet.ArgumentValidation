@@ -57,7 +57,7 @@ public sealed class ParseTimeOnlyExact {
 			_ = ReadOnlySpanCharParsingExtensions.ParseTimeOnlyExact( argInfo, format );
 		} );
 
-		string expectedMessage = "Value must be parsable to System.TimeOnly.";
+		string expectedMessage = $"Value \"{argumentValue}\" must be parsable to System.TimeOnly.";
 
 		Assert.StartsWith( expectedMessage, exception.Message );
 	}
@@ -142,7 +142,7 @@ public sealed class ParseTimeOnlyExact {
 			_ = ReadOnlySpanCharParsingExtensions.ParseTimeOnlyExact( argInfo, formats );
 		} );
 
-		string expectedMessage = "Value must be parsable to System.TimeOnly.";
+		string expectedMessage = $"Value \"{argumentValue}\" must be parsable to System.TimeOnly.";
 
 		Assert.StartsWith( expectedMessage, exception.Message );
 	}

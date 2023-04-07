@@ -29,7 +29,7 @@ public sealed class ParseUri {
 			_ = StringParsingExtensions.ParseUri( argInfo, uriKind );
 		} );
 
-		string expectedMessage = "Value must be parsable to System.Uri.";
+		string expectedMessage = $"Value \"{argumentValue}\" must be parsable to System.Uri.";
 
 		Assert.StartsWith( expectedMessage, exception.Message );
 	}
@@ -78,7 +78,7 @@ public sealed class ParseUri {
 			_ = StringParsingExtensions.ParseUri( argInfo, creationOptions );
 		} );
 
-		string expectedMessage = "Value must be parsable to System.Uri.";
+		string expectedMessage = $"Value \"{argumentValue}\" must be parsable to System.Uri.";
 
 		Assert.StartsWith( expectedMessage, exception.Message );
 	}

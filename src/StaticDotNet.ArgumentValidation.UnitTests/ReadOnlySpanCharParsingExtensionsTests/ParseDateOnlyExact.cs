@@ -57,7 +57,7 @@ public sealed class ParseDateOnlyExact {
 			_ = ReadOnlySpanCharParsingExtensions.ParseDateOnlyExact( argInfo, format );
 		} );
 
-		string expectedMessage = "Value must be parsable to System.DateOnly.";
+		string expectedMessage = $"Value \"{argumentValue}\" must be parsable to System.DateOnly.";
 
 		Assert.StartsWith( expectedMessage, exception.Message );
 	}
@@ -142,7 +142,7 @@ public sealed class ParseDateOnlyExact {
 			_ = ReadOnlySpanCharParsingExtensions.ParseDateOnlyExact( argInfo, formats );
 		} );
 
-		string expectedMessage = "Value must be parsable to System.DateOnly.";
+		string expectedMessage = $"Value \"{argumentValue}\" must be parsable to System.DateOnly.";
 
 		Assert.StartsWith( expectedMessage, exception.Message );
 	}

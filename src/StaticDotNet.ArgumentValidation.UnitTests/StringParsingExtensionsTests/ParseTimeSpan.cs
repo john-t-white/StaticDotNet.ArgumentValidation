@@ -39,7 +39,7 @@ public sealed class ParseTimeSpan {
 			_ = StringParsingExtensions.ParseTimeSpan( argInfo );
 		} );
 
-		string expectedMessage = "Value must be parsable to System.TimeSpan.";
+		string expectedMessage = $"Value \"{argumentValue}\" must be parsable to System.TimeSpan.";
 
 		Assert.StartsWith( expectedMessage, exception.Message );
 	}

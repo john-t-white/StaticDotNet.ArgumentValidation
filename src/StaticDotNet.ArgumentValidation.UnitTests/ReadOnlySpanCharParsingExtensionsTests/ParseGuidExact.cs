@@ -31,7 +31,7 @@ public sealed class ParseGuidExact {
 			_ = ReadOnlySpanCharParsingExtensions.ParseGuidExact( argInfo, format );
 		} );
 
-		string expectedMessage = "Value must be parsable to System.Guid.";
+		string expectedMessage = $"Value \"{argumentValue}\" must be parsable to System.Guid.";
 
 		Assert.StartsWith( expectedMessage, exception.Message );
 	}

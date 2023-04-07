@@ -51,7 +51,7 @@ public sealed class ParseInt32 {
 			_ = StringParsingExtensions.ParseInt32( argInfo );
 		} );
 
-		string expectedMessage = "Value must be parsable to System.Int32.";
+		string expectedMessage = $"Value \"{argumentValue}\" must be parsable to System.Int32.";
 
 		Assert.StartsWith( expectedMessage, exception.Message );
 	}

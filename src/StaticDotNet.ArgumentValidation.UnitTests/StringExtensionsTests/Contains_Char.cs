@@ -1,4 +1,4 @@
-﻿namespace StaticDotNet.ArgumentValidation.UnitTests.StringParsingExtensionsTests;
+﻿namespace StaticDotNet.ArgumentValidation.UnitTests.StringExtensionsTests;
 
 public sealed class Contains_Char {
 

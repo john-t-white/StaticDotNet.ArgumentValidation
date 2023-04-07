@@ -57,7 +57,7 @@ public sealed class ParseTimeSpanExact {
 			_ = ReadOnlySpanCharParsingExtensions.ParseTimeSpanExact( argInfo, format );
 		} );
 
-		string expectedMessage = "Value must be parsable to System.TimeSpan.";
+		string expectedMessage = $"Value \"{argumentValue}\" must be parsable to System.TimeSpan.";
 
 		Assert.StartsWith( expectedMessage, exception.Message );
 	}
@@ -142,7 +142,7 @@ public sealed class ParseTimeSpanExact {
 			_ = ReadOnlySpanCharParsingExtensions.ParseTimeSpanExact( argInfo, formats );
 		} );
 
-		string expectedMessage = "Value must be parsable to System.TimeSpan.";
+		string expectedMessage = $"Value \"{argumentValue}\" must be parsable to System.TimeSpan.";
 
 		Assert.StartsWith( expectedMessage, exception.Message );
 	}

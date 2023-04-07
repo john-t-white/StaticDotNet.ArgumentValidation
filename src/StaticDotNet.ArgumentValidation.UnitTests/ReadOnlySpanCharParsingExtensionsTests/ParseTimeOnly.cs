@@ -53,7 +53,7 @@ public sealed class ParseTimeOnly {
 			_ = ReadOnlySpanCharParsingExtensions.ParseTimeOnly( argInfo );
 		} );
 
-		string expectedMessage = "Value must be parsable to System.TimeOnly.";
+		string expectedMessage = $"Value \"{argumentValue}\" must be parsable to System.TimeOnly.";
 
 		Assert.StartsWith( expectedMessage, exception.Message );
 	}

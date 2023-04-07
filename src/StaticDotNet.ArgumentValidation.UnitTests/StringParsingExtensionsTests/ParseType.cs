@@ -25,7 +25,7 @@ public sealed class ParseType {
 			_ = StringParsingExtensions.ParseType( argInfo );
 		} );
 
-		string expectedMessage = "Value must be parsable to System.Type.";
+		string expectedMessage = $"Value \"{argumentValue}\" must be parsable to System.Type.";
 
 		Assert.StartsWith( expectedMessage, exception.Message );
 		Assert.NotNull( exception.InnerException );

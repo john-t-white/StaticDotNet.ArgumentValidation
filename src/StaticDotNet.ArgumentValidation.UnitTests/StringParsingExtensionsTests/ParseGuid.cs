@@ -27,7 +27,7 @@ public sealed class ParseGuid {
 			_ = StringParsingExtensions.ParseGuid( argInfo );
 		} );
 
-		string expectedMessage = "Value must be parsable to System.Guid.";
+		string expectedMessage = $"Value \"{argumentValue}\" must be parsable to System.Guid.";
 
 		Assert.StartsWith( expectedMessage, exception.Message );
 	}

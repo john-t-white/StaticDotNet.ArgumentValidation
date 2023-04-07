@@ -24,7 +24,7 @@ public sealed class ParseBoolean {
 			_ = StringParsingExtensions.ParseBoolean( argInfo );
 		} );
 
-		string expectedMessage = "Value must be parsable to System.Boolean.";
+		string expectedMessage = $"Value \"{argumentValue}\" must be parsable to System.Boolean.";
 
 		Assert.StartsWith( expectedMessage, exception.Message );
 	}

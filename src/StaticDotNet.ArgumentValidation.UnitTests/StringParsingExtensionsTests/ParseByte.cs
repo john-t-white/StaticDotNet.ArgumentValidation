@@ -51,7 +51,7 @@ public sealed class ParseByte {
 			_ = StringParsingExtensions.ParseByte( argInfo );
 		} );
 
-		string expectedMessage = "Value must be parsable to System.Byte.";
+		string expectedMessage = $"Value \"{argumentValue}\" must be parsable to System.Byte.";
 
 		Assert.StartsWith( expectedMessage, exception.Message );
 	}

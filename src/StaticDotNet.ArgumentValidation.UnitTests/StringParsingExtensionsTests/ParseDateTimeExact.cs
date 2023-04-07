@@ -55,7 +55,7 @@ public sealed class ParseDateTimeExact {
 			_ = StringParsingExtensions.ParseDateTimeExact( argInfo, format );
 		} );
 
-		string expectedMessage = "Value must be parsable to System.DateTime.";
+		string expectedMessage = $"Value \"{argumentValue}\" must be parsable to System.DateTime.";
 
 		Assert.StartsWith( expectedMessage, exception.Message );
 	}
@@ -140,7 +140,7 @@ public sealed class ParseDateTimeExact {
 			_ = StringParsingExtensions.ParseDateTimeExact( argInfo, formats );
 		} );
 
-		string expectedMessage = "Value must be parsable to System.DateTime.";
+		string expectedMessage = $"Value \"{argumentValue}\" must be parsable to System.DateTime.";
 
 		Assert.StartsWith( expectedMessage, exception.Message );
 	}

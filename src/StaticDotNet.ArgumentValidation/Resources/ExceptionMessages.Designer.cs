@@ -313,7 +313,7 @@ namespace StaticDotNet.ArgumentValidation.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Value must be parsable to {0}..
+        ///   Looks up a localized string similar to Value &quot;{0}&quot; must be parsable to {1}..
         /// </summary>
         internal static string VALUE_MUST_BE_PARSABLE_TO {
             get {

@@ -24,7 +24,7 @@ public static class StringParsingExtensions {
 			return new( result, argInfo.Name, argInfo.Message );
 		}
 
-		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessages.VALUE_MUST_BE_PARSABLE_TO, typeof( T ).FullName );
+		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessages.VALUE_MUST_BE_PARSABLE_TO, argInfo.Value, typeof( T ).FullName );
 		throw new ArgumentException( message, argInfo.Name );
 	}
 
@@ -42,7 +42,7 @@ public static class StringParsingExtensions {
 			return new( result, argInfo.Name, argInfo.Message );
 		}
 
-		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessages.VALUE_MUST_BE_PARSABLE_TO, typeof( bool ).FullName );
+		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessages.VALUE_MUST_BE_PARSABLE_TO, argInfo.Value, typeof( bool ).FullName );
 		throw new ArgumentException( message, argInfo.Name );
 	}
 
@@ -58,7 +58,7 @@ public static class StringParsingExtensions {
 			return new( result, argInfo.Name, argInfo.Message );
 		}
 
-		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessages.VALUE_MUST_BE_PARSABLE_TO, typeof( Guid ).FullName );
+		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessages.VALUE_MUST_BE_PARSABLE_TO, argInfo.Value, typeof( Guid ).FullName );
 		throw new ArgumentException( message, argInfo.Name );
 	}
 
@@ -75,7 +75,7 @@ public static class StringParsingExtensions {
 			return new( result, argInfo.Name, argInfo.Message );
 		}
 
-		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessages.VALUE_MUST_BE_PARSABLE_TO, typeof( Guid ).FullName );
+		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessages.VALUE_MUST_BE_PARSABLE_TO, argInfo.Value, typeof( Guid ).FullName );
 		throw new ArgumentException( message, argInfo.Name );
 	}
 
@@ -93,7 +93,7 @@ public static class StringParsingExtensions {
 			return new( result, argInfo.Name, argInfo.Message );
 		}
 
-		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessages.VALUE_MUST_BE_PARSABLE_TO, typeof( byte ).FullName );
+		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessages.VALUE_MUST_BE_PARSABLE_TO, argInfo.Value, typeof( byte ).FullName );
 		throw new ArgumentException( message, argInfo.Name );
 	}
 
@@ -111,7 +111,7 @@ public static class StringParsingExtensions {
 			return new( result, argInfo.Name, argInfo.Message );
 		}
 
-		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessages.VALUE_MUST_BE_PARSABLE_TO, typeof( short ).FullName );
+		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessages.VALUE_MUST_BE_PARSABLE_TO, argInfo.Value, typeof( short ).FullName );
 		throw new ArgumentException( message, argInfo.Name );
 	}
 
@@ -129,7 +129,7 @@ public static class StringParsingExtensions {
 			return new( result, argInfo.Name, argInfo.Message );
 		}
 
-		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessages.VALUE_MUST_BE_PARSABLE_TO, typeof( int ).FullName );
+		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessages.VALUE_MUST_BE_PARSABLE_TO, argInfo.Value, typeof( int ).FullName );
 		throw new ArgumentException( message, argInfo.Name );
 	}
 
@@ -147,7 +147,7 @@ public static class StringParsingExtensions {
 			return new( result, argInfo.Name, argInfo.Message );
 		}
 
-		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessages.VALUE_MUST_BE_PARSABLE_TO, typeof( long ).FullName );
+		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessages.VALUE_MUST_BE_PARSABLE_TO, argInfo.Value, typeof( long ).FullName );
 		throw new ArgumentException( message, argInfo.Name );
 	}
 
@@ -164,7 +164,7 @@ public static class StringParsingExtensions {
 			return new( result, argInfo.Name, argInfo.Message );
 		}
 
-		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessages.VALUE_MUST_BE_PARSABLE_TO, typeof( TimeSpan ).FullName );
+		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessages.VALUE_MUST_BE_PARSABLE_TO, argInfo.Value, typeof( TimeSpan ).FullName );
 		throw new ArgumentException( message, argInfo.Name );
 	}
 
@@ -183,7 +183,7 @@ public static class StringParsingExtensions {
 			return new( result, argInfo.Name, argInfo.Message );
 		}
 
-		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessages.VALUE_MUST_BE_PARSABLE_TO, typeof( TimeSpan ).FullName );
+		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessages.VALUE_MUST_BE_PARSABLE_TO, argInfo.Value, typeof( TimeSpan ).FullName );
 		throw new ArgumentException( message, argInfo.Name );
 	}
 
@@ -202,7 +202,7 @@ public static class StringParsingExtensions {
 			return new( result, argInfo.Name, argInfo.Message );
 		}
 
-		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessages.VALUE_MUST_BE_PARSABLE_TO, typeof( TimeSpan ).FullName );
+		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessages.VALUE_MUST_BE_PARSABLE_TO, argInfo.Value, typeof( TimeSpan ).FullName );
 		throw new ArgumentException( message, argInfo.Name );
 	}
 
@@ -220,7 +220,7 @@ public static class StringParsingExtensions {
 			return new( result, argInfo.Name, argInfo.Message );
 		}
 
-		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessages.VALUE_MUST_BE_PARSABLE_TO, typeof( DateTime ).FullName );
+		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessages.VALUE_MUST_BE_PARSABLE_TO, argInfo.Value, typeof( DateTime ).FullName );
 		throw new ArgumentException( message, argInfo.Name );
 	}
 
@@ -239,7 +239,7 @@ public static class StringParsingExtensions {
 			return new( result, argInfo.Name, argInfo.Message );
 		}
 
-		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessages.VALUE_MUST_BE_PARSABLE_TO, typeof( DateTime ).FullName );
+		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessages.VALUE_MUST_BE_PARSABLE_TO, argInfo.Value, typeof( DateTime ).FullName );
 		throw new ArgumentException( message, argInfo.Name );
 	}
 
@@ -258,7 +258,7 @@ public static class StringParsingExtensions {
 			return new( result, argInfo.Name, argInfo.Message );
 		}
 
-		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessages.VALUE_MUST_BE_PARSABLE_TO, typeof( DateTime ).FullName );
+		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessages.VALUE_MUST_BE_PARSABLE_TO, argInfo.Value, typeof( DateTime ).FullName );
 		throw new ArgumentException( message, argInfo.Name );
 	}
 
@@ -276,7 +276,7 @@ public static class StringParsingExtensions {
 			return new( result, argInfo.Name, argInfo.Message );
 		}
 
-		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessages.VALUE_MUST_BE_PARSABLE_TO, typeof( DateTimeOffset ).FullName );
+		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessages.VALUE_MUST_BE_PARSABLE_TO, argInfo.Value, typeof( DateTimeOffset ).FullName );
 		throw new ArgumentException( message, argInfo.Name );
 	}
 
@@ -295,7 +295,7 @@ public static class StringParsingExtensions {
 			return new( result, argInfo.Name, argInfo.Message );
 		}
 
-		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessages.VALUE_MUST_BE_PARSABLE_TO, typeof( DateTimeOffset ).FullName );
+		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessages.VALUE_MUST_BE_PARSABLE_TO, argInfo.Value, typeof( DateTimeOffset ).FullName );
 		throw new ArgumentException( message, argInfo.Name );
 	}
 
@@ -314,7 +314,7 @@ public static class StringParsingExtensions {
 			return new( result, argInfo.Name, argInfo.Message );
 		}
 
-		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessages.VALUE_MUST_BE_PARSABLE_TO, typeof( DateTimeOffset ).FullName );
+		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessages.VALUE_MUST_BE_PARSABLE_TO, argInfo.Value, typeof( DateTimeOffset ).FullName );
 		throw new ArgumentException( message, argInfo.Name );
 	}
 
@@ -334,7 +334,7 @@ public static class StringParsingExtensions {
 			return new( result, argInfo.Name, argInfo.Message );
 		}
 
-		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessages.VALUE_MUST_BE_PARSABLE_TO, typeof( DateOnly ).FullName );
+		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessages.VALUE_MUST_BE_PARSABLE_TO, argInfo.Value, typeof( DateOnly ).FullName );
 		throw new ArgumentException( message, argInfo.Name );
 	}
 
@@ -353,7 +353,7 @@ public static class StringParsingExtensions {
 			return new( result, argInfo.Name, argInfo.Message );
 		}
 
-		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessages.VALUE_MUST_BE_PARSABLE_TO, typeof( DateOnly ).FullName );
+		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessages.VALUE_MUST_BE_PARSABLE_TO, argInfo.Value, typeof( DateOnly ).FullName );
 		throw new ArgumentException( message, argInfo.Name );
 	}
 
@@ -372,7 +372,7 @@ public static class StringParsingExtensions {
 			return new( result, argInfo.Name, argInfo.Message );
 		}
 
-		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessages.VALUE_MUST_BE_PARSABLE_TO, typeof( DateOnly ).FullName );
+		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessages.VALUE_MUST_BE_PARSABLE_TO, argInfo.Value, typeof( DateOnly ).FullName );
 		throw new ArgumentException( message, argInfo.Name );
 	}
 
@@ -390,7 +390,7 @@ public static class StringParsingExtensions {
 			return new( result, argInfo.Name, argInfo.Message );
 		}
 
-		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessages.VALUE_MUST_BE_PARSABLE_TO, typeof( TimeOnly ).FullName );
+		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessages.VALUE_MUST_BE_PARSABLE_TO, argInfo.Value, typeof( TimeOnly ).FullName );
 		throw new ArgumentException( message, argInfo.Name );
 	}
 
@@ -409,7 +409,7 @@ public static class StringParsingExtensions {
 			return new( result, argInfo.Name, argInfo.Message );
 		}
 
-		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessages.VALUE_MUST_BE_PARSABLE_TO, typeof( TimeOnly ).FullName );
+		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessages.VALUE_MUST_BE_PARSABLE_TO, argInfo.Value, typeof( TimeOnly ).FullName );
 		throw new ArgumentException( message, argInfo.Name );
 	}
 
@@ -428,7 +428,7 @@ public static class StringParsingExtensions {
 			return new( result, argInfo.Name, argInfo.Message );
 		}
 
-		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessages.VALUE_MUST_BE_PARSABLE_TO, typeof( TimeOnly ).FullName );
+		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessages.VALUE_MUST_BE_PARSABLE_TO, argInfo.Value, typeof( TimeOnly ).FullName );
 		throw new ArgumentException( message, argInfo.Name );
 	}
 
@@ -457,7 +457,7 @@ public static class StringParsingExtensions {
 		}
 #pragma warning restore CA1031
 
-		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessages.VALUE_MUST_BE_PARSABLE_TO, typeof( Type ).FullName );
+		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessages.VALUE_MUST_BE_PARSABLE_TO, argInfo.Value, typeof( Type ).FullName );
 
 		if( thrownException is not null ) {
 
@@ -480,7 +480,7 @@ public static class StringParsingExtensions {
 			return new( result, argInfo.Name, argInfo.Message );
 		}
 
-		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessages.VALUE_MUST_BE_PARSABLE_TO, typeof( Uri ).FullName );
+		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessages.VALUE_MUST_BE_PARSABLE_TO, argInfo.Value, typeof( Uri ).FullName );
 		throw new ArgumentException( message, argInfo.Name );
 	}
 
@@ -499,7 +499,7 @@ public static class StringParsingExtensions {
 			return new( result, argInfo.Name, argInfo.Message );
 		}
 
-		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessages.VALUE_MUST_BE_PARSABLE_TO, typeof( Uri ).FullName );
+		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessages.VALUE_MUST_BE_PARSABLE_TO, argInfo.Value, typeof( Uri ).FullName );
 		throw new ArgumentException( message, argInfo.Name );
 	}
 

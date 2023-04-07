@@ -53,7 +53,7 @@ public sealed class ParseDateOnly {
 			_ = StringParsingExtensions.ParseDateOnly( argInfo );
 		} );
 
-		string expectedMessage = "Value must be parsable to System.DateOnly.";
+		string expectedMessage = $"Value \"{argumentValue}\" must be parsable to System.DateOnly.";
 
 		Assert.StartsWith( expectedMessage, exception.Message );
 	}

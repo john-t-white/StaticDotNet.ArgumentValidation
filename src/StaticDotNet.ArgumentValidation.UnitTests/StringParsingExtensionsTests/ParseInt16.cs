@@ -51,7 +51,7 @@ public sealed class ParseInt16 {
 			_ = StringParsingExtensions.ParseInt16( argInfo );
 		} );
 
-		string expectedMessage = "Value must be parsable to System.Int16.";
+		string expectedMessage = $"Value \"{argumentValue}\" must be parsable to System.Int16.";
 
 		Assert.StartsWith( expectedMessage, exception.Message );
 	}
