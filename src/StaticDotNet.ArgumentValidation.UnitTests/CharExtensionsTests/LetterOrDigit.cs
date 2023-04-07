@@ -33,7 +33,7 @@ public sealed class LetterOrDigit {
 			_ = argInfo.LetterOrDigit();
 		} );
 
-		string expectedMessage = "Value must be a letter or digit.";
+		string expectedMessage = $"Value \"{argumentValue}\" must be a letter or digit.";
 
 		Assert.StartsWith( expectedMessage, exception.Message );
 	}
