@@ -201,7 +201,9 @@
     <value>Value must be a digit.</value>
   </data>
   <data name="VALUE_MUST_BE_EQUAL_TO" xml:space="preserve">
-    <value>Value must be equal to {0}.</value>
+    <value>Value {0} must be equal to {1}.</value>
+    <comment>{0} - Value
+{1} - Expected Value</comment>
   </data>
   <data name="VALUE_MUST_BE_FALSE" xml:space="preserve">
     <value>Value must be false.</value>

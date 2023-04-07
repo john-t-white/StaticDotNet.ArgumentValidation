@@ -214,7 +214,7 @@ namespace StaticDotNet.ArgumentValidation.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Value must be equal to {0}..
+        ///   Looks up a localized string similar to Value {0} must be equal to {1}..
         /// </summary>
         internal static string VALUE_MUST_BE_EQUAL_TO {
             get {

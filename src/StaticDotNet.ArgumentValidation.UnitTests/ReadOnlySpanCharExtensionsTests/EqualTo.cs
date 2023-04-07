@@ -30,7 +30,7 @@ public sealed class EqualTo {
 			_ = argInfo.EqualTo( value, comparisonType );
 		} );
 
-		string expectedMessage = $"Value must be equal to {value}.";
+		string expectedMessage = $"Value \"{argumentValue}\" must be equal to \"{value}\".";
 
 		Assert.StartsWith( expectedMessage, exception.Message );
 	}

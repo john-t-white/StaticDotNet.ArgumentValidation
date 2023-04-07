@@ -1,5 +1,6 @@
 ﻿#if NETSTANDARD2_1_OR_GREATER || NET5_0_OR_GREATER
 
+using StaticDotNet.ArgumentValidation.Infrastructure;
 using System.Globalization;
 
 namespace StaticDotNet.ArgumentValidation;
@@ -41,7 +42,7 @@ public static class ReadOnlySpanCharExtensions {
 			return ref argInfo;
 		}
 
-		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessages.VALUE_MUST_BE_EQUAL_TO, value.ToString() );
+		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessages.VALUE_MUST_BE_EQUAL_TO, Stringify.Value( argInfo.Value ), Stringify.Value( value ) );
 		throw new ArgumentException( message, argInfo.Name );
 	}
 

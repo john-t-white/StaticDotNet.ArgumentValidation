@@ -1,4 +1,5 @@
-﻿using System.Globalization;
+﻿using StaticDotNet.ArgumentValidation.Infrastructure;
+using System.Globalization;
 using System.Linq;
 
 namespace StaticDotNet.ArgumentValidation;
@@ -126,7 +127,7 @@ public static class StringExtensions {
 			return ref argInfo;
 		}
 
-		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessages.VALUE_MUST_BE_EQUAL_TO, value?.ToString() ?? Constants.NULL );
+		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessages.VALUE_MUST_BE_EQUAL_TO, Stringify.Value( argInfo.Value ), Stringify.Value( value ) );
 		throw new ArgumentException( message, argInfo.Name );
 	}
 

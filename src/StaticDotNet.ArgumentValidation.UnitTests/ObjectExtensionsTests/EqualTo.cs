@@ -32,16 +32,50 @@ public sealed class EqualTo {
 	[Fact]
 	public void WithValueNotEqualToThrowsArgumentException() {
 
-		int argumentValuealue = 2;
+		int argumentValue = 2;
 		string name = "Name";
 		int value = 1;
 
 		ArgumentException exception = Assert.Throws<ArgumentException>( name, () => {
-			ArgInfo<int> argInfo = new( argumentValuealue, name, null );
+			ArgInfo<int> argInfo = new( argumentValue, name, null );
 			_ = argInfo.EqualTo( value );
 		} );
 
-		string expectedMessage = $"Value must be equal to {value}";
+		string expectedMessage = $"Value {argumentValue} must be equal to {value}.";
+
+		Assert.StartsWith( expectedMessage, exception.Message );
+	}
+
+	[Fact]
+	public void WithStringNotEqualToThrowsArgumentException() {
+
+		string argumentValue = "2";
+		string name = "Name";
+		string value = "1";
+
+		ArgumentException exception = Assert.Throws<ArgumentException>( name, () => {
+			ArgInfo<string> argInfo = new( argumentValue, name, null );
+			_ = argInfo.EqualTo( value );
+		} );
+
+		string expectedMessage = $"Value \"{argumentValue}\" must be equal to \"{value}\".";
+
+		Assert.StartsWith( expectedMessage, exception.Message );
+	}
+
+	[Fact]
+	public void WithCharNotEqualToThrowsArgumentException() {
+
+		char argumentValue = '2';
+		string name = "Name";
+		char value = '1';
+
+		ArgumentException exception = Assert.Throws<ArgumentException>( name, () => {
+			ArgInfo<char> argInfo = new( argumentValue, name, null );
+			_ = argInfo.EqualTo( value );
+		} );
+
+		string expectedMessage = $"Value \"{argumentValue}\" must be equal to \"{value}\".";
 
 		Assert.StartsWith( expectedMessage, exception.Message );
 	}
