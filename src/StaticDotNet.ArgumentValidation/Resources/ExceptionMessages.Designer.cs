@@ -115,6 +115,15 @@ namespace StaticDotNet.ArgumentValidation.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Value &quot;{0}&quot; must end with {1}..
+        /// </summary>
+        internal static string STRING_MUST_END_WITH {
+            get {
+                return ResourceManager.GetString("STRING_MUST_END_WITH", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Value {0} must be assignable to {1}..
         /// </summary>
         internal static string TYPE_MUST_BE_ASSIGNABLE_TO {

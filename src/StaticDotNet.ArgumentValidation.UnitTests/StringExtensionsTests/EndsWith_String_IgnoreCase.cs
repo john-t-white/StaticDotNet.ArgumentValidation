@@ -54,7 +54,7 @@ public sealed class EndsWith_String_IgnoreCase {
 			_ = argInfo.EndsWith( value, ignoreCase );
 		} );
 
-		string expectedMessage = $"Value must end with {value}.";
+		string expectedMessage = $"Value \"{argumentValue}\" must end with \"{value}\".";
 
 		Assert.StartsWith( expectedMessage, exception.Message );
 	}
@@ -72,7 +72,7 @@ public sealed class EndsWith_String_IgnoreCase {
 			_ = argInfo.EndsWith( value, ignoreCase );
 		} );
 
-		string expectedMessage = "Value must end with <null>.";
+		string expectedMessage = $"Value \"{argumentValue}\" must end with <null>.";
 
 		Assert.StartsWith( expectedMessage, exception.Message );
 	}

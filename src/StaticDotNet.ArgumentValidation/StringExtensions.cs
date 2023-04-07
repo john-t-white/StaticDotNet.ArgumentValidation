@@ -205,7 +205,7 @@ public static class StringExtensions {
 			return ref argInfo;
 		}
 
-		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessages.VALUE_MUST_END_WITH, value.ToString() );
+		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessages.STRING_MUST_END_WITH, argInfo.Value, Stringify.Value( value ) );
 		throw new ArgumentException( message, argInfo.Name );
 	}
 
@@ -226,7 +226,7 @@ public static class StringExtensions {
 			return ref argInfo;
 		}
 
-		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessages.VALUE_MUST_END_WITH, value?.ToString() ?? Constants.NULL );
+		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessages.STRING_MUST_END_WITH, argInfo.Value, Stringify.Value( value ) );
 		throw new ArgumentException( message, argInfo.Name );
 	}
 
@@ -245,7 +245,7 @@ public static class StringExtensions {
 			return ref argInfo;
 		}
 
-		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessages.VALUE_MUST_END_WITH, value?.ToString() ?? Constants.NULL );
+		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessages.STRING_MUST_END_WITH, argInfo.Value, Stringify.Value( value ) );
 		throw new ArgumentException( message, argInfo.Name );
 	}
 

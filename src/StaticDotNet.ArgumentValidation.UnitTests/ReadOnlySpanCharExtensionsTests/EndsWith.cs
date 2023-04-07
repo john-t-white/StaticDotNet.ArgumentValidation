@@ -29,7 +29,7 @@ public sealed class EndsWith {
 			_ = argInfo.EndsWith( value, comparisonType );
 		} );
 
-		string expectedMessage = $"Value must end with {value}.";
+		string expectedMessage = $"Value \"{argumentValue}\" must end with \"{value}\".";
 
 		Assert.StartsWith( expectedMessage, exception.Message );
 	}

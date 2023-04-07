@@ -27,7 +27,7 @@ public sealed class EndsWith_Char {
 			_ = argInfo.EndsWith( value );
 		} );
 
-		string expectedMessage = $"Value must end with {value}.";
+		string expectedMessage = $"Value \"{argumentValue}\" must end with \"{value}\".";
 
 		Assert.StartsWith( expectedMessage, exception.Message );
 	}

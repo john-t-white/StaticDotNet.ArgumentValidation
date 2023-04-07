@@ -78,7 +78,7 @@ public static class ReadOnlySpanCharExtensions {
 			return ref argInfo;
 		}
 
-		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessages.VALUE_MUST_END_WITH, value.ToString() );
+		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessages.STRING_MUST_END_WITH, argInfo.Value.ToString(), Stringify.Value( value ) );
 		throw new ArgumentException( message, argInfo.Name );
 	}
 
