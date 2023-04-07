@@ -230,7 +230,8 @@
 {1} - Minimum Value</comment>
   </data>
   <data name="VALUE_MUST_BE_LETTER" xml:space="preserve">
-    <value>Value must be a letter.</value>
+    <value>Value "{0}" must be a letter.</value>
+    <comment>{0} - Value</comment>
   </data>
   <data name="VALUE_MUST_BE_LETTER_OR_DIGIT" xml:space="preserve">
     <value>Value must be a letter or digit.</value>

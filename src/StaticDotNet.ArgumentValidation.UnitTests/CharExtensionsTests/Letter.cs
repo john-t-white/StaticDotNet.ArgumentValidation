@@ -23,7 +23,7 @@ public sealed class Letter {
 			_ = argInfo.Letter();
 		} );
 
-		string expectedMessage = "Value must be a letter.";
+		string expectedMessage = $"Value \"{argumentValue}\" must be a letter.";
 
 		Assert.StartsWith( expectedMessage, exception.Message );
 	}

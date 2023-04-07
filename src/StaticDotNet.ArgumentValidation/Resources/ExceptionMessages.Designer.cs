@@ -268,7 +268,7 @@ namespace StaticDotNet.ArgumentValidation.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Value must be a letter..
+        ///   Looks up a localized string similar to Value &quot;{0}&quot; must be a letter..
         /// </summary>
         internal static string VALUE_MUST_BE_LETTER {
             get {
