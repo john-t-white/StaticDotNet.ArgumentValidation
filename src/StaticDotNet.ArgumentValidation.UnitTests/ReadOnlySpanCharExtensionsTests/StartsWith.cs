@@ -29,7 +29,7 @@ public sealed class StartsWith {
 			_ = argInfo.StartsWith( value, comparisonType );
 		} );
 
-		string expectedMessage = $"Value must start with {value}.";
+		string expectedMessage = $"Value \"{argumentValue}\" must start with \"{value}\".";
 
 		Assert.StartsWith( expectedMessage, exception.Message );
 	}

@@ -1,6 +1,6 @@
 ﻿using System.Text.RegularExpressions;
 
-namespace StaticDotNet.ArgumentValidation.UnitTests;
+namespace StaticDotNet.ArgumentValidation.UnitTests.RegexExtensionsTests;
 
 public sealed partial class Matches_Regex {
 
@@ -39,7 +39,7 @@ public sealed partial class Matches_Regex {
 			_ = argInfo.Matches( regex );
 		} );
 
-		string expectedMessage = $"Value must match the regex {regex}.";
+		string expectedMessage = $"Value \"{argumentValue}\" must match the regex \"{regex}\".";
 
 		Assert.StartsWith( expectedMessage, excetion.Message );
 	}
@@ -56,7 +56,7 @@ public sealed partial class Matches_Regex {
 			_ = argInfo.Matches( regex );
 		} );
 
-		string expectedMessage = "Value must match the regex <null>.";
+		string expectedMessage = $"Value \"{argumentValue}\" must match the regex <null>.";
 
 		Assert.StartsWith( expectedMessage, excetion.Message );
 	}
@@ -103,7 +103,7 @@ public sealed partial class Matches_Regex {
 			_ = argInfo.Matches( regex, out Match _ );
 		} );
 
-		string expectedMessage = $"Value must match the regex {regex}.";
+		string expectedMessage = $"Value \"{argumentValue}\" must match the regex \"{regex}\".";
 
 		Assert.StartsWith( expectedMessage, excetion.Message );
 	}
@@ -120,7 +120,7 @@ public sealed partial class Matches_Regex {
 			_ = argInfo.Matches( regex, out Match _ );
 		} );
 
-		string expectedMessage = "Value must match the regex <null>.";
+		string expectedMessage = $"Value \"{argumentValue}\" must match the regex <null>.";
 
 		Assert.StartsWith( expectedMessage, excetion.Message );
 	}

@@ -44,7 +44,7 @@ public sealed class Matches_Pattern {
 			_ = argInfo.Matches( pattern );
 		} );
 
-		string expectedMessage = $"Value must match the regex {pattern}.";
+		string expectedMessage = $"Value \"{argumentValue}\" must match the regex \"{pattern}\".";
 
 		Assert.StartsWith( expectedMessage, excetion.Message );
 	}
@@ -61,7 +61,7 @@ public sealed class Matches_Pattern {
 			_ = argInfo.Matches( pattern );
 		} );
 
-		string expectedMessage = "Value must match the regex <null>.";
+		string expectedMessage = $"Value \"{argumentValue}\" must match the regex <null>.";
 
 		Assert.StartsWith( expectedMessage, excetion.Message );
 	}
@@ -123,7 +123,7 @@ public sealed class Matches_Pattern {
 			_ = argInfo.Matches( pattern, out Match _ );
 		} );
 
-		string expectedMessage = $"Value must match the regex {pattern}.";
+		string expectedMessage = $"Value \"{argumentValue}\" must match the regex \"{pattern}\".";
 
 		Assert.StartsWith( expectedMessage, excetion.Message );
 	}
@@ -140,7 +140,7 @@ public sealed class Matches_Pattern {
 			_ = argInfo.Matches( pattern, out Match _ );
 		} );
 
-		string expectedMessage = "Value must match the regex <null>.";
+		string expectedMessage = $"Value \"{argumentValue}\" must match the regex <null>.";
 
 		Assert.StartsWith( expectedMessage, excetion.Message );
 	}

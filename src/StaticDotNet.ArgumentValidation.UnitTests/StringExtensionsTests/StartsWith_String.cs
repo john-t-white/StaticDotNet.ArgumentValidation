@@ -37,7 +37,7 @@ public sealed class StartsWith_String {
 			_ = argInfo.StartsWith( value );
 		} );
 
-		string expectedMessage = $"Value must start with {value}.";
+		string expectedMessage = $"Value \"{argumentValue}\" must start with \"{value}\".";
 
 		Assert.StartsWith( expectedMessage, exception.Message );
 	}
@@ -54,7 +54,7 @@ public sealed class StartsWith_String {
 			_ = argInfo.StartsWith( value );
 		} );
 
-		string expectedMessage = "Value must start with <null>.";
+		string expectedMessage = $"Value \"{argumentValue}\" must start with <null>.";
 
 		Assert.StartsWith( expectedMessage, exception.Message );
 	}
