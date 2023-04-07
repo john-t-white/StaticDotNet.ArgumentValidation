@@ -53,3 +53,7 @@ All documentation can be found at [here](https://github.com/john-t-white/StaticD
 - Moved exception messages to resource file.
 - Replaced Writable/Readable with CanWrite/CanRead and marked existing obsolete.
 - Added CanSeek.
+
+**0.5.3**
+
+- Updated exception messages to include more information.
