@@ -196,7 +196,7 @@ namespace StaticDotNet.ArgumentValidation.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Value must be between {0} and {1}..
+        ///   Looks up a localized string similar to Value {0} must be between {1} and {2}..
         /// </summary>
         internal static string VALUE_MUST_BE_BETWEEN {
             get {
@@ -232,7 +232,7 @@ namespace StaticDotNet.ArgumentValidation.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Value must be greater than {0}..
+        ///   Looks up a localized string similar to Value {0} must be greater than {1}..
         /// </summary>
         internal static string VALUE_MUST_BE_GREATER_THAN {
             get {
@@ -241,7 +241,7 @@ namespace StaticDotNet.ArgumentValidation.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Value must be greater than or equal to {0}..
+        ///   Looks up a localized string similar to Value {0} must be greater than or equal to {1}..
         /// </summary>
         internal static string VALUE_MUST_BE_GREATER_THAN_OR_EQUAL_TO {
             get {
@@ -250,7 +250,7 @@ namespace StaticDotNet.ArgumentValidation.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Value must be less than {0}..
+        ///   Looks up a localized string similar to Value {0} must be less than {1}..
         /// </summary>
         internal static string VALUE_MUST_BE_LESS_THAN {
             get {
@@ -259,7 +259,7 @@ namespace StaticDotNet.ArgumentValidation.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Value must be less than or equal to {0}..
+        ///   Looks up a localized string similar to Value {0} must be less than or equal to {1}..
         /// </summary>
         internal static string VALUE_MUST_BE_LESS_THAN_OR_EQUAL_TO {
             get {

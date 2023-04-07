@@ -192,7 +192,10 @@
 {1} - Expected Type</comment>
   </data>
   <data name="VALUE_MUST_BE_BETWEEN" xml:space="preserve">
-    <value>Value must be between {0} and {1}.</value>
+    <value>Value {0} must be between {1} and {2}.</value>
+    <comment>{0} - Value
+{1} - Minimum Value
+{2} - Maximum Value</comment>
   </data>
   <data name="VALUE_MUST_BE_DIGIT" xml:space="preserve">
     <value>Value must be a digit.</value>
@@ -204,16 +207,24 @@
     <value>Value must be false.</value>
   </data>
   <data name="VALUE_MUST_BE_GREATER_THAN" xml:space="preserve">
-    <value>Value must be greater than {0}.</value>
+    <value>Value {0} must be greater than {1}.</value>
+    <comment>{0} - Value
+{1} - Maximum Value</comment>
   </data>
   <data name="VALUE_MUST_BE_GREATER_THAN_OR_EQUAL_TO" xml:space="preserve">
-    <value>Value must be greater than or equal to {0}.</value>
+    <value>Value {0} must be greater than or equal to {1}.</value>
+    <comment>{0} - Value
+{1} - Maximum Value</comment>
   </data>
   <data name="VALUE_MUST_BE_LESS_THAN" xml:space="preserve">
-    <value>Value must be less than {0}.</value>
+    <value>Value {0} must be less than {1}.</value>
+    <comment>{0} - Value
+{1} - Minimum Value</comment>
   </data>
   <data name="VALUE_MUST_BE_LESS_THAN_OR_EQUAL_TO" xml:space="preserve">
-    <value>Value must be less than or equal to {0}.</value>
+    <value>Value {0} must be less than or equal to {1}.</value>
+    <comment>{0} - Value
+{1} - Minimum Value</comment>
   </data>
   <data name="VALUE_MUST_BE_LETTER" xml:space="preserve">
     <value>Value must be a letter.</value>

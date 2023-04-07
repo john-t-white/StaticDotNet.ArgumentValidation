@@ -28,7 +28,41 @@ public sealed class LessThanOrEqualTo {
 			_ = argInfo.LessThanOrEqualTo( value );
 		} );
 
-		string expectedMessage = $"Value must be less than or equal to {value}.";
+		string expectedMessage = $"Value {argumentValue} must be less than or equal to {value}.";
+
+		Assert.StartsWith( expectedMessage, exception.Message );
+	}
+
+	[Fact]
+	public void WithStringNotLessThanOrEqualToThrowsArgumentOutOfRangeException() {
+
+		string argumentValue = "3";
+		string name = "Name";
+		string value = "2";
+
+		ArgumentOutOfRangeException exception = Assert.Throws<ArgumentOutOfRangeException>( name, () => {
+			ArgInfo<string> argInfo = new( argumentValue, name, null );
+			_ = argInfo.LessThanOrEqualTo( value );
+		} );
+
+		string expectedMessage = $"Value \"{argumentValue}\" must be less than or equal to \"{value}\".";
+
+		Assert.StartsWith( expectedMessage, exception.Message );
+	}
+
+	[Fact]
+	public void WithCharNotLessThanOrEqualToThrowsArgumentOutOfRangeException() {
+
+		char argumentValue = '3';
+		string name = "Name";
+		char value = '2';
+
+		ArgumentOutOfRangeException exception = Assert.Throws<ArgumentOutOfRangeException>( name, () => {
+			ArgInfo<char> argInfo = new( argumentValue, name, null );
+			_ = argInfo.LessThanOrEqualTo( value );
+		} );
+
+		string expectedMessage = $"Value \"{argumentValue}\" must be less than or equal to \"{value}\".";
 
 		Assert.StartsWith( expectedMessage, exception.Message );
 	}
@@ -45,7 +79,7 @@ public sealed class LessThanOrEqualTo {
 			_ = argInfo.LessThanOrEqualTo( value );
 		} );
 
-		string expectedMessage = "Value must be less than or equal to <null>.";
+		string expectedMessage = $"Value \"{argumentValue}\" must be less than or equal to <null>.";
 
 		Assert.StartsWith( expectedMessage, exception.Message );
 	}

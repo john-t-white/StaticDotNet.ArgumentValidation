@@ -27,7 +27,43 @@ public sealed class GreaterThan {
 			_ = argInfo.GreaterThan( value );
 		} );
 
-		string expectedMessage = $"Value must be greater than {value}.";
+		string expectedMessage = $"Value {argumentValue} must be greater than {value}.";
+
+		Assert.StartsWith( expectedMessage, exception.Message );
+	}
+
+	[Theory]
+	[InlineData( "1" )]
+	[InlineData( "2" )]
+	public void WithStringNotGreaterThanThrowsArgumentOutOfRangeException( string argumentValue ) {
+
+		string name = "Name";
+		string value = "2";
+
+		ArgumentOutOfRangeException exception = Assert.Throws<ArgumentOutOfRangeException>( name, () => {
+			ArgInfo<string> argInfo = new( argumentValue, name, null );
+			_ = argInfo.GreaterThan( value );
+		} );
+
+		string expectedMessage = $"Value \"{argumentValue}\" must be greater than \"{value}\".";
+
+		Assert.StartsWith( expectedMessage, exception.Message );
+	}
+
+	[Theory]
+	[InlineData( '1' )]
+	[InlineData( '2' )]
+	public void WithCharNotGreaterThanThrowsArgumentOutOfRangeException( char argumentValue ) {
+
+		string name = "Name";
+		char value = '2';
+
+		ArgumentOutOfRangeException exception = Assert.Throws<ArgumentOutOfRangeException>( name, () => {
+			ArgInfo<char> argInfo = new( argumentValue, name, null );
+			_ = argInfo.GreaterThan( value );
+		} );
+
+		string expectedMessage = $"Value \"{argumentValue}\" must be greater than \"{value}\".";
 
 		Assert.StartsWith( expectedMessage, exception.Message );
 	}
@@ -44,7 +80,7 @@ public sealed class GreaterThan {
 			_ = argInfo.GreaterThan( value );
 		} );
 
-		string expectedMessage = "Value must be greater than <null>.";
+		string expectedMessage = $"Value \"{argumentValue}\" must be greater than <null>.";
 
 		Assert.StartsWith( expectedMessage, exception.Message );
 	}

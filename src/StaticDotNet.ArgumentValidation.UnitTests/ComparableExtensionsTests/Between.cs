@@ -32,13 +32,51 @@ public sealed class Between {
 			_ = argInfo.Between( minValue, maxValue );
 		} );
 
-		string expectedMessage = $"Value must be between {minValue} and {maxValue}.";
+		string expectedMessage = $"Value {argumentValue} must be between {minValue} and {maxValue}.";
+
+		Assert.StartsWith( expectedMessage, exception.Message );
+	}
+
+	[Theory]
+	[InlineData( "1" )]
+	[InlineData( "5" )]
+	public void WithStringNotBetweenThrowsArgumentOutOfRangeException( string argumentValue ) {
+
+		string name = "Name";
+		string minValue = "2";
+		string maxValue = "4";
+
+		ArgumentOutOfRangeException exception = Assert.Throws<ArgumentOutOfRangeException>( name, () => {
+			ArgInfo<string> argInfo = new( argumentValue, name, null );
+			_ = argInfo.Between( minValue, maxValue );
+		} );
+
+		string expectedMessage = $"Value \"{argumentValue}\" must be between \"{minValue}\" and \"{maxValue}\".";
+
+		Assert.StartsWith( expectedMessage, exception.Message );
+	}
+
+	[Theory]
+	[InlineData( '1' )]
+	[InlineData( '5' )]
+	public void WithCharNotBetweenThrowsArgumentOutOfRangeException( char argumentValue ) {
+
+		string name = "Name";
+		char minValue = '2';
+		char maxValue = '4';
+
+		ArgumentOutOfRangeException exception = Assert.Throws<ArgumentOutOfRangeException>( name, () => {
+			ArgInfo<char> argInfo = new( argumentValue, name, null );
+			_ = argInfo.Between( minValue, maxValue );
+		} );
+
+		string expectedMessage = $"Value \"{argumentValue}\" must be between \"{minValue}\" and \"{maxValue}\".";
 
 		Assert.StartsWith( expectedMessage, exception.Message );
 	}
 
 	[Fact]
-	public void WithNullMinValueThrowsArgumentOutOfRangeException() {
+	public void WithStringAndNullMinValueThrowsArgumentOutOfRangeException() {
 
 		string argumentValue = "1";
 		string name = "Name";
@@ -50,13 +88,13 @@ public sealed class Between {
 			_ = argInfo.Between( minValue, maxValue );
 		} );
 
-		string expectedMessage = $"Value must be between <null> and {maxValue}.";
+		string expectedMessage = $"Value \"{argumentValue}\" must be between <null> and \"{maxValue}\".";
 
 		Assert.StartsWith( expectedMessage, exception.Message );
 	}
 
 	[Fact]
-	public void WithNullMaxValueThrowsArgumentOutOfRangeException() {
+	public void WithStringAndNullMaxValueThrowsArgumentOutOfRangeException() {
 
 		string argumentValue = "1";
 		string name = "Name";
@@ -68,7 +106,7 @@ public sealed class Between {
 			_ = argInfo.Between( minValue, maxValue );
 		} );
 
-		string expectedMessage = $"Value must be between {minValue} and <null>.";
+		string expectedMessage = $"Value \"{argumentValue}\" must be between \"{minValue}\" and <null>.";
 
 		Assert.StartsWith( expectedMessage, exception.Message );
 	}

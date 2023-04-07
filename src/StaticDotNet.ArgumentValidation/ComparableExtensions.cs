@@ -1,4 +1,5 @@
-﻿using System.Globalization;
+﻿using StaticDotNet.ArgumentValidation.Infrastructure;
+using System.Globalization;
 
 namespace StaticDotNet.ArgumentValidation;
 
@@ -22,7 +23,7 @@ public static class ComparableExtensions {
 			return ref argInfo;
 		}
 
-		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessages.VALUE_MUST_BE_GREATER_THAN, value?.ToString() ?? Constants.NULL );
+		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessages.VALUE_MUST_BE_GREATER_THAN, Stringify.Value( argInfo.Value ), Stringify.Value( value ) );
 		throw new ArgumentOutOfRangeException( argInfo.Name, message );
 	}
 
@@ -41,7 +42,7 @@ public static class ComparableExtensions {
 			return ref argInfo;
 		}
 
-		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessages.VALUE_MUST_BE_GREATER_THAN_OR_EQUAL_TO, value?.ToString() ?? Constants.NULL );
+		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessages.VALUE_MUST_BE_GREATER_THAN_OR_EQUAL_TO, Stringify.Value( argInfo.Value ), Stringify.Value( value ) );
 		throw new ArgumentOutOfRangeException( argInfo.Name, message );
 	}
 
@@ -60,7 +61,7 @@ public static class ComparableExtensions {
 			return ref argInfo;
 		}
 
-		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessages.VALUE_MUST_BE_LESS_THAN, value?.ToString() ?? Constants.NULL );
+		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessages.VALUE_MUST_BE_LESS_THAN, Stringify.Value( argInfo.Value ), Stringify.Value( value ) );
 		throw new ArgumentOutOfRangeException( argInfo.Name, message );
 	}
 
@@ -79,7 +80,7 @@ public static class ComparableExtensions {
 			return ref argInfo;
 		}
 
-		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessages.VALUE_MUST_BE_LESS_THAN_OR_EQUAL_TO, value?.ToString() ?? Constants.NULL );
+		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessages.VALUE_MUST_BE_LESS_THAN_OR_EQUAL_TO, Stringify.Value( argInfo.Value ), Stringify.Value( value ) );
 		throw new ArgumentOutOfRangeException( argInfo.Name, message );
 	}
 
@@ -99,7 +100,7 @@ public static class ComparableExtensions {
 			return ref argInfo;
 		}
 
-		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessages.VALUE_MUST_BE_BETWEEN, minValue?.ToString() ?? Constants.NULL, maxValue?.ToString() ?? Constants.NULL );
+		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessages.VALUE_MUST_BE_BETWEEN, Stringify.Value( argInfo.Value ), Stringify.Value( minValue ), Stringify.Value( maxValue ) );
 		throw new ArgumentOutOfRangeException( argInfo.Name, message );
 	}
 }
