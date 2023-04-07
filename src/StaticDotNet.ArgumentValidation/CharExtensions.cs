@@ -102,7 +102,7 @@ public static class CharExtensions {
 			return ref argInfo;
 		}
 
-		string message = argInfo.Message ?? ExceptionMessages.VALUE_MUST_BE_LOWER;
+		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessages.VALUE_MUST_BE_LOWER, argInfo.Value );
 		throw new ArgumentException( message, argInfo.Name );
 	}
 

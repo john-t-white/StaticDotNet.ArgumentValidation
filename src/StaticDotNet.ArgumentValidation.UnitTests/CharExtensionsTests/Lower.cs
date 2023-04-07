@@ -23,7 +23,7 @@ public sealed class Lower {
 			_ = argInfo.Lower();
 		} );
 
-		string expectedMessage = "Value must be lower.";
+		string expectedMessage = $"Value \"{argumentValue}\" must be lowercase.";
 
 		Assert.StartsWith( expectedMessage, exception.Message );
 	}
