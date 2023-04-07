@@ -86,7 +86,7 @@ public static class CharExtensions {
 			return ref argInfo;
 		}
 
-		string message = argInfo.Message ?? ExceptionMessages.VALUE_MUST_BE_NUMBER;
+		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessages.VALUE_MUST_BE_NUMBER, argInfo.Value );
 		throw new ArgumentException( message, argInfo.Name );
 	}
 

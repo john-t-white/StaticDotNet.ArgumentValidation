@@ -23,7 +23,7 @@ public sealed class Number {
 			_ = argInfo.Number();
 		} );
 
-		string expectedMessage = "Value must be a number.";
+		string expectedMessage = $"Value \"{argumentValue}\" must be a number.";
 
 		Assert.StartsWith( expectedMessage, exception.Message );
 	}

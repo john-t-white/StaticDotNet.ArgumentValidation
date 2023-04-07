@@ -245,7 +245,8 @@
     <value>Value must be null.</value>
   </data>
   <data name="VALUE_MUST_BE_NUMBER" xml:space="preserve">
-    <value>Value must be a number.</value>
+    <value>Value "{0}" must be a number.</value>
+    <comment>{0} - Value</comment>
   </data>
   <data name="VALUE_MUST_BE_PARSABLE_TO" xml:space="preserve">
     <value>Value must be parsable to {0}.</value>
