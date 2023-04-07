@@ -198,7 +198,8 @@
 {2} - Maximum Value</comment>
   </data>
   <data name="VALUE_MUST_BE_DIGIT" xml:space="preserve">
-    <value>Value must be a digit.</value>
+    <value>Value "{0}" must be a digit.</value>
+    <comment>{0} - Value</comment>
   </data>
   <data name="VALUE_MUST_BE_EQUAL_TO" xml:space="preserve">
     <value>Value {0} must be equal to {1}.</value>

@@ -205,7 +205,7 @@ namespace StaticDotNet.ArgumentValidation.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Value must be a digit..
+        ///   Looks up a localized string similar to Value &quot;{0}&quot; must be a digit..
         /// </summary>
         internal static string VALUE_MUST_BE_DIGIT {
             get {

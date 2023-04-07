@@ -23,7 +23,7 @@ public sealed class Digit {
 			_ = argInfo.Digit();
 		} );
 
-		string expectedMessage = "Value must be a digit.";
+		string expectedMessage = $"Value \"{argumentValue}\" must be a digit.";
 
 		Assert.StartsWith( expectedMessage, exception.Message );
 	}
