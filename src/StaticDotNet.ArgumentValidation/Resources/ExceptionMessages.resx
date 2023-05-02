@@ -201,6 +201,18 @@
     <comment>{0} - Value
 {1} - Expected Scheme</comment>
   </data>
+  <data name="VALUE_MUST_BE_ASCII_DIGIT" xml:space="preserve">
+    <value>Value "{0}" must be an ASCII digit.</value>
+    <comment>{0} - Value</comment>
+  </data>
+  <data name="VALUE_MUST_BE_ASCII_LETTER" xml:space="preserve">
+    <value>Value "{0}" must be an ASCII letter.</value>
+    <comment>{0} - Value</comment>
+  </data>
+  <data name="VALUE_MUST_BE_ASCII_LETTER_OR_DIGIT" xml:space="preserve">
+    <value>Value "{0}" must be an ASCII letter or digit.</value>
+    <comment>{0} - Value</comment>
+  </data>
   <data name="VALUE_MUST_BE_ASSIGNABLE_TO" xml:space="preserve">
     <value>Value of type {0} must be assignable to {1}.</value>
     <comment>{0} - Value Type

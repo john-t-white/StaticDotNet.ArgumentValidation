@@ -121,4 +121,56 @@ public static class CharExtensions {
 		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessages.VALUE_MUST_BE_UPPER, argInfo.Value.ToString() );
 		throw new ArgumentException( message, argInfo.Name );
 	}
+
+#if NET7_0_OR_GREATER
+
+	/// <summary>
+	/// Ensures an argument is an ASCII digit, otherwise an <see cref="ArgumentException"/> is thrown.
+	/// </summary>
+	/// <param name="argInfo">The argument info.</param>
+	/// <returns>The <paramref name="argInfo"/>.</returns>
+	/// <exception cref="ArgumentException">Thrown when <paramref name="argInfo.Value"/> is not an ASCII digit.</exception>
+	public static ref readonly ArgInfo<char> AsciiDigit( in this ArgInfo<char> argInfo ) {
+
+		if( char.IsAsciiDigit( argInfo.Value ) ) {
+			return ref argInfo;
+		}
+
+		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessages.VALUE_MUST_BE_ASCII_DIGIT, argInfo.Value.ToString() );
+		throw new ArgumentException( message, argInfo.Name );
+	}
+
+	/// <summary>
+	/// Ensures an argument is an ASCII letter, otherwise an <see cref="ArgumentException"/> is thrown.
+	/// </summary>
+	/// <param name="argInfo">The argument info.</param>
+	/// <returns>The <paramref name="argInfo"/>.</returns>
+	/// <exception cref="ArgumentException">Thrown when <paramref name="argInfo.Value"/> is not an ASCII letter.</exception>
+	public static ref readonly ArgInfo<char> AsciiLetter( in this ArgInfo<char> argInfo ) {
+
+		if( char.IsAsciiLetter( argInfo.Value ) ) {
+			return ref argInfo;
+		}
+
+		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessages.VALUE_MUST_BE_ASCII_LETTER, argInfo.Value.ToString() );
+		throw new ArgumentException( message, argInfo.Name );
+	}
+
+	/// <summary>
+	/// Ensures an argument is an ASCII letter or digit, otherwise an <see cref="ArgumentException"/> is thrown.
+	/// </summary>
+	/// <param name="argInfo">The argument info.</param>
+	/// <returns>The <paramref name="argInfo"/>.</returns>
+	/// <exception cref="ArgumentException">Thrown when <paramref name="argInfo.Value"/> is not an ASCII letter or digit.</exception>
+	public static ref readonly ArgInfo<char> AsciiLetterOrDigit( in this ArgInfo<char> argInfo ) {
+
+		if( char.IsAsciiLetterOrDigit( argInfo.Value ) ) {
+			return ref argInfo;
+		}
+
+		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessages.VALUE_MUST_BE_ASCII_LETTER_OR_DIGIT, argInfo.Value.ToString() );
+		throw new ArgumentException( message, argInfo.Name );
+	}
+
+#endif
 }

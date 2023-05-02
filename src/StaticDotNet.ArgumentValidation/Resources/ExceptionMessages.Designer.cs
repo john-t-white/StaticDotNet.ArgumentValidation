@@ -214,6 +214,33 @@ namespace StaticDotNet.ArgumentValidation.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Value &quot;{0}&quot; must be an ASCII digit..
+        /// </summary>
+        internal static string VALUE_MUST_BE_ASCII_DIGIT {
+            get {
+                return ResourceManager.GetString("VALUE_MUST_BE_ASCII_DIGIT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Value &quot;{0}&quot; must be an ASCII letter..
+        /// </summary>
+        internal static string VALUE_MUST_BE_ASCII_LETTER {
+            get {
+                return ResourceManager.GetString("VALUE_MUST_BE_ASCII_LETTER", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Value &quot;{0}&quot; must be an ASCII letter or digit..
+        /// </summary>
+        internal static string VALUE_MUST_BE_ASCII_LETTER_OR_DIGIT {
+            get {
+                return ResourceManager.GetString("VALUE_MUST_BE_ASCII_LETTER_OR_DIGIT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Value of type {0} must be assignable to {1}..
         /// </summary>
         internal static string VALUE_MUST_BE_ASSIGNABLE_TO {

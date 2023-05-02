@@ -119,6 +119,9 @@ While the following are included with the library, you can extend the library wi
 
 ## Char
 
+- AsciiDigit
+- AsciiLetter
+- AsciiLetterOrDigit
 - Digit
 - Letter
 - LetterOrDigit

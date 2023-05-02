@@ -57,3 +57,7 @@ All documentation can be found at [here](https://github.com/john-t-white/StaticD
 **0.5.3**
 
 - Updated exception messages to include more information.
+
+**0.6.0**
+
+- Added ASCII checks for char and string (.NET 7.0)
