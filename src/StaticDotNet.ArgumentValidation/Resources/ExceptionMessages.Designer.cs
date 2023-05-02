@@ -106,6 +106,33 @@ namespace StaticDotNet.ArgumentValidation.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Value &quot;{0}&quot; must be ASCII digits..
+        /// </summary>
+        internal static string STRING_MUST_BE_ASCII_DIGITS {
+            get {
+                return ResourceManager.GetString("STRING_MUST_BE_ASCII_DIGITS", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Value &quot;{0}&quot; must be ASCII letters..
+        /// </summary>
+        internal static string STRING_MUST_BE_ASCII_LETTERS {
+            get {
+                return ResourceManager.GetString("STRING_MUST_BE_ASCII_LETTERS", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Value &quot;{0}&quot; must be ASCII letters or digits..
+        /// </summary>
+        internal static string STRING_MUST_BE_ASCII_LETTERS_OR_DIGITS {
+            get {
+                return ResourceManager.GetString("STRING_MUST_BE_ASCII_LETTERS_OR_DIGITS", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Value &quot;{0}&quot; must contain {1}..
         /// </summary>
         internal static string STRING_MUST_CONTAIN {

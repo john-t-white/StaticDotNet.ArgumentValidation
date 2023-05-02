@@ -145,6 +145,18 @@
 {1} - Value Length
 {2} - Expected Length</comment>
   </data>
+  <data name="STRING_MUST_BE_ASCII_DIGITS" xml:space="preserve">
+    <value>Value "{0}" must be ASCII digits.</value>
+    <comment>{0} - Value</comment>
+  </data>
+  <data name="STRING_MUST_BE_ASCII_LETTERS" xml:space="preserve">
+    <value>Value "{0}" must be ASCII letters.</value>
+    <comment>{0} - Value</comment>
+  </data>
+  <data name="STRING_MUST_BE_ASCII_LETTERS_OR_DIGITS" xml:space="preserve">
+    <value>Value "{0}" must be ASCII letters or digits.</value>
+    <comment>{0} - Value</comment>
+  </data>
   <data name="STRING_MUST_CONTAIN" xml:space="preserve">
     <value>Value "{0}" must contain {1}.</value>
     <comment>{0} - Value

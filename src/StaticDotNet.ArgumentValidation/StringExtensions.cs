@@ -329,4 +329,56 @@ public static class StringExtensions {
 
 #endif
 
+#if NET7_0_OR_GREATER
+
+	/// <summary>
+	/// Ensures an argument is only ASCII digits, otherwise an <see cref="ArgumentException"/> is thrown.
+	/// </summary>
+	/// <param name="argInfo">The argument info.</param>
+	/// <returns>The <paramref name="argInfo"/>.</returns>
+	/// <exception cref="ArgumentException">Thrown when <paramref name="argInfo.Value"/> is not only ASCII digits.</exception>
+	public static ref readonly ArgInfo<string> AsciiDigits( in this ArgInfo<string> argInfo ) {
+
+		if( argInfo.Value.All( x => char.IsAsciiDigit( x ) ) ) {
+			return ref argInfo;
+		}
+
+		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessages.STRING_MUST_BE_ASCII_DIGITS, argInfo.Value );
+		throw new ArgumentException( message, argInfo.Name );
+	}
+
+	/// <summary>
+	/// Ensures an argument is only ASCII letters, otherwise an <see cref="ArgumentException"/> is thrown.
+	/// </summary>
+	/// <param name="argInfo">The argument info.</param>
+	/// <returns>The <paramref name="argInfo"/>.</returns>
+	/// <exception cref="ArgumentException">Thrown when <paramref name="argInfo.Value"/> is not only ASCII letters.</exception>
+	public static ref readonly ArgInfo<string> AsciiLetters( in this ArgInfo<string> argInfo ) {
+
+		if( argInfo.Value.All( x => char.IsAsciiLetter( x ) ) ) {
+			return ref argInfo;
+		}
+
+		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessages.STRING_MUST_BE_ASCII_LETTERS, argInfo.Value );
+		throw new ArgumentException( message, argInfo.Name );
+	}
+
+	/// <summary>
+	/// Ensures an argument is only ASCII letters or digits, otherwise an <see cref="ArgumentException"/> is thrown.
+	/// </summary>
+	/// <param name="argInfo">The argument info.</param>
+	/// <returns>The <paramref name="argInfo"/>.</returns>
+	/// <exception cref="ArgumentException">Thrown when <paramref name="argInfo.Value"/> is not only ASCII letters or digits.</exception>
+	public static ref readonly ArgInfo<string> AsciiLettersOrDigits( in this ArgInfo<string> argInfo ) {
+
+		if( argInfo.Value.All( x => char.IsAsciiLetterOrDigit( x ) ) ) {
+			return ref argInfo;
+		}
+
+		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessages.STRING_MUST_BE_ASCII_LETTERS_OR_DIGITS, argInfo.Value );
+		throw new ArgumentException( message, argInfo.Name );
+	}
+
+#endif
+
 }

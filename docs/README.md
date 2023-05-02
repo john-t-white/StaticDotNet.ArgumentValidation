@@ -216,6 +216,9 @@ While the following are included with the library, you can extend the library wi
 
 ## String
 
+- AsciiDigits
+- AsciiLetters
+- AsciiLettersOrDigits
 - Contains
 - EndsWith
 - EqualTo

@@ -60,4 +60,4 @@ All documentation can be found at [here](https://github.com/john-t-white/StaticD
 
 **0.6.0**
 
-- Added ASCII checks for char and string (.NET 7.0)
+- Added ASCII digit and letter checks for char and string (.NET 7.0)
