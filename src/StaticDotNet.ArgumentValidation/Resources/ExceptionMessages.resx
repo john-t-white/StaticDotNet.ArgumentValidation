@@ -340,7 +340,4 @@
   <data name="VALUE_NOT_DEFINED" xml:space="preserve">
     <value>Value is not defined.</value>
   </data>
-  <data name="VALUE_UNEXPECTED_NULL" xml:space="preserve">
-    <value>Value is unexpectedly null. Please use Arg.IsNotNull.</value>
-  </data>
 </root>

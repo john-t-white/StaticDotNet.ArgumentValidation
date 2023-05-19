@@ -17,7 +17,7 @@ public class IsNotEmptyArray {
 	public int[] Baseline() => argumentValue.Length > 0 ? argumentValue : throw new ArgumentException();
 
 	[Benchmark]
-	public int[] ArgumentValidation() => Arg.Is( argumentValue ).NotEmpty().Value;
+	public int[] ArgumentValidation() => Arg.IsNotNull( argumentValue ).NotEmpty().Value;
 
 	[Benchmark]
 	public int[] Dawn_Guard() => Dawn.Guard.Argument( argumentValue ).NotEmpty();

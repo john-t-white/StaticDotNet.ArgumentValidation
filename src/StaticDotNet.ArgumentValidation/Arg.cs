@@ -67,8 +67,8 @@ public static class Arg {
 	/// <returns>A <see cref="ArgInfo{T}"/>.</returns>
 	/// <exception cref="ArgumentNullException">Thrown when <paramref name="value"/> is unexpectedly null and shouldn't be.</exception>
 	public static ArgInfo<T> Is<T>( T value, [CallerArgumentExpression( nameof( value ) )] string? name = null, string? message = null )
-		where T : notnull
-		=> value is not null ? new( value, name, message ) : throw new ArgumentNullException( name, ExceptionMessages.VALUE_UNEXPECTED_NULL );
+		where T : struct
+		=> new( value, name, message );
 
 #if NETSTANDARD2_1_OR_GREATER || NET5_0_OR_GREATER
 

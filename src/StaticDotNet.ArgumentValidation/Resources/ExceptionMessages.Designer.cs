@@ -527,14 +527,5 @@ namespace StaticDotNet.ArgumentValidation.Resources {
                 return ResourceManager.GetString("VALUE_NOT_DEFINED", resourceCulture);
             }
         }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Value is unexpectedly null. Please use Arg.IsNotNull..
-        /// </summary>
-        internal static string VALUE_UNEXPECTED_NULL {
-            get {
-                return ResourceManager.GetString("VALUE_UNEXPECTED_NULL", resourceCulture);
-            }
-        }
     }
 }
