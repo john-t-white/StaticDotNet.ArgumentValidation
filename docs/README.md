@@ -34,7 +34,7 @@ Arg.IsNotNullOrWhiteSpace( value, name, message );
 
 ## Is
 
-Use for all value type arguments that aren't nullable, or any time you have already ensured the argument is not null. Additional validation checks can be chained.
+Use for all struct arguments that aren't nullable. Additional validation checks can be chained.
 
 ``` c#
 Arg.Is( value );
