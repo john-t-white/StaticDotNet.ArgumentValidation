@@ -328,6 +328,16 @@
   <data name="VALUE_MUST_HAVE_DATETIMEKIND_UTC" xml:space="preserve">
     <value>Value must have DateTimeKind.Utc.</value>
   </data>
+  <data name="VALUE_MUST_HAVE_SCALE_EQUAL_TO" xml:space="preserve">
+    <value>Value {0} must have a scale equal to {1}.</value>
+    <comment>{0} - Value
+{1} - Scale</comment>
+  </data>
+  <data name="VALUE_MUST_HAVE_SCALE_LESS_THAN_OR_EQUAL_TO" xml:space="preserve">
+    <value>Value {0} must have a scale less than or equal to {1}.</value>
+    <comment>{0} - Value
+{1} - Scale</comment>
+  </data>
   <data name="VALUE_MUST_MATCH_REGEX" xml:space="preserve">
     <value>Value "{0}" must match the regex {1}.</value>
     <comment>{0} - Value

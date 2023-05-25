@@ -61,3 +61,11 @@ All documentation can be found at [here](https://github.com/john-t-white/StaticD
 **0.6.0**
 
 - Added ASCII digit and letter checks for char and string (.NET 7.0)
+
+**0.6.1**
+
+- Update Arg.Is to only accept structs since it is always best to still check for null with reference types.
+
+**0.6.2**
+
+- Added checks for validating the scale of decimal types (.NET 7.0)

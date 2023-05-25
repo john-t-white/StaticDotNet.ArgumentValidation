@@ -502,6 +502,24 @@ namespace StaticDotNet.ArgumentValidation.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Value {0} must have a scale equal to {1}..
+        /// </summary>
+        internal static string VALUE_MUST_HAVE_SCALE_EQUAL_TO {
+            get {
+                return ResourceManager.GetString("VALUE_MUST_HAVE_SCALE_EQUAL_TO", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Value {0} must have a scale less than or equal to {1}..
+        /// </summary>
+        internal static string VALUE_MUST_HAVE_SCALE_LESS_THAN_OR_EQUAL_TO {
+            get {
+                return ResourceManager.GetString("VALUE_MUST_HAVE_SCALE_LESS_THAN_OR_EQUAL_TO", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Value &quot;{0}&quot; must match the regex {1}..
         /// </summary>
         internal static string VALUE_MUST_MATCH_REGEX {
