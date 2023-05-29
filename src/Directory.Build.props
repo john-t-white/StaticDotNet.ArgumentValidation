@@ -1,7 +1,7 @@
 ﻿<Project>
 
 	<PropertyGroup>
-		<Version>0.6.2</Version>
+		<Version>0.6.3</Version>
 		<Authors>John T. White</Authors>
 	</PropertyGroup>
 
