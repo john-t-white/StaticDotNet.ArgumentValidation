@@ -26,6 +26,23 @@ public static class StringExtensions {
 	}
 
 	/// <summary>
+	/// Ensures an argument is not white space, otherwise an <see cref="ArgumentException"/> is thrown.
+	/// </summary>
+	/// <param name="argInfo">The argument info.</param>
+	/// <returns>The <paramref name="argInfo"/>.</returns>
+	/// <exception cref="ArgumentException">Thrown when <paramref name="argInfo.Value"/> is white space.</exception>
+	public static ref readonly ArgInfo<string> NotWhiteSpace( in this ArgInfo<string> argInfo ) {
+
+		for( int i = 0; i < argInfo.Value.Length; i++ ) {
+			if( !char.IsWhiteSpace( argInfo.Value[ i ] ) ) {
+				return ref argInfo;
+			}
+		}
+
+		throw new ArgumentException( argInfo.Message ?? ExceptionMessages.VALUE_CANNOT_BE_WHITE_SPACE, argInfo.Name );
+	}
+
+	/// <summary>
 	/// Ensures an argument has a length of <paramref name="length"/>, otherwise an <see cref="ArgumentOutOfRangeException"/> is thrown.
 	/// </summary>
 	/// <param name="argInfo">The argument info.</param>
@@ -95,23 +112,6 @@ public static class StringExtensions {
 	}
 
 	/// <summary>
-	/// Ensures an argument is not white space, otherwise an <see cref="ArgumentException"/> is thrown.
-	/// </summary>
-	/// <param name="argInfo">The argument info.</param>
-	/// <returns>The <paramref name="argInfo"/>.</returns>
-	/// <exception cref="ArgumentException">Thrown when <paramref name="argInfo.Value"/> is white space.</exception>
-	public static ref readonly ArgInfo<string> NotWhiteSpace( in this ArgInfo<string> argInfo ) {
-
-		for( int i = 0; i < argInfo.Value.Length; i++ ) {
-			if( !char.IsWhiteSpace( argInfo.Value[ i ] ) ) {
-				return ref argInfo;
-			}
-		}
-
-		throw new ArgumentException( argInfo.Message ?? ExceptionMessages.VALUE_CANNOT_BE_WHITE_SPACE, argInfo.Name );
-	}
-
-	/// <summary>
 	/// Ensures an argument is equal to <paramref name="value"/>, otherwise an <see cref="ArgumentException"/> is thrown.
 	/// </summary>
 	/// <param name="argInfo">The argument info.</param>
@@ -128,6 +128,38 @@ public static class StringExtensions {
 		}
 
 		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessages.VALUE_MUST_BE_EQUAL_TO, Stringify.Value( argInfo.Value ), Stringify.Value( value ) );
+		throw new ArgumentException( message, argInfo.Name );
+	}
+
+	/// <summary>
+	/// Ensures an argument is upper case, otherwise an <see cref="ArgumentException"/> is thrown.
+	/// </summary>
+	/// <param name="argInfo">The argument info.</param>
+	/// <returns>The <paramref name="argInfo"/>.</returns>
+	/// <exception cref="ArgumentException">Thrown when <paramref name="argInfo.Value"/> is not upper case.</exception>
+	public static ref readonly ArgInfo<string> Upper( in this ArgInfo<string> argInfo ) {
+
+		if( argInfo.Value.All( x => char.IsUpper( x ) ) ) {
+			return ref argInfo;
+		}
+
+		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessages.VALUE_MUST_BE_UPPER, argInfo.Value.ToString() );
+		throw new ArgumentException( message, argInfo.Name );
+	}
+
+	/// <summary>
+	/// Ensures an argument is lower case, otherwise an <see cref="ArgumentException"/> is thrown.
+	/// </summary>
+	/// <param name="argInfo">The argument info.</param>
+	/// <returns>The <paramref name="argInfo"/>.</returns>
+	/// <exception cref="ArgumentException">Thrown when <paramref name="argInfo.Value"/> is not lower case.</exception>
+	public static ref readonly ArgInfo<string> Lower( in this ArgInfo<string> argInfo ) {
+
+		if( argInfo.Value.All( x => char.IsLower( x ) ) ) {
+			return ref argInfo;
+		}
+
+		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessages.VALUE_MUST_BE_LOWER, argInfo.Value.ToString() );
 		throw new ArgumentException( message, argInfo.Name );
 	}
 

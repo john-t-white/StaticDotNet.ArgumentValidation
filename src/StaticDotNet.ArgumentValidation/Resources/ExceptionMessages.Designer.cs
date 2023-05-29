@@ -367,7 +367,7 @@ namespace StaticDotNet.ArgumentValidation.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Value &quot;{0}&quot; must be lowercase..
+        ///   Looks up a localized string similar to Value &quot;{0}&quot; must be lower case..
         /// </summary>
         internal static string VALUE_MUST_BE_LOWER {
             get {
@@ -448,7 +448,7 @@ namespace StaticDotNet.ArgumentValidation.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Value &quot;{0}&quot; must be upper..
+        ///   Looks up a localized string similar to Value &quot;{0}&quot; must be upper case..
         /// </summary>
         internal static string VALUE_MUST_BE_UPPER {
             get {

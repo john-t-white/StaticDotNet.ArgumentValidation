@@ -277,7 +277,7 @@
     <comment>{0} - Value</comment>
   </data>
   <data name="VALUE_MUST_BE_LOWER" xml:space="preserve">
-    <value>Value "{0}" must be lowercase.</value>
+    <value>Value "{0}" must be lower case.</value>
     <comment>{0} - Value</comment>
   </data>
   <data name="VALUE_MUST_BE_NULL" xml:space="preserve">
@@ -309,7 +309,8 @@
     <value>Value must be true.</value>
   </data>
   <data name="VALUE_MUST_BE_UPPER" xml:space="preserve">
-    <value>Value "{0}" must be upper.</value>
+    <value>Value "{0}" must be upper case.</value>
+    <comment>{0} - Value</comment>
   </data>
   <data name="VALUE_MUST_BE_WRITABLE" xml:space="preserve">
     <value>Value must be writable.</value>
