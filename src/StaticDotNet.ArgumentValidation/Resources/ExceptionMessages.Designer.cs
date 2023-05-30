@@ -133,6 +133,42 @@ namespace StaticDotNet.ArgumentValidation.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Value &quot;{0}&quot; must be lower case ASCII letters..
+        /// </summary>
+        internal static string STRING_MUST_BE_LOWER_ASCII_LETTERS {
+            get {
+                return ResourceManager.GetString("STRING_MUST_BE_LOWER_ASCII_LETTERS", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Value &quot;{0}&quot; must be lower case ASCII letters or digits..
+        /// </summary>
+        internal static string STRING_MUST_BE_LOWER_ASCII_LETTERS_OR_DIGITS {
+            get {
+                return ResourceManager.GetString("STRING_MUST_BE_LOWER_ASCII_LETTERS_OR_DIGITS", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Value &quot;{0}&quot; must be upper case ASCII letters..
+        /// </summary>
+        internal static string STRING_MUST_BE_UPPER_ASCII_LETTERS {
+            get {
+                return ResourceManager.GetString("STRING_MUST_BE_UPPER_ASCII_LETTERS", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Value &quot;{0}&quot; must be upper case ASCII letters or digits..
+        /// </summary>
+        internal static string STRING_MUST_BE_UPPER_ASCII_LETTERS_OR_DIGITS {
+            get {
+                return ResourceManager.GetString("STRING_MUST_BE_UPPER_ASCII_LETTERS_OR_DIGITS", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Value &quot;{0}&quot; must contain {1}..
         /// </summary>
         internal static string STRING_MUST_CONTAIN {

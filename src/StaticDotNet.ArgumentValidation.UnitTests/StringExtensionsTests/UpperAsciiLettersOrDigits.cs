@@ -2,14 +2,14 @@
 
 namespace StaticDotNet.ArgumentValidation.UnitTests.StringExtensionsTests;
 
-public sealed class AsciiLettersOrDigits {
+public sealed class UpperAsciiLettersOrDigits {
 
 	[Fact]
-	public void ReturnsCorrectly() {
+	public void WithLetterReturnsCorrectly() {
 
-		ArgInfo<string> argInfo = new( "aBC123", null, null );
+		ArgInfo<string> argInfo = new( "ABC123", null, null );
 
-		ArgInfo<string> result = argInfo.AsciiLettersOrDigits();
+		ArgInfo<string> result = argInfo.UpperAsciiLettersOrDigits();
 
 		ArgInfoAssertions.Equal( argInfo, result );
 	}
@@ -17,15 +17,15 @@ public sealed class AsciiLettersOrDigits {
 	[Fact]
 	public void WithNotLetterOrDigitValueThrowsArgumentException() {
 
-		string argumentValue = " ";
+		string argumentValue = "abc123";
 		string name = "Name";
 
 		ArgumentException exception = Assert.Throws<ArgumentException>( name, () => {
 			ArgInfo<string> argInfo = new( argumentValue, name, null );
-			_ = argInfo.AsciiLettersOrDigits();
+			_ = argInfo.UpperAsciiLettersOrDigits();
 		} );
 
-		string expectedMessage = $"Value \"{argumentValue}\" must be ASCII letters or digits.";
+		string expectedMessage = $"Value \"{argumentValue}\" must be upper case ASCII letters or digits.";
 
 		Assert.StartsWith( expectedMessage, exception.Message );
 	}
@@ -33,13 +33,13 @@ public sealed class AsciiLettersOrDigits {
 	[Fact]
 	public void WithInvalidValueAndMessageThrowsArgumentException() {
 
-		string argumentValue = " ";
+		string argumentValue = "abc123";
 		string name = "Name";
 		string message = "Message";
 
 		ArgumentException exception = Assert.Throws<ArgumentException>( name, () => {
 			ArgInfo<string> argInfo = new( argumentValue, name, message );
-			_ = argInfo.AsciiLettersOrDigits();
+			_ = argInfo.UpperAsciiLettersOrDigits();
 		} );
 
 		Assert.StartsWith( message, exception.Message );
