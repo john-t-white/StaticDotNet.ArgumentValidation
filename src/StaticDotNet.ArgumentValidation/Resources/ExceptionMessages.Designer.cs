@@ -376,6 +376,24 @@ namespace StaticDotNet.ArgumentValidation.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Value &quot;{0}&quot; must be a lower case ASCII letter..
+        /// </summary>
+        internal static string VALUE_MUST_BE_LOWER_ASCII_LETTER {
+            get {
+                return ResourceManager.GetString("VALUE_MUST_BE_LOWER_ASCII_LETTER", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Value &quot;{0}&quot; must be a lower case ASCII letter or digit..
+        /// </summary>
+        internal static string VALUE_MUST_BE_LOWER_ASCII_LETTER_OR_DIGIT {
+            get {
+                return ResourceManager.GetString("VALUE_MUST_BE_LOWER_ASCII_LETTER_OR_DIGIT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Value must be null..
         /// </summary>
         internal static string VALUE_MUST_BE_NULL {
@@ -453,6 +471,24 @@ namespace StaticDotNet.ArgumentValidation.Resources {
         internal static string VALUE_MUST_BE_UPPER {
             get {
                 return ResourceManager.GetString("VALUE_MUST_BE_UPPER", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Value &quot;{0}&quot; must be an upper case ASCII letter..
+        /// </summary>
+        internal static string VALUE_MUST_BE_UPPER_ASCII_LETTER {
+            get {
+                return ResourceManager.GetString("VALUE_MUST_BE_UPPER_ASCII_LETTER", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Value &quot;{0}&quot; must be an upper case ASCII letter or digit..
+        /// </summary>
+        internal static string VALUE_MUST_BE_UPPER_ASCII_LETTER_OR_DIGIT {
+            get {
+                return ResourceManager.GetString("VALUE_MUST_BE_UPPER_ASCII_LETTER_OR_DIGIT", resourceCulture);
             }
         }
         

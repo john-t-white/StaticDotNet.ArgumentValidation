@@ -280,6 +280,14 @@
     <value>Value "{0}" must be lower case.</value>
     <comment>{0} - Value</comment>
   </data>
+  <data name="VALUE_MUST_BE_LOWER_ASCII_LETTER" xml:space="preserve">
+    <value>Value "{0}" must be a lower case ASCII letter.</value>
+    <comment>{0} - Value</comment>
+  </data>
+  <data name="VALUE_MUST_BE_LOWER_ASCII_LETTER_OR_DIGIT" xml:space="preserve">
+    <value>Value "{0}" must be a lower case ASCII letter or digit.</value>
+    <comment>{0} - Value</comment>
+  </data>
   <data name="VALUE_MUST_BE_NULL" xml:space="preserve">
     <value>Value must be null.</value>
   </data>
@@ -310,6 +318,14 @@
   </data>
   <data name="VALUE_MUST_BE_UPPER" xml:space="preserve">
     <value>Value "{0}" must be upper case.</value>
+    <comment>{0} - Value</comment>
+  </data>
+  <data name="VALUE_MUST_BE_UPPER_ASCII_LETTER" xml:space="preserve">
+    <value>Value "{0}" must be an upper case ASCII letter.</value>
+    <comment>{0} - Value</comment>
+  </data>
+  <data name="VALUE_MUST_BE_UPPER_ASCII_LETTER_OR_DIGIT" xml:space="preserve">
+    <value>Value "{0}" must be an upper case ASCII letter or digit.</value>
     <comment>{0} - Value</comment>
   </data>
   <data name="VALUE_MUST_BE_WRITABLE" xml:space="preserve">

@@ -157,6 +157,38 @@ public static class CharExtensions {
 	}
 
 	/// <summary>
+	/// Ensures an argument is an upper case ASCII letter, otherwise an <see cref="ArgumentException"/> is thrown.
+	/// </summary>
+	/// <param name="argInfo">The argument info.</param>
+	/// <returns>The <paramref name="argInfo"/>.</returns>
+	/// <exception cref="ArgumentException">Thrown when <paramref name="argInfo.Value"/> is not an upper ASCII letter.</exception>
+	public static ref readonly ArgInfo<char> UpperAsciiLetter( in this ArgInfo<char> argInfo ) {
+
+		if( char.IsAsciiLetter( argInfo.Value ) && char.IsUpper( argInfo.Value ) ) {
+			return ref argInfo;
+		}
+
+		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessages.VALUE_MUST_BE_UPPER_ASCII_LETTER, argInfo.Value.ToString() );
+		throw new ArgumentException( message, argInfo.Name );
+	}
+
+	/// <summary>
+	/// Ensures an argument is a lower case ASCII letter, otherwise an <see cref="ArgumentException"/> is thrown.
+	/// </summary>
+	/// <param name="argInfo">The argument info.</param>
+	/// <returns>The <paramref name="argInfo"/>.</returns>
+	/// <exception cref="ArgumentException">Thrown when <paramref name="argInfo.Value"/> is not a lower case ASCII letter.</exception>
+	public static ref readonly ArgInfo<char> LowerAsciiLetter( in this ArgInfo<char> argInfo ) {
+
+		if( char.IsAsciiLetter( argInfo.Value ) && char.IsLower( argInfo.Value ) ) {
+			return ref argInfo;
+		}
+
+		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessages.VALUE_MUST_BE_LOWER_ASCII_LETTER, argInfo.Value.ToString() );
+		throw new ArgumentException( message, argInfo.Name );
+	}
+
+	/// <summary>
 	/// Ensures an argument is an ASCII letter or digit, otherwise an <see cref="ArgumentException"/> is thrown.
 	/// </summary>
 	/// <param name="argInfo">The argument info.</param>
@@ -169,6 +201,38 @@ public static class CharExtensions {
 		}
 
 		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessages.VALUE_MUST_BE_ASCII_LETTER_OR_DIGIT, argInfo.Value.ToString() );
+		throw new ArgumentException( message, argInfo.Name );
+	}
+
+	/// <summary>
+	/// Ensures an argument is an upper case ASCII letter or digit, otherwise an <see cref="ArgumentException"/> is thrown.
+	/// </summary>
+	/// <param name="argInfo">The argument info.</param>
+	/// <returns>The <paramref name="argInfo"/>.</returns>
+	/// <exception cref="ArgumentException">Thrown when <paramref name="argInfo.Value"/> is not an upper case ASCII letter or digit.</exception>
+	public static ref readonly ArgInfo<char> UpperAsciiLetterOrDigit( in this ArgInfo<char> argInfo ) {
+
+		if( ( char.IsAsciiLetter( argInfo.Value ) && char.IsUpper( argInfo.Value ) ) || char.IsAsciiDigit( argInfo.Value ) ) {
+			return ref argInfo;
+		}
+
+		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessages.VALUE_MUST_BE_UPPER_ASCII_LETTER_OR_DIGIT, argInfo.Value.ToString() );
+		throw new ArgumentException( message, argInfo.Name );
+	}
+
+	/// <summary>
+	/// Ensures an argument is a lower case ASCII letter or digit, otherwise an <see cref="ArgumentException"/> is thrown.
+	/// </summary>
+	/// <param name="argInfo">The argument info.</param>
+	/// <returns>The <paramref name="argInfo"/>.</returns>
+	/// <exception cref="ArgumentException">Thrown when <paramref name="argInfo.Value"/> is not a lower case ASCII letter or digit.</exception>
+	public static ref readonly ArgInfo<char> LowerAsciiLetterOrDigit( in this ArgInfo<char> argInfo ) {
+
+		if( ( char.IsAsciiLetter( argInfo.Value ) && char.IsLower( argInfo.Value ) ) || char.IsAsciiDigit( argInfo.Value ) ) {
+			return ref argInfo;
+		}
+
+		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessages.VALUE_MUST_BE_LOWER_ASCII_LETTER_OR_DIGIT, argInfo.Value.ToString() );
 		throw new ArgumentException( message, argInfo.Name );
 	}
 
