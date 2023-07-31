@@ -77,3 +77,7 @@ All documentation can be found at [here](https://github.com/john-t-white/StaticD
 **0.6.4**
 
 - Added checks for upper case/lower case ASCII strings (.NET 7.0).
+
+**0.6.5**
+
+- Added check for not same.

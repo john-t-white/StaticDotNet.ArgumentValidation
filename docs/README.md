@@ -160,6 +160,7 @@ While the following are included with the library, you can extend the library wi
 
 - As
 - EqualTo
+- NotSame
 - Same
 
 ## ReadOnlySpan

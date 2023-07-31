@@ -601,6 +601,15 @@ namespace StaticDotNet.ArgumentValidation.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Value must not be the same..
+        /// </summary>
+        internal static string VALUE_MUST_NOT_BE_SAME {
+            get {
+                return ResourceManager.GetString("VALUE_MUST_NOT_BE_SAME", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Value must start with {0}..
         /// </summary>
         internal static string VALUE_MUST_START_WITH {
