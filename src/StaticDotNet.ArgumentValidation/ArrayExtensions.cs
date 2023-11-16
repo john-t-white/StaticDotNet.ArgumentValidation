@@ -43,7 +43,13 @@ public static class ArrayExtensions {
 			return ref argInfo;
 		}
 
+#if NET8_0_OR_GREATER
+		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessagesCompositeFormats.VALUE_LENGTH_MUST_BE_EQUAL_TO, argInfo.Value.Length, length );
+#else
 		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessages.VALUE_LENGTH_MUST_BE_EQUAL_TO, argInfo.Value.Length, length );
+#endif
+
+
 		throw new ArgumentOutOfRangeException( argInfo.Name, message );
 	}
 
@@ -61,7 +67,12 @@ public static class ArrayExtensions {
 			return ref argInfo;
 		}
 
+#if NET8_0_OR_GREATER
+		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessagesCompositeFormats.VALUE_LENGTH_BELOW_MIN_LENGTH, argInfo.Value.Length, length );
+#else
 		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessages.VALUE_LENGTH_BELOW_MIN_LENGTH, argInfo.Value.Length, length );
+#endif
+
 		throw new ArgumentOutOfRangeException( argInfo.Name, message );
 	}
 
@@ -79,7 +90,12 @@ public static class ArrayExtensions {
 			return ref argInfo;
 		}
 
+#if NET8_0_OR_GREATER
+		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessagesCompositeFormats.VALUE_LENGTH_EXCEEDS_MAX_LENGTH, argInfo.Value.Length, length );
+#else
 		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessages.VALUE_LENGTH_EXCEEDS_MAX_LENGTH, argInfo.Value.Length, length );
+#endif
+
 		throw new ArgumentOutOfRangeException( argInfo.Name, message );
 	}
 
@@ -98,7 +114,12 @@ public static class ArrayExtensions {
 			return ref argInfo;
 		}
 
+#if NET8_0_OR_GREATER
+		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessagesCompositeFormats.VALUE_LENGTH_MUST_BE_BETWEEN, argInfo.Value.Length, minLength, maxLength );
+#else
 		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessages.VALUE_LENGTH_MUST_BE_BETWEEN, argInfo.Value.Length, minLength, maxLength );
+#endif
+
 		throw new ArgumentOutOfRangeException( argInfo.Name, message );
 	}
 
@@ -118,7 +139,12 @@ public static class ArrayExtensions {
 			return ref argInfo;
 		}
 
+#if NET8_0_OR_GREATER
+		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessagesCompositeFormats.VALUE_MUST_CONTAIN, Stringify.Value( value ) );
+#else
 		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessages.VALUE_MUST_CONTAIN, Stringify.Value( value ) );
+#endif
+
 		throw new ArgumentException( message, argInfo.Name );
 	}
 }

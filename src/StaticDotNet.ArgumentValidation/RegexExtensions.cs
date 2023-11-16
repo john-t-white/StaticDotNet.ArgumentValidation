@@ -28,7 +28,12 @@ public static class RegexExtensions {
 			return ref argInfo;
 		}
 
+#if NET8_0_OR_GREATER
+		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessagesCompositeFormats.VALUE_MUST_MATCH_REGEX, argInfo.Value, Stringify.Value( pattern ) );
+#else
 		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessages.VALUE_MUST_MATCH_REGEX, argInfo.Value, Stringify.Value( pattern ) );
+#endif
+
 		throw new ArgumentException( message, argInfo.Name );
 	}
 
@@ -45,7 +50,12 @@ public static class RegexExtensions {
 			return ref argInfo;
 		}
 
+#if NET8_0_OR_GREATER
+		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessagesCompositeFormats.VALUE_MUST_MATCH_REGEX, argInfo.Value, Stringify.Value( regex?.ToString() ) );
+#else
 		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessages.VALUE_MUST_MATCH_REGEX, argInfo.Value, Stringify.Value( regex?.ToString() ) );
+#endif
+
 		throw new ArgumentException( message, argInfo.Name );
 	}
 
@@ -66,7 +76,12 @@ public static class RegexExtensions {
 			return ref argInfo;
 		}
 
+#if NET8_0_OR_GREATER
+		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessagesCompositeFormats.VALUE_MUST_MATCH_REGEX, argInfo.Value, Stringify.Value( pattern ) );
+#else
 		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessages.VALUE_MUST_MATCH_REGEX, argInfo.Value, Stringify.Value( pattern ) );
+#endif
+
 		throw new ArgumentException( message, argInfo.Name );
 	}
 
@@ -85,7 +100,12 @@ public static class RegexExtensions {
 			return ref argInfo;
 		}
 
+#if NET8_0_OR_GREATER
+		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessagesCompositeFormats.VALUE_MUST_MATCH_REGEX, argInfo.Value, Stringify.Value( regex?.ToString() ) );
+#else
 		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessages.VALUE_MUST_MATCH_REGEX, argInfo.Value, Stringify.Value( regex?.ToString() ) );
+#endif
+
 		throw new ArgumentException( message, argInfo.Name );
 	}
 }

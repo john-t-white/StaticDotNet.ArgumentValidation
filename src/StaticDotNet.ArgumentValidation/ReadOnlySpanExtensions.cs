@@ -1,4 +1,4 @@
-﻿#if NETSTANDARD2_1_OR_GREATER || NET5_0_OR_GREATER
+﻿#if NETSTANDARD2_1_OR_GREATER || NET6_0_OR_GREATER
 
 using StaticDotNet.ArgumentValidation.Infrastructure;
 using System.Globalization;
@@ -43,9 +43,15 @@ public static class ReadOnlySpanExtensions {
 
 		string? message = argInfo.Message;
 
+#if NET8_0_OR_GREATER
+		message ??= typeof( T ) != typeof( char )
+				? string.Format( CultureInfo.InvariantCulture, ExceptionMessagesCompositeFormats.VALUE_LENGTH_MUST_BE_EQUAL_TO, argInfo.Value.Length, length )
+				: string.Format( CultureInfo.InvariantCulture, ExceptionMessagesCompositeFormats.STRING_LENGTH_MUST_BE_EQUAL_TO, argInfo.Value.ToString(), argInfo.Value.Length, length );
+#else
 		message ??= typeof( T ) != typeof( char )
 				? string.Format( CultureInfo.InvariantCulture, ExceptionMessages.VALUE_LENGTH_MUST_BE_EQUAL_TO, argInfo.Value.Length, length )
 				: string.Format( CultureInfo.InvariantCulture, ExceptionMessages.STRING_LENGTH_MUST_BE_EQUAL_TO, argInfo.Value.ToString(), argInfo.Value.Length, length );
+#endif
 
 		throw new ArgumentOutOfRangeException( argInfo.Name, message );
 	}
@@ -66,9 +72,15 @@ public static class ReadOnlySpanExtensions {
 
 		string? message = argInfo.Message;
 
+#if NET8_0_OR_GREATER
+		message ??= typeof( T ) != typeof( char )
+				? string.Format( CultureInfo.InvariantCulture, ExceptionMessagesCompositeFormats.VALUE_LENGTH_EXCEEDS_MAX_LENGTH, argInfo.Value.Length, length )
+				: string.Format( CultureInfo.InvariantCulture, ExceptionMessagesCompositeFormats.STRING_LENGTH_EXCEEDS_MAX_LENGTH, argInfo.Value.ToString(), argInfo.Value.Length, length );
+#else
 		message ??= typeof( T ) != typeof( char )
 				? string.Format( CultureInfo.InvariantCulture, ExceptionMessages.VALUE_LENGTH_EXCEEDS_MAX_LENGTH, argInfo.Value.Length, length )
 				: string.Format( CultureInfo.InvariantCulture, ExceptionMessages.STRING_LENGTH_EXCEEDS_MAX_LENGTH, argInfo.Value.ToString(), argInfo.Value.Length, length );
+#endif
 
 		throw new ArgumentOutOfRangeException( argInfo.Name, message );
 	}
@@ -89,9 +101,15 @@ public static class ReadOnlySpanExtensions {
 
 		string? message = argInfo.Message;
 
+#if NET8_0_OR_GREATER
+		message ??= typeof( T ) != typeof( char )
+				? string.Format( CultureInfo.InvariantCulture, ExceptionMessagesCompositeFormats.VALUE_LENGTH_BELOW_MIN_LENGTH, argInfo.Value.Length, length )
+				: string.Format( CultureInfo.InvariantCulture, ExceptionMessagesCompositeFormats.STRING_LENGTH_BELOW_MIN_LENGTH, argInfo.Value.ToString(), argInfo.Value.Length, length );
+#else
 		message ??= typeof( T ) != typeof( char )
 				? string.Format( CultureInfo.InvariantCulture, ExceptionMessages.VALUE_LENGTH_BELOW_MIN_LENGTH, argInfo.Value.Length, length )
 				: string.Format( CultureInfo.InvariantCulture, ExceptionMessages.STRING_LENGTH_BELOW_MIN_LENGTH, argInfo.Value.ToString(), argInfo.Value.Length, length );
+#endif
 
 		throw new ArgumentOutOfRangeException( argInfo.Name, message );
 	}
@@ -113,9 +131,15 @@ public static class ReadOnlySpanExtensions {
 
 		string? message = argInfo.Message;
 
+#if NET8_0_OR_GREATER
+		message ??= typeof( T ) != typeof( char )
+				? string.Format( CultureInfo.InvariantCulture, ExceptionMessagesCompositeFormats.VALUE_LENGTH_MUST_BE_BETWEEN, argInfo.Value.Length, minLength, maxLength )
+				: string.Format( CultureInfo.InvariantCulture, ExceptionMessagesCompositeFormats.STRING_LENGTH_MUST_BE_BETWEEN, argInfo.Value.ToString(), argInfo.Value.Length, minLength, maxLength );
+#else
 		message ??= typeof( T ) != typeof( char )
 				? string.Format( CultureInfo.InvariantCulture, ExceptionMessages.VALUE_LENGTH_MUST_BE_BETWEEN, argInfo.Value.Length, minLength, maxLength )
 				: string.Format( CultureInfo.InvariantCulture, ExceptionMessages.STRING_LENGTH_MUST_BE_BETWEEN, argInfo.Value.ToString(), argInfo.Value.Length, minLength, maxLength );
+#endif
 
 		throw new ArgumentOutOfRangeException( argInfo.Name, message );
 	}
@@ -135,7 +159,12 @@ public static class ReadOnlySpanExtensions {
 			return ref argInfo;
 		}
 
+#if NET8_0_OR_GREATER
+		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessagesCompositeFormats.VALUE_MUST_START_WITH, string.Join( ", ", value.ToArray() ) );
+#else
 		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessages.VALUE_MUST_START_WITH, string.Join( ", ", value.ToArray() ) );
+#endif
+
 		throw new ArgumentException( message, argInfo.Name );
 	}
 
@@ -154,7 +183,12 @@ public static class ReadOnlySpanExtensions {
 			return ref argInfo;
 		}
 
+#if NET8_0_OR_GREATER
+		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessagesCompositeFormats.VALUE_MUST_END_WITH, string.Join( ", ", value.ToArray() ) );
+#else
 		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessages.VALUE_MUST_END_WITH, string.Join( ", ", value.ToArray() ) );
+#endif
+
 		throw new ArgumentException( message, argInfo.Name );
 	}
 
@@ -177,9 +211,15 @@ public static class ReadOnlySpanExtensions {
 
 		string? message = argInfo.Message;
 
+#if NET8_0_OR_GREATER
 		message ??= typeof( T ) != typeof( char )
-				? string.Format( CultureInfo.InvariantCulture, ExceptionMessages.VALUE_MUST_CONTAIN, value )
+				? string.Format( CultureInfo.InvariantCulture, ExceptionMessagesCompositeFormats.VALUE_MUST_CONTAIN, Stringify.Value( value ) )
+				: string.Format( CultureInfo.InvariantCulture, ExceptionMessagesCompositeFormats.STRING_MUST_CONTAIN, Stringify.Value( value ) );
+#else
+		message ??= typeof( T ) != typeof( char )
+				? string.Format( CultureInfo.InvariantCulture, ExceptionMessages.VALUE_MUST_CONTAIN, Stringify.Value( value ) )
 				: string.Format( CultureInfo.InvariantCulture, ExceptionMessages.STRING_MUST_CONTAIN, Stringify.Value( value ) );
+#endif
 
 		throw new ArgumentException( message, argInfo.Name );
 	}

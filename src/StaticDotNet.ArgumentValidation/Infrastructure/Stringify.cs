@@ -21,7 +21,7 @@ public static class Stringify {
 				? $"\"{value}\""
 				: value.ToString() ?? string.Empty;
 
-#if NETSTANDARD2_1_OR_GREATER || NET5_0_OR_GREATER
+#if NETSTANDARD2_1_OR_GREATER || NET6_0_OR_GREATER
 
 	/// <summary>
 	/// Returns a string version of the value.

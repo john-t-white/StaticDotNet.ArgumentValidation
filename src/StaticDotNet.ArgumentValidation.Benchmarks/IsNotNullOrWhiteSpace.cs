@@ -20,7 +20,9 @@ public class IsNotNullOrWhiteSpace {
 	public string ArgumentValidation() => Arg.IsNotNullOrWhiteSpace( argumentValue ).Value;
 
 	[Benchmark]
+#pragma warning disable CS8634 // The type cannot be used as type parameter in the generic type or method. Nullability of type argument doesn't match 'class' constraint.
 	public string Dawn_Guard() => Dawn.Guard.Argument( argumentValue ).NotNull().NotWhiteSpace();
+#pragma warning restore CS8634 // The type cannot be used as type parameter in the generic type or method. Nullability of type argument doesn't match 'class' constraint.
 
 	[Benchmark]
 	public string Ardalis_GuardClauses() => Ardalis.GuardClauses.Guard.Against.NullOrWhiteSpace( argumentValue, nameof( argumentValue ) );
@@ -36,6 +38,8 @@ public class IsNotNullOrWhiteSpace {
 	public string Ensure_That() {
 		Ensure.That( argumentValue ).IsNotNullOrWhiteSpace();
 
+#pragma warning disable CS8603 // Possible null reference return.
 		return argumentValue;
+#pragma warning restore CS8603 // Possible null reference return.
 	}
 }

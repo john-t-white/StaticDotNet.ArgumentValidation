@@ -22,7 +22,12 @@ public static class DecimalExtensions {
 			return ref argInfo;
 		}
 
+#if NET8_0_OR_GREATER
+		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessagesCompositeFormats.VALUE_MUST_HAVE_SCALE_EQUAL_TO, argInfo.Value.ToString( CultureInfo.InvariantCulture ), scale.ToString( CultureInfo.InvariantCulture ) );
+#else
 		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessages.VALUE_MUST_HAVE_SCALE_EQUAL_TO, argInfo.Value.ToString( CultureInfo.InvariantCulture ), scale.ToString( CultureInfo.InvariantCulture ) );
+#endif
+
 		throw new ArgumentOutOfRangeException( argInfo.Name, message );
 	}
 
@@ -39,7 +44,12 @@ public static class DecimalExtensions {
 			return ref argInfo;
 		}
 
+#if NET8_0_OR_GREATER
+		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessagesCompositeFormats.VALUE_MUST_HAVE_SCALE_LESS_THAN_OR_EQUAL_TO, argInfo.Value.ToString( CultureInfo.InvariantCulture ), scale.ToString( CultureInfo.InvariantCulture ) );
+#else
 		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessages.VALUE_MUST_HAVE_SCALE_LESS_THAN_OR_EQUAL_TO, argInfo.Value.ToString( CultureInfo.InvariantCulture ), scale.ToString( CultureInfo.InvariantCulture ) );
+#endif
+
 		throw new ArgumentOutOfRangeException( argInfo.Name, message );
 	}
 }

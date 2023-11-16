@@ -19,7 +19,7 @@ public static class EnumerationExtensions {
 	public static ref readonly ArgInfo<T> Defined<T>( in this ArgInfo<T> argInfo )
 		where T : struct, Enum {
 
-#if NET5_0_OR_GREATER
+#if NET6_0_OR_GREATER
 		if( Enum.IsDefined( argInfo.Value ) ) {
 			return ref argInfo;
 		}

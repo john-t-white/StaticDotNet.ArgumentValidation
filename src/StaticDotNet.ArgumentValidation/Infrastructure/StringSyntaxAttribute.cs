@@ -11,7 +11,7 @@ internal sealed class StringSyntaxAttribute
 	/// <param name="syntax">The syntax identifier.</param>
 	public StringSyntaxAttribute( string syntax ) {
 		Syntax = syntax;
-		Arguments = Array.Empty<object?>();
+		Arguments = [];
 	}
 
 	/// <summary>Initializes the <see cref="StringSyntaxAttribute"/> with the identifier of the syntax used.</summary>

@@ -70,7 +70,7 @@ public static class Arg {
 		where T : struct
 		=> new( value, name, message );
 
-#if NETSTANDARD2_1_OR_GREATER || NET5_0_OR_GREATER
+#if NETSTANDARD2_1_OR_GREATER || NET6_0_OR_GREATER
 
 	/// <summary>
 	/// Used for validating <see cref="ReadOnlySpan{T}"/> arguments.

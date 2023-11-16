@@ -1,4 +1,4 @@
-﻿#if !NET5_0_OR_GREATER
+﻿#if NETSTANDARD2_0_OR_GREATER
 
 namespace System.Runtime.CompilerServices;
 

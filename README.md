@@ -81,3 +81,9 @@ All documentation can be found at [here](https://github.com/john-t-white/StaticD
 **0.6.5**
 
 - Added check for not same.
+
+**1.0.0**
+
+- Added support for .NET 8.0
+    - Used CompositeFormat to increase performance for formatting exception messages
+- Removed support for .NET 5.0 since it is no longer supported.

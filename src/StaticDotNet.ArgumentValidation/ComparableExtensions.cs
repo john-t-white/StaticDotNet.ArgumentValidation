@@ -23,7 +23,12 @@ public static class ComparableExtensions {
 			return ref argInfo;
 		}
 
+#if NET8_0_OR_GREATER
+		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessagesCompositeFormats.VALUE_MUST_BE_GREATER_THAN, Stringify.Value( argInfo.Value ), Stringify.Value( value ) );
+#else
 		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessages.VALUE_MUST_BE_GREATER_THAN, Stringify.Value( argInfo.Value ), Stringify.Value( value ) );
+#endif
+
 		throw new ArgumentOutOfRangeException( argInfo.Name, message );
 	}
 
@@ -42,7 +47,12 @@ public static class ComparableExtensions {
 			return ref argInfo;
 		}
 
+#if NET8_0_OR_GREATER
+		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessagesCompositeFormats.VALUE_MUST_BE_GREATER_THAN_OR_EQUAL_TO, Stringify.Value( argInfo.Value ), Stringify.Value( value ) );
+#else
 		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessages.VALUE_MUST_BE_GREATER_THAN_OR_EQUAL_TO, Stringify.Value( argInfo.Value ), Stringify.Value( value ) );
+#endif
+
 		throw new ArgumentOutOfRangeException( argInfo.Name, message );
 	}
 
@@ -61,7 +71,12 @@ public static class ComparableExtensions {
 			return ref argInfo;
 		}
 
+#if NET8_0_OR_GREATER
+		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessagesCompositeFormats.VALUE_MUST_BE_LESS_THAN, Stringify.Value( argInfo.Value ), Stringify.Value( value ) );
+#else
 		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessages.VALUE_MUST_BE_LESS_THAN, Stringify.Value( argInfo.Value ), Stringify.Value( value ) );
+#endif
+
 		throw new ArgumentOutOfRangeException( argInfo.Name, message );
 	}
 
@@ -80,7 +95,12 @@ public static class ComparableExtensions {
 			return ref argInfo;
 		}
 
+#if NET8_0_OR_GREATER
+		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessagesCompositeFormats.VALUE_MUST_BE_LESS_THAN_OR_EQUAL_TO, Stringify.Value( argInfo.Value ), Stringify.Value( value ) );
+#else
 		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessages.VALUE_MUST_BE_LESS_THAN_OR_EQUAL_TO, Stringify.Value( argInfo.Value ), Stringify.Value( value ) );
+#endif
+
 		throw new ArgumentOutOfRangeException( argInfo.Name, message );
 	}
 
@@ -100,7 +120,12 @@ public static class ComparableExtensions {
 			return ref argInfo;
 		}
 
+#if NET8_0_OR_GREATER
+		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessagesCompositeFormats.VALUE_MUST_BE_BETWEEN, Stringify.Value( argInfo.Value ), Stringify.Value( minValue ), Stringify.Value( maxValue ) );
+#else
 		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessages.VALUE_MUST_BE_BETWEEN, Stringify.Value( argInfo.Value ), Stringify.Value( minValue ), Stringify.Value( maxValue ) );
+#endif
+
 		throw new ArgumentOutOfRangeException( argInfo.Name, message );
 	}
 }

@@ -36,7 +36,12 @@ public static class TypeExtensions {
 			return ref argInfo;
 		}
 
+#if NET8_0_OR_GREATER
+		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessagesCompositeFormats.TYPE_MUST_BE_ASSIGNABLE_TO, argInfo.Value.FullName, type?.FullName ?? Constants.NULL );
+#else
 		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessages.TYPE_MUST_BE_ASSIGNABLE_TO, argInfo.Value.FullName, type?.FullName ?? Constants.NULL );
+#endif
+
 		throw new ArgumentException( message, argInfo.Name );
 	}
 
@@ -63,7 +68,12 @@ public static class TypeExtensions {
 			return ref argInfo;
 		}
 
+#if NET8_0_OR_GREATER
+		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessagesCompositeFormats.TYPE_MUST_BE_ASSIGNABLE_TO, argInfo.Value.FullName, type?.FullName ?? Constants.NULL );
+#else
 		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessages.TYPE_MUST_BE_ASSIGNABLE_TO, argInfo.Value.FullName, type?.FullName ?? Constants.NULL );
+#endif
+
 		throw new ArgumentException( message, argInfo.Name );
 	}
 }

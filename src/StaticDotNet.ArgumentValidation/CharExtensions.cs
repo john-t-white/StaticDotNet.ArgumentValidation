@@ -38,7 +38,12 @@ public static class CharExtensions {
 			return ref argInfo;
 		}
 
+#if NET8_0_OR_GREATER
+		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessagesCompositeFormats.VALUE_MUST_BE_DIGIT, argInfo.Value.ToString() );
+#else
 		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessages.VALUE_MUST_BE_DIGIT, argInfo.Value.ToString() );
+#endif
+
 		throw new ArgumentException( message, argInfo.Name );
 	}
 
@@ -54,7 +59,12 @@ public static class CharExtensions {
 			return ref argInfo;
 		}
 
+#if NET8_0_OR_GREATER
+		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessagesCompositeFormats.VALUE_MUST_BE_LETTER, argInfo.Value.ToString() );
+#else
 		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessages.VALUE_MUST_BE_LETTER, argInfo.Value.ToString() );
+#endif
+
 		throw new ArgumentException( message, argInfo.Name );
 	}
 
@@ -70,7 +80,12 @@ public static class CharExtensions {
 			return ref argInfo;
 		}
 
+#if NET8_0_OR_GREATER
+		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessagesCompositeFormats.VALUE_MUST_BE_LETTER_OR_DIGIT, argInfo.Value.ToString() );
+#else
 		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessages.VALUE_MUST_BE_LETTER_OR_DIGIT, argInfo.Value.ToString() );
+#endif
+
 		throw new ArgumentException( message, argInfo.Name );
 	}
 
@@ -86,7 +101,13 @@ public static class CharExtensions {
 			return ref argInfo;
 		}
 
+#if NET8_0_OR_GREATER
+		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessagesCompositeFormats.VALUE_MUST_BE_NUMBER, argInfo.Value.ToString() );
+#else
 		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessages.VALUE_MUST_BE_NUMBER, argInfo.Value.ToString() );
+#endif
+
+
 		throw new ArgumentException( message, argInfo.Name );
 	}
 
@@ -102,7 +123,12 @@ public static class CharExtensions {
 			return ref argInfo;
 		}
 
+#if NET8_0_OR_GREATER
+		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessagesCompositeFormats.VALUE_MUST_BE_LOWER, argInfo.Value.ToString() );
+#else
 		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessages.VALUE_MUST_BE_LOWER, argInfo.Value.ToString() );
+#endif
+
 		throw new ArgumentException( message, argInfo.Name );
 	}
 
@@ -118,7 +144,12 @@ public static class CharExtensions {
 			return ref argInfo;
 		}
 
+#if NET8_0_OR_GREATER
+		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessagesCompositeFormats.VALUE_MUST_BE_UPPER, argInfo.Value.ToString() );
+#else
 		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessages.VALUE_MUST_BE_UPPER, argInfo.Value.ToString() );
+#endif
+
 		throw new ArgumentException( message, argInfo.Name );
 	}
 
@@ -136,7 +167,12 @@ public static class CharExtensions {
 			return ref argInfo;
 		}
 
+#if NET8_0_OR_GREATER
+		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessagesCompositeFormats.VALUE_MUST_BE_ASCII_DIGIT, argInfo.Value.ToString() );
+#else
 		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessages.VALUE_MUST_BE_ASCII_DIGIT, argInfo.Value.ToString() );
+#endif
+
 		throw new ArgumentException( message, argInfo.Name );
 	}
 
@@ -152,7 +188,12 @@ public static class CharExtensions {
 			return ref argInfo;
 		}
 
+#if NET8_0_OR_GREATER
+		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessagesCompositeFormats.VALUE_MUST_BE_ASCII_LETTER, argInfo.Value.ToString() );
+#else
 		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessages.VALUE_MUST_BE_ASCII_LETTER, argInfo.Value.ToString() );
+#endif
+
 		throw new ArgumentException( message, argInfo.Name );
 	}
 
@@ -168,7 +209,12 @@ public static class CharExtensions {
 			return ref argInfo;
 		}
 
+#if NET8_0_OR_GREATER
+		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessagesCompositeFormats.VALUE_MUST_BE_UPPER_ASCII_LETTER, argInfo.Value.ToString() );
+#else
 		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessages.VALUE_MUST_BE_UPPER_ASCII_LETTER, argInfo.Value.ToString() );
+#endif
+
 		throw new ArgumentException( message, argInfo.Name );
 	}
 
@@ -184,7 +230,12 @@ public static class CharExtensions {
 			return ref argInfo;
 		}
 
+#if NET8_0_OR_GREATER
+		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessagesCompositeFormats.VALUE_MUST_BE_LOWER_ASCII_LETTER, argInfo.Value.ToString() );
+#else
 		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessages.VALUE_MUST_BE_LOWER_ASCII_LETTER, argInfo.Value.ToString() );
+#endif
+
 		throw new ArgumentException( message, argInfo.Name );
 	}
 
@@ -200,7 +251,12 @@ public static class CharExtensions {
 			return ref argInfo;
 		}
 
+#if NET8_0_OR_GREATER
+		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessagesCompositeFormats.VALUE_MUST_BE_ASCII_LETTER_OR_DIGIT, argInfo.Value.ToString() );
+#else
 		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessages.VALUE_MUST_BE_ASCII_LETTER_OR_DIGIT, argInfo.Value.ToString() );
+#endif
+
 		throw new ArgumentException( message, argInfo.Name );
 	}
 
@@ -216,7 +272,12 @@ public static class CharExtensions {
 			return ref argInfo;
 		}
 
+#if NET8_0_OR_GREATER
+		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessagesCompositeFormats.VALUE_MUST_BE_UPPER_ASCII_LETTER_OR_DIGIT, argInfo.Value.ToString() );
+#else
 		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessages.VALUE_MUST_BE_UPPER_ASCII_LETTER_OR_DIGIT, argInfo.Value.ToString() );
+#endif
+
 		throw new ArgumentException( message, argInfo.Name );
 	}
 
@@ -232,7 +293,12 @@ public static class CharExtensions {
 			return ref argInfo;
 		}
 
+#if NET8_0_OR_GREATER
+		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessagesCompositeFormats.VALUE_MUST_BE_LOWER_ASCII_LETTER_OR_DIGIT, argInfo.Value.ToString() );
+#else
 		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessages.VALUE_MUST_BE_LOWER_ASCII_LETTER_OR_DIGIT, argInfo.Value.ToString() );
+#endif
+
 		throw new ArgumentException( message, argInfo.Name );
 	}
 
