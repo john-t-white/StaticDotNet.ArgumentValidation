@@ -1,6 +1,6 @@
-﻿using BenchmarkDotNet.Attributes;
+﻿using Ardalis.GuardClauses;
+using BenchmarkDotNet.Attributes;
 using BenchmarkDotNet.Jobs;
-using Ardalis.GuardClauses;
 using Dawn;
 using EnsureThat;
 

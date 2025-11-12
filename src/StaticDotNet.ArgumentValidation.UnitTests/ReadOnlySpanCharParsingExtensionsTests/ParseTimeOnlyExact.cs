@@ -57,7 +57,7 @@ public sealed class ParseTimeOnlyExact {
 			_ = ReadOnlySpanCharParsingExtensions.ParseTimeOnlyExact( argInfo, format );
 		} );
 
-		string expectedMessage = $"Value \"{argumentValue}\" must be parsable to System.TimeOnly.";
+		string expectedMessage = $"Value \"{argumentValue}\" must be parsable to \"System.TimeOnly\".";
 
 		Assert.StartsWith( expectedMessage, exception.Message );
 	}
@@ -87,7 +87,7 @@ public sealed class ParseTimeOnlyExact {
 			"hh:mm:ss.ffffff",
 			"hh:mm:ss"
 		};
-		ReadOnlySpanArgInfo<char> argInfo = new( expectedResult.ToString( formats[0] ), null, null );
+		ReadOnlySpanArgInfo<char> argInfo = new( expectedResult.ToString( formats[ 0 ] ), null, null );
 
 		ArgInfo<TimeOnly> result = ReadOnlySpanCharParsingExtensions.ParseTimeOnlyExact( argInfo, formats );
 
@@ -102,7 +102,7 @@ public sealed class ParseTimeOnlyExact {
 			"hh:mm:ss.ffffff",
 			"hh:mm:ss"
 		};
-		ReadOnlySpanArgInfo<char> argInfo = new( expectedResult.ToString( formats[0] ), null, null );
+		ReadOnlySpanArgInfo<char> argInfo = new( expectedResult.ToString( formats[ 0 ] ), null, null );
 		IFormatProvider provider = DateTimeFormatInfo.CurrentInfo;
 
 		ArgInfo<TimeOnly> result = ReadOnlySpanCharParsingExtensions.ParseTimeOnlyExact( argInfo, formats, provider );
@@ -118,7 +118,7 @@ public sealed class ParseTimeOnlyExact {
 			"hh:mm:ss.ffffff",
 			"hh:mm:ss"
 		};
-		ReadOnlySpanArgInfo<char> argInfo = new( expectedResult.ToString( formats[0] ), null, null );
+		ReadOnlySpanArgInfo<char> argInfo = new( expectedResult.ToString( formats[ 0 ] ), null, null );
 		DateTimeStyles styles = DateTimeStyles.None;
 
 		ArgInfo<TimeOnly> result = ReadOnlySpanCharParsingExtensions.ParseTimeOnlyExact( argInfo, formats, styles: styles );
@@ -142,7 +142,7 @@ public sealed class ParseTimeOnlyExact {
 			_ = ReadOnlySpanCharParsingExtensions.ParseTimeOnlyExact( argInfo, formats );
 		} );
 
-		string expectedMessage = $"Value \"{argumentValue}\" must be parsable to System.TimeOnly.";
+		string expectedMessage = $"Value \"{argumentValue}\" must be parsable to \"System.TimeOnly\".";
 
 		Assert.StartsWith( expectedMessage, exception.Message );
 	}

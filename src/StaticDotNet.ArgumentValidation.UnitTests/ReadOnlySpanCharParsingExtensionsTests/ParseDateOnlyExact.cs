@@ -57,7 +57,7 @@ public sealed class ParseDateOnlyExact {
 			_ = ReadOnlySpanCharParsingExtensions.ParseDateOnlyExact( argInfo, format );
 		} );
 
-		string expectedMessage = $"Value \"{argumentValue}\" must be parsable to System.DateOnly.";
+		string expectedMessage = $"Value \"{argumentValue}\" must be parsable to \"System.DateOnly\".";
 
 		Assert.StartsWith( expectedMessage, exception.Message );
 	}
@@ -87,7 +87,7 @@ public sealed class ParseDateOnlyExact {
 			"yyyy-MM-dd",
 			"MM/dd/yyyy"
 		};
-		ReadOnlySpanArgInfo<char> argInfo = new( expectedResult.ToString( formats[0] ), null, null );
+		ReadOnlySpanArgInfo<char> argInfo = new( expectedResult.ToString( formats[ 0 ] ), null, null );
 
 		ArgInfo<DateOnly> result = ReadOnlySpanCharParsingExtensions.ParseDateOnlyExact( argInfo, formats );
 
@@ -102,7 +102,7 @@ public sealed class ParseDateOnlyExact {
 			"yyyy-MM-dd",
 			"MM/dd/yyyy"
 		};
-		ReadOnlySpanArgInfo<char> argInfo = new( expectedResult.ToString( formats[0] ), null, null );
+		ReadOnlySpanArgInfo<char> argInfo = new( expectedResult.ToString( formats[ 0 ] ), null, null );
 		IFormatProvider provider = DateTimeFormatInfo.CurrentInfo;
 
 		ArgInfo<DateOnly> result = ReadOnlySpanCharParsingExtensions.ParseDateOnlyExact( argInfo, formats, provider );
@@ -118,7 +118,7 @@ public sealed class ParseDateOnlyExact {
 			"yyyy-MM-dd",
 			"MM/dd/yyyy"
 		};
-		ReadOnlySpanArgInfo<char> argInfo = new( expectedResult.ToString( formats[0] ), null, null );
+		ReadOnlySpanArgInfo<char> argInfo = new( expectedResult.ToString( formats[ 0 ] ), null, null );
 		DateTimeStyles styles = DateTimeStyles.None;
 
 		ArgInfo<DateOnly> result = ReadOnlySpanCharParsingExtensions.ParseDateOnlyExact( argInfo, formats, styles: styles );
@@ -142,7 +142,7 @@ public sealed class ParseDateOnlyExact {
 			_ = ReadOnlySpanCharParsingExtensions.ParseDateOnlyExact( argInfo, formats );
 		} );
 
-		string expectedMessage = $"Value \"{argumentValue}\" must be parsable to System.DateOnly.";
+		string expectedMessage = $"Value \"{argumentValue}\" must be parsable to \"System.DateOnly\".";
 
 		Assert.StartsWith( expectedMessage, exception.Message );
 	}

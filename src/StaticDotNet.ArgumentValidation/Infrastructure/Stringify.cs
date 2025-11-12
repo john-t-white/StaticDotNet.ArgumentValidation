@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace StaticDotNet.ArgumentValidation.Infrastructure;
+﻿namespace StaticDotNet.ArgumentValidation.Infrastructure;
 
 /// <summary>
 /// Utility class to return a string version of a value for exception messages.
@@ -21,7 +17,7 @@ public static class Stringify {
 				? $"\"{value}\""
 				: value.ToString() ?? string.Empty;
 
-#if NETSTANDARD2_1_OR_GREATER || NET6_0_OR_GREATER
+#if !NETSTANDARD2_0
 
 	/// <summary>
 	/// Returns a string version of the value.

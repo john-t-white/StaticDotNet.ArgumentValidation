@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace StaticDotNet.ArgumentValidation.UnitTests.EnumerationExtensionsTests;
+﻿namespace StaticDotNet.ArgumentValidation.UnitTests.EnumerationExtensionsTests;
 
 public sealed class Defined {
 

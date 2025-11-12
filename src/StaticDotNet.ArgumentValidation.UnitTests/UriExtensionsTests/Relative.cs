@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace StaticDotNet.ArgumentValidation.UnitTests.UriExtensionsTests;
+﻿namespace StaticDotNet.ArgumentValidation.UnitTests.UriExtensionsTests;
 
 public sealed class Relative {
 
@@ -30,7 +24,7 @@ public sealed class Relative {
 			_ = argInfo.Relative();
 		} );
 
-		string expectedMessage = $"\"{ argumentValue}\" must be a relative uri.";
+		string expectedMessage = $"\"{argumentValue}\" must be a relative uri.";
 
 		Assert.StartsWith( expectedMessage, exception.Message );
 	}

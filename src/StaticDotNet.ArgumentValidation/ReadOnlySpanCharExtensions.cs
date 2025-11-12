@@ -1,4 +1,4 @@
-﻿#if NETSTANDARD2_1_OR_GREATER || NET6_0_OR_GREATER
+﻿#if !NETSTANDARD2_0
 
 using StaticDotNet.ArgumentValidation.Infrastructure;
 using System.Globalization;
@@ -42,12 +42,7 @@ public static class ReadOnlySpanCharExtensions {
 			return ref argInfo;
 		}
 
-#if NET8_0_OR_GREATER
-		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessagesCompositeFormats.VALUE_MUST_BE_EQUAL_TO, Stringify.Value( argInfo.Value ), Stringify.Value( value ) );
-#else
-		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessages.VALUE_MUST_BE_EQUAL_TO, Stringify.Value( argInfo.Value ), Stringify.Value( value ) );
-#endif
-
+		string message = argInfo.Message ?? ExceptionMessageFormatter.Format( ExceptionMessages.VALUE_MUST_BE_EQUAL_TO, argInfo.Value.ToString(), value.ToString() );
 		throw new ArgumentException( message, argInfo.Name );
 	}
 
@@ -65,12 +60,7 @@ public static class ReadOnlySpanCharExtensions {
 			return ref argInfo;
 		}
 
-#if NET8_0_OR_GREATER
-		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessagesCompositeFormats.STRING_MUST_START_WITH, argInfo.Value.ToString(), Stringify.Value( value ) );
-#else
-		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessages.STRING_MUST_START_WITH, argInfo.Value.ToString(), Stringify.Value( value ) );
-#endif
-
+		string message = argInfo.Message ?? ExceptionMessageFormatter.Format( ExceptionMessages.STRING_MUST_START_WITH, argInfo.Value.ToString(), value.ToString() );
 		throw new ArgumentException( message, argInfo.Name );
 	}
 
@@ -88,12 +78,7 @@ public static class ReadOnlySpanCharExtensions {
 			return ref argInfo;
 		}
 
-#if NET8_0_OR_GREATER
-		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessagesCompositeFormats.STRING_MUST_END_WITH, argInfo.Value.ToString(), Stringify.Value( value ) );
-#else
-		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessages.STRING_MUST_END_WITH, argInfo.Value.ToString(), Stringify.Value( value ) );
-#endif
-
+		string message = argInfo.Message ?? ExceptionMessageFormatter.Format( ExceptionMessages.STRING_MUST_END_WITH, argInfo.Value.ToString(), value.ToString() );
 		throw new ArgumentException( message, argInfo.Name );
 	}
 
@@ -111,12 +96,7 @@ public static class ReadOnlySpanCharExtensions {
 			return ref argInfo;
 		}
 
-#if NET8_0_OR_GREATER
-		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessagesCompositeFormats.STRING_MUST_CONTAIN, argInfo.Value.ToString(), Stringify.Value( value ) );
-#else
-		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessages.STRING_MUST_CONTAIN, argInfo.Value.ToString(), Stringify.Value( value ) );
-#endif
-
+		string message = argInfo.Message ?? ExceptionMessageFormatter.Format( ExceptionMessages.STRING_MUST_CONTAIN, argInfo.Value.ToString(), value.ToString() );
 		throw new ArgumentException( message, argInfo.Name );
 	}
 }

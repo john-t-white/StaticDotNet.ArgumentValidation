@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.Text;
+﻿using System.Globalization;
 
 namespace StaticDotNet.ArgumentValidation;
 
@@ -25,15 +22,10 @@ public static class UriExtensions {
 			return ref argInfo;
 		}
 
-#if NET8_0_OR_GREATER
-		string message = argInfo.Message ?? ( scheme is not null
-												? string.Format( CultureInfo.InvariantCulture, ExceptionMessagesCompositeFormats.VALUE_MUST_BE_ABSOLUTE_WITH_SCHEME, argInfo.Value, scheme )
-												: string.Format( CultureInfo.InvariantCulture, ExceptionMessagesCompositeFormats.VALUE_MUST_BE_ABSOLUTE_URI, argInfo.Value ) );
-#else
-		string message = argInfo.Message ?? ( scheme is not null
-												? string.Format( CultureInfo.InvariantCulture, ExceptionMessages.VALUE_MUST_BE_ABSOLUTE_WITH_SCHEME, argInfo.Value, scheme )
-												: string.Format( CultureInfo.InvariantCulture, ExceptionMessages.VALUE_MUST_BE_ABSOLUTE_URI, argInfo.Value ) );
-#endif
+		string message = argInfo.Message ??
+			( scheme is not null
+				? ExceptionMessageFormatter.Format( ExceptionMessages.VALUE_MUST_BE_ABSOLUTE_WITH_SCHEME, argInfo.Value, scheme )
+				: ExceptionMessageFormatter.Format( ExceptionMessages.VALUE_MUST_BE_ABSOLUTE_URI, argInfo.Value ) );
 
 		throw new ArgumentException( message, argInfo.Name );
 	}
@@ -52,12 +44,7 @@ public static class UriExtensions {
 			return ref argInfo;
 		}
 
-#if NET8_0_OR_GREATER
-		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessagesCompositeFormats.VALUE_MUST_BE_RELATIVE, argInfo.Value );
-#else
-		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessages.VALUE_MUST_BE_RELATIVE, argInfo.Value );
-#endif
-
+		string message = argInfo.Message ?? ExceptionMessageFormatter.Format( ExceptionMessages.VALUE_MUST_BE_RELATIVE, argInfo.Value );
 		throw new ArgumentException( message, argInfo.Name );
 	}
 }

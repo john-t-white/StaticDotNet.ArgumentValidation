@@ -44,11 +44,8 @@ public readonly ref struct ArgInfo<T>( T value, string? name, string? message )
 		if( Value is TType asValue) {
 			return new( asValue, Name, Message );
 		}
-#if NET8_0_OR_GREATER
-		string message = Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessagesCompositeFormats.VALUE_MUST_BE_ASSIGNABLE_TO, typeof( T ).FullName, typeof( TType ).FullName ?? Constants.NULL );
-#else
-		string message = Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessages.VALUE_MUST_BE_ASSIGNABLE_TO, typeof(T).FullName, typeof(TType).FullName ?? Constants.NULL );
-#endif
+
+		string message = Message ?? ExceptionMessageFormatter.Format( ExceptionMessages.VALUE_MUST_BE_ASSIGNABLE_TO, typeof( T ).FullName, typeof( TType ).FullName );
 
 		throw new ArgumentException( message, Name );
 	}

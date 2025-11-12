@@ -39,7 +39,7 @@ public sealed class LessThan {
 	public void WithStringNotLessThanThrowsArgumentOutOfRangeException( string argumentValue ) {
 
 		string name = "Name";
-		string value ="2";
+		string value = "2";
 
 		ArgumentOutOfRangeException exception = Assert.Throws<ArgumentOutOfRangeException>( name, () => {
 			ArgInfo<string> argInfo = new( argumentValue, name, null );

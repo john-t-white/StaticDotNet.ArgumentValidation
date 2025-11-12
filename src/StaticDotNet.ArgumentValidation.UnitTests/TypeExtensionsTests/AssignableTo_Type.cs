@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace StaticDotNet.ArgumentValidation.UnitTests.TypeExtensionsTests;
+﻿namespace StaticDotNet.ArgumentValidation.UnitTests.TypeExtensionsTests;
 
 public class AssignableTo_Type {
 
@@ -25,7 +23,7 @@ public class AssignableTo_Type {
 			_ = argInfo.AssignableTo<string>();
 		} );
 
-		string expectedMessage = $"Value {argumentValue.FullName} must be assignable to {typeof(string).FullName}.";
+		string expectedMessage = $"Value \"{argumentValue.FullName}\" must be assignable to \"{typeof( string ).FullName}\".";
 
 		Assert.StartsWith( expectedMessage, exception.Message );
 	}
@@ -68,7 +66,7 @@ public class AssignableTo_Type {
 			_ = argInfo.AssignableTo( type );
 		} );
 
-		string expectedMessage = $"Value {argumentValue.FullName} must be assignable to {type.FullName}.";
+		string expectedMessage = $"Value \"{argumentValue.FullName}\" must be assignable to \"{type.FullName}\".";
 
 		Assert.StartsWith( expectedMessage, exception.Message );
 	}
@@ -85,7 +83,7 @@ public class AssignableTo_Type {
 			_ = argInfo.AssignableTo( type );
 		} );
 
-		string expectedMessage = $"Value {argumentValue.FullName} must be assignable to <null>.";
+		string expectedMessage = $"Value \"{argumentValue.FullName}\" must be assignable to <null>.";
 
 		Assert.StartsWith( expectedMessage, exception.Message );
 	}

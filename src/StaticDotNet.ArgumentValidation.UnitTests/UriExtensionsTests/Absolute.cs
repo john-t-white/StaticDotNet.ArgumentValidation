@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace StaticDotNet.ArgumentValidation.UnitTests.UriExtensionsTests;
+﻿namespace StaticDotNet.ArgumentValidation.UnitTests.UriExtensionsTests;
 
 public sealed class Absolute {
 
@@ -59,7 +53,7 @@ public sealed class Absolute {
 			_ = argInfo.Absolute( scheme );
 		} );
 
-		string expectedMessage = $"\"{argumentValue}\" must be an absolute uri with scheme {scheme}.";
+		string expectedMessage = $"\"{argumentValue}\" must be an absolute uri with scheme \"{scheme}\".";
 
 		Assert.StartsWith( expectedMessage, exception.Message );
 	}

@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.Text;
-
-namespace StaticDotNet.ArgumentValidation;
+﻿namespace StaticDotNet.ArgumentValidation;
 
 /// <summary>
 /// Extension methods for validating <see cref="char"/> arguments.
@@ -38,12 +33,7 @@ public static class CharExtensions {
 			return ref argInfo;
 		}
 
-#if NET8_0_OR_GREATER
-		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessagesCompositeFormats.VALUE_MUST_BE_DIGIT, argInfo.Value.ToString() );
-#else
-		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessages.VALUE_MUST_BE_DIGIT, argInfo.Value.ToString() );
-#endif
-
+		string message = argInfo.Message ?? ExceptionMessageFormatter.Format( ExceptionMessages.VALUE_MUST_BE_DIGIT, argInfo.Value );
 		throw new ArgumentException( message, argInfo.Name );
 	}
 
@@ -59,12 +49,7 @@ public static class CharExtensions {
 			return ref argInfo;
 		}
 
-#if NET8_0_OR_GREATER
-		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessagesCompositeFormats.VALUE_MUST_BE_LETTER, argInfo.Value.ToString() );
-#else
-		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessages.VALUE_MUST_BE_LETTER, argInfo.Value.ToString() );
-#endif
-
+		string message = argInfo.Message ?? ExceptionMessageFormatter.Format( ExceptionMessages.VALUE_MUST_BE_LETTER, argInfo.Value );
 		throw new ArgumentException( message, argInfo.Name );
 	}
 
@@ -80,12 +65,7 @@ public static class CharExtensions {
 			return ref argInfo;
 		}
 
-#if NET8_0_OR_GREATER
-		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessagesCompositeFormats.VALUE_MUST_BE_LETTER_OR_DIGIT, argInfo.Value.ToString() );
-#else
-		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessages.VALUE_MUST_BE_LETTER_OR_DIGIT, argInfo.Value.ToString() );
-#endif
-
+		string message = argInfo.Message ?? ExceptionMessageFormatter.Format( ExceptionMessages.VALUE_MUST_BE_LETTER_OR_DIGIT, argInfo.Value );
 		throw new ArgumentException( message, argInfo.Name );
 	}
 
@@ -101,13 +81,7 @@ public static class CharExtensions {
 			return ref argInfo;
 		}
 
-#if NET8_0_OR_GREATER
-		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessagesCompositeFormats.VALUE_MUST_BE_NUMBER, argInfo.Value.ToString() );
-#else
-		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessages.VALUE_MUST_BE_NUMBER, argInfo.Value.ToString() );
-#endif
-
-
+		string message = argInfo.Message ?? ExceptionMessageFormatter.Format( ExceptionMessages.VALUE_MUST_BE_NUMBER, argInfo.Value );
 		throw new ArgumentException( message, argInfo.Name );
 	}
 
@@ -123,12 +97,7 @@ public static class CharExtensions {
 			return ref argInfo;
 		}
 
-#if NET8_0_OR_GREATER
-		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessagesCompositeFormats.VALUE_MUST_BE_LOWER, argInfo.Value.ToString() );
-#else
-		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessages.VALUE_MUST_BE_LOWER, argInfo.Value.ToString() );
-#endif
-
+		string message = argInfo.Message ?? ExceptionMessageFormatter.Format( ExceptionMessages.VALUE_MUST_BE_LOWER, argInfo.Value );
 		throw new ArgumentException( message, argInfo.Name );
 	}
 
@@ -144,16 +113,11 @@ public static class CharExtensions {
 			return ref argInfo;
 		}
 
-#if NET8_0_OR_GREATER
-		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessagesCompositeFormats.VALUE_MUST_BE_UPPER, argInfo.Value.ToString() );
-#else
-		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessages.VALUE_MUST_BE_UPPER, argInfo.Value.ToString() );
-#endif
-
+		string message = argInfo.Message ?? ExceptionMessageFormatter.Format( ExceptionMessages.VALUE_MUST_BE_UPPER, argInfo.Value );
 		throw new ArgumentException( message, argInfo.Name );
 	}
 
-#if NET7_0_OR_GREATER
+#if (!NETSTANDARD2_0 && !NETSTANDARD2_1 && !NET6_0)
 
 	/// <summary>
 	/// Ensures an argument is an ASCII digit, otherwise an <see cref="ArgumentException"/> is thrown.
@@ -167,12 +131,7 @@ public static class CharExtensions {
 			return ref argInfo;
 		}
 
-#if NET8_0_OR_GREATER
-		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessagesCompositeFormats.VALUE_MUST_BE_ASCII_DIGIT, argInfo.Value.ToString() );
-#else
-		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessages.VALUE_MUST_BE_ASCII_DIGIT, argInfo.Value.ToString() );
-#endif
-
+		string message = argInfo.Message ?? ExceptionMessageFormatter.Format( ExceptionMessages.VALUE_MUST_BE_ASCII_DIGIT, argInfo.Value );
 		throw new ArgumentException( message, argInfo.Name );
 	}
 
@@ -188,12 +147,7 @@ public static class CharExtensions {
 			return ref argInfo;
 		}
 
-#if NET8_0_OR_GREATER
-		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessagesCompositeFormats.VALUE_MUST_BE_ASCII_LETTER, argInfo.Value.ToString() );
-#else
-		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessages.VALUE_MUST_BE_ASCII_LETTER, argInfo.Value.ToString() );
-#endif
-
+		string message = argInfo.Message ?? ExceptionMessageFormatter.Format( ExceptionMessages.VALUE_MUST_BE_ASCII_LETTER, argInfo.Value );
 		throw new ArgumentException( message, argInfo.Name );
 	}
 
@@ -209,12 +163,7 @@ public static class CharExtensions {
 			return ref argInfo;
 		}
 
-#if NET8_0_OR_GREATER
-		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessagesCompositeFormats.VALUE_MUST_BE_UPPER_ASCII_LETTER, argInfo.Value.ToString() );
-#else
-		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessages.VALUE_MUST_BE_UPPER_ASCII_LETTER, argInfo.Value.ToString() );
-#endif
-
+		string message = argInfo.Message ?? ExceptionMessageFormatter.Format( ExceptionMessages.VALUE_MUST_BE_UPPER_ASCII_LETTER, argInfo.Value );
 		throw new ArgumentException( message, argInfo.Name );
 	}
 
@@ -230,12 +179,7 @@ public static class CharExtensions {
 			return ref argInfo;
 		}
 
-#if NET8_0_OR_GREATER
-		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessagesCompositeFormats.VALUE_MUST_BE_LOWER_ASCII_LETTER, argInfo.Value.ToString() );
-#else
-		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessages.VALUE_MUST_BE_LOWER_ASCII_LETTER, argInfo.Value.ToString() );
-#endif
-
+		string message = argInfo.Message ?? ExceptionMessageFormatter.Format( ExceptionMessages.VALUE_MUST_BE_LOWER_ASCII_LETTER, argInfo.Value );
 		throw new ArgumentException( message, argInfo.Name );
 	}
 
@@ -251,12 +195,7 @@ public static class CharExtensions {
 			return ref argInfo;
 		}
 
-#if NET8_0_OR_GREATER
-		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessagesCompositeFormats.VALUE_MUST_BE_ASCII_LETTER_OR_DIGIT, argInfo.Value.ToString() );
-#else
-		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessages.VALUE_MUST_BE_ASCII_LETTER_OR_DIGIT, argInfo.Value.ToString() );
-#endif
-
+		string message = argInfo.Message ?? ExceptionMessageFormatter.Format( ExceptionMessages.VALUE_MUST_BE_ASCII_LETTER_OR_DIGIT, argInfo.Value );
 		throw new ArgumentException( message, argInfo.Name );
 	}
 
@@ -272,12 +211,7 @@ public static class CharExtensions {
 			return ref argInfo;
 		}
 
-#if NET8_0_OR_GREATER
-		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessagesCompositeFormats.VALUE_MUST_BE_UPPER_ASCII_LETTER_OR_DIGIT, argInfo.Value.ToString() );
-#else
-		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessages.VALUE_MUST_BE_UPPER_ASCII_LETTER_OR_DIGIT, argInfo.Value.ToString() );
-#endif
-
+		string message = argInfo.Message ?? ExceptionMessageFormatter.Format( ExceptionMessages.VALUE_MUST_BE_UPPER_ASCII_LETTER_OR_DIGIT, argInfo.Value );
 		throw new ArgumentException( message, argInfo.Name );
 	}
 
@@ -293,12 +227,7 @@ public static class CharExtensions {
 			return ref argInfo;
 		}
 
-#if NET8_0_OR_GREATER
-		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessagesCompositeFormats.VALUE_MUST_BE_LOWER_ASCII_LETTER_OR_DIGIT, argInfo.Value.ToString() );
-#else
-		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessages.VALUE_MUST_BE_LOWER_ASCII_LETTER_OR_DIGIT, argInfo.Value.ToString() );
-#endif
-
+		string message = argInfo.Message ?? ExceptionMessageFormatter.Format( ExceptionMessages.VALUE_MUST_BE_LOWER_ASCII_LETTER_OR_DIGIT, argInfo.Value );
 		throw new ArgumentException( message, argInfo.Name );
 	}
 

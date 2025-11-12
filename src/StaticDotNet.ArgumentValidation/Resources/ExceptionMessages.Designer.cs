@@ -19,7 +19,7 @@ namespace StaticDotNet.ArgumentValidation.Resources {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "18.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     internal class ExceptionMessages {
@@ -70,7 +70,7 @@ namespace StaticDotNet.ArgumentValidation.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Value &quot;{0}&quot; with a length of {1} is below the minimum length of {2}..
+        ///   Looks up a localized string similar to Value {0} with a length of {1} is below the minimum length of {2}..
         /// </summary>
         internal static string STRING_LENGTH_BELOW_MIN_LENGTH {
             get {
@@ -79,7 +79,7 @@ namespace StaticDotNet.ArgumentValidation.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Value &quot;{0}&quot; with a length of {1} exceeds the maximum length of {2}..
+        ///   Looks up a localized string similar to Value {0} with a length of {1} exceeds the maximum length of {2}..
         /// </summary>
         internal static string STRING_LENGTH_EXCEEDS_MAX_LENGTH {
             get {
@@ -88,7 +88,7 @@ namespace StaticDotNet.ArgumentValidation.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Value &quot;{0}&quot; with a length of {1} must have a length between {2} and {3}..
+        ///   Looks up a localized string similar to Value {0} with a length of {1} must have a length between {2} and {3}..
         /// </summary>
         internal static string STRING_LENGTH_MUST_BE_BETWEEN {
             get {
@@ -97,7 +97,7 @@ namespace StaticDotNet.ArgumentValidation.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Value &quot;{0}&quot; with a length of {1} must have a length equal to {2}..
+        ///   Looks up a localized string similar to Value {0} with a length of {1} must have a length equal to {2}..
         /// </summary>
         internal static string STRING_LENGTH_MUST_BE_EQUAL_TO {
             get {
@@ -106,7 +106,7 @@ namespace StaticDotNet.ArgumentValidation.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Value &quot;{0}&quot; must be ASCII digits..
+        ///   Looks up a localized string similar to Value {0} must be ASCII digits..
         /// </summary>
         internal static string STRING_MUST_BE_ASCII_DIGITS {
             get {
@@ -115,7 +115,7 @@ namespace StaticDotNet.ArgumentValidation.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Value &quot;{0}&quot; must be ASCII letters..
+        ///   Looks up a localized string similar to Value {0} must be ASCII letters..
         /// </summary>
         internal static string STRING_MUST_BE_ASCII_LETTERS {
             get {
@@ -124,7 +124,7 @@ namespace StaticDotNet.ArgumentValidation.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Value &quot;{0}&quot; must be ASCII letters or digits..
+        ///   Looks up a localized string similar to Value {0} must be ASCII letters or digits..
         /// </summary>
         internal static string STRING_MUST_BE_ASCII_LETTERS_OR_DIGITS {
             get {
@@ -133,7 +133,7 @@ namespace StaticDotNet.ArgumentValidation.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Value &quot;{0}&quot; must be lower case ASCII letters..
+        ///   Looks up a localized string similar to Value {0} must be lower case ASCII letters..
         /// </summary>
         internal static string STRING_MUST_BE_LOWER_ASCII_LETTERS {
             get {
@@ -142,7 +142,7 @@ namespace StaticDotNet.ArgumentValidation.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Value &quot;{0}&quot; must be lower case ASCII letters or digits..
+        ///   Looks up a localized string similar to Value {0} must be lower case ASCII letters or digits..
         /// </summary>
         internal static string STRING_MUST_BE_LOWER_ASCII_LETTERS_OR_DIGITS {
             get {
@@ -151,7 +151,7 @@ namespace StaticDotNet.ArgumentValidation.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Value &quot;{0}&quot; must be upper case ASCII letters..
+        ///   Looks up a localized string similar to Value {0} must be upper case ASCII letters..
         /// </summary>
         internal static string STRING_MUST_BE_UPPER_ASCII_LETTERS {
             get {
@@ -160,7 +160,7 @@ namespace StaticDotNet.ArgumentValidation.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Value &quot;{0}&quot; must be upper case ASCII letters or digits..
+        ///   Looks up a localized string similar to Value {0} must be upper case ASCII letters or digits..
         /// </summary>
         internal static string STRING_MUST_BE_UPPER_ASCII_LETTERS_OR_DIGITS {
             get {
@@ -169,7 +169,7 @@ namespace StaticDotNet.ArgumentValidation.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Value &quot;{0}&quot; must contain {1}..
+        ///   Looks up a localized string similar to Value {0} must contain {1}..
         /// </summary>
         internal static string STRING_MUST_CONTAIN {
             get {
@@ -178,7 +178,7 @@ namespace StaticDotNet.ArgumentValidation.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Value &quot;{0}&quot; must end with {1}..
+        ///   Looks up a localized string similar to Value {0} must end with {1}..
         /// </summary>
         internal static string STRING_MUST_END_WITH {
             get {
@@ -187,7 +187,7 @@ namespace StaticDotNet.ArgumentValidation.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Value &quot;{0}&quot; must start with {1}..
+        ///   Looks up a localized string similar to Value {0} must start with {1}..
         /// </summary>
         internal static string STRING_MUST_START_WITH {
             get {
@@ -277,7 +277,7 @@ namespace StaticDotNet.ArgumentValidation.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Value &quot;{0}&quot; must be an ASCII digit..
+        ///   Looks up a localized string similar to Value {0} must be an ASCII digit..
         /// </summary>
         internal static string VALUE_MUST_BE_ASCII_DIGIT {
             get {
@@ -286,7 +286,7 @@ namespace StaticDotNet.ArgumentValidation.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Value &quot;{0}&quot; must be an ASCII letter..
+        ///   Looks up a localized string similar to Value {0} must be an ASCII letter..
         /// </summary>
         internal static string VALUE_MUST_BE_ASCII_LETTER {
             get {
@@ -295,7 +295,7 @@ namespace StaticDotNet.ArgumentValidation.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Value &quot;{0}&quot; must be an ASCII letter or digit..
+        ///   Looks up a localized string similar to Value {0} must be an ASCII letter or digit..
         /// </summary>
         internal static string VALUE_MUST_BE_ASCII_LETTER_OR_DIGIT {
             get {
@@ -322,7 +322,7 @@ namespace StaticDotNet.ArgumentValidation.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Value &quot;{0}&quot; must be a digit..
+        ///   Looks up a localized string similar to Value {0} must be a digit..
         /// </summary>
         internal static string VALUE_MUST_BE_DIGIT {
             get {
@@ -385,7 +385,7 @@ namespace StaticDotNet.ArgumentValidation.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Value &quot;{0}&quot; must be a letter..
+        ///   Looks up a localized string similar to Value {0} must be a letter..
         /// </summary>
         internal static string VALUE_MUST_BE_LETTER {
             get {
@@ -394,7 +394,7 @@ namespace StaticDotNet.ArgumentValidation.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Value &quot;{0}&quot; must be a letter or digit..
+        ///   Looks up a localized string similar to Value {0} must be a letter or digit..
         /// </summary>
         internal static string VALUE_MUST_BE_LETTER_OR_DIGIT {
             get {
@@ -403,7 +403,7 @@ namespace StaticDotNet.ArgumentValidation.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Value &quot;{0}&quot; must be lower case..
+        ///   Looks up a localized string similar to Value {0} must be lower case..
         /// </summary>
         internal static string VALUE_MUST_BE_LOWER {
             get {
@@ -412,7 +412,7 @@ namespace StaticDotNet.ArgumentValidation.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Value &quot;{0}&quot; must be a lower case ASCII letter..
+        ///   Looks up a localized string similar to Value {0} must be a lower case ASCII letter..
         /// </summary>
         internal static string VALUE_MUST_BE_LOWER_ASCII_LETTER {
             get {
@@ -421,7 +421,7 @@ namespace StaticDotNet.ArgumentValidation.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Value &quot;{0}&quot; must be a lower case ASCII letter or digit..
+        ///   Looks up a localized string similar to Value {0} must be a lower case ASCII letter or digit..
         /// </summary>
         internal static string VALUE_MUST_BE_LOWER_ASCII_LETTER_OR_DIGIT {
             get {
@@ -439,7 +439,7 @@ namespace StaticDotNet.ArgumentValidation.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Value &quot;{0}&quot; must be a number..
+        ///   Looks up a localized string similar to Value {0} must be a number..
         /// </summary>
         internal static string VALUE_MUST_BE_NUMBER {
             get {
@@ -448,7 +448,7 @@ namespace StaticDotNet.ArgumentValidation.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Value &quot;{0}&quot; must be parsable to {1}..
+        ///   Looks up a localized string similar to Value {0} must be parsable to {1}..
         /// </summary>
         internal static string VALUE_MUST_BE_PARSABLE_TO {
             get {
@@ -502,7 +502,7 @@ namespace StaticDotNet.ArgumentValidation.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Value &quot;{0}&quot; must be upper case..
+        ///   Looks up a localized string similar to Value {0} must be upper case..
         /// </summary>
         internal static string VALUE_MUST_BE_UPPER {
             get {
@@ -511,7 +511,7 @@ namespace StaticDotNet.ArgumentValidation.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Value &quot;{0}&quot; must be an upper case ASCII letter..
+        ///   Looks up a localized string similar to Value {0} must be an upper case ASCII letter..
         /// </summary>
         internal static string VALUE_MUST_BE_UPPER_ASCII_LETTER {
             get {
@@ -520,7 +520,7 @@ namespace StaticDotNet.ArgumentValidation.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Value &quot;{0}&quot; must be an upper case ASCII letter or digit..
+        ///   Looks up a localized string similar to Value {0} must be an upper case ASCII letter or digit..
         /// </summary>
         internal static string VALUE_MUST_BE_UPPER_ASCII_LETTER_OR_DIGIT {
             get {

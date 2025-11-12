@@ -55,7 +55,7 @@ public sealed class ParseTimeSpanExact {
 			_ = StringParsingExtensions.ParseTimeSpanExact( argInfo, format );
 		} );
 
-		string expectedMessage = $"Value \"{argumentValue}\" must be parsable to System.TimeSpan.";
+		string expectedMessage = $"Value \"{argumentValue}\" must be parsable to \"System.TimeSpan\".";
 
 		Assert.StartsWith( expectedMessage, exception.Message );
 	}
@@ -85,7 +85,7 @@ public sealed class ParseTimeSpanExact {
 			@"d\.hh\:mm\:ss\.ffffff",
 			@"hh\:mm\:ss"
 		};
-		ArgInfo<string> argInfo = new( expectedResult.ToString( formats[0] ), null, null );
+		ArgInfo<string> argInfo = new( expectedResult.ToString( formats[ 0 ] ), null, null );
 
 		ArgInfo<TimeSpan> result = StringParsingExtensions.ParseTimeSpanExact( argInfo, formats );
 
@@ -100,7 +100,7 @@ public sealed class ParseTimeSpanExact {
 			@"d\.hh\:mm\:ss\.ffffff",
 			@"hh\:mm\:ss"
 		};
-		ArgInfo<string> argInfo = new( expectedResult.ToString( formats[0] ), null, null );
+		ArgInfo<string> argInfo = new( expectedResult.ToString( formats[ 0 ] ), null, null );
 		IFormatProvider provider = DateTimeFormatInfo.CurrentInfo;
 
 		ArgInfo<TimeSpan> result = StringParsingExtensions.ParseTimeSpanExact( argInfo, formats, provider );
@@ -116,7 +116,7 @@ public sealed class ParseTimeSpanExact {
 			@"d\.hh\:mm\:ss\.ffffff",
 			@"hh\:mm\:ss"
 		};
-		ArgInfo<string> argInfo = new( expectedResult.ToString( formats[0] ), null, null );
+		ArgInfo<string> argInfo = new( expectedResult.ToString( formats[ 0 ] ), null, null );
 		TimeSpanStyles styles = TimeSpanStyles.None;
 
 		ArgInfo<TimeSpan> result = StringParsingExtensions.ParseTimeSpanExact( argInfo, formats, styles: styles );
@@ -140,7 +140,7 @@ public sealed class ParseTimeSpanExact {
 			_ = StringParsingExtensions.ParseTimeSpanExact( argInfo, formats );
 		} );
 
-		string expectedMessage = $"Value \"{argumentValue}\" must be parsable to System.TimeSpan.";
+		string expectedMessage = $"Value \"{argumentValue}\" must be parsable to \"System.TimeSpan\".";
 
 		Assert.StartsWith( expectedMessage, exception.Message );
 	}

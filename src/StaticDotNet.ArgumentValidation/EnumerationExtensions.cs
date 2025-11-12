@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace StaticDotNet.ArgumentValidation;
+﻿namespace StaticDotNet.ArgumentValidation;
 
 /// <summary>
 /// Extension methods for validating enumeration arguments.
@@ -19,12 +15,12 @@ public static class EnumerationExtensions {
 	public static ref readonly ArgInfo<T> Defined<T>( in this ArgInfo<T> argInfo )
 		where T : struct, Enum {
 
-#if NET6_0_OR_GREATER
-		if( Enum.IsDefined( argInfo.Value ) ) {
+#if( NETSTANDARD2_0 || NETSTANDARD2_1 )
+		if( Enum.IsDefined( typeof( T ), argInfo.Value ) ) {
 			return ref argInfo;
 		}
 #else
-		if( Enum.IsDefined( typeof( T ), argInfo.Value ) ) {
+		if( Enum.IsDefined( argInfo.Value ) ) {
 			return ref argInfo;
 		}
 #endif

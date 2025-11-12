@@ -78,7 +78,7 @@ public sealed class GetLength {
 	[Fact]
 	public void ICollectionValueReturnsCorrectly() {
 
-		ICollection value = new StubCollection( new int[] { 1, 2, 3 });
+		ICollection value = new StubCollection( new int[] { 1, 2, 3 } );
 		int maxEnumeratorIterations = 0;
 
 		int result = EnumerableExtensions.GetLength( value, maxEnumeratorIterations );
@@ -137,8 +137,8 @@ public sealed class GetLength {
 		: ICollection {
 
 		public StubCollection( Array array ) {
-		
-			Array= array;
+
+			Array = array;
 		}
 
 		public Array Array { get; }

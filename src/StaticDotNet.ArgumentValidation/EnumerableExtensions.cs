@@ -1,6 +1,4 @@
-﻿using StaticDotNet.ArgumentValidation.Infrastructure;
-using System.Collections;
-using System.Globalization;
+﻿using System.Collections;
 
 namespace StaticDotNet.ArgumentValidation;
 
@@ -47,12 +45,7 @@ public static class EnumerableExtensions {
 			return ref argInfo;
 		}
 
-#if NET8_0_OR_GREATER
-		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessagesCompositeFormats.VALUE_LENGTH_MUST_BE_EQUAL_TO, GetLength( argInfo.Value, null ), length );
-#else
-		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessages.VALUE_LENGTH_MUST_BE_EQUAL_TO, GetLength( argInfo.Value, null ), length );
-#endif
-
+		string message = argInfo.Message ?? ExceptionMessageFormatter.Format( ExceptionMessages.VALUE_LENGTH_MUST_BE_EQUAL_TO, GetLength( argInfo.Value, null ), length );
 		throw new ArgumentOutOfRangeException( argInfo.Name, message );
 	}
 
@@ -71,12 +64,7 @@ public static class EnumerableExtensions {
 			return ref argInfo;
 		}
 
-#if NET8_0_OR_GREATER
-		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessagesCompositeFormats.VALUE_LENGTH_BELOW_MIN_LENGTH, GetLength( argInfo.Value, null ), length );
-#else
-		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessages.VALUE_LENGTH_BELOW_MIN_LENGTH, GetLength( argInfo.Value, null ), length );
-#endif
-
+		string message = argInfo.Message ?? ExceptionMessageFormatter.Format( ExceptionMessages.VALUE_LENGTH_BELOW_MIN_LENGTH, GetLength( argInfo.Value, null ), length );
 		throw new ArgumentOutOfRangeException( argInfo.Name, message );
 	}
 
@@ -95,12 +83,7 @@ public static class EnumerableExtensions {
 			return ref argInfo;
 		}
 
-#if NET8_0_OR_GREATER
-		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessagesCompositeFormats.VALUE_LENGTH_EXCEEDS_MAX_LENGTH, GetLength( argInfo.Value, null ), length );
-#else
-		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessages.VALUE_LENGTH_EXCEEDS_MAX_LENGTH, GetLength( argInfo.Value, null ), length );
-#endif
-
+		string message = argInfo.Message ?? ExceptionMessageFormatter.Format( ExceptionMessages.VALUE_LENGTH_EXCEEDS_MAX_LENGTH, GetLength( argInfo.Value, null ), length );
 		throw new ArgumentOutOfRangeException( argInfo.Name, message );
 	}
 
@@ -122,12 +105,7 @@ public static class EnumerableExtensions {
 			return ref argInfo;
 		}
 
-#if NET8_0_OR_GREATER
-		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessagesCompositeFormats.VALUE_LENGTH_MUST_BE_BETWEEN, GetLength( argInfo.Value, null ), minLength, maxLength );
-#else
-		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessages.VALUE_LENGTH_MUST_BE_BETWEEN, GetLength( argInfo.Value, null ), minLength, maxLength );
-#endif
-
+		string message = argInfo.Message ?? ExceptionMessageFormatter.Format( ExceptionMessages.VALUE_LENGTH_MUST_BE_BETWEEN, GetLength( argInfo.Value, null ), minLength, maxLength );
 		throw new ArgumentOutOfRangeException( argInfo.Name, message );
 	}
 
@@ -149,16 +127,9 @@ public static class EnumerableExtensions {
 			return ref argInfo;
 		}
 
-#if NET8_0_OR_GREATER
-		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessagesCompositeFormats.VALUE_MUST_CONTAIN, Stringify.Value( value ) );
-#else
-		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessages.VALUE_MUST_CONTAIN, Stringify.Value( value ) );
-#endif
-
+		string message = argInfo.Message ?? ExceptionMessageFormatter.Format( ExceptionMessages.VALUE_MUST_CONTAIN, value );
 		throw new ArgumentException( message, argInfo.Name );
 	}
-
-	#region Internal Methods
 
 	/// <remarks>
 	/// DisallowNullAttribute is needed because the constraint must also be IEnumerable? in order for the methods to call it
@@ -193,6 +164,4 @@ public static class EnumerableExtensions {
 
 		return enumerableLength.Value;
 	}
-
-	#endregion
 }

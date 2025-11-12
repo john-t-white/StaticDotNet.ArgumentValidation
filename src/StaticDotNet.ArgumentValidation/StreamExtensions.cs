@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace StaticDotNet.ArgumentValidation;
+﻿namespace StaticDotNet.ArgumentValidation;
 
 /// <summary>
 /// Extension methods for validating <see cref="Stream"/> arguments.
@@ -16,20 +12,8 @@ public static class StreamExtensions {
 	/// <param name="argInfo">The argument info.</param>
 	/// <returns>The <paramref name="argInfo"/>.</returns>
 	/// <exception cref="ArgumentException">Thrown when <paramref name="argInfo.Value"/> is not readable.</exception>
-	[Obsolete( "Use CanRead instead." )]
-	public static ref readonly ArgInfo<TArg> Readable<TArg>( in this ArgInfo<TArg> argInfo )
-		where TArg : Stream
-		=> ref CanRead( argInfo );
-
-	/// <summary>
-	/// Ensures a stream argument is readable, otherwise an <see cref="ArgumentException"/> is thrown.
-	/// </summary>
-	/// <typeparam name="TArg">The argument type.</typeparam>
-	/// <param name="argInfo">The argument info.</param>
-	/// <returns>The <paramref name="argInfo"/>.</returns>
-	/// <exception cref="ArgumentException">Thrown when <paramref name="argInfo.Value"/> is not readable.</exception>
 	public static ref readonly ArgInfo<TArg> CanRead<TArg>( in this ArgInfo<TArg> argInfo )
-		where TArg: Stream {
+		where TArg : Stream {
 
 		if( argInfo.Value.CanRead ) {
 			return ref argInfo;
@@ -38,18 +22,6 @@ public static class StreamExtensions {
 		string message = argInfo.Message ?? ExceptionMessages.VALUE_MUST_BE_READABLE;
 		throw new ArgumentException( message, argInfo.Name );
 	}
-
-	/// <summary>
-	/// Ensures a stream argument is writable, otherwise an <see cref="ArgumentException"/> is thrown.
-	/// </summary>
-	/// <typeparam name="TArg">The argument type.</typeparam>
-	/// <param name="argInfo">The argument info.</param>
-	/// <returns>The <paramref name="argInfo"/>.</returns>
-	/// <exception cref="ArgumentException">Thrown when <paramref name="argInfo.Value"/> is not writable.</exception>
-	[Obsolete( "Use CanWrite instead." )]
-	public static ref readonly ArgInfo<TArg> Writable<TArg>( in this ArgInfo<TArg> argInfo )
-		where TArg : Stream
-		=> ref CanWrite( argInfo );
 
 	/// <summary>
 	/// Ensures a stream argument is writable, otherwise an <see cref="ArgumentException"/> is thrown.

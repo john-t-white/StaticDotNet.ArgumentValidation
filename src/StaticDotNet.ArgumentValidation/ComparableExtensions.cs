@@ -1,7 +1,4 @@
-﻿using StaticDotNet.ArgumentValidation.Infrastructure;
-using System.Globalization;
-
-namespace StaticDotNet.ArgumentValidation;
+﻿namespace StaticDotNet.ArgumentValidation;
 
 /// <summary>
 /// Extension methods for validating <see cref="IComparable"/> arguments.
@@ -23,12 +20,7 @@ public static class ComparableExtensions {
 			return ref argInfo;
 		}
 
-#if NET8_0_OR_GREATER
-		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessagesCompositeFormats.VALUE_MUST_BE_GREATER_THAN, Stringify.Value( argInfo.Value ), Stringify.Value( value ) );
-#else
-		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessages.VALUE_MUST_BE_GREATER_THAN, Stringify.Value( argInfo.Value ), Stringify.Value( value ) );
-#endif
-
+		string message = argInfo.Message ?? ExceptionMessageFormatter.Format( ExceptionMessages.VALUE_MUST_BE_GREATER_THAN, argInfo.Value, value );
 		throw new ArgumentOutOfRangeException( argInfo.Name, message );
 	}
 
@@ -47,12 +39,7 @@ public static class ComparableExtensions {
 			return ref argInfo;
 		}
 
-#if NET8_0_OR_GREATER
-		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessagesCompositeFormats.VALUE_MUST_BE_GREATER_THAN_OR_EQUAL_TO, Stringify.Value( argInfo.Value ), Stringify.Value( value ) );
-#else
-		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessages.VALUE_MUST_BE_GREATER_THAN_OR_EQUAL_TO, Stringify.Value( argInfo.Value ), Stringify.Value( value ) );
-#endif
-
+		string message = argInfo.Message ?? ExceptionMessageFormatter.Format( ExceptionMessages.VALUE_MUST_BE_GREATER_THAN_OR_EQUAL_TO, argInfo.Value, value );
 		throw new ArgumentOutOfRangeException( argInfo.Name, message );
 	}
 
@@ -71,12 +58,7 @@ public static class ComparableExtensions {
 			return ref argInfo;
 		}
 
-#if NET8_0_OR_GREATER
-		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessagesCompositeFormats.VALUE_MUST_BE_LESS_THAN, Stringify.Value( argInfo.Value ), Stringify.Value( value ) );
-#else
-		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessages.VALUE_MUST_BE_LESS_THAN, Stringify.Value( argInfo.Value ), Stringify.Value( value ) );
-#endif
-
+		string message = argInfo.Message ?? ExceptionMessageFormatter.Format( ExceptionMessages.VALUE_MUST_BE_LESS_THAN, argInfo.Value, value );
 		throw new ArgumentOutOfRangeException( argInfo.Name, message );
 	}
 
@@ -95,12 +77,7 @@ public static class ComparableExtensions {
 			return ref argInfo;
 		}
 
-#if NET8_0_OR_GREATER
-		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessagesCompositeFormats.VALUE_MUST_BE_LESS_THAN_OR_EQUAL_TO, Stringify.Value( argInfo.Value ), Stringify.Value( value ) );
-#else
-		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessages.VALUE_MUST_BE_LESS_THAN_OR_EQUAL_TO, Stringify.Value( argInfo.Value ), Stringify.Value( value ) );
-#endif
-
+		string message = argInfo.Message ?? ExceptionMessageFormatter.Format( ExceptionMessages.VALUE_MUST_BE_LESS_THAN_OR_EQUAL_TO, argInfo.Value, value );
 		throw new ArgumentOutOfRangeException( argInfo.Name, message );
 	}
 
@@ -120,12 +97,7 @@ public static class ComparableExtensions {
 			return ref argInfo;
 		}
 
-#if NET8_0_OR_GREATER
-		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessagesCompositeFormats.VALUE_MUST_BE_BETWEEN, Stringify.Value( argInfo.Value ), Stringify.Value( minValue ), Stringify.Value( maxValue ) );
-#else
-		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessages.VALUE_MUST_BE_BETWEEN, Stringify.Value( argInfo.Value ), Stringify.Value( minValue ), Stringify.Value( maxValue ) );
-#endif
-
+		string message = argInfo.Message ?? ExceptionMessageFormatter.Format( ExceptionMessages.VALUE_MUST_BE_BETWEEN, argInfo.Value, minValue, maxValue );
 		throw new ArgumentOutOfRangeException( argInfo.Name, message );
 	}
 }

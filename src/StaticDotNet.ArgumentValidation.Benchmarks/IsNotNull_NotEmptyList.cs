@@ -27,7 +27,7 @@ public class IsNotNull_NotEmptyList {
 
 	[Benchmark]
 	public IList<int> CommunityToolkit_Diagnostics() {
-		CommunityToolkit.Diagnostics.Guard.IsNotNull ( argumentValue );
+		CommunityToolkit.Diagnostics.Guard.IsNotNull( argumentValue );
 		CommunityToolkit.Diagnostics.Guard.IsNotEmpty( argumentValue );
 
 		return argumentValue;

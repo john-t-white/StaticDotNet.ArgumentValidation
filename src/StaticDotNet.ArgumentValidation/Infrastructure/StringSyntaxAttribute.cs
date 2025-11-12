@@ -1,4 +1,4 @@
-﻿#if !NET7_0_OR_GREATER
+﻿#if( NETSTANDARD2_0 || NETSTANDARD2_1 || NET6_0 )
 
 namespace System.Diagnostics.CodeAnalysis;
 

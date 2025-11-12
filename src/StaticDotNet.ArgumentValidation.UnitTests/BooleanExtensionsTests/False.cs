@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace StaticDotNet.ArgumentValidation.UnitTests.BooleanExtensionsTests;
+﻿namespace StaticDotNet.ArgumentValidation.UnitTests.BooleanExtensionsTests;
 
 public sealed class False {
 
@@ -30,7 +24,7 @@ public sealed class False {
 		} );
 
 		string expectedMessage = "Value must be false.";
-		Assert.StartsWith(expectedMessage, exception.Message );
+		Assert.StartsWith( expectedMessage, exception.Message );
 	}
 
 	[Fact]

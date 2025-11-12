@@ -1,6 +1,4 @@
-﻿using System.Globalization;
-
-namespace StaticDotNet.ArgumentValidation.UnitTests.StringParsingExtensionsTests;
+﻿namespace StaticDotNet.ArgumentValidation.UnitTests.StringParsingExtensionsTests;
 
 public sealed class ParseGuidExact {
 
@@ -29,7 +27,7 @@ public sealed class ParseGuidExact {
 			_ = StringParsingExtensions.ParseGuidExact( argInfo, format );
 		} );
 
-		string expectedMessage = $"Value \"{argumentValue}\" must be parsable to System.Guid.";
+		string expectedMessage = $"Value \"{argumentValue}\" must be parsable to \"System.Guid\".";
 
 		Assert.StartsWith( expectedMessage, exception.Message );
 	}

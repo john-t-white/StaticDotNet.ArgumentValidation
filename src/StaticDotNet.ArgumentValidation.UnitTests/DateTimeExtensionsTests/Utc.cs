@@ -1,17 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace StaticDotNet.ArgumentValidation.UnitTests.DateTimeExtensionsTests;
+﻿namespace StaticDotNet.ArgumentValidation.UnitTests.DateTimeExtensionsTests;
 
 public sealed class Utc {
 
 	[Fact]
 	public void ReturnsCorrectly() {
 
-		ArgInfo<DateTime> argInfo = new( new( 2000, DateTimeKind.Utc), null, null );
+		ArgInfo<DateTime> argInfo = new( new( 2000, DateTimeKind.Utc ), null, null );
 
 		ArgInfo<DateTime> result = DateTimeExtensions.Utc( argInfo );
 
@@ -30,7 +24,7 @@ public sealed class Utc {
 		} );
 
 		string expectedMessage = "Value must have DateTimeKind.Utc.";
-		Assert.StartsWith(expectedMessage, exception.Message );
+		Assert.StartsWith( expectedMessage, exception.Message );
 	}
 
 	[Fact]

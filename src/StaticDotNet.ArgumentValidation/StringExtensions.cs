@@ -1,6 +1,5 @@
 ﻿using StaticDotNet.ArgumentValidation.Infrastructure;
 using System.Globalization;
-using System.Linq;
 
 namespace StaticDotNet.ArgumentValidation;
 
@@ -55,12 +54,7 @@ public static class StringExtensions {
 			return ref argInfo;
 		}
 
-#if NET8_0_OR_GREATER
-		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessagesCompositeFormats.STRING_LENGTH_MUST_BE_EQUAL_TO, argInfo.Value, argInfo.Value.Length, length );
-#else
-		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessages.STRING_LENGTH_MUST_BE_EQUAL_TO, argInfo.Value, argInfo.Value.Length, length );
-#endif
-
+		string message = argInfo.Message ?? ExceptionMessageFormatter.Format( ExceptionMessages.STRING_LENGTH_MUST_BE_EQUAL_TO, argInfo.Value, argInfo.Value.Length, length );
 		throw new ArgumentOutOfRangeException( argInfo.Name, message );
 	}
 
@@ -77,12 +71,7 @@ public static class StringExtensions {
 			return ref argInfo;
 		}
 
-#if NET8_0_OR_GREATER
-		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessagesCompositeFormats.STRING_LENGTH_BELOW_MIN_LENGTH, argInfo.Value, argInfo.Value.Length, length );
-#else
-		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessages.STRING_LENGTH_BELOW_MIN_LENGTH, argInfo.Value, argInfo.Value.Length, length );
-#endif
-
+		string message = argInfo.Message ?? ExceptionMessageFormatter.Format( ExceptionMessages.STRING_LENGTH_BELOW_MIN_LENGTH, argInfo.Value, argInfo.Value.Length, length );
 		throw new ArgumentOutOfRangeException( argInfo.Name, message );
 	}
 
@@ -99,12 +88,7 @@ public static class StringExtensions {
 			return ref argInfo;
 		}
 
-#if NET8_0_OR_GREATER
-		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessagesCompositeFormats.STRING_LENGTH_EXCEEDS_MAX_LENGTH, argInfo.Value, argInfo.Value.Length, length );
-#else
-		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessages.STRING_LENGTH_EXCEEDS_MAX_LENGTH, argInfo.Value, argInfo.Value.Length, length );
-#endif
-
+		string message = argInfo.Message ?? ExceptionMessageFormatter.Format( ExceptionMessages.STRING_LENGTH_EXCEEDS_MAX_LENGTH, argInfo.Value, argInfo.Value.Length, length );
 		throw new ArgumentOutOfRangeException( argInfo.Name, message );
 	}
 
@@ -122,12 +106,7 @@ public static class StringExtensions {
 			return ref argInfo;
 		}
 
-#if NET8_0_OR_GREATER
-		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessagesCompositeFormats.STRING_LENGTH_MUST_BE_BETWEEN, argInfo.Value, argInfo.Value.Length, minLength, maxLength );
-#else
-		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessages.STRING_LENGTH_MUST_BE_BETWEEN, argInfo.Value, argInfo.Value.Length, minLength, maxLength );
-#endif
-
+		string message = argInfo.Message ?? ExceptionMessageFormatter.Format( ExceptionMessages.STRING_LENGTH_MUST_BE_BETWEEN, argInfo.Value, argInfo.Value.Length, minLength, maxLength );
 		throw new ArgumentOutOfRangeException( argInfo.Name, message );
 	}
 
@@ -147,12 +126,7 @@ public static class StringExtensions {
 			return ref argInfo;
 		}
 
-#if NET8_0_OR_GREATER
-		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessagesCompositeFormats.VALUE_MUST_BE_EQUAL_TO, Stringify.Value( argInfo.Value ), Stringify.Value( value ) );
-#else
-		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessages.VALUE_MUST_BE_EQUAL_TO, Stringify.Value( argInfo.Value ), Stringify.Value( value ) );
-#endif
-
+		string message = argInfo.Message ?? ExceptionMessageFormatter.Format( ExceptionMessages.VALUE_MUST_BE_EQUAL_TO, argInfo.Value, value );
 		throw new ArgumentException( message, argInfo.Name );
 	}
 
@@ -168,12 +142,7 @@ public static class StringExtensions {
 			return ref argInfo;
 		}
 
-#if NET8_0_OR_GREATER
-		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessagesCompositeFormats.VALUE_MUST_BE_UPPER, argInfo.Value.ToString() );
-#else
-		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessages.VALUE_MUST_BE_UPPER, argInfo.Value.ToString() );
-#endif
-
+		string message = argInfo.Message ?? ExceptionMessageFormatter.Format( ExceptionMessages.VALUE_MUST_BE_UPPER, argInfo.Value );
 		throw new ArgumentException( message, argInfo.Name );
 	}
 
@@ -189,12 +158,7 @@ public static class StringExtensions {
 			return ref argInfo;
 		}
 
-#if NET8_0_OR_GREATER
-		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessagesCompositeFormats.VALUE_MUST_BE_LOWER, argInfo.Value.ToString() );
-#else
-		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessages.VALUE_MUST_BE_LOWER, argInfo.Value.ToString() );
-#endif
-
+		string message = argInfo.Message ?? ExceptionMessageFormatter.Format( ExceptionMessages.VALUE_MUST_BE_LOWER, argInfo.Value );
 		throw new ArgumentException( message, argInfo.Name );
 	}
 
@@ -213,12 +177,7 @@ public static class StringExtensions {
 			return ref argInfo;
 		}
 
-#if NET8_0_OR_GREATER
-		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessagesCompositeFormats.STRING_MUST_START_WITH, argInfo.Value, Stringify.Value( value ) );
-#else
-		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessages.STRING_MUST_START_WITH, argInfo.Value, Stringify.Value( value ) );
-#endif
-
+		string message = argInfo.Message ?? ExceptionMessageFormatter.Format( ExceptionMessages.STRING_MUST_START_WITH, argInfo.Value, value );
 		throw new ArgumentException( message, argInfo.Name );
 	}
 
@@ -239,12 +198,7 @@ public static class StringExtensions {
 			return ref argInfo;
 		}
 
-#if NET8_0_OR_GREATER
-		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessagesCompositeFormats.STRING_MUST_START_WITH, argInfo.Value, Stringify.Value( value ) );
-#else
-		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessages.STRING_MUST_START_WITH, argInfo.Value, Stringify.Value( value ) );
-#endif
-
+		string message = argInfo.Message ?? ExceptionMessageFormatter.Format( ExceptionMessages.STRING_MUST_START_WITH, argInfo.Value, value );
 		throw new ArgumentException( message, argInfo.Name );
 	}
 
@@ -263,12 +217,7 @@ public static class StringExtensions {
 			return ref argInfo;
 		}
 
-#if NET8_0_OR_GREATER
-		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessagesCompositeFormats.STRING_MUST_START_WITH, argInfo.Value, Stringify.Value( value ) );
-#else
-		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessages.STRING_MUST_START_WITH, argInfo.Value, Stringify.Value( value ) );
-#endif
-
+		string message = argInfo.Message ?? ExceptionMessageFormatter.Format( ExceptionMessages.STRING_MUST_START_WITH, argInfo.Value, value );
 		throw new ArgumentException( message, argInfo.Name );
 	}
 
@@ -287,12 +236,7 @@ public static class StringExtensions {
 			return ref argInfo;
 		}
 
-#if NET8_0_OR_GREATER
-		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessagesCompositeFormats.STRING_MUST_END_WITH, argInfo.Value, Stringify.Value( value ) );
-#else
-		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessages.STRING_MUST_END_WITH, argInfo.Value, Stringify.Value( value ) );
-#endif
-
+		string message = argInfo.Message ?? ExceptionMessageFormatter.Format( ExceptionMessages.STRING_MUST_END_WITH, argInfo.Value, value );
 		throw new ArgumentException( message, argInfo.Name );
 	}
 
@@ -313,12 +257,7 @@ public static class StringExtensions {
 			return ref argInfo;
 		}
 
-#if NET8_0_OR_GREATER
-		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessagesCompositeFormats.STRING_MUST_END_WITH, argInfo.Value, Stringify.Value( value ) );
-#else
-		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessages.STRING_MUST_END_WITH, argInfo.Value, Stringify.Value( value ) );
-#endif
-
+		string message = argInfo.Message ?? ExceptionMessageFormatter.Format( ExceptionMessages.STRING_MUST_END_WITH, argInfo.Value, value );
 		throw new ArgumentException( message, argInfo.Name );
 	}
 
@@ -337,12 +276,7 @@ public static class StringExtensions {
 			return ref argInfo;
 		}
 
-#if NET8_0_OR_GREATER
-		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessagesCompositeFormats.STRING_MUST_END_WITH, argInfo.Value, Stringify.Value( value ) );
-#else
-		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessages.STRING_MUST_END_WITH, argInfo.Value, Stringify.Value( value ) );
-#endif
-
+		string message = argInfo.Message ?? ExceptionMessageFormatter.Format( ExceptionMessages.STRING_MUST_END_WITH, argInfo.Value, value );
 		throw new ArgumentException( message, argInfo.Name );
 	}
 
@@ -360,12 +294,7 @@ public static class StringExtensions {
 			return ref argInfo;
 		}
 
-#if NET8_0_OR_GREATER
-		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessagesCompositeFormats.STRING_MUST_CONTAIN, argInfo.Value.ToString(), Stringify.Value( value ) );
-#else
-		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessages.STRING_MUST_CONTAIN, argInfo.Value.ToString(), Stringify.Value( value ) );
-#endif
-
+		string message = argInfo.Message ?? ExceptionMessageFormatter.Format( ExceptionMessages.STRING_MUST_CONTAIN, argInfo.Value, value );
 		throw new ArgumentException( message, argInfo.Name );
 	}
 
@@ -385,12 +314,7 @@ public static class StringExtensions {
 			return ref argInfo;
 		}
 
-#if NET8_0_OR_GREATER
-		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessagesCompositeFormats.STRING_MUST_CONTAIN, argInfo.Value.ToString(), Stringify.Value( value ) );
-#else
-		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessages.STRING_MUST_CONTAIN, argInfo.Value.ToString(), Stringify.Value( value ) );
-#endif
-
+		string message = argInfo.Message ?? ExceptionMessageFormatter.Format( ExceptionMessages.STRING_MUST_CONTAIN, argInfo.Value, value );
 		throw new ArgumentException( message, argInfo.Name );
 	}
 
@@ -410,12 +334,7 @@ public static class StringExtensions {
 			return ref argInfo;
 		}
 
-#if NET8_0_OR_GREATER
-		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessagesCompositeFormats.STRING_MUST_CONTAIN, argInfo.Value, Stringify.Value( value ) );
-#else
-		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessages.STRING_MUST_CONTAIN, argInfo.Value, Stringify.Value( value ) );
-#endif
-
+		string message = argInfo.Message ?? ExceptionMessageFormatter.Format( ExceptionMessages.STRING_MUST_CONTAIN, argInfo.Value, value );
 		throw new ArgumentException( message, argInfo.Name );
 	}
 
@@ -435,12 +354,7 @@ public static class StringExtensions {
 			return ref argInfo;
 		}
 
-#if NET8_0_OR_GREATER
-		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessagesCompositeFormats.STRING_MUST_CONTAIN, argInfo.Value, Stringify.Value( value ) );
-#else
-		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessages.STRING_MUST_CONTAIN, argInfo.Value, Stringify.Value( value ) );
-#endif
-
+		string message = argInfo.Message ?? ExceptionMessageFormatter.Format( ExceptionMessages.STRING_MUST_CONTAIN, argInfo.Value, value );
 		throw new ArgumentException( message, argInfo.Name );
 	}
 
@@ -460,12 +374,7 @@ public static class StringExtensions {
 			return ref argInfo;
 		}
 
-#if NET8_0_OR_GREATER
-		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessagesCompositeFormats.STRING_MUST_BE_ASCII_DIGITS, argInfo.Value );
-#else
-		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessages.STRING_MUST_BE_ASCII_DIGITS, argInfo.Value );
-#endif
-
+		string message = argInfo.Message ?? ExceptionMessageFormatter.Format( ExceptionMessages.STRING_MUST_BE_ASCII_DIGITS, argInfo.Value );
 		throw new ArgumentException( message, argInfo.Name );
 	}
 
@@ -481,12 +390,7 @@ public static class StringExtensions {
 			return ref argInfo;
 		}
 
-#if NET8_0_OR_GREATER
-		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessagesCompositeFormats.STRING_MUST_BE_ASCII_LETTERS, argInfo.Value );
-#else
-		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessages.STRING_MUST_BE_ASCII_LETTERS, argInfo.Value );
-#endif
-
+		string message = argInfo.Message ?? ExceptionMessageFormatter.Format( ExceptionMessages.STRING_MUST_BE_ASCII_LETTERS, argInfo.Value );
 		throw new ArgumentException( message, argInfo.Name );
 	}
 
@@ -502,12 +406,7 @@ public static class StringExtensions {
 			return ref argInfo;
 		}
 
-#if NET8_0_OR_GREATER
-		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessagesCompositeFormats.STRING_MUST_BE_LOWER_ASCII_LETTERS, argInfo.Value );
-#else
-		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessages.STRING_MUST_BE_LOWER_ASCII_LETTERS, argInfo.Value );
-#endif
-
+		string message = argInfo.Message ?? ExceptionMessageFormatter.Format( ExceptionMessages.STRING_MUST_BE_LOWER_ASCII_LETTERS, argInfo.Value );
 		throw new ArgumentException( message, argInfo.Name );
 	}
 
@@ -523,12 +422,7 @@ public static class StringExtensions {
 			return ref argInfo;
 		}
 
-#if NET8_0_OR_GREATER
-		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessagesCompositeFormats.STRING_MUST_BE_UPPER_ASCII_LETTERS, argInfo.Value );
-#else
-		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessages.STRING_MUST_BE_UPPER_ASCII_LETTERS, argInfo.Value );
-#endif
-
+		string message = argInfo.Message ?? ExceptionMessageFormatter.Format( ExceptionMessages.STRING_MUST_BE_UPPER_ASCII_LETTERS, argInfo.Value );
 		throw new ArgumentException( message, argInfo.Name );
 	}
 
@@ -544,12 +438,7 @@ public static class StringExtensions {
 			return ref argInfo;
 		}
 
-#if NET8_0_OR_GREATER
-		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessagesCompositeFormats.STRING_MUST_BE_ASCII_LETTERS_OR_DIGITS, argInfo.Value );
-#else
-		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessages.STRING_MUST_BE_ASCII_LETTERS_OR_DIGITS, argInfo.Value );
-#endif
-
+		string message = argInfo.Message ?? ExceptionMessageFormatter.Format( ExceptionMessages.STRING_MUST_BE_ASCII_LETTERS_OR_DIGITS, argInfo.Value );
 		throw new ArgumentException( message, argInfo.Name );
 	}
 
@@ -565,12 +454,7 @@ public static class StringExtensions {
 			return ref argInfo;
 		}
 
-#if NET8_0_OR_GREATER
-		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessagesCompositeFormats.STRING_MUST_BE_LOWER_ASCII_LETTERS_OR_DIGITS, argInfo.Value );
-#else
-		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessages.STRING_MUST_BE_LOWER_ASCII_LETTERS_OR_DIGITS, argInfo.Value );
-#endif
-
+		string message = argInfo.Message ?? ExceptionMessageFormatter.Format( ExceptionMessages.STRING_MUST_BE_LOWER_ASCII_LETTERS_OR_DIGITS, argInfo.Value );
 		throw new ArgumentException( message, argInfo.Name );
 	}
 
@@ -586,12 +470,7 @@ public static class StringExtensions {
 			return ref argInfo;
 		}
 
-#if NET8_0_OR_GREATER
-		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessagesCompositeFormats.STRING_MUST_BE_UPPER_ASCII_LETTERS_OR_DIGITS, argInfo.Value );
-#else
-		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessages.STRING_MUST_BE_UPPER_ASCII_LETTERS_OR_DIGITS, argInfo.Value );
-#endif
-
+		string message = argInfo.Message ?? ExceptionMessageFormatter.Format( ExceptionMessages.STRING_MUST_BE_UPPER_ASCII_LETTERS_OR_DIGITS, argInfo.Value );
 		throw new ArgumentException( message, argInfo.Name );
 	}
 

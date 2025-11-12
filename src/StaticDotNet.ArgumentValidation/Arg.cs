@@ -70,7 +70,21 @@ public static class Arg {
 		where T : struct
 		=> new( value, name, message );
 
-#if NETSTANDARD2_1_OR_GREATER || NET6_0_OR_GREATER
+	/// <summary>
+	/// Ensures the argument is null, otherwise an <see cref="ArgumentNullException"/> is thrown.
+	/// </summary>
+	/// <typeparam name="T">The type of <paramref name="value"/>.</typeparam>
+	/// <param name="value">The value of the argument.</param>
+	/// <param name="name">With C# 10, defaults to the expression of <paramref name="value"/>; otherwise specify the argument name.</param>
+	/// <param name="message">The exception message.  Null for for default message.</param>
+	/// <returns>Null</returns>
+	/// <exception cref="ArgumentException">Thrown when <paramref name="value"/> is not null.</exception>
+	public static T? IsNull<T>( T? value, [CallerArgumentExpression( nameof( value ) )] string? name = null, string? message = null )
+		=> value is null
+			? default
+			: throw new ArgumentException( message ?? ExceptionMessages.VALUE_MUST_BE_NULL, name );
+
+#if !NETSTANDARD2_0
 
 	/// <summary>
 	/// Used for validating <see cref="ReadOnlySpan{T}"/> arguments.
@@ -95,18 +109,4 @@ public static class Arg {
 		=> new( value, name, message );
 
 #endif
-
-	/// <summary>
-	/// Ensures the argument is null, otherwise an <see cref="ArgumentNullException"/> is thrown.
-	/// </summary>
-	/// <typeparam name="T">The type of <paramref name="value"/>.</typeparam>
-	/// <param name="value">The value of the argument.</param>
-	/// <param name="name">With C# 10, defaults to the expression of <paramref name="value"/>; otherwise specify the argument name.</param>
-	/// <param name="message">The exception message.  Null for for default message.</param>
-	/// <returns>Null</returns>
-	/// <exception cref="ArgumentException">Thrown when <paramref name="value"/> is not null.</exception>
-	public static T? IsNull<T>( T? value, [CallerArgumentExpression( nameof( value ) )] string? name = null, string? message = null )
-		=> value is null
-			? default
-			: throw new ArgumentException( message ?? ExceptionMessages.VALUE_MUST_BE_NULL, name );
 }

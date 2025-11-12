@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace StaticDotNet.ArgumentValidation.UnitTests.ArgInfoTests;
+﻿namespace StaticDotNet.ArgumentValidation.UnitTests.ArgInfoTests;
 
 public sealed class As {
 
@@ -31,7 +25,7 @@ public sealed class As {
 			_ = argInfo.As<string>();
 		} );
 
-		string expectedMessage = $"Value of type {argumentValue.GetType().FullName} must be assignable to {typeof( string ).FullName}.";
+		string expectedMessage = $"Value of type \"{argumentValue.GetType().FullName}\" must be assignable to \"{typeof( string ).FullName}\".";
 
 		Assert.StartsWith( expectedMessage, exception.Message );
 	}

@@ -1,6 +1,4 @@
-﻿using System.Globalization;
-
-namespace StaticDotNet.ArgumentValidation.UnitTests.StringParsingExtensionsTests;
+﻿namespace StaticDotNet.ArgumentValidation.UnitTests.StringParsingExtensionsTests;
 
 public sealed class ParseUri {
 
@@ -8,7 +6,7 @@ public sealed class ParseUri {
 	public void WithUriKindReturnsCorrectly() {
 
 		UriKind uriKind = UriKind.Absolute;
-		Uri expectedResult = new("http://www.example.com/", uriKind );
+		Uri expectedResult = new( "http://www.example.com/", uriKind );
 		ArgInfo<string> argInfo = new( expectedResult.ToString(), null, null );
 
 		ArgInfo<Uri> result = StringParsingExtensions.ParseUri( argInfo, uriKind );
@@ -29,7 +27,7 @@ public sealed class ParseUri {
 			_ = StringParsingExtensions.ParseUri( argInfo, uriKind );
 		} );
 
-		string expectedMessage = $"Value \"{argumentValue}\" must be parsable to System.Uri.";
+		string expectedMessage = $"Value \"{argumentValue}\" must be parsable to \"System.Uri\".";
 
 		Assert.StartsWith( expectedMessage, exception.Message );
 	}
@@ -78,7 +76,7 @@ public sealed class ParseUri {
 			_ = StringParsingExtensions.ParseUri( argInfo, creationOptions );
 		} );
 
-		string expectedMessage = $"Value \"{argumentValue}\" must be parsable to System.Uri.";
+		string expectedMessage = $"Value \"{argumentValue}\" must be parsable to \"System.Uri\".";
 
 		Assert.StartsWith( expectedMessage, exception.Message );
 	}

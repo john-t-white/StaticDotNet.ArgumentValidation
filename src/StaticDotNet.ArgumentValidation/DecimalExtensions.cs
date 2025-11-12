@@ -1,8 +1,6 @@
-﻿using System.Globalization;
+﻿namespace StaticDotNet.ArgumentValidation;
 
-namespace StaticDotNet.ArgumentValidation;
-
-#if NET7_0_OR_GREATER
+#if (!NETSTANDARD2_0 && !NETSTANDARD2_1 && !NET6_0 )
 
 /// <summary>
 /// Extension methods for validating <see cref="decimal"/> arguments.
@@ -22,12 +20,7 @@ public static class DecimalExtensions {
 			return ref argInfo;
 		}
 
-#if NET8_0_OR_GREATER
-		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessagesCompositeFormats.VALUE_MUST_HAVE_SCALE_EQUAL_TO, argInfo.Value.ToString( CultureInfo.InvariantCulture ), scale.ToString( CultureInfo.InvariantCulture ) );
-#else
-		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessages.VALUE_MUST_HAVE_SCALE_EQUAL_TO, argInfo.Value.ToString( CultureInfo.InvariantCulture ), scale.ToString( CultureInfo.InvariantCulture ) );
-#endif
-
+		string message = argInfo.Message ?? ExceptionMessageFormatter.Format( ExceptionMessages.VALUE_MUST_HAVE_SCALE_EQUAL_TO, argInfo.Value, scale );
 		throw new ArgumentOutOfRangeException( argInfo.Name, message );
 	}
 
@@ -44,12 +37,7 @@ public static class DecimalExtensions {
 			return ref argInfo;
 		}
 
-#if NET8_0_OR_GREATER
-		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessagesCompositeFormats.VALUE_MUST_HAVE_SCALE_LESS_THAN_OR_EQUAL_TO, argInfo.Value.ToString( CultureInfo.InvariantCulture ), scale.ToString( CultureInfo.InvariantCulture ) );
-#else
-		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessages.VALUE_MUST_HAVE_SCALE_LESS_THAN_OR_EQUAL_TO, argInfo.Value.ToString( CultureInfo.InvariantCulture ), scale.ToString( CultureInfo.InvariantCulture ) );
-#endif
-
+		string message = argInfo.Message ?? ExceptionMessageFormatter.Format( ExceptionMessages.VALUE_MUST_HAVE_SCALE_LESS_THAN_OR_EQUAL_TO, argInfo.Value, scale );
 		throw new ArgumentOutOfRangeException( argInfo.Name, message );
 	}
 }
