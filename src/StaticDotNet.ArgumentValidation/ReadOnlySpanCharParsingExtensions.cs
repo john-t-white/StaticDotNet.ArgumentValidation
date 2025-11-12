@@ -395,8 +395,6 @@ public static class ReadOnlySpanCharParsingExtensions {
 		throw new ArgumentException( message, argInfo.Name );
 	}
 
-#if( !NET6_0 )
-
 	/// <summary>
 	/// Ensures an argument is parsable to a <typeparamref name="T"/>, otherwise an <see cref="ArgumentException"/> is thrown.
 	/// </summary>
@@ -414,8 +412,6 @@ public static class ReadOnlySpanCharParsingExtensions {
 		string message = argInfo.Message ?? ExceptionMessageFormatter.Format( ExceptionMessages.VALUE_MUST_BE_PARSABLE_TO, argInfo.Value.ToString(), typeof( T ).FullName );
 		throw new ArgumentException( message, argInfo.Name );
 	}
-
-#endif
 
 #endif
 }

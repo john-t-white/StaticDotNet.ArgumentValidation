@@ -2,50 +2,6 @@
 
 public sealed class Contains_Char {
 
-	[Fact]
-	public void ReturnsCorrectly() {
-
-		ArgInfo<string> argInfo = new( "Value", null, null );
-		char value = 'l';
-
-		ArgInfo<string> result = StringExtensions.Contains( argInfo, value );
-
-		ArgInfoAssertions.Equal( argInfo, result );
-	}
-
-	[Fact]
-	public void WithValueNotEqualToValueThrowsArgumentException() {
-
-		string argumentValue = "Value";
-		string name = "Name";
-		char value = 'z';
-
-		ArgumentException exception = Assert.Throws<ArgumentException>( name, () => {
-			ArgInfo<string> argInfo = new( argumentValue, name, null );
-			_ = StringExtensions.Contains( argInfo, value );
-		} );
-
-		string expectedMessage = $"Value \"{argumentValue}\" must contain \"{value}\".";
-
-		Assert.StartsWith( expectedMessage, exception.Message );
-	}
-
-	[Fact]
-	public void WithInvalidValueAndMessageThrowsArgumentException() {
-
-		string argumentValue = "Value";
-		string name = "Name";
-		string message = "Message";
-		char value = 'z';
-
-		ArgumentException exception = Assert.Throws<ArgumentException>( name, () => {
-			ArgInfo<string> argInfo = new( argumentValue, name, message );
-			_ = StringExtensions.Contains( argInfo, value );
-		} );
-
-		Assert.StartsWith( message, exception.Message );
-	}
-
 #if !NET481
 
 	[Fact]
@@ -96,4 +52,48 @@ public sealed class Contains_Char {
 	}
 
 #endif
+
+	[Fact]
+	public void ReturnsCorrectly() {
+
+		ArgInfo<string> argInfo = new( "Value", null, null );
+		char value = 'l';
+
+		ArgInfo<string> result = StringExtensions.Contains( argInfo, value );
+
+		ArgInfoAssertions.Equal( argInfo, result );
+	}
+
+	[Fact]
+	public void WithValueNotEqualToValueThrowsArgumentException() {
+
+		string argumentValue = "Value";
+		string name = "Name";
+		char value = 'z';
+
+		ArgumentException exception = Assert.Throws<ArgumentException>( name, () => {
+			ArgInfo<string> argInfo = new( argumentValue, name, null );
+			_ = StringExtensions.Contains( argInfo, value );
+		} );
+
+		string expectedMessage = $"Value \"{argumentValue}\" must contain \"{value}\".";
+
+		Assert.StartsWith( expectedMessage, exception.Message );
+	}
+
+	[Fact]
+	public void WithInvalidValueAndMessageThrowsArgumentException() {
+
+		string argumentValue = "Value";
+		string name = "Name";
+		string message = "Message";
+		char value = 'z';
+
+		ArgumentException exception = Assert.Throws<ArgumentException>( name, () => {
+			ArgInfo<string> argInfo = new( argumentValue, name, message );
+			_ = StringExtensions.Contains( argInfo, value );
+		} );
+
+		Assert.StartsWith( message, exception.Message );
+	}
 }

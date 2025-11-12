@@ -1,4 +1,4 @@
-﻿#if( NETSTANDARD2_0 || NETSTANDARD2_1 || NET6_0 )
+﻿#if( NETSTANDARD2_0 || NETSTANDARD2_1 )
 
 namespace System.Diagnostics.CodeAnalysis;
 

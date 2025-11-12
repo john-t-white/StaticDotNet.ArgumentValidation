@@ -4,7 +4,7 @@ namespace StaticDotNet.ArgumentValidation.UnitTests.RegexExtensionsTests;
 
 public sealed partial class Matches_Regex {
 
-#if NET7_0_OR_GREATER
+#if !NET481
 	[GeneratedRegex( @"\d" )]
 	private static partial Regex DigitRegex();
 

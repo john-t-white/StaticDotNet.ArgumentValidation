@@ -1,6 +1,4 @@
-﻿using StaticDotNet.ArgumentValidation.Infrastructure;
-using System.Globalization;
-using System.Text.RegularExpressions;
+﻿using System.Text.RegularExpressions;
 
 namespace StaticDotNet.ArgumentValidation;
 
@@ -28,12 +26,7 @@ public static class RegexExtensions {
 			return ref argInfo;
 		}
 
-#if NET8_0_OR_GREATER
-		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessagesCompositeFormats.VALUE_MUST_MATCH_REGEX, argInfo.Value, Stringify.Value( pattern ) );
-#else
-		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessages.VALUE_MUST_MATCH_REGEX, argInfo.Value, Stringify.Value( pattern ) );
-#endif
-
+		string message = argInfo.Message ?? ExceptionMessageFormatter.Format( ExceptionMessages.VALUE_MUST_MATCH_REGEX, argInfo.Value, pattern );
 		throw new ArgumentException( message, argInfo.Name );
 	}
 
@@ -50,12 +43,7 @@ public static class RegexExtensions {
 			return ref argInfo;
 		}
 
-#if NET8_0_OR_GREATER
-		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessagesCompositeFormats.VALUE_MUST_MATCH_REGEX, argInfo.Value, Stringify.Value( regex?.ToString() ) );
-#else
-		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessages.VALUE_MUST_MATCH_REGEX, argInfo.Value, Stringify.Value( regex?.ToString() ) );
-#endif
-
+		string message = argInfo.Message ?? ExceptionMessageFormatter.Format( ExceptionMessages.VALUE_MUST_MATCH_REGEX, argInfo.Value, regex?.ToString() );
 		throw new ArgumentException( message, argInfo.Name );
 	}
 
@@ -76,12 +64,7 @@ public static class RegexExtensions {
 			return ref argInfo;
 		}
 
-#if NET8_0_OR_GREATER
-		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessagesCompositeFormats.VALUE_MUST_MATCH_REGEX, argInfo.Value, Stringify.Value( pattern ) );
-#else
-		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessages.VALUE_MUST_MATCH_REGEX, argInfo.Value, Stringify.Value( pattern ) );
-#endif
-
+		string message = argInfo.Message ?? ExceptionMessageFormatter.Format( ExceptionMessages.VALUE_MUST_MATCH_REGEX, argInfo.Value, pattern );
 		throw new ArgumentException( message, argInfo.Name );
 	}
 
@@ -100,12 +83,7 @@ public static class RegexExtensions {
 			return ref argInfo;
 		}
 
-#if NET8_0_OR_GREATER
-		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessagesCompositeFormats.VALUE_MUST_MATCH_REGEX, argInfo.Value, Stringify.Value( regex?.ToString() ) );
-#else
-		string message = argInfo.Message ?? string.Format( CultureInfo.InvariantCulture, ExceptionMessages.VALUE_MUST_MATCH_REGEX, argInfo.Value, Stringify.Value( regex?.ToString() ) );
-#endif
-
+		string message = argInfo.Message ?? ExceptionMessageFormatter.Format( ExceptionMessages.VALUE_MUST_MATCH_REGEX, argInfo.Value, regex?.ToString() );
 		throw new ArgumentException( message, argInfo.Name );
 	}
 }

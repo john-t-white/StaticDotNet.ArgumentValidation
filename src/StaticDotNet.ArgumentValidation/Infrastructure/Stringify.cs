@@ -5,6 +5,8 @@
 /// </summary>
 public static class Stringify {
 
+	private const string NULL = "<null>";
+
 	/// <summary>
 	/// Returns a string version of the value.
 	/// </summary>
@@ -12,7 +14,7 @@ public static class Stringify {
 	/// <param name="value">The value.</param>
 	/// <returns>string/char values with quotes, null values as &lt;null&gt;, otherwise the value as a string.</returns>
 	public static string Value<T>( T? value ) => value is null
-			? Constants.NULL
+			? NULL
 			: value is string or char
 				? $"\"{value}\""
 				: value.ToString() ?? string.Empty;

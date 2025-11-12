@@ -592,7 +592,7 @@ namespace StaticDotNet.ArgumentValidation.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Value &quot;{0}&quot; must match the regex {1}..
+        ///   Looks up a localized string similar to Value {0} must match the regex {1}..
         /// </summary>
         internal static string VALUE_MUST_MATCH_REGEX {
             get {

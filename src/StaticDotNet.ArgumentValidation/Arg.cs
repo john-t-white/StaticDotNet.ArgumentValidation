@@ -5,6 +5,32 @@
 /// </summary>
 public static class Arg {
 
+#if !NETSTANDARD2_0
+
+	/// <summary>
+	/// Used for validating <see cref="ReadOnlySpan{T}"/> arguments.
+	/// </summary>
+	/// <typeparam name="T">The type of value within the <see cref="ReadOnlySpan{T}"/>.</typeparam>
+	/// <param name="value">The value of the argument.</param>
+	/// <param name="name">With C# 10, defaults to the expression of <paramref name="value"/>; otherwise specify the argument name.</param>
+	/// <param name="message">The exception message.  Null for for default message.</param>
+	/// <returns>A <see cref="ArgInfo{T}"/>.</returns>
+	public static ReadOnlySpanArgInfo<T> Is<T>( ReadOnlySpan<T> value, [CallerArgumentExpression( nameof( value ) )] string? name = null, string? message = null )
+		=> new( value, name, message );
+
+	/// <summary>
+	/// Used for validating <see cref="Span{T}"/> arguments.
+	/// </summary>
+	/// <typeparam name="T">The type of value within the <see cref="ReadOnlySpan{T}"/>.</typeparam>
+	/// <param name="value">The value of the argument.</param>
+	/// <param name="name">With C# 10, defaults to the expression of <paramref name="value"/>; otherwise specify the argument name.</param>
+	/// <param name="message">The exception message.  Null for for default message.</param>
+	/// <returns>A <see cref="ArgInfo{T}"/>.</returns>
+	public static SpanArgInfo<T> Is<T>( Span<T> value, [CallerArgumentExpression( nameof( value ) )] string? name = null, string? message = null )
+		=> new( value, name, message );
+
+#endif
+
 	/// <summary>
 	/// Ensures the argument is not null, otherwise an <see cref="ArgumentNullException"/> is thrown.
 	/// </summary>
@@ -83,30 +109,4 @@ public static class Arg {
 		=> value is null
 			? default
 			: throw new ArgumentException( message ?? ExceptionMessages.VALUE_MUST_BE_NULL, name );
-
-#if !NETSTANDARD2_0
-
-	/// <summary>
-	/// Used for validating <see cref="ReadOnlySpan{T}"/> arguments.
-	/// </summary>
-	/// <typeparam name="T">The type of value within the <see cref="ReadOnlySpan{T}"/>.</typeparam>
-	/// <param name="value">The value of the argument.</param>
-	/// <param name="name">With C# 10, defaults to the expression of <paramref name="value"/>; otherwise specify the argument name.</param>
-	/// <param name="message">The exception message.  Null for for default message.</param>
-	/// <returns>A <see cref="ArgInfo{T}"/>.</returns>
-	public static ReadOnlySpanArgInfo<T> Is<T>( ReadOnlySpan<T> value, [CallerArgumentExpression( nameof( value ) )] string? name = null, string? message = null )
-		=> new( value, name, message );
-
-	/// <summary>
-	/// Used for validating <see cref="Span{T}"/> arguments.
-	/// </summary>
-	/// <typeparam name="T">The type of value within the <see cref="ReadOnlySpan{T}"/>.</typeparam>
-	/// <param name="value">The value of the argument.</param>
-	/// <param name="name">With C# 10, defaults to the expression of <paramref name="value"/>; otherwise specify the argument name.</param>
-	/// <param name="message">The exception message.  Null for for default message.</param>
-	/// <returns>A <see cref="ArgInfo{T}"/>.</returns>
-	public static SpanArgInfo<T> Is<T>( Span<T> value, [CallerArgumentExpression( nameof( value ) )] string? name = null, string? message = null )
-		=> new( value, name, message );
-
-#endif
 }

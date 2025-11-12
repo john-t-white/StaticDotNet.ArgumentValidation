@@ -1,8 +1,5 @@
 ﻿#if !NETSTANDARD2_0
 
-using StaticDotNet.ArgumentValidation.Infrastructure;
-using System.Globalization;
-
 namespace StaticDotNet.ArgumentValidation;
 
 /// <summary>

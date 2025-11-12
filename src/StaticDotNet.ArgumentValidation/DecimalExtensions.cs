@@ -1,6 +1,6 @@
-﻿namespace StaticDotNet.ArgumentValidation;
+﻿#if( !NETSTANDARD2_0 && !NETSTANDARD2_1 )
 
-#if (!NETSTANDARD2_0 && !NETSTANDARD2_1 && !NET6_0 )
+namespace StaticDotNet.ArgumentValidation;
 
 /// <summary>
 /// Extension methods for validating <see cref="decimal"/> arguments.

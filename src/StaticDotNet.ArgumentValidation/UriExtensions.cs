@@ -1,6 +1,4 @@
-﻿using System.Globalization;
-
-namespace StaticDotNet.ArgumentValidation;
+﻿namespace StaticDotNet.ArgumentValidation;
 
 /// <summary>
 /// Extension methods for validating <see cref="Uri"/> arguments.
