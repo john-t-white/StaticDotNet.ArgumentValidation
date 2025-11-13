@@ -6,7 +6,7 @@ namespace StaticDotNet.ArgumentValidation.Resources;
 
 internal static class ExceptionMessageFormatter {
 
-#if( NETSTANDARD2_0 || NETSTANDARD2_1 || NET6_0 || NET7_0 )
+#if( NETSTANDARD2_0 || NETSTANDARD2_1 )
 
 	internal static string Format<TArg1>( string format, TArg1? arg1 )
 		=> string.Format( CultureInfo.InvariantCulture, format, Stringify.Value( arg1 ) );

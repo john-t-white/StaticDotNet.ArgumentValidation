@@ -80,7 +80,7 @@ public static class StringExtensions {
 		throw new ArgumentException( message, argInfo.Name );
 	}
 
-#if (!NETSTANDARD2_1 && !NET6_0)
+#if (!NETSTANDARD2_1)
 
 	/// <summary>
 	/// Ensures an argument is only ASCII digits, otherwise an <see cref="ArgumentException"/> is thrown.
