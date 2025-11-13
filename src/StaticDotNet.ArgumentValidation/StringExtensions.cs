@@ -1,5 +1,4 @@
-﻿using StaticDotNet.ArgumentValidation.Infrastructure;
-using System.Globalization;
+﻿using System.Globalization;
 
 namespace StaticDotNet.ArgumentValidation;
 
@@ -80,7 +79,7 @@ public static class StringExtensions {
 		throw new ArgumentException( message, argInfo.Name );
 	}
 
-#if (!NETSTANDARD2_1)
+#if !NETSTANDARD2_1
 
 	/// <summary>
 	/// Ensures an argument is only ASCII digits, otherwise an <see cref="ArgumentException"/> is thrown.
