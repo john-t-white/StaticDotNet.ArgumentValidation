@@ -7,7 +7,7 @@ namespace StaticDotNet.ArgumentValidation;
 /// </summary>
 public static class StringParsingExtensions {
 
-#if (!NETSTANDARD2_0 && !NETSTANDARD2_1)
+#if( !NETSTANDARD2_0 && !NETSTANDARD2_1 )
 
 	/// <summary>
 	/// Ensures an argument is parsable to a <typeparamref name="T"/>, otherwise an <see cref="ArgumentException"/> is thrown.

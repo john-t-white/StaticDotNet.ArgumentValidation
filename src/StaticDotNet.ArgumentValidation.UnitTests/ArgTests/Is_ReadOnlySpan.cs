@@ -1,4 +1,4 @@
-﻿#if (!NET481)
+﻿#if( !NET481 )
 
 namespace StaticDotNet.ArgumentValidation.UnitTests.ArgTests;
 

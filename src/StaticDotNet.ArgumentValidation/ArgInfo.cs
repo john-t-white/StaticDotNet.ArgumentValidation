@@ -40,7 +40,7 @@ public readonly ref struct ArgInfo<T>( T value, string? name, string? message )
 	public ArgInfo<TType> As<TType>()
 		where TType : notnull {
 
-		if( Value is TType asValue) {
+		if( Value is TType asValue ) {
 			return new( asValue, Name, Message );
 		}
 
