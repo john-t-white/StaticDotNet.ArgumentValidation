@@ -21,10 +21,10 @@ jobs:
         uses: actions/setup-dotnet@v5
 
       - name: Restore Packages
-        run: dotnet restore
+        run: dotnet restore ./src
 
       - name: Build
-        run: dotnet build --no-restore
+        run: dotnet build ./src --no-restore
 
       - name: Test
-        run: dotnet test --no-restore --no-build
+        run: dotnet test ./src --no-restore --no-build
