@@ -16,7 +16,7 @@ public class IsNotNullOrWhiteSpace {
 	public string? argumentValue = "Value";
 
 	[Benchmark( Baseline = true )]
-	public string Baseline() => string.IsNullOrWhiteSpace( argumentValue ) ? throw new ArgumentException() : argumentValue;
+	public string Baseline() => string.IsNullOrWhiteSpace( argumentValue ) ? throw new ArgumentException() : argumentValue!;
 
 	[Benchmark]
 	public string ArgumentValidation() => Arg.IsNotNullOrWhiteSpace( argumentValue ).Value;

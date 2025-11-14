@@ -15,7 +15,7 @@ public class IsNotNullOrWhiteSpaceLengthString {
 	public string? argumentValue = "123";
 
 	[Benchmark( Baseline = true )]
-	public string Baseline() => !string.IsNullOrWhiteSpace( argumentValue ) && argumentValue.Length == 3 ? argumentValue : throw new ArgumentException();
+	public string Baseline() => !string.IsNullOrWhiteSpace( argumentValue ) && argumentValue?.Length == 3 ? argumentValue : throw new ArgumentException();
 
 	[Benchmark]
 	public string ArgumentValidation() => Arg.IsNotNullOrWhiteSpace( argumentValue ).Length( 3 ).Value;
