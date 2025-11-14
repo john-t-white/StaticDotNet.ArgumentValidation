@@ -5,6 +5,7 @@ namespace System.Diagnostics.CodeAnalysis;
 #pragma warning restore IDE0130
 
 /// <summary>Specifies the syntax used in a string.</summary>
+[ExcludeFromCodeCoverage] // Excluded as this is a polyfill
 [AttributeUsage( AttributeTargets.Parameter | AttributeTargets.Field | AttributeTargets.Property, AllowMultiple = false, Inherited = false )]
 internal sealed class StringSyntaxAttribute
 	: Attribute {

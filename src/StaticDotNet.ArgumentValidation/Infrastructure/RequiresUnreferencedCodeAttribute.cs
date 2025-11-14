@@ -4,6 +4,7 @@
 namespace System.Diagnostics.CodeAnalysis;
 #pragma warning restore IDE0130
 
+[ExcludeFromCodeCoverage] // Excluded as this is a polyfill
 [AttributeUsage( AttributeTargets.Method | AttributeTargets.Constructor | AttributeTargets.Class, Inherited = false )]
 internal sealed class RequiresUnreferencedCodeAttribute( string message )
         : Attribute {
