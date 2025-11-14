@@ -19,6 +19,13 @@ jobs:
   
       - name: Setup DotNet
         uses: actions/setup-dotnet@v5
+        with:
+          dotnet-version: |
+            9.0
+            8.0
+            7.0
+            6.0
+            4.8.1
 
       - name: Restore Packages
         run: dotnet restore ./src
