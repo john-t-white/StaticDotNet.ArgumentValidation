@@ -7,196 +7,6 @@ namespace StaticDotNet.ArgumentValidation;
 /// </summary>
 public static class StringExtensions {
 
-#if !NETSTANDARD2_0
-
-	/// <summary>
-	/// Ensures an argument starts with <paramref name="value"/>, otherwise an <see cref="ArgumentException"/> is thrown.
-	/// </summary>
-	/// <param name="argInfo">The argument info.</param>
-	/// <param name="value">The value it should start with.</param>
-	/// <returns>The <paramref name="argInfo"/>.</returns>
-	/// <exception cref="ArgumentException">Thrown when <paramref name="argInfo.Value"/> does not start with <paramref name="value"/>.</exception>
-	public static ref readonly ArgInfo<string> StartsWith( in this ArgInfo<string> argInfo, char value ) {
-
-		if( argInfo.Value.StartsWith( value ) ) {
-			return ref argInfo;
-		}
-
-		string message = argInfo.Message ?? ExceptionMessageFormatter.Format( ExceptionMessages.STRING_MUST_START_WITH, argInfo.Value, value );
-		throw new ArgumentException( message, argInfo.Name );
-	}
-
-	/// <summary>
-	/// Ensures an argument ends with <paramref name="value"/>, otherwise an <see cref="ArgumentException"/> is thrown.
-	/// </summary>
-	/// <param name="argInfo">The argument info.</param>
-	/// <param name="value">The value to it should end with.</param>
-	/// <returns>The <paramref name="argInfo"/>.</returns>
-	/// <exception cref="ArgumentException">Thrown when <paramref name="argInfo.Value"/> does not start with <paramref name="value"/>.</exception>
-	public static ref readonly ArgInfo<string> EndsWith( in this ArgInfo<string> argInfo, char value ) {
-
-		if( argInfo.Value.EndsWith( value ) ) {
-			return ref argInfo;
-		}
-
-		string message = argInfo.Message ?? ExceptionMessageFormatter.Format( ExceptionMessages.STRING_MUST_END_WITH, argInfo.Value, value );
-		throw new ArgumentException( message, argInfo.Name );
-	}
-
-	/// <summary>
-	/// Ensures an argument contains <paramref name="value"/>, otherwise an <see cref="ArgumentException"/> is thrown.
-	/// </summary>
-	/// <param name="argInfo">The argument info.</param>
-	/// <param name="value">The value it should contain.</param>
-	/// <param name="comparisonType">The type of comparison.</param>
-	/// <returns>The <paramref name="argInfo"/>.</returns>
-	/// <exception cref="ArgumentException">Thrown when <paramref name="argInfo.Value"/> does not contain <paramref name="value"/>.</exception>
-	public static ref readonly ArgInfo<string> Contains( in this ArgInfo<string> argInfo, char value, StringComparison comparisonType ) {
-
-		if( argInfo.Value.Contains( value, comparisonType ) ) {
-			return ref argInfo;
-		}
-
-		string message = argInfo.Message ?? ExceptionMessageFormatter.Format( ExceptionMessages.STRING_MUST_CONTAIN, argInfo.Value, value );
-		throw new ArgumentException( message, argInfo.Name );
-	}
-
-	/// <summary>
-	/// Ensures an argument contains <paramref name="value"/>, otherwise an <see cref="ArgumentException"/> is thrown.
-	/// </summary>
-	/// <param name="argInfo">The argument info.</param>
-	/// <param name="value">The value it should contain.</param>
-	/// <param name="comparisonType">The type of comparison.</param>
-	/// <returns>The <paramref name="argInfo"/>.</returns>
-	/// <exception cref="ArgumentException">Thrown when <paramref name="argInfo.Value"/> does not contain <paramref name="value"/>.</exception>
-	public static ref readonly ArgInfo<string> Contains( in this ArgInfo<string> argInfo, string value, StringComparison comparisonType ) {
-
-		if( value is not null && argInfo.Value.Contains( value, comparisonType ) ) {
-			return ref argInfo;
-		}
-
-		string message = argInfo.Message ?? ExceptionMessageFormatter.Format( ExceptionMessages.STRING_MUST_CONTAIN, argInfo.Value, value );
-		throw new ArgumentException( message, argInfo.Name );
-	}
-
-#if !NETSTANDARD2_1
-
-	/// <summary>
-	/// Ensures an argument is only ASCII digits, otherwise an <see cref="ArgumentException"/> is thrown.
-	/// </summary>
-	/// <param name="argInfo">The argument info.</param>
-	/// <returns>The <paramref name="argInfo"/>.</returns>
-	/// <exception cref="ArgumentException">Thrown when <paramref name="argInfo.Value"/> is not only ASCII digits.</exception>
-	public static ref readonly ArgInfo<string> AsciiDigits( in this ArgInfo<string> argInfo ) {
-
-		if( argInfo.Value.All( x => char.IsAsciiDigit( x ) ) ) {
-			return ref argInfo;
-		}
-
-		string message = argInfo.Message ?? ExceptionMessageFormatter.Format( ExceptionMessages.STRING_MUST_BE_ASCII_DIGITS, argInfo.Value );
-		throw new ArgumentException( message, argInfo.Name );
-	}
-
-	/// <summary>
-	/// Ensures an argument is only ASCII letters, otherwise an <see cref="ArgumentException"/> is thrown.
-	/// </summary>
-	/// <param name="argInfo">The argument info.</param>
-	/// <returns>The <paramref name="argInfo"/>.</returns>
-	/// <exception cref="ArgumentException">Thrown when <paramref name="argInfo.Value"/> is not only ASCII letters.</exception>
-	public static ref readonly ArgInfo<string> AsciiLetters( in this ArgInfo<string> argInfo ) {
-
-		if( argInfo.Value.All( x => char.IsAsciiLetter( x ) ) ) {
-			return ref argInfo;
-		}
-
-		string message = argInfo.Message ?? ExceptionMessageFormatter.Format( ExceptionMessages.STRING_MUST_BE_ASCII_LETTERS, argInfo.Value );
-		throw new ArgumentException( message, argInfo.Name );
-	}
-
-	/// <summary>
-	/// Ensures an argument is only lower case ASCII letters, otherwise an <see cref="ArgumentException"/> is thrown.
-	/// </summary>
-	/// <param name="argInfo">The argument info.</param>
-	/// <returns>The <paramref name="argInfo"/>.</returns>
-	/// <exception cref="ArgumentException">Thrown when <paramref name="argInfo.Value"/> is not only lower case ASCII letters.</exception>
-	public static ref readonly ArgInfo<string> LowerAsciiLetters( in this ArgInfo<string> argInfo ) {
-
-		if( argInfo.Value.All( x => char.IsAsciiLetter( x ) && char.IsLower( x ) ) ) {
-			return ref argInfo;
-		}
-
-		string message = argInfo.Message ?? ExceptionMessageFormatter.Format( ExceptionMessages.STRING_MUST_BE_LOWER_ASCII_LETTERS, argInfo.Value );
-		throw new ArgumentException( message, argInfo.Name );
-	}
-
-	/// <summary>
-	/// Ensures an argument is only upper case ASCII letters, otherwise an <see cref="ArgumentException"/> is thrown.
-	/// </summary>
-	/// <param name="argInfo">The argument info.</param>
-	/// <returns>The <paramref name="argInfo"/>.</returns>
-	/// <exception cref="ArgumentException">Thrown when <paramref name="argInfo.Value"/> is not only upper case ASCII letters.</exception>
-	public static ref readonly ArgInfo<string> UpperAsciiLetters( in this ArgInfo<string> argInfo ) {
-
-		if( argInfo.Value.All( x => char.IsAsciiLetter( x ) && char.IsUpper( x ) ) ) {
-			return ref argInfo;
-		}
-
-		string message = argInfo.Message ?? ExceptionMessageFormatter.Format( ExceptionMessages.STRING_MUST_BE_UPPER_ASCII_LETTERS, argInfo.Value );
-		throw new ArgumentException( message, argInfo.Name );
-	}
-
-	/// <summary>
-	/// Ensures an argument is only ASCII letters or digits, otherwise an <see cref="ArgumentException"/> is thrown.
-	/// </summary>
-	/// <param name="argInfo">The argument info.</param>
-	/// <returns>The <paramref name="argInfo"/>.</returns>
-	/// <exception cref="ArgumentException">Thrown when <paramref name="argInfo.Value"/> is not only ASCII letters or digits.</exception>
-	public static ref readonly ArgInfo<string> AsciiLettersOrDigits( in this ArgInfo<string> argInfo ) {
-
-		if( argInfo.Value.All( x => char.IsAsciiLetterOrDigit( x ) ) ) {
-			return ref argInfo;
-		}
-
-		string message = argInfo.Message ?? ExceptionMessageFormatter.Format( ExceptionMessages.STRING_MUST_BE_ASCII_LETTERS_OR_DIGITS, argInfo.Value );
-		throw new ArgumentException( message, argInfo.Name );
-	}
-
-	/// <summary>
-	/// Ensures an argument is only lower case ASCII letters or digits, otherwise an <see cref="ArgumentException"/> is thrown.
-	/// </summary>
-	/// <param name="argInfo">The argument info.</param>
-	/// <returns>The <paramref name="argInfo"/>.</returns>
-	/// <exception cref="ArgumentException">Thrown when <paramref name="argInfo.Value"/> is not only lower case ASCII letters or digits.</exception>
-	public static ref readonly ArgInfo<string> LowerAsciiLettersOrDigits( in this ArgInfo<string> argInfo ) {
-
-		if( argInfo.Value.All( x => ( char.IsAsciiLetter( x ) && char.IsLower( x ) || char.IsAsciiDigit( x ) ) ) ) {
-			return ref argInfo;
-		}
-
-		string message = argInfo.Message ?? ExceptionMessageFormatter.Format( ExceptionMessages.STRING_MUST_BE_LOWER_ASCII_LETTERS_OR_DIGITS, argInfo.Value );
-		throw new ArgumentException( message, argInfo.Name );
-	}
-
-	/// <summary>
-	/// Ensures an argument is only upper case ASCII letters or digits, otherwise an <see cref="ArgumentException"/> is thrown.
-	/// </summary>
-	/// <param name="argInfo">The argument info.</param>
-	/// <returns>The <paramref name="argInfo"/>.</returns>
-	/// <exception cref="ArgumentException">Thrown when <paramref name="argInfo.Value"/> is not only upper case ASCII letters or digits.</exception>
-	public static ref readonly ArgInfo<string> UpperAsciiLettersOrDigits( in this ArgInfo<string> argInfo ) {
-
-		if( argInfo.Value.All( x => ( char.IsAsciiLetter( x ) && char.IsUpper( x ) || char.IsAsciiDigit( x ) ) ) ) {
-			return ref argInfo;
-		}
-
-		string message = argInfo.Message ?? ExceptionMessageFormatter.Format( ExceptionMessages.STRING_MUST_BE_UPPER_ASCII_LETTERS_OR_DIGITS, argInfo.Value );
-		throw new ArgumentException( message, argInfo.Name );
-	}
-
-#endif
-
-#endif
-
 	/// <summary>
 	/// Ensures an argument is not empty, otherwise an <see cref="ArgumentException"/> is thrown.
 	/// </summary>
@@ -389,6 +199,27 @@ public static class StringExtensions {
 		throw new ArgumentException( message, argInfo.Name );
 	}
 
+	#if !NETSTANDARD2_0
+
+	/// <summary>
+	/// Ensures an argument starts with <paramref name="value"/>, otherwise an <see cref="ArgumentException"/> is thrown.
+	/// </summary>
+	/// <param name="argInfo">The argument info.</param>
+	/// <param name="value">The value it should start with.</param>
+	/// <returns>The <paramref name="argInfo"/>.</returns>
+	/// <exception cref="ArgumentException">Thrown when <paramref name="argInfo.Value"/> does not start with <paramref name="value"/>.</exception>
+	public static ref readonly ArgInfo<string> StartsWith( in this ArgInfo<string> argInfo, char value ) {
+
+		if( argInfo.Value.StartsWith( value ) ) {
+			return ref argInfo;
+		}
+
+		string message = argInfo.Message ?? ExceptionMessageFormatter.Format( ExceptionMessages.STRING_MUST_START_WITH, argInfo.Value, value );
+		throw new ArgumentException( message, argInfo.Name );
+	}
+
+#endif
+
 	/// <summary>
 	/// Ensures an argument ends with <paramref name="value"/>, otherwise an <see cref="ArgumentException"/> is thrown.
 	/// </summary>
@@ -427,6 +258,27 @@ public static class StringExtensions {
 		throw new ArgumentException( message, argInfo.Name );
 	}
 
+	#if !NETSTANDARD2_0
+
+	/// <summary>
+	/// Ensures an argument ends with <paramref name="value"/>, otherwise an <see cref="ArgumentException"/> is thrown.
+	/// </summary>
+	/// <param name="argInfo">The argument info.</param>
+	/// <param name="value">The value to it should end with.</param>
+	/// <returns>The <paramref name="argInfo"/>.</returns>
+	/// <exception cref="ArgumentException">Thrown when <paramref name="argInfo.Value"/> does not start with <paramref name="value"/>.</exception>
+	public static ref readonly ArgInfo<string> EndsWith( in this ArgInfo<string> argInfo, char value ) {
+
+		if( argInfo.Value.EndsWith( value ) ) {
+			return ref argInfo;
+		}
+
+		string message = argInfo.Message ?? ExceptionMessageFormatter.Format( ExceptionMessages.STRING_MUST_END_WITH, argInfo.Value, value );
+		throw new ArgumentException( message, argInfo.Name );
+	}
+
+#endif
+
 	/// <summary>
 	/// Ensures an argument contains <paramref name="value"/>, otherwise an <see cref="ArgumentException"/> is thrown.
 	/// </summary>
@@ -462,4 +314,160 @@ public static class StringExtensions {
 		string message = argInfo.Message ?? ExceptionMessageFormatter.Format( ExceptionMessages.STRING_MUST_CONTAIN, argInfo.Value, value );
 		throw new ArgumentException( message, argInfo.Name );
 	}
+
+#if !NETSTANDARD2_0
+
+	/// <summary>
+	/// Ensures an argument contains <paramref name="value"/>, otherwise an <see cref="ArgumentException"/> is thrown.
+	/// </summary>
+	/// <param name="argInfo">The argument info.</param>
+	/// <param name="value">The value it should contain.</param>
+	/// <param name="comparisonType">The type of comparison.</param>
+	/// <returns>The <paramref name="argInfo"/>.</returns>
+	/// <exception cref="ArgumentException">Thrown when <paramref name="argInfo.Value"/> does not contain <paramref name="value"/>.</exception>
+	public static ref readonly ArgInfo<string> Contains( in this ArgInfo<string> argInfo, char value, StringComparison comparisonType ) {
+
+		if( argInfo.Value.Contains( value, comparisonType ) ) {
+			return ref argInfo;
+		}
+
+		string message = argInfo.Message ?? ExceptionMessageFormatter.Format( ExceptionMessages.STRING_MUST_CONTAIN, argInfo.Value, value );
+		throw new ArgumentException( message, argInfo.Name );
+	}
+
+	/// <summary>
+	/// Ensures an argument contains <paramref name="value"/>, otherwise an <see cref="ArgumentException"/> is thrown.
+	/// </summary>
+	/// <param name="argInfo">The argument info.</param>
+	/// <param name="value">The value it should contain.</param>
+	/// <param name="comparisonType">The type of comparison.</param>
+	/// <returns>The <paramref name="argInfo"/>.</returns>
+	/// <exception cref="ArgumentException">Thrown when <paramref name="argInfo.Value"/> does not contain <paramref name="value"/>.</exception>
+	public static ref readonly ArgInfo<string> Contains( in this ArgInfo<string> argInfo, string value, StringComparison comparisonType ) {
+
+		if( value is not null && argInfo.Value.Contains( value, comparisonType ) ) {
+			return ref argInfo;
+		}
+
+		string message = argInfo.Message ?? ExceptionMessageFormatter.Format( ExceptionMessages.STRING_MUST_CONTAIN, argInfo.Value, value );
+		throw new ArgumentException( message, argInfo.Name );
+	}
+
+#endif
+
+#if( !NETSTANDARD2_0 && !NETSTANDARD2_1 )
+
+	/// <summary>
+	/// Ensures an argument is only ASCII digits, otherwise an <see cref="ArgumentException"/> is thrown.
+	/// </summary>
+	/// <param name="argInfo">The argument info.</param>
+	/// <returns>The <paramref name="argInfo"/>.</returns>
+	/// <exception cref="ArgumentException">Thrown when <paramref name="argInfo.Value"/> is not only ASCII digits.</exception>
+	public static ref readonly ArgInfo<string> AsciiDigits( in this ArgInfo<string> argInfo ) {
+
+		if( argInfo.Value.All( x => char.IsAsciiDigit( x ) ) ) {
+			return ref argInfo;
+		}
+
+		string message = argInfo.Message ?? ExceptionMessageFormatter.Format( ExceptionMessages.STRING_MUST_BE_ASCII_DIGITS, argInfo.Value );
+		throw new ArgumentException( message, argInfo.Name );
+	}
+
+	/// <summary>
+	/// Ensures an argument is only ASCII letters, otherwise an <see cref="ArgumentException"/> is thrown.
+	/// </summary>
+	/// <param name="argInfo">The argument info.</param>
+	/// <returns>The <paramref name="argInfo"/>.</returns>
+	/// <exception cref="ArgumentException">Thrown when <paramref name="argInfo.Value"/> is not only ASCII letters.</exception>
+	public static ref readonly ArgInfo<string> AsciiLetters( in this ArgInfo<string> argInfo ) {
+
+		if( argInfo.Value.All( x => char.IsAsciiLetter( x ) ) ) {
+			return ref argInfo;
+		}
+
+		string message = argInfo.Message ?? ExceptionMessageFormatter.Format( ExceptionMessages.STRING_MUST_BE_ASCII_LETTERS, argInfo.Value );
+		throw new ArgumentException( message, argInfo.Name );
+	}
+
+	/// <summary>
+	/// Ensures an argument is only lower case ASCII letters, otherwise an <see cref="ArgumentException"/> is thrown.
+	/// </summary>
+	/// <param name="argInfo">The argument info.</param>
+	/// <returns>The <paramref name="argInfo"/>.</returns>
+	/// <exception cref="ArgumentException">Thrown when <paramref name="argInfo.Value"/> is not only lower case ASCII letters.</exception>
+	public static ref readonly ArgInfo<string> LowerAsciiLetters( in this ArgInfo<string> argInfo ) {
+
+		if( argInfo.Value.All( x => char.IsAsciiLetter( x ) && char.IsLower( x ) ) ) {
+			return ref argInfo;
+		}
+
+		string message = argInfo.Message ?? ExceptionMessageFormatter.Format( ExceptionMessages.STRING_MUST_BE_LOWER_ASCII_LETTERS, argInfo.Value );
+		throw new ArgumentException( message, argInfo.Name );
+	}
+
+	/// <summary>
+	/// Ensures an argument is only upper case ASCII letters, otherwise an <see cref="ArgumentException"/> is thrown.
+	/// </summary>
+	/// <param name="argInfo">The argument info.</param>
+	/// <returns>The <paramref name="argInfo"/>.</returns>
+	/// <exception cref="ArgumentException">Thrown when <paramref name="argInfo.Value"/> is not only upper case ASCII letters.</exception>
+	public static ref readonly ArgInfo<string> UpperAsciiLetters( in this ArgInfo<string> argInfo ) {
+
+		if( argInfo.Value.All( x => char.IsAsciiLetter( x ) && char.IsUpper( x ) ) ) {
+			return ref argInfo;
+		}
+
+		string message = argInfo.Message ?? ExceptionMessageFormatter.Format( ExceptionMessages.STRING_MUST_BE_UPPER_ASCII_LETTERS, argInfo.Value );
+		throw new ArgumentException( message, argInfo.Name );
+	}
+
+	/// <summary>
+	/// Ensures an argument is only ASCII letters or digits, otherwise an <see cref="ArgumentException"/> is thrown.
+	/// </summary>
+	/// <param name="argInfo">The argument info.</param>
+	/// <returns>The <paramref name="argInfo"/>.</returns>
+	/// <exception cref="ArgumentException">Thrown when <paramref name="argInfo.Value"/> is not only ASCII letters or digits.</exception>
+	public static ref readonly ArgInfo<string> AsciiLettersOrDigits( in this ArgInfo<string> argInfo ) {
+
+		if( argInfo.Value.All( x => char.IsAsciiLetterOrDigit( x ) ) ) {
+			return ref argInfo;
+		}
+
+		string message = argInfo.Message ?? ExceptionMessageFormatter.Format( ExceptionMessages.STRING_MUST_BE_ASCII_LETTERS_OR_DIGITS, argInfo.Value );
+		throw new ArgumentException( message, argInfo.Name );
+	}
+
+	/// <summary>
+	/// Ensures an argument is only lower case ASCII letters or digits, otherwise an <see cref="ArgumentException"/> is thrown.
+	/// </summary>
+	/// <param name="argInfo">The argument info.</param>
+	/// <returns>The <paramref name="argInfo"/>.</returns>
+	/// <exception cref="ArgumentException">Thrown when <paramref name="argInfo.Value"/> is not only lower case ASCII letters or digits.</exception>
+	public static ref readonly ArgInfo<string> LowerAsciiLettersOrDigits( in this ArgInfo<string> argInfo ) {
+
+		if( argInfo.Value.All( x => ( char.IsAsciiLetter( x ) && char.IsLower( x ) || char.IsAsciiDigit( x ) ) ) ) {
+			return ref argInfo;
+		}
+
+		string message = argInfo.Message ?? ExceptionMessageFormatter.Format( ExceptionMessages.STRING_MUST_BE_LOWER_ASCII_LETTERS_OR_DIGITS, argInfo.Value );
+		throw new ArgumentException( message, argInfo.Name );
+	}
+
+	/// <summary>
+	/// Ensures an argument is only upper case ASCII letters or digits, otherwise an <see cref="ArgumentException"/> is thrown.
+	/// </summary>
+	/// <param name="argInfo">The argument info.</param>
+	/// <returns>The <paramref name="argInfo"/>.</returns>
+	/// <exception cref="ArgumentException">Thrown when <paramref name="argInfo.Value"/> is not only upper case ASCII letters or digits.</exception>
+	public static ref readonly ArgInfo<string> UpperAsciiLettersOrDigits( in this ArgInfo<string> argInfo ) {
+
+		if( argInfo.Value.All( x => ( char.IsAsciiLetter( x ) && char.IsUpper( x ) || char.IsAsciiDigit( x ) ) ) ) {
+			return ref argInfo;
+		}
+
+		string message = argInfo.Message ?? ExceptionMessageFormatter.Format( ExceptionMessages.STRING_MUST_BE_UPPER_ASCII_LETTERS_OR_DIGITS, argInfo.Value );
+		throw new ArgumentException( message, argInfo.Name );
+	}
+
+#endif
 }

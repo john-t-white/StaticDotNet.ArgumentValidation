@@ -27,135 +27,6 @@ public static class StringParsingExtensions {
 		throw new ArgumentException( message, argInfo.Name );
 	}
 
-	/// <summary>
-	/// Ensures an argument is parsable to a <see cref="DateOnly"/>, otherwise an <see cref="ArgumentException"/> is thrown.
-	/// </summary>
-	/// <param name="argInfo">The argument info.</param>
-	/// <param name="provider">The <see cref="IFormatProvider"/> to use.</param>
-	/// <param name="styles">The <see cref="DateTimeStyles"/> to use.</param>
-	/// <returns>A new <see cref="DateOnly"/> <see cref="ArgInfo{T}"/>.</returns>
-	/// <exception cref="ArgumentException">Thrown when <paramref name="argInfo.Value"/> is not parsable to a <see cref="DateOnly"/>.</exception>
-	public static ArgInfo<DateOnly> ParseDateOnly( in this ArgInfo<string> argInfo, IFormatProvider? provider = null, DateTimeStyles styles = DateTimeStyles.None ) {
-
-		if( DateOnly.TryParse( argInfo.Value, provider, styles, out DateOnly result ) ) {
-			return new( result, argInfo.Name, argInfo.Message );
-		}
-
-		string message = argInfo.Message ?? ExceptionMessageFormatter.Format( ExceptionMessages.VALUE_MUST_BE_PARSABLE_TO, argInfo.Value, typeof( DateOnly ).FullName );
-		throw new ArgumentException( message, argInfo.Name );
-	}
-
-	/// <summary>
-	/// Ensures an argument is parsable to a <see cref="DateOnly"/>, otherwise an <see cref="ArgumentException"/> is thrown.
-	/// </summary>
-	/// <param name="argInfo">The argument info.</param>
-	/// <param name="format">The date format.</param>
-	/// <param name="provider">The <see cref="IFormatProvider"/> to use.</param>
-	/// <param name="styles">The <see cref="DateTimeStyles"/> to use.</param>
-	/// <returns>A new <see cref="DateOnly"/> <see cref="ArgInfo{T}"/>.</returns>
-	/// <exception cref="ArgumentException">Thrown when <paramref name="argInfo.Value"/> is not parsable to a <see cref="DateOnly"/>.</exception>
-	public static ArgInfo<DateOnly> ParseDateOnlyExact( in this ArgInfo<string> argInfo, string? format, IFormatProvider? provider = null, DateTimeStyles styles = DateTimeStyles.None ) {
-
-		if( DateOnly.TryParseExact( argInfo.Value, format, provider, styles, out DateOnly result ) ) {
-			return new( result, argInfo.Name, argInfo.Message );
-		}
-
-		string message = argInfo.Message ?? ExceptionMessageFormatter.Format( ExceptionMessages.VALUE_MUST_BE_PARSABLE_TO, argInfo.Value, typeof( DateOnly ).FullName );
-		throw new ArgumentException( message, argInfo.Name );
-	}
-
-	/// <summary>
-	/// Ensures an argument is parsable to a <see cref="DateOnly"/>, otherwise an <see cref="ArgumentException"/> is thrown.
-	/// </summary>
-	/// <param name="argInfo">The argument info.</param>
-	/// <param name="formats">The date formats.</param>
-	/// <param name="provider">The <see cref="IFormatProvider"/> to use.</param>
-	/// <param name="styles">The <see cref="DateTimeStyles"/> to use.</param>
-	/// <returns>A new <see cref="DateOnly"/> <see cref="ArgInfo{T}"/>.</returns>
-	/// <exception cref="ArgumentException">Thrown when <paramref name="argInfo.Value"/> is not parsable to a <see cref="DateOnly"/>.</exception>
-	public static ArgInfo<DateOnly> ParseDateOnlyExact( in this ArgInfo<string> argInfo, string?[]? formats, IFormatProvider? provider = null, DateTimeStyles styles = DateTimeStyles.None ) {
-
-		if( DateOnly.TryParseExact( argInfo.Value, formats, provider, styles, out DateOnly result ) ) {
-			return new( result, argInfo.Name, argInfo.Message );
-		}
-
-		string message = argInfo.Message ?? ExceptionMessageFormatter.Format( ExceptionMessages.VALUE_MUST_BE_PARSABLE_TO, argInfo.Value, typeof( DateOnly ).FullName );
-		throw new ArgumentException( message, argInfo.Name );
-	}
-
-	/// <summary>
-	/// Ensures an argument is parsable to a <see cref="TimeOnly"/>, otherwise an <see cref="ArgumentException"/> is thrown.
-	/// </summary>
-	/// <param name="argInfo">The argument info.</param>
-	/// <param name="provider">The <see cref="IFormatProvider"/> to use.</param>
-	/// <param name="styles">The <see cref="DateTimeStyles"/> to use.</param>
-	/// <returns>A new <see cref="TimeOnly"/> <see cref="ArgInfo{T}"/>.</returns>
-	/// <exception cref="ArgumentException">Thrown when <paramref name="argInfo.Value"/> is not parsable to a <see cref="TimeOnly"/>.</exception>
-	public static ArgInfo<TimeOnly> ParseTimeOnly( in this ArgInfo<string> argInfo, IFormatProvider? provider = null, DateTimeStyles styles = DateTimeStyles.None ) {
-
-		if( TimeOnly.TryParse( argInfo.Value, provider, styles, out TimeOnly result ) ) {
-			return new( result, argInfo.Name, argInfo.Message );
-		}
-
-		string message = argInfo.Message ?? ExceptionMessageFormatter.Format( ExceptionMessages.VALUE_MUST_BE_PARSABLE_TO, argInfo.Value, typeof( TimeOnly ).FullName );
-		throw new ArgumentException( message, argInfo.Name );
-	}
-
-	/// <summary>
-	/// Ensures an argument is parsable to a <see cref="TimeOnly"/>, otherwise an <see cref="ArgumentException"/> is thrown.
-	/// </summary>
-	/// <param name="argInfo">The argument info.</param>
-	/// <param name="format">The time format.</param>
-	/// <param name="provider">The <see cref="IFormatProvider"/> to use.</param>
-	/// <param name="styles">The <see cref="DateTimeStyles"/> to use.</param>
-	/// <returns>A new <see cref="TimeOnly"/> <see cref="ArgInfo{T}"/>.</returns>
-	/// <exception cref="ArgumentException">Thrown when <paramref name="argInfo.Value"/> is not parsable to a <see cref="TimeOnly"/>.</exception>
-	public static ArgInfo<TimeOnly> ParseTimeOnlyExact( in this ArgInfo<string> argInfo, string? format, IFormatProvider? provider = null, DateTimeStyles styles = DateTimeStyles.None ) {
-
-		if( TimeOnly.TryParseExact( argInfo.Value, format, provider, styles, out TimeOnly result ) ) {
-			return new( result, argInfo.Name, argInfo.Message );
-		}
-
-		string message = argInfo.Message ?? ExceptionMessageFormatter.Format( ExceptionMessages.VALUE_MUST_BE_PARSABLE_TO, argInfo.Value, typeof( TimeOnly ).FullName );
-		throw new ArgumentException( message, argInfo.Name );
-	}
-
-	/// <summary>
-	/// Ensures an argument is parsable to a <see cref="TimeOnly"/>, otherwise an <see cref="ArgumentException"/> is thrown.
-	/// </summary>
-	/// <param name="argInfo">The argument info.</param>
-	/// <param name="formats">The time formats.</param>
-	/// <param name="provider">The <see cref="IFormatProvider"/> to use.</param>
-	/// <param name="styles">The <see cref="DateTimeStyles"/> to use.</param>
-	/// <returns>A new <see cref="TimeOnly"/> <see cref="ArgInfo{T}"/>.</returns>
-	/// <exception cref="ArgumentException">Thrown when <paramref name="argInfo.Value"/> is not parsable to a <see cref="TimeOnly"/>.</exception>
-	public static ArgInfo<TimeOnly> ParseTimeOnlyExact( in this ArgInfo<string> argInfo, string?[]? formats, IFormatProvider? provider = null, DateTimeStyles styles = DateTimeStyles.None ) {
-
-		if( TimeOnly.TryParseExact( argInfo.Value, formats, provider, styles, out TimeOnly result ) ) {
-			return new( result, argInfo.Name, argInfo.Message );
-		}
-
-		string message = argInfo.Message ?? ExceptionMessageFormatter.Format( ExceptionMessages.VALUE_MUST_BE_PARSABLE_TO, argInfo.Value, typeof( TimeOnly ).FullName );
-		throw new ArgumentException( message, argInfo.Name );
-	}
-
-	/// <summary>
-	/// Ensures an argument is parsable to a <see cref="Uri"/>, otherwise an <see cref="ArgumentException"/> is thrown.
-	/// </summary>
-	/// <param name="argInfo">The argument info.</param>
-	/// <param name="creationOptions">The <see cref="UriCreationOptions"/>.</param>
-	/// <returns>A new <see cref="Uri"/> <see cref="ArgInfo{T}"/>.</returns>
-	/// <exception cref="ArgumentException">Thrown when <paramref name="argInfo.Value"/> is not parsable to a <see cref="Uri"/>.</exception>
-	public static ArgInfo<Uri> ParseUri( in this ArgInfo<string> argInfo, UriCreationOptions creationOptions ) {
-
-		if( Uri.TryCreate( argInfo.Value, creationOptions, out Uri? result ) ) {
-			return new( result, argInfo.Name, argInfo.Message );
-		}
-
-		string message = argInfo.Message ?? ExceptionMessageFormatter.Format( ExceptionMessages.VALUE_MUST_BE_PARSABLE_TO, argInfo.Value, typeof( Uri ).FullName );
-		throw new ArgumentException( message, argInfo.Name );
-	}
-
 #endif
 
 	/// <summary>
@@ -457,7 +328,7 @@ public static class StringParsingExtensions {
 
 		Exception? thrownException = null;
 		Type? type;
-#pragma warning disable CA1031 // Intentionally not catching specific exceptions as it is included as an inner exception.
+#pragma warning disable CA1031 // Intentionally catching general exceptions as it is included as an inner exception.
 		try {
 			type = Type.GetType( argInfo.Value, true );
 
@@ -494,4 +365,137 @@ public static class StringParsingExtensions {
 		string message = argInfo.Message ?? ExceptionMessageFormatter.Format( ExceptionMessages.VALUE_MUST_BE_PARSABLE_TO, argInfo.Value, typeof( Uri ).FullName );
 		throw new ArgumentException( message, argInfo.Name );
 	}
+
+#if( !NETSTANDARD2_0 && !NETSTANDARD2_1 )
+
+	/// <summary>
+	/// Ensures an argument is parsable to a <see cref="DateOnly"/>, otherwise an <see cref="ArgumentException"/> is thrown.
+	/// </summary>
+	/// <param name="argInfo">The argument info.</param>
+	/// <param name="provider">The <see cref="IFormatProvider"/> to use.</param>
+	/// <param name="styles">The <see cref="DateTimeStyles"/> to use.</param>
+	/// <returns>A new <see cref="DateOnly"/> <see cref="ArgInfo{T}"/>.</returns>
+	/// <exception cref="ArgumentException">Thrown when <paramref name="argInfo.Value"/> is not parsable to a <see cref="DateOnly"/>.</exception>
+	public static ArgInfo<DateOnly> ParseDateOnly( in this ArgInfo<string> argInfo, IFormatProvider? provider = null, DateTimeStyles styles = DateTimeStyles.None ) {
+
+		if( DateOnly.TryParse( argInfo.Value, provider, styles, out DateOnly result ) ) {
+			return new( result, argInfo.Name, argInfo.Message );
+		}
+
+		string message = argInfo.Message ?? ExceptionMessageFormatter.Format( ExceptionMessages.VALUE_MUST_BE_PARSABLE_TO, argInfo.Value, typeof( DateOnly ).FullName );
+		throw new ArgumentException( message, argInfo.Name );
+	}
+
+	/// <summary>
+	/// Ensures an argument is parsable to a <see cref="DateOnly"/>, otherwise an <see cref="ArgumentException"/> is thrown.
+	/// </summary>
+	/// <param name="argInfo">The argument info.</param>
+	/// <param name="format">The date format.</param>
+	/// <param name="provider">The <see cref="IFormatProvider"/> to use.</param>
+	/// <param name="styles">The <see cref="DateTimeStyles"/> to use.</param>
+	/// <returns>A new <see cref="DateOnly"/> <see cref="ArgInfo{T}"/>.</returns>
+	/// <exception cref="ArgumentException">Thrown when <paramref name="argInfo.Value"/> is not parsable to a <see cref="DateOnly"/>.</exception>
+	public static ArgInfo<DateOnly> ParseDateOnlyExact( in this ArgInfo<string> argInfo, string? format, IFormatProvider? provider = null, DateTimeStyles styles = DateTimeStyles.None ) {
+
+		if( DateOnly.TryParseExact( argInfo.Value, format, provider, styles, out DateOnly result ) ) {
+			return new( result, argInfo.Name, argInfo.Message );
+		}
+
+		string message = argInfo.Message ?? ExceptionMessageFormatter.Format( ExceptionMessages.VALUE_MUST_BE_PARSABLE_TO, argInfo.Value, typeof( DateOnly ).FullName );
+		throw new ArgumentException( message, argInfo.Name );
+	}
+
+	/// <summary>
+	/// Ensures an argument is parsable to a <see cref="DateOnly"/>, otherwise an <see cref="ArgumentException"/> is thrown.
+	/// </summary>
+	/// <param name="argInfo">The argument info.</param>
+	/// <param name="formats">The date formats.</param>
+	/// <param name="provider">The <see cref="IFormatProvider"/> to use.</param>
+	/// <param name="styles">The <see cref="DateTimeStyles"/> to use.</param>
+	/// <returns>A new <see cref="DateOnly"/> <see cref="ArgInfo{T}"/>.</returns>
+	/// <exception cref="ArgumentException">Thrown when <paramref name="argInfo.Value"/> is not parsable to a <see cref="DateOnly"/>.</exception>
+	public static ArgInfo<DateOnly> ParseDateOnlyExact( in this ArgInfo<string> argInfo, string?[]? formats, IFormatProvider? provider = null, DateTimeStyles styles = DateTimeStyles.None ) {
+
+		if( DateOnly.TryParseExact( argInfo.Value, formats, provider, styles, out DateOnly result ) ) {
+			return new( result, argInfo.Name, argInfo.Message );
+		}
+
+		string message = argInfo.Message ?? ExceptionMessageFormatter.Format( ExceptionMessages.VALUE_MUST_BE_PARSABLE_TO, argInfo.Value, typeof( DateOnly ).FullName );
+		throw new ArgumentException( message, argInfo.Name );
+	}
+
+	/// <summary>
+	/// Ensures an argument is parsable to a <see cref="TimeOnly"/>, otherwise an <see cref="ArgumentException"/> is thrown.
+	/// </summary>
+	/// <param name="argInfo">The argument info.</param>
+	/// <param name="provider">The <see cref="IFormatProvider"/> to use.</param>
+	/// <param name="styles">The <see cref="DateTimeStyles"/> to use.</param>
+	/// <returns>A new <see cref="TimeOnly"/> <see cref="ArgInfo{T}"/>.</returns>
+	/// <exception cref="ArgumentException">Thrown when <paramref name="argInfo.Value"/> is not parsable to a <see cref="TimeOnly"/>.</exception>
+	public static ArgInfo<TimeOnly> ParseTimeOnly( in this ArgInfo<string> argInfo, IFormatProvider? provider = null, DateTimeStyles styles = DateTimeStyles.None ) {
+
+		if( TimeOnly.TryParse( argInfo.Value, provider, styles, out TimeOnly result ) ) {
+			return new( result, argInfo.Name, argInfo.Message );
+		}
+
+		string message = argInfo.Message ?? ExceptionMessageFormatter.Format( ExceptionMessages.VALUE_MUST_BE_PARSABLE_TO, argInfo.Value, typeof( TimeOnly ).FullName );
+		throw new ArgumentException( message, argInfo.Name );
+	}
+
+	/// <summary>
+	/// Ensures an argument is parsable to a <see cref="TimeOnly"/>, otherwise an <see cref="ArgumentException"/> is thrown.
+	/// </summary>
+	/// <param name="argInfo">The argument info.</param>
+	/// <param name="format">The time format.</param>
+	/// <param name="provider">The <see cref="IFormatProvider"/> to use.</param>
+	/// <param name="styles">The <see cref="DateTimeStyles"/> to use.</param>
+	/// <returns>A new <see cref="TimeOnly"/> <see cref="ArgInfo{T}"/>.</returns>
+	/// <exception cref="ArgumentException">Thrown when <paramref name="argInfo.Value"/> is not parsable to a <see cref="TimeOnly"/>.</exception>
+	public static ArgInfo<TimeOnly> ParseTimeOnlyExact( in this ArgInfo<string> argInfo, string? format, IFormatProvider? provider = null, DateTimeStyles styles = DateTimeStyles.None ) {
+
+		if( TimeOnly.TryParseExact( argInfo.Value, format, provider, styles, out TimeOnly result ) ) {
+			return new( result, argInfo.Name, argInfo.Message );
+		}
+
+		string message = argInfo.Message ?? ExceptionMessageFormatter.Format( ExceptionMessages.VALUE_MUST_BE_PARSABLE_TO, argInfo.Value, typeof( TimeOnly ).FullName );
+		throw new ArgumentException( message, argInfo.Name );
+	}
+
+	/// <summary>
+	/// Ensures an argument is parsable to a <see cref="TimeOnly"/>, otherwise an <see cref="ArgumentException"/> is thrown.
+	/// </summary>
+	/// <param name="argInfo">The argument info.</param>
+	/// <param name="formats">The time formats.</param>
+	/// <param name="provider">The <see cref="IFormatProvider"/> to use.</param>
+	/// <param name="styles">The <see cref="DateTimeStyles"/> to use.</param>
+	/// <returns>A new <see cref="TimeOnly"/> <see cref="ArgInfo{T}"/>.</returns>
+	/// <exception cref="ArgumentException">Thrown when <paramref name="argInfo.Value"/> is not parsable to a <see cref="TimeOnly"/>.</exception>
+	public static ArgInfo<TimeOnly> ParseTimeOnlyExact( in this ArgInfo<string> argInfo, string?[]? formats, IFormatProvider? provider = null, DateTimeStyles styles = DateTimeStyles.None ) {
+
+		if( TimeOnly.TryParseExact( argInfo.Value, formats, provider, styles, out TimeOnly result ) ) {
+			return new( result, argInfo.Name, argInfo.Message );
+		}
+
+		string message = argInfo.Message ?? ExceptionMessageFormatter.Format( ExceptionMessages.VALUE_MUST_BE_PARSABLE_TO, argInfo.Value, typeof( TimeOnly ).FullName );
+		throw new ArgumentException( message, argInfo.Name );
+	}
+
+	/// <summary>
+	/// Ensures an argument is parsable to a <see cref="Uri"/>, otherwise an <see cref="ArgumentException"/> is thrown.
+	/// </summary>
+	/// <param name="argInfo">The argument info.</param>
+	/// <param name="creationOptions">The <see cref="UriCreationOptions"/>.</param>
+	/// <returns>A new <see cref="Uri"/> <see cref="ArgInfo{T}"/>.</returns>
+	/// <exception cref="ArgumentException">Thrown when <paramref name="argInfo.Value"/> is not parsable to a <see cref="Uri"/>.</exception>
+	public static ArgInfo<Uri> ParseUri( in this ArgInfo<string> argInfo, UriCreationOptions creationOptions ) {
+
+		if( Uri.TryCreate( argInfo.Value, creationOptions, out Uri? result ) ) {
+			return new( result, argInfo.Name, argInfo.Message );
+		}
+
+		string message = argInfo.Message ?? ExceptionMessageFormatter.Format( ExceptionMessages.VALUE_MUST_BE_PARSABLE_TO, argInfo.Value, typeof( Uri ).FullName );
+		throw new ArgumentException( message, argInfo.Name );
+	}
+
+#endif
 }

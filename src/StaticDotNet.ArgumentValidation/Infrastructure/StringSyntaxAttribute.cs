@@ -1,6 +1,8 @@
 ﻿#if( NETSTANDARD2_0 || NETSTANDARD2_1 )
 
+#pragma warning disable IDE0130 // Polyfill so don't want namespace to match folder
 namespace System.Diagnostics.CodeAnalysis;
+#pragma warning restore IDE0130
 
 /// <summary>Specifies the syntax used in a string.</summary>
 [AttributeUsage( AttributeTargets.Parameter | AttributeTargets.Field | AttributeTargets.Property, AllowMultiple = false, Inherited = false )]
