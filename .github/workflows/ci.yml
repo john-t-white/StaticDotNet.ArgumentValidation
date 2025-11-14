@@ -1,0 +1,30 @@
+name: CI
+
+run-name: ${{ github.actor }} is learning GitHub Actions
+
+on:
+  pull_request:
+    branches: [ main ]
+    
+  workflow_dispatch:
+
+jobs:
+  build-and-test:
+    name: Build and Test
+    runs-on: ubuntu-latest
+    steps:
+
+      - name: Checkout $${{ github.head_ref }}
+        uses: actions/checkout@v5
+  
+      - name: Setup DotNet
+        uses: microsoft/setup-dotnet@5
+
+      - name: Restore Packages
+        run: dotnet restore
+
+      - name: Build
+        run: dotnet build --no-restore
+
+      - name: Test
+        run: dotnet test --no-restore --no-build
