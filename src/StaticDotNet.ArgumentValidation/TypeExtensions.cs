@@ -11,58 +11,58 @@ namespace StaticDotNet.ArgumentValidation;
 /// </remarks>
 public static class TypeExtensions {
 
-	/// <summary>
-	/// Ensures an argument is assignable to <typeparamref name="T"/>, otherwise an <see cref="ArgumentException"/> is thrown.
-	/// </summary>
-	/// <typeparam name="T">The type it should be assignable to.</typeparam>
-	/// <param name="argInfo">The argument info.</param>
-	/// <returns>The <paramref name="argInfo"/>.</returns>
-	/// <exception cref="ArgumentException">Thrown when <paramref name="argInfo.Value"/> is not assignable to <typeparamref name="T"/>.</exception>
-	public static ref readonly ArgInfo<Type> AssignableTo<T>( in this ArgInfo<Type> argInfo )
-		=> ref TypeExtensions.AssignableTo( in argInfo, typeof( T ) );
+    /// <summary>
+    /// Ensures an argument is assignable to <typeparamref name="T"/>, otherwise an <see cref="ArgumentException"/> is thrown.
+    /// </summary>
+    /// <typeparam name="T">The type it should be assignable to.</typeparam>
+    /// <param name="argInfo">The argument info.</param>
+    /// <returns>The <paramref name="argInfo"/>.</returns>
+    /// <exception cref="ArgumentException">Thrown when <paramref name="argInfo.Value"/> is not assignable to <typeparamref name="T"/>.</exception>
+    public static ref readonly ArgInfo<Type> AssignableTo<T>( in this ArgInfo<Type> argInfo )
+        => ref TypeExtensions.AssignableTo( in argInfo, typeof( T ) );
 
-	/// <summary>
-	/// Ensures an argument is assignable to <paramref name="type"/>, otherwise an <see cref="ArgumentException"/> is thrown.
-	/// </summary>
-	/// <param name="argInfo">The argument info.</param>
-	/// <param name="type">The type it should be assignable to.</param>
-	/// <returns>The <paramref name="argInfo"/>.</returns>
-	/// <exception cref="ArgumentException">Thrown when <paramref name="argInfo.Value"/> is not assignable to <paramref name="type"/>.</exception>
+    /// <summary>
+    /// Ensures an argument is assignable to <paramref name="type"/>, otherwise an <see cref="ArgumentException"/> is thrown.
+    /// </summary>
+    /// <param name="argInfo">The argument info.</param>
+    /// <param name="type">The type it should be assignable to.</param>
+    /// <returns>The <paramref name="argInfo"/>.</returns>
+    /// <exception cref="ArgumentException">Thrown when <paramref name="argInfo.Value"/> is not assignable to <paramref name="type"/>.</exception>
 
-	public static ref readonly ArgInfo<Type> AssignableTo( in this ArgInfo<Type> argInfo, Type type ) {
+    public static ref readonly ArgInfo<Type> AssignableTo( in this ArgInfo<Type> argInfo, Type type ) {
 
-		if( type is not null && argInfo.Value.GetTypeInfo().IsAssignableTo( type.GetTypeInfo() ) ) {
-			return ref argInfo;
-		}
+        if( type is not null && argInfo.Value.GetTypeInfo().IsAssignableTo( type.GetTypeInfo() ) ) {
+            return ref argInfo;
+        }
 
-		string message = argInfo.Message ?? ExceptionMessageFormatter.Format( ExceptionMessages.TYPE_MUST_BE_ASSIGNABLE_TO, argInfo.Value.FullName, type?.FullName );
-		throw new ArgumentException( message, argInfo.Name );
-	}
+        string message = argInfo.Message ?? ExceptionMessageFormatter.Format( ExceptionMessages.TYPE_MUST_BE_ASSIGNABLE_TO, argInfo.Value.FullName, type?.FullName );
+        throw new ArgumentException( message, argInfo.Name );
+    }
 
-	/// <summary>
-	/// Ensures an argument is assignable to <typeparamref name="T"/>, otherwise an <see cref="ArgumentException"/> is thrown.
-	/// </summary>
-	/// <typeparam name="T">The type it should be assignable to.</typeparam>
-	/// <param name="argInfo">The argument info.</param>
-	/// <returns>The <paramref name="argInfo"/>.</returns>
-	/// <exception cref="ArgumentException">Thrown when <paramref name="argInfo.Value"/> is not assignable to <typeparamref name="T"/>.</exception>
-	public static ref readonly ArgInfo<TypeInfo> AssignableTo<T>( in this ArgInfo<TypeInfo> argInfo )
-		=> ref TypeExtensions.AssignableTo( in argInfo, typeof( T ) );
+    /// <summary>
+    /// Ensures an argument is assignable to <typeparamref name="T"/>, otherwise an <see cref="ArgumentException"/> is thrown.
+    /// </summary>
+    /// <typeparam name="T">The type it should be assignable to.</typeparam>
+    /// <param name="argInfo">The argument info.</param>
+    /// <returns>The <paramref name="argInfo"/>.</returns>
+    /// <exception cref="ArgumentException">Thrown when <paramref name="argInfo.Value"/> is not assignable to <typeparamref name="T"/>.</exception>
+    public static ref readonly ArgInfo<TypeInfo> AssignableTo<T>( in this ArgInfo<TypeInfo> argInfo )
+        => ref TypeExtensions.AssignableTo( in argInfo, typeof( T ) );
 
-	/// <summary>
-	/// Ensures an argument is assignable to <paramref name="type"/>, otherwise an <see cref="ArgumentException"/> is thrown.
-	/// </summary>
-	/// <param name="argInfo">The argument info.</param>
-	/// <param name="type">The type it should be assignable to.</param>
-	/// <returns>The <paramref name="argInfo"/>.</returns>
-	/// <exception cref="ArgumentException">Thrown when <paramref name="argInfo.Value"/> is not assignable to <paramref name="type"/>.</exception>
-	public static ref readonly ArgInfo<TypeInfo> AssignableTo( in this ArgInfo<TypeInfo> argInfo, [DisallowNull] Type type ) {
+    /// <summary>
+    /// Ensures an argument is assignable to <paramref name="type"/>, otherwise an <see cref="ArgumentException"/> is thrown.
+    /// </summary>
+    /// <param name="argInfo">The argument info.</param>
+    /// <param name="type">The type it should be assignable to.</param>
+    /// <returns>The <paramref name="argInfo"/>.</returns>
+    /// <exception cref="ArgumentException">Thrown when <paramref name="argInfo.Value"/> is not assignable to <paramref name="type"/>.</exception>
+    public static ref readonly ArgInfo<TypeInfo> AssignableTo( in this ArgInfo<TypeInfo> argInfo, [DisallowNull] Type type ) {
 
-		if( type is not null && argInfo.Value.IsAssignableTo( type.GetTypeInfo() ) ) {
-			return ref argInfo;
-		}
+        if( type is not null && argInfo.Value.IsAssignableTo( type.GetTypeInfo() ) ) {
+            return ref argInfo;
+        }
 
-		string message = argInfo.Message ?? ExceptionMessageFormatter.Format( ExceptionMessages.TYPE_MUST_BE_ASSIGNABLE_TO, argInfo.Value.FullName, type?.FullName );
-		throw new ArgumentException( message, argInfo.Name );
-	}
+        string message = argInfo.Message ?? ExceptionMessageFormatter.Format( ExceptionMessages.TYPE_MUST_BE_ASSIGNABLE_TO, argInfo.Value.FullName, type?.FullName );
+        throw new ArgumentException( message, argInfo.Name );
+    }
 }

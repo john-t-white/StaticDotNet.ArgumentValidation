@@ -6,49 +6,49 @@ namespace StaticDotNet.ArgumentValidation.UnitTests.StringParsingExtensionsTests
 
 public sealed class Parse {
 
-	[Fact]
-	public void ReturnsCorrectly() {
+    [Fact]
+    public void ReturnsCorrectly() {
 
-		var expectedResult = Guid.NewGuid();
-		ArgInfo<string> argInfo = new( expectedResult.ToString(), null, null );
+        var expectedResult = Guid.NewGuid();
+        ArgInfo<string> argInfo = new( expectedResult.ToString(), null, null );
 
-		ArgInfo<Guid> result = StringParsingExtensions.Parse<Guid>( argInfo );
+        ArgInfo<Guid> result = StringParsingExtensions.Parse<Guid>( argInfo );
 
-		Assert.Equal( expectedResult, result.Value );
-	}
+        Assert.Equal( expectedResult, result.Value );
+    }
 
-	[Fact]
-	public void WithInvalidValueThrowsArgumentException() {
+    [Fact]
+    public void WithInvalidValueThrowsArgumentException() {
 
-		string argumentValue = "Not valid";
-		string name = "Name";
+        string argumentValue = "Not valid";
+        string name = "Name";
 
-		ArgumentException exception = Assert.Throws<ArgumentException>( name, () => {
+        ArgumentException exception = Assert.Throws<ArgumentException>( name, () => {
 
-			ArgInfo<string> argInfo = new( argumentValue, name, null );
-			_ = StringParsingExtensions.Parse<Guid>( argInfo );
-		} );
+            ArgInfo<string> argInfo = new( argumentValue, name, null );
+            _ = StringParsingExtensions.Parse<Guid>( argInfo );
+        } );
 
-		string expectedMessage = $"Value \"{argumentValue}\" must be parsable to \"{typeof( Guid ).FullName}\".";
+        string expectedMessage = $"Value \"{argumentValue}\" must be parsable to \"{typeof( Guid ).FullName}\".";
 
-		Assert.StartsWith( expectedMessage, exception.Message );
-	}
+        Assert.StartsWith( expectedMessage, exception.Message );
+    }
 
-	[Fact]
-	public void WithInvalidValueAndMessageThrowsArgumentException() {
+    [Fact]
+    public void WithInvalidValueAndMessageThrowsArgumentException() {
 
-		string argumentValue = "Not valid";
-		string name = "Name";
-		string message = "Message";
+        string argumentValue = "Not valid";
+        string name = "Name";
+        string message = "Message";
 
-		ArgumentException exception = Assert.Throws<ArgumentException>( name, () => {
+        ArgumentException exception = Assert.Throws<ArgumentException>( name, () => {
 
-			ArgInfo<string> argInfo = new( argumentValue, name, message );
-			_ = StringParsingExtensions.Parse<Guid>( argInfo );
-		} );
+            ArgInfo<string> argInfo = new( argumentValue, name, message );
+            _ = StringParsingExtensions.Parse<Guid>( argInfo );
+        } );
 
-		Assert.StartsWith( message, exception.Message );
-	}
+        Assert.StartsWith( message, exception.Message );
+    }
 }
 
 #endif

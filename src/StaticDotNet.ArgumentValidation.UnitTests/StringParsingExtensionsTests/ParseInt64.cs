@@ -4,71 +4,71 @@ namespace StaticDotNet.ArgumentValidation.UnitTests.StringParsingExtensionsTests
 
 public sealed class ParseInt64 {
 
-	[Fact]
-	public void ReturnsCorrectly() {
+    [Fact]
+    public void ReturnsCorrectly() {
 
-		long expectedResult = 1;
-		ArgInfo<string> argInfo = new( expectedResult.ToString(), null, null );
+        long expectedResult = 1;
+        ArgInfo<string> argInfo = new( expectedResult.ToString(), null, null );
 
-		ArgInfo<long> result = StringParsingExtensions.ParseInt64( argInfo );
+        ArgInfo<long> result = StringParsingExtensions.ParseInt64( argInfo );
 
-		Assert.Equal( expectedResult, result.Value );
-	}
+        Assert.Equal( expectedResult, result.Value );
+    }
 
-	[Fact]
-	public void WithStylesReturnsCorrectly() {
+    [Fact]
+    public void WithStylesReturnsCorrectly() {
 
-		long expectedResult = 1;
-		ArgInfo<string> argInfo = new( expectedResult.ToString(), null, null );
-		NumberStyles styles = NumberStyles.None;
+        long expectedResult = 1;
+        ArgInfo<string> argInfo = new( expectedResult.ToString(), null, null );
+        NumberStyles styles = NumberStyles.None;
 
-		ArgInfo<long> result = StringParsingExtensions.ParseInt64( argInfo, styles );
+        ArgInfo<long> result = StringParsingExtensions.ParseInt64( argInfo, styles );
 
-		Assert.Equal( expectedResult, result.Value );
-	}
+        Assert.Equal( expectedResult, result.Value );
+    }
 
-	[Fact]
-	public void WithProviderReturnsCorrectly() {
+    [Fact]
+    public void WithProviderReturnsCorrectly() {
 
-		long expectedResult = 1;
-		ArgInfo<string> argInfo = new( expectedResult.ToString(), null, null );
-		IFormatProvider provider = NumberFormatInfo.InvariantInfo;
+        long expectedResult = 1;
+        ArgInfo<string> argInfo = new( expectedResult.ToString(), null, null );
+        IFormatProvider provider = NumberFormatInfo.InvariantInfo;
 
-		ArgInfo<long> result = StringParsingExtensions.ParseInt64( argInfo, provider: provider );
+        ArgInfo<long> result = StringParsingExtensions.ParseInt64( argInfo, provider: provider );
 
-		Assert.Equal( expectedResult, result.Value );
-	}
+        Assert.Equal( expectedResult, result.Value );
+    }
 
-	[Fact]
-	public void WithInvalidValueThrowsArgumentException() {
+    [Fact]
+    public void WithInvalidValueThrowsArgumentException() {
 
-		string argumentValue = "Not valid";
-		string name = "Name";
+        string argumentValue = "Not valid";
+        string name = "Name";
 
-		ArgumentException exception = Assert.Throws<ArgumentException>( name, () => {
+        ArgumentException exception = Assert.Throws<ArgumentException>( name, () => {
 
-			ArgInfo<string> argInfo = new( argumentValue, name, null );
-			_ = StringParsingExtensions.ParseInt64( argInfo );
-		} );
+            ArgInfo<string> argInfo = new( argumentValue, name, null );
+            _ = StringParsingExtensions.ParseInt64( argInfo );
+        } );
 
-		string expectedMessage = $"Value \"{argumentValue}\" must be parsable to \"System.Int64\".";
+        string expectedMessage = $"Value \"{argumentValue}\" must be parsable to \"System.Int64\".";
 
-		Assert.StartsWith( expectedMessage, exception.Message );
-	}
+        Assert.StartsWith( expectedMessage, exception.Message );
+    }
 
-	[Fact]
-	public void WithInvalidValueAndMessageThrowsArgumentException() {
+    [Fact]
+    public void WithInvalidValueAndMessageThrowsArgumentException() {
 
-		string argumentValue = "Not valid";
-		string name = "Name";
-		string message = "Message";
+        string argumentValue = "Not valid";
+        string name = "Name";
+        string message = "Message";
 
-		ArgumentException exception = Assert.Throws<ArgumentException>( name, () => {
+        ArgumentException exception = Assert.Throws<ArgumentException>( name, () => {
 
-			ArgInfo<string> argInfo = new( argumentValue, name, message );
-			_ = StringParsingExtensions.ParseInt64( argInfo );
-		} );
+            ArgInfo<string> argInfo = new( argumentValue, name, message );
+            _ = StringParsingExtensions.ParseInt64( argInfo );
+        } );
 
-		Assert.StartsWith( message, exception.Message );
-	}
+        Assert.StartsWith( message, exception.Message );
+    }
 }

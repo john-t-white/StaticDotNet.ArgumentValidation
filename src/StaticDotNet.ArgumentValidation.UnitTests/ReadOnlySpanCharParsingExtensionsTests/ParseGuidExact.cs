@@ -6,52 +6,52 @@ namespace StaticDotNet.ArgumentValidation.UnitTests.ReadOnlySpanCharParsingExten
 
 public sealed class ParseGuidExact {
 
-	[Fact]
-	public void ReturnsCorrectly() {
+    [Fact]
+    public void ReturnsCorrectly() {
 
-		string format = "N";
-		var expectedResult = Guid.NewGuid();
-		ReadOnlySpanArgInfo<char> argInfo = new( expectedResult.ToString( format ), null, null );
+        string format = "N";
+        var expectedResult = Guid.NewGuid();
+        ReadOnlySpanArgInfo<char> argInfo = new( expectedResult.ToString( format ), null, null );
 
-		ArgInfo<Guid> result = ReadOnlySpanCharParsingExtensions.ParseGuidExact( argInfo, format );
+        ArgInfo<Guid> result = ReadOnlySpanCharParsingExtensions.ParseGuidExact( argInfo, format );
 
-		Assert.Equal( expectedResult, result.Value );
-	}
+        Assert.Equal( expectedResult, result.Value );
+    }
 
-	[Fact]
-	public void WithInvalidValueThrowsArgumentException() {
+    [Fact]
+    public void WithInvalidValueThrowsArgumentException() {
 
-		string format = "N";
-		string argumentValue = "Not valid";
-		string name = "Name";
+        string format = "N";
+        string argumentValue = "Not valid";
+        string name = "Name";
 
-		ArgumentException exception = Assert.Throws<ArgumentException>( name, () => {
+        ArgumentException exception = Assert.Throws<ArgumentException>( name, () => {
 
-			ReadOnlySpanArgInfo<char> argInfo = new( argumentValue, name, null );
-			_ = ReadOnlySpanCharParsingExtensions.ParseGuidExact( argInfo, format );
-		} );
+            ReadOnlySpanArgInfo<char> argInfo = new( argumentValue, name, null );
+            _ = ReadOnlySpanCharParsingExtensions.ParseGuidExact( argInfo, format );
+        } );
 
-		string expectedMessage = $"Value \"{argumentValue}\" must be parsable to \"System.Guid\".";
+        string expectedMessage = $"Value \"{argumentValue}\" must be parsable to \"System.Guid\".";
 
-		Assert.StartsWith( expectedMessage, exception.Message );
-	}
+        Assert.StartsWith( expectedMessage, exception.Message );
+    }
 
-	[Fact]
-	public void WithInvalidValueAndMessageThrowsArgumentException() {
+    [Fact]
+    public void WithInvalidValueAndMessageThrowsArgumentException() {
 
-		string format = "N";
-		string argumentValue = "Not valid";
-		string name = "Name";
-		string message = "Message";
+        string format = "N";
+        string argumentValue = "Not valid";
+        string name = "Name";
+        string message = "Message";
 
-		ArgumentException exception = Assert.Throws<ArgumentException>( name, () => {
+        ArgumentException exception = Assert.Throws<ArgumentException>( name, () => {
 
-			ReadOnlySpanArgInfo<char> argInfo = new( argumentValue, name, message );
-			_ = ReadOnlySpanCharParsingExtensions.ParseGuidExact( argInfo, format );
-		} );
+            ReadOnlySpanArgInfo<char> argInfo = new( argumentValue, name, message );
+            _ = ReadOnlySpanCharParsingExtensions.ParseGuidExact( argInfo, format );
+        } );
 
-		Assert.StartsWith( message, exception.Message );
-	}
+        Assert.StartsWith( message, exception.Message );
+    }
 }
 
 #endif

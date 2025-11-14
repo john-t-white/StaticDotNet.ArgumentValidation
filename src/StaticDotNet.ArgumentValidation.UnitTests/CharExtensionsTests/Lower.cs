@@ -2,44 +2,44 @@
 
 public sealed class Lower {
 
-	[Fact]
-	public void ReturnsCorrectly() {
+    [Fact]
+    public void ReturnsCorrectly() {
 
-		ArgInfo<char> argInfo = new( 'a', null, null );
+        ArgInfo<char> argInfo = new( 'a', null, null );
 
-		ArgInfo<char> result = argInfo.Lower();
+        ArgInfo<char> result = argInfo.Lower();
 
-		ArgInfoAssertions.Equal( argInfo, result );
-	}
+        ArgInfoAssertions.Equal( argInfo, result );
+    }
 
-	[Fact]
-	public void WithNotLowerValueThrowsArgumentException() {
+    [Fact]
+    public void WithNotLowerValueThrowsArgumentException() {
 
-		char argumentValue = 'A';
-		string name = "Name";
+        char argumentValue = 'A';
+        string name = "Name";
 
-		ArgumentException exception = Assert.Throws<ArgumentException>( name, () => {
-			ArgInfo<char> argInfo = new( argumentValue, name, null );
-			_ = argInfo.Lower();
-		} );
+        ArgumentException exception = Assert.Throws<ArgumentException>( name, () => {
+            ArgInfo<char> argInfo = new( argumentValue, name, null );
+            _ = argInfo.Lower();
+        } );
 
-		string expectedMessage = $"Value \"{argumentValue}\" must be lower case.";
+        string expectedMessage = $"Value \"{argumentValue}\" must be lower case.";
 
-		Assert.StartsWith( expectedMessage, exception.Message );
-	}
+        Assert.StartsWith( expectedMessage, exception.Message );
+    }
 
-	[Fact]
-	public void WithInvalidValueAndMessageThrowsArgumentException() {
+    [Fact]
+    public void WithInvalidValueAndMessageThrowsArgumentException() {
 
-		char argumentValue = 'A';
-		string name = "Name";
-		string message = "Message";
+        char argumentValue = 'A';
+        string name = "Name";
+        string message = "Message";
 
-		ArgumentException exception = Assert.Throws<ArgumentException>( name, () => {
-			ArgInfo<char> argInfo = new( argumentValue, name, message );
-			_ = argInfo.Lower();
-		} );
+        ArgumentException exception = Assert.Throws<ArgumentException>( name, () => {
+            ArgInfo<char> argInfo = new( argumentValue, name, message );
+            _ = argInfo.Lower();
+        } );
 
-		Assert.StartsWith( message, exception.Message );
-	}
+        Assert.StartsWith( message, exception.Message );
+    }
 }

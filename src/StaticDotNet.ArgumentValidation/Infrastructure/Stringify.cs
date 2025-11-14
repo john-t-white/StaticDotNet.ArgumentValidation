@@ -5,17 +5,17 @@
 /// </summary>
 public static class Stringify {
 
-	private const string NULL = "<null>";
+    private const string NULL = "<null>";
 
-	/// <summary>
-	/// Returns a string version of the value.
-	/// </summary>
-	/// <typeparam name="T">The type of value.</typeparam>
-	/// <param name="value">The value.</param>
-	/// <returns>string/char values with quotes, null values as &lt;null&gt;, otherwise the value as a string.</returns>
-	public static string Value<T>( T? value ) => value is null
-			? NULL
-			: value is string or char
-				? $"\"{value}\""
-				: value.ToString() ?? string.Empty;
+    /// <summary>
+    /// Returns a string version of the value.
+    /// </summary>
+    /// <typeparam name="T">The type of value.</typeparam>
+    /// <param name="value">The value.</param>
+    /// <returns>string/char values with quotes, null values as &lt;null&gt;, otherwise the value as a string.</returns>
+    public static string Value<T>( T? value ) => value is null
+            ? NULL
+            : value is string or char
+                ? $"\"{value}\""
+                : value.ToString() ?? string.Empty;
 }

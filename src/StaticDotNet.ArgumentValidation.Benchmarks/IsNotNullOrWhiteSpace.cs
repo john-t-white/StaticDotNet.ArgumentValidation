@@ -13,35 +13,35 @@ namespace StaticDotNet.ArgumentValidation.Benchmarks;
 [SimpleJob( RuntimeMoniker.Net481 )]
 public class IsNotNullOrWhiteSpace {
 
-	public string? argumentValue = "Value";
+    public string? argumentValue = "Value";
 
-	[Benchmark( Baseline = true )]
-	public string Baseline() => string.IsNullOrWhiteSpace( argumentValue ) ? throw new ArgumentException() : argumentValue!;
+    [Benchmark( Baseline = true )]
+    public string Baseline() => string.IsNullOrWhiteSpace( argumentValue ) ? throw new ArgumentException() : argumentValue!;
 
-	[Benchmark]
-	public string ArgumentValidation() => Arg.IsNotNullOrWhiteSpace( argumentValue ).Value;
+    [Benchmark]
+    public string ArgumentValidation() => Arg.IsNotNullOrWhiteSpace( argumentValue ).Value;
 
-	[Benchmark]
+    [Benchmark]
 #pragma warning disable CS8634 // The type cannot be used as type parameter in the generic type or method. Nullability of type argument doesn't match 'class' constraint.
-	public string Dawn_Guard() => Dawn.Guard.Argument( argumentValue ).NotNull().NotWhiteSpace();
+    public string Dawn_Guard() => Dawn.Guard.Argument( argumentValue ).NotNull().NotWhiteSpace();
 #pragma warning restore CS8634 // The type cannot be used as type parameter in the generic type or method. Nullability of type argument doesn't match 'class' constraint.
 
-	[Benchmark]
-	public string Ardalis_GuardClauses() => Ardalis.GuardClauses.Guard.Against.NullOrWhiteSpace( argumentValue, nameof( argumentValue ) );
+    [Benchmark]
+    public string Ardalis_GuardClauses() => Ardalis.GuardClauses.Guard.Against.NullOrWhiteSpace( argumentValue, nameof( argumentValue ) );
 
-	[Benchmark]
-	public object CommunityToolkit_Diagnostics() {
-		CommunityToolkit.Diagnostics.Guard.IsNotNullOrWhiteSpace( argumentValue );
+    [Benchmark]
+    public object CommunityToolkit_Diagnostics() {
+        CommunityToolkit.Diagnostics.Guard.IsNotNullOrWhiteSpace( argumentValue );
 
-		return argumentValue;
-	}
+        return argumentValue;
+    }
 
-	[Benchmark]
-	public string Ensure_That() {
-		Ensure.That( argumentValue ).IsNotNullOrWhiteSpace();
+    [Benchmark]
+    public string Ensure_That() {
+        Ensure.That( argumentValue ).IsNotNullOrWhiteSpace();
 
 #pragma warning disable CS8603 // Possible null reference return.
-		return argumentValue;
+        return argumentValue;
 #pragma warning restore CS8603 // Possible null reference return.
-	}
+    }
 }

@@ -2,81 +2,81 @@
 
 public sealed class IsNotNullOrWhiteSpace {
 
-	[Fact]
-	public void ReturnsCorrectly() {
+    [Fact]
+    public void ReturnsCorrectly() {
 
-		string value = "Value";
+        string value = "Value";
 
-		ArgInfo<string> result = Arg.IsNotNullOrWhiteSpace( value );
+        ArgInfo<string> result = Arg.IsNotNullOrWhiteSpace( value );
 
-		Assert.Same( value, result.Value );
-		Assert.Equal( nameof( value ), result.Name );
-		Assert.Null( result.Message );
-	}
+        Assert.Same( value, result.Value );
+        Assert.Equal( nameof( value ), result.Name );
+        Assert.Null( result.Message );
+    }
 
-	[Fact]
-	public void WithNameAndMessageReturnsCorrectly() {
+    [Fact]
+    public void WithNameAndMessageReturnsCorrectly() {
 
-		string value = "Value";
-		string name = "Name";
-		string message = "Message";
+        string value = "Value";
+        string name = "Name";
+        string message = "Message";
 
-		ArgInfo<string> result = Arg.IsNotNullOrWhiteSpace( value, name, message );
+        ArgInfo<string> result = Arg.IsNotNullOrWhiteSpace( value, name, message );
 
-		Assert.Same( value, result.Value );
-		Assert.Equal( name, result.Name );
-		Assert.Equal( message, result.Message );
-	}
+        Assert.Same( value, result.Value );
+        Assert.Equal( name, result.Name );
+        Assert.Equal( message, result.Message );
+    }
 
-	[Fact]
-	public void WithNullValueThrowsArgumentNullException() {
+    [Fact]
+    public void WithNullValueThrowsArgumentNullException() {
 
-		string? value = null;
+        string? value = null;
 
-		_ = Assert.Throws<ArgumentNullException>( nameof( value ), () => Arg.IsNotNullOrWhiteSpace( value ) );
-	}
+        _ = Assert.Throws<ArgumentNullException>( nameof( value ), () => Arg.IsNotNullOrWhiteSpace( value ) );
+    }
 
-	[Fact]
-	public void WithEmptyValueThrowsArgumentException() {
+    [Fact]
+    public void WithEmptyValueThrowsArgumentException() {
 
-		string value = string.Empty;
+        string value = string.Empty;
 
-		ArgumentException exception = Assert.Throws<ArgumentException>( nameof( value ), () => Arg.IsNotNullOrWhiteSpace( value ) );
+        ArgumentException exception = Assert.Throws<ArgumentException>( nameof( value ), () => Arg.IsNotNullOrWhiteSpace( value ) );
 
-		string expectedMessage = "Value cannot be white space.";
+        string expectedMessage = "Value cannot be white space.";
 
-		Assert.StartsWith( expectedMessage, exception.Message );
-	}
+        Assert.StartsWith( expectedMessage, exception.Message );
+    }
 
-	[Fact]
-	public void WithWhiteSpaceValueThrowsArgumentException() {
+    [Fact]
+    public void WithWhiteSpaceValueThrowsArgumentException() {
 
-		string value = " ";
+        string value = " ";
 
-		ArgumentException exception = Assert.Throws<ArgumentException>( nameof( value ), () => Arg.IsNotNullOrWhiteSpace( value ) );
+        ArgumentException exception = Assert.Throws<ArgumentException>( nameof( value ), () => Arg.IsNotNullOrWhiteSpace( value ) );
 
-		string expectedMessage = "Value cannot be white space.";
+        string expectedMessage = "Value cannot be white space.";
 
-		Assert.StartsWith( expectedMessage, exception.Message );
-	}
+        Assert.StartsWith( expectedMessage, exception.Message );
+    }
 
-	[Fact]
-	public void WithNullableValueIsNullAndNameThrowsArgumentNullException() {
+    [Fact]
+    public void WithNullableValueIsNullAndNameThrowsArgumentNullException() {
 
-		string? value = null;
-		string name = "Name";
+        string? value = null;
+        string name = "Name";
 
-		_ = Assert.Throws<ArgumentNullException>( name, () => Arg.IsNotNullOrWhiteSpace( value, name ) );
-	}
+        _ = Assert.Throws<ArgumentNullException>( name, () => Arg.IsNotNullOrWhiteSpace( value, name ) );
+    }
 
-	[Fact]
-	public void WithNullableValueIsNullAndMessageThrowsArgumentNullException() {
+    [Fact]
+    public void WithNullableValueIsNullAndMessageThrowsArgumentNullException() {
 
-		string? value = null;
-		string message = "Message";
+        string? value = null;
+        string message = "Message";
 
-		ArgumentNullException exception = Assert.Throws<ArgumentNullException>( nameof( value ), () => Arg.IsNotNullOrWhiteSpace( value, message: message ) );
+        ArgumentNullException exception = Assert.Throws<ArgumentNullException>( nameof( value ), () => Arg.IsNotNullOrWhiteSpace( value, message: message ) );
 
-		Assert.StartsWith( message, exception.Message );
-	}
+        Assert.StartsWith( message, exception.Message );
+    }
 }

@@ -11,79 +11,79 @@ namespace StaticDotNet.ArgumentValidation;
 /// </remarks>
 public static class RegexExtensions {
 
-	/// <summary>
-	/// Ensures an argument matches the regular expression <paramref name="pattern"/>, otherwise an <see cref="ArgumentOutOfRangeException"/> is thrown.
-	/// </summary>
-	/// <param name="argInfo">The argument info.</param>
-	/// <param name="pattern">The regular expression pattern.</param>
-	/// <param name="options">The regex options.</param>
-	/// <param name="matchTimeout">The timeout.</param>
-	/// <returns>The <paramref name="argInfo"/>.</returns>
-	/// <exception cref="ArgumentException">Thrown when <paramref name="argInfo.Value"/> does not match the <paramref name="pattern"/></exception>
-	public static ref readonly ArgInfo<string> Matches( in this ArgInfo<string> argInfo, [StringSyntax( StringSyntaxAttribute.Regex )] string pattern, RegexOptions options = RegexOptions.None, TimeSpan? matchTimeout = null ) {
+    /// <summary>
+    /// Ensures an argument matches the regular expression <paramref name="pattern"/>, otherwise an <see cref="ArgumentOutOfRangeException"/> is thrown.
+    /// </summary>
+    /// <param name="argInfo">The argument info.</param>
+    /// <param name="pattern">The regular expression pattern.</param>
+    /// <param name="options">The regex options.</param>
+    /// <param name="matchTimeout">The timeout.</param>
+    /// <returns>The <paramref name="argInfo"/>.</returns>
+    /// <exception cref="ArgumentException">Thrown when <paramref name="argInfo.Value"/> does not match the <paramref name="pattern"/></exception>
+    public static ref readonly ArgInfo<string> Matches( in this ArgInfo<string> argInfo, [StringSyntax( StringSyntaxAttribute.Regex )] string pattern, RegexOptions options = RegexOptions.None, TimeSpan? matchTimeout = null ) {
 
-		if( pattern is not null && Regex.IsMatch( argInfo.Value, pattern, options, matchTimeout ?? Regex.InfiniteMatchTimeout ) ) {
-			return ref argInfo;
-		}
+        if( pattern is not null && Regex.IsMatch( argInfo.Value, pattern, options, matchTimeout ?? Regex.InfiniteMatchTimeout ) ) {
+            return ref argInfo;
+        }
 
-		string message = argInfo.Message ?? ExceptionMessageFormatter.Format( ExceptionMessages.VALUE_MUST_MATCH_REGEX, argInfo.Value, pattern );
-		throw new ArgumentException( message, argInfo.Name );
-	}
+        string message = argInfo.Message ?? ExceptionMessageFormatter.Format( ExceptionMessages.VALUE_MUST_MATCH_REGEX, argInfo.Value, pattern );
+        throw new ArgumentException( message, argInfo.Name );
+    }
 
-	/// <summary>
-	/// Ensures an argument matches the regular expression <paramref name="regex"/>, otherwise an <see cref="ArgumentOutOfRangeException"/> is thrown.
-	/// </summary>
-	/// <param name="argInfo">The argument info.</param>
-	/// <param name="regex">The regular expression pattern.</param>
-	/// <returns>The <paramref name="argInfo"/>.</returns>
-	/// <exception cref="ArgumentException">Thrown when <paramref name="argInfo.Value"/> does not match the <paramref name="regex"/></exception>
-	public static ref readonly ArgInfo<string> Matches( in this ArgInfo<string> argInfo, Regex regex ) {
+    /// <summary>
+    /// Ensures an argument matches the regular expression <paramref name="regex"/>, otherwise an <see cref="ArgumentOutOfRangeException"/> is thrown.
+    /// </summary>
+    /// <param name="argInfo">The argument info.</param>
+    /// <param name="regex">The regular expression pattern.</param>
+    /// <returns>The <paramref name="argInfo"/>.</returns>
+    /// <exception cref="ArgumentException">Thrown when <paramref name="argInfo.Value"/> does not match the <paramref name="regex"/></exception>
+    public static ref readonly ArgInfo<string> Matches( in this ArgInfo<string> argInfo, Regex regex ) {
 
-		if( regex is not null && regex.IsMatch( argInfo.Value ) ) {
-			return ref argInfo;
-		}
+        if( regex is not null && regex.IsMatch( argInfo.Value ) ) {
+            return ref argInfo;
+        }
 
-		string message = argInfo.Message ?? ExceptionMessageFormatter.Format( ExceptionMessages.VALUE_MUST_MATCH_REGEX, argInfo.Value, regex?.ToString() );
-		throw new ArgumentException( message, argInfo.Name );
-	}
+        string message = argInfo.Message ?? ExceptionMessageFormatter.Format( ExceptionMessages.VALUE_MUST_MATCH_REGEX, argInfo.Value, regex?.ToString() );
+        throw new ArgumentException( message, argInfo.Name );
+    }
 
-	/// <summary>
-	/// Ensures an argument matches the regular expression <paramref name="pattern"/>, otherwise an <see cref="ArgumentOutOfRangeException"/> is thrown.
-	/// </summary>
-	/// <param name="argInfo">The argument info.</param>
-	/// <param name="pattern">The regular expression pattern.</param>
-	/// <param name="match">The match result.</param>
-	/// <param name="options">The regex options.</param>
-	/// <param name="matchTimeout">The timeout.</param>
-	/// <returns>The <paramref name="argInfo"/>.</returns>
-	/// <exception cref="ArgumentException">Thrown when <paramref name="argInfo.Value"/> does not match the <paramref name="pattern"/></exception>
-	public static ref readonly ArgInfo<string> Matches( in this ArgInfo<string> argInfo, [StringSyntax( StringSyntaxAttribute.Regex )] string pattern, out Match match, RegexOptions options = RegexOptions.None, TimeSpan? matchTimeout = null ) {
+    /// <summary>
+    /// Ensures an argument matches the regular expression <paramref name="pattern"/>, otherwise an <see cref="ArgumentOutOfRangeException"/> is thrown.
+    /// </summary>
+    /// <param name="argInfo">The argument info.</param>
+    /// <param name="pattern">The regular expression pattern.</param>
+    /// <param name="match">The match result.</param>
+    /// <param name="options">The regex options.</param>
+    /// <param name="matchTimeout">The timeout.</param>
+    /// <returns>The <paramref name="argInfo"/>.</returns>
+    /// <exception cref="ArgumentException">Thrown when <paramref name="argInfo.Value"/> does not match the <paramref name="pattern"/></exception>
+    public static ref readonly ArgInfo<string> Matches( in this ArgInfo<string> argInfo, [StringSyntax( StringSyntaxAttribute.Regex )] string pattern, out Match match, RegexOptions options = RegexOptions.None, TimeSpan? matchTimeout = null ) {
 
-		match = pattern is not null ? Regex.Match( argInfo.Value, pattern, options, matchTimeout ?? Regex.InfiniteMatchTimeout ) : Match.Empty;
-		if( match.Success ) {
-			return ref argInfo;
-		}
+        match = pattern is not null ? Regex.Match( argInfo.Value, pattern, options, matchTimeout ?? Regex.InfiniteMatchTimeout ) : Match.Empty;
+        if( match.Success ) {
+            return ref argInfo;
+        }
 
-		string message = argInfo.Message ?? ExceptionMessageFormatter.Format( ExceptionMessages.VALUE_MUST_MATCH_REGEX, argInfo.Value, pattern );
-		throw new ArgumentException( message, argInfo.Name );
-	}
+        string message = argInfo.Message ?? ExceptionMessageFormatter.Format( ExceptionMessages.VALUE_MUST_MATCH_REGEX, argInfo.Value, pattern );
+        throw new ArgumentException( message, argInfo.Name );
+    }
 
-	/// <summary>
-	/// Ensures an argument matches the regular expression <paramref name="regex"/>, otherwise an <see cref="ArgumentOutOfRangeException"/> is thrown.
-	/// </summary>
-	/// <param name="argInfo">The argument info.</param>
-	/// <param name="regex">The regular expression pattern.</param>
-	/// <param name="match">The match result.</param>
-	/// <returns>The <paramref name="argInfo"/>.</returns>
-	/// <exception cref="ArgumentException">Thrown when <paramref name="argInfo.Value"/> does not match the <paramref name="regex"/></exception>
-	public static ref readonly ArgInfo<string> Matches( in this ArgInfo<string> argInfo, Regex regex, out Match match ) {
+    /// <summary>
+    /// Ensures an argument matches the regular expression <paramref name="regex"/>, otherwise an <see cref="ArgumentOutOfRangeException"/> is thrown.
+    /// </summary>
+    /// <param name="argInfo">The argument info.</param>
+    /// <param name="regex">The regular expression pattern.</param>
+    /// <param name="match">The match result.</param>
+    /// <returns>The <paramref name="argInfo"/>.</returns>
+    /// <exception cref="ArgumentException">Thrown when <paramref name="argInfo.Value"/> does not match the <paramref name="regex"/></exception>
+    public static ref readonly ArgInfo<string> Matches( in this ArgInfo<string> argInfo, Regex regex, out Match match ) {
 
-		match = regex is not null ? regex.Match( argInfo.Value ) : Match.Empty;
-		if( match.Success ) {
-			return ref argInfo;
-		}
+        match = regex is not null ? regex.Match( argInfo.Value ) : Match.Empty;
+        if( match.Success ) {
+            return ref argInfo;
+        }
 
-		string message = argInfo.Message ?? ExceptionMessageFormatter.Format( ExceptionMessages.VALUE_MUST_MATCH_REGEX, argInfo.Value, regex?.ToString() );
-		throw new ArgumentException( message, argInfo.Name );
-	}
+        string message = argInfo.Message ?? ExceptionMessageFormatter.Format( ExceptionMessages.VALUE_MUST_MATCH_REGEX, argInfo.Value, regex?.ToString() );
+        throw new ArgumentException( message, argInfo.Name );
+    }
 }

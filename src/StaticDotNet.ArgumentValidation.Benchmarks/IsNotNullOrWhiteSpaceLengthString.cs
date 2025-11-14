@@ -12,34 +12,34 @@ namespace StaticDotNet.ArgumentValidation.Benchmarks;
 [SimpleJob( RuntimeMoniker.Net481 )]
 public class IsNotNullOrWhiteSpaceLengthString {
 
-	public string? argumentValue = "123";
+    public string? argumentValue = "123";
 
-	[Benchmark( Baseline = true )]
-	public string Baseline() => !string.IsNullOrWhiteSpace( argumentValue ) && argumentValue?.Length == 3 ? argumentValue : throw new ArgumentException();
+    [Benchmark( Baseline = true )]
+    public string Baseline() => !string.IsNullOrWhiteSpace( argumentValue ) && argumentValue?.Length == 3 ? argumentValue : throw new ArgumentException();
 
-	[Benchmark]
-	public string ArgumentValidation() => Arg.IsNotNullOrWhiteSpace( argumentValue ).Length( 3 ).Value;
+    [Benchmark]
+    public string ArgumentValidation() => Arg.IsNotNullOrWhiteSpace( argumentValue ).Length( 3 ).Value;
 
-	[Benchmark]
+    [Benchmark]
 #pragma warning disable CS8634 // The type cannot be used as type parameter in the generic type or method. Nullability of type argument doesn't match 'class' constraint.
-	public string Dawn_Guard() => Dawn.Guard.Argument( argumentValue ).NotNull().NotWhiteSpace().Length( 3 );
+    public string Dawn_Guard() => Dawn.Guard.Argument( argumentValue ).NotNull().NotWhiteSpace().Length( 3 );
 #pragma warning restore CS8634 // The type cannot be used as type parameter in the generic type or method. Nullability of type argument doesn't match 'class' constraint.
 
-	[Benchmark]
-	public string CommunityToolkit_Diagnostics() {
-		CommunityToolkit.Diagnostics.Guard.IsNotNullOrWhiteSpace( argumentValue );
-		CommunityToolkit.Diagnostics.Guard.HasSizeEqualTo( argumentValue, 3 );
+    [Benchmark]
+    public string CommunityToolkit_Diagnostics() {
+        CommunityToolkit.Diagnostics.Guard.IsNotNullOrWhiteSpace( argumentValue );
+        CommunityToolkit.Diagnostics.Guard.HasSizeEqualTo( argumentValue, 3 );
 
-		return argumentValue;
-	}
+        return argumentValue;
+    }
 
-	[Benchmark]
-	public string Ensure_That() {
-		Ensure.That( argumentValue ).IsNotNullOrWhiteSpace();
-		Ensure.That( argumentValue ).HasLength( 3 );
+    [Benchmark]
+    public string Ensure_That() {
+        Ensure.That( argumentValue ).IsNotNullOrWhiteSpace();
+        Ensure.That( argumentValue ).HasLength( 3 );
 
 #pragma warning disable CS8603 // Possible null reference return.
-		return argumentValue;
+        return argumentValue;
 #pragma warning restore CS8603 // Possible null reference return.
-	}
+    }
 }

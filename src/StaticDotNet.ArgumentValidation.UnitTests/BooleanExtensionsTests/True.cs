@@ -2,43 +2,43 @@
 
 public sealed class True {
 
-	[Fact]
-	public void ReturnsCorrectly() {
+    [Fact]
+    public void ReturnsCorrectly() {
 
-		ArgInfo<bool> argInfo = new( true, null, null );
+        ArgInfo<bool> argInfo = new( true, null, null );
 
-		ArgInfo<bool> result = BooleanExtensions.True( argInfo );
+        ArgInfo<bool> result = BooleanExtensions.True( argInfo );
 
-		ArgInfoAssertions.Equal( argInfo, result );
-	}
+        ArgInfoAssertions.Equal( argInfo, result );
+    }
 
-	[Fact]
-	public void WithFalseValueThrowsArgumentException() {
+    [Fact]
+    public void WithFalseValueThrowsArgumentException() {
 
-		bool argumentValue = false;
-		string name = "Name";
+        bool argumentValue = false;
+        string name = "Name";
 
-		ArgumentException exception = Assert.Throws<ArgumentException>( name, () => {
-			ArgInfo<bool> argInfo = new( argumentValue, name, null );
-			_ = BooleanExtensions.True( argInfo );
-		} );
+        ArgumentException exception = Assert.Throws<ArgumentException>( name, () => {
+            ArgInfo<bool> argInfo = new( argumentValue, name, null );
+            _ = BooleanExtensions.True( argInfo );
+        } );
 
-		string expectedMessage = "Value must be true.";
-		Assert.StartsWith( expectedMessage, exception.Message );
-	}
+        string expectedMessage = "Value must be true.";
+        Assert.StartsWith( expectedMessage, exception.Message );
+    }
 
-	[Fact]
-	public void WithFalseValueAndMessageThrowsArgumentException() {
+    [Fact]
+    public void WithFalseValueAndMessageThrowsArgumentException() {
 
-		bool argumentValue = false;
-		string name = "Name";
-		string message = "Message";
+        bool argumentValue = false;
+        string name = "Name";
+        string message = "Message";
 
-		ArgumentException exception = Assert.Throws<ArgumentException>( name, () => {
-			ArgInfo<bool> argInfo = new( argumentValue, name, message );
-			_ = BooleanExtensions.True( argInfo );
-		} );
+        ArgumentException exception = Assert.Throws<ArgumentException>( name, () => {
+            ArgInfo<bool> argInfo = new( argumentValue, name, message );
+            _ = BooleanExtensions.True( argInfo );
+        } );
 
-		Assert.StartsWith( message, exception.Message );
-	}
+        Assert.StartsWith( message, exception.Message );
+    }
 }

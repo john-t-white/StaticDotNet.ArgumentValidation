@@ -13,35 +13,35 @@ namespace StaticDotNet.ArgumentValidation.Benchmarks;
 [SimpleJob( RuntimeMoniker.Net481 )]
 public class IsNotNull {
 
-	public object? argumentValue = "Value";
+    public object? argumentValue = "Value";
 
-	[Benchmark( Baseline = true )]
-	public object Baseline() => argumentValue ?? throw new ArgumentNullException();
+    [Benchmark( Baseline = true )]
+    public object Baseline() => argumentValue ?? throw new ArgumentNullException();
 
-	[Benchmark]
-	public object ArgumentValidation() => Arg.IsNotNull( argumentValue ).Value;
+    [Benchmark]
+    public object ArgumentValidation() => Arg.IsNotNull( argumentValue ).Value;
 
-	[Benchmark]
+    [Benchmark]
 #pragma warning disable CS8634 // The type cannot be used as type parameter in the generic type or method. Nullability of type argument doesn't match 'class' constraint.
-	public object Dawn_Guard() => Dawn.Guard.Argument( argumentValue ).NotNull();
+    public object Dawn_Guard() => Dawn.Guard.Argument( argumentValue ).NotNull();
 #pragma warning restore CS8634 // The type cannot be used as type parameter in the generic type or method. Nullability of type argument doesn't match 'class' constraint.
 
-	[Benchmark]
-	public object Ardalis_GuardClauses() => Ardalis.GuardClauses.Guard.Against.Null( argumentValue, nameof( argumentValue ) );
+    [Benchmark]
+    public object Ardalis_GuardClauses() => Ardalis.GuardClauses.Guard.Against.Null( argumentValue, nameof( argumentValue ) );
 
-	[Benchmark]
-	public object CommunityToolkit_Diagnostics() {
-		CommunityToolkit.Diagnostics.Guard.IsNotNull( argumentValue );
+    [Benchmark]
+    public object CommunityToolkit_Diagnostics() {
+        CommunityToolkit.Diagnostics.Guard.IsNotNull( argumentValue );
 
-		return argumentValue;
-	}
+        return argumentValue;
+    }
 
-	[Benchmark]
-	public object Ensure_That() {
-		Ensure.That( argumentValue ).IsNotNull();
+    [Benchmark]
+    public object Ensure_That() {
+        Ensure.That( argumentValue ).IsNotNull();
 
 #pragma warning disable CS8603 // Possible null reference return.
-		return argumentValue;
+        return argumentValue;
 #pragma warning restore CS8603 // Possible null reference return.
-	}
+    }
 }

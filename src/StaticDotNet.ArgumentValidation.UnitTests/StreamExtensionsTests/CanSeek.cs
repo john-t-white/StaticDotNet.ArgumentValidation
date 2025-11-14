@@ -4,50 +4,50 @@ namespace StaticDotNet.ArgumentValidation.UnitTests.StreamExtensionsTests;
 
 public sealed class CanSeek {
 
-	[Fact]
-	public void ReturnsCorrectly() {
+    [Fact]
+    public void ReturnsCorrectly() {
 
-		ArgInfo<Stream> argInfo = new( new MemoryStream(), null, null );
+        ArgInfo<Stream> argInfo = new( new MemoryStream(), null, null );
 
-		ArgInfo<Stream> result = argInfo.CanSeek();
+        ArgInfo<Stream> result = argInfo.CanSeek();
 
-		ArgInfoAssertions.Equal( argInfo, result );
-	}
+        ArgInfoAssertions.Equal( argInfo, result );
+    }
 
-	[Fact]
-	public void WithNotReadableThrowsArgumentException() {
+    [Fact]
+    public void WithNotReadableThrowsArgumentException() {
 
-		Stream argumentValue = Substitute.For<Stream>();
-		_ = argumentValue.CanSeek.Returns( false );
+        Stream argumentValue = Substitute.For<Stream>();
+        _ = argumentValue.CanSeek.Returns( false );
 
-		string name = "Name";
+        string name = "Name";
 
-		ArgumentException exception = Assert.Throws<ArgumentException>( name, () => {
+        ArgumentException exception = Assert.Throws<ArgumentException>( name, () => {
 
-			ArgInfo<Stream> argInfo = new( argumentValue, name, null );
-			_ = argInfo.CanSeek();
-		} );
+            ArgInfo<Stream> argInfo = new( argumentValue, name, null );
+            _ = argInfo.CanSeek();
+        } );
 
-		string expectedMessage = "Value must be seekable.";
+        string expectedMessage = "Value must be seekable.";
 
-		Assert.StartsWith( expectedMessage, exception.Message );
-	}
+        Assert.StartsWith( expectedMessage, exception.Message );
+    }
 
-	[Fact]
-	public void WithNotReadableAndMessageThrowsArgumentException() {
+    [Fact]
+    public void WithNotReadableAndMessageThrowsArgumentException() {
 
-		Stream argumentValue = Substitute.For<Stream>();
-		_ = argumentValue.CanSeek.Returns( false );
+        Stream argumentValue = Substitute.For<Stream>();
+        _ = argumentValue.CanSeek.Returns( false );
 
-		string name = "Name";
-		string message = "Message";
+        string name = "Name";
+        string message = "Message";
 
-		ArgumentException exception = Assert.Throws<ArgumentException>( name, () => {
+        ArgumentException exception = Assert.Throws<ArgumentException>( name, () => {
 
-			ArgInfo<Stream> argInfo = new( argumentValue, name, message );
-			_ = argInfo.CanSeek();
-		} );
+            ArgInfo<Stream> argInfo = new( argumentValue, name, message );
+            _ = argInfo.CanSeek();
+        } );
 
-		Assert.StartsWith( message, exception.Message );
-	}
+        Assert.StartsWith( message, exception.Message );
+    }
 }

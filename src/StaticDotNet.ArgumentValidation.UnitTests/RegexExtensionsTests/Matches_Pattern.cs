@@ -4,160 +4,160 @@ namespace StaticDotNet.ArgumentValidation.UnitTests.RegexExtensionsTests;
 
 public sealed class Matches_Pattern {
 
-	[Fact]
-	public void ReturnsCorrectly() {
+    [Fact]
+    public void ReturnsCorrectly() {
 
-		string argumentValue = "1";
-		string pattern = @"\d";
+        string argumentValue = "1";
+        string pattern = @"\d";
 
-		ArgInfo<string> argInfo = new( argumentValue, "Name", null );
+        ArgInfo<string> argInfo = new( argumentValue, "Name", null );
 
-		ArgInfo<string> result = argInfo.Matches( pattern );
+        ArgInfo<string> result = argInfo.Matches( pattern );
 
-		ArgInfoAssertions.Equal( argInfo, result );
-	}
+        ArgInfoAssertions.Equal( argInfo, result );
+    }
 
-	[Fact]
-	public void WithOptionsAndMatchTimeOutReturnsCorrectly() {
+    [Fact]
+    public void WithOptionsAndMatchTimeOutReturnsCorrectly() {
 
-		string argumentValue = "A";
-		string pattern = "a";
-		RegexOptions options = RegexOptions.IgnoreCase;
-		var matchTimeout = TimeSpan.FromSeconds( 5 );
+        string argumentValue = "A";
+        string pattern = "a";
+        RegexOptions options = RegexOptions.IgnoreCase;
+        var matchTimeout = TimeSpan.FromSeconds( 5 );
 
-		ArgInfo<string> argInfo = new( argumentValue, null, null );
+        ArgInfo<string> argInfo = new( argumentValue, null, null );
 
-		ArgInfo<string> result = argInfo.Matches( pattern, options, matchTimeout );
+        ArgInfo<string> result = argInfo.Matches( pattern, options, matchTimeout );
 
-		ArgInfoAssertions.Equal( argInfo, result );
-	}
+        ArgInfoAssertions.Equal( argInfo, result );
+    }
 
-	[Fact]
-	public void WithValueNotMatchThrowsArgumentException() {
+    [Fact]
+    public void WithValueNotMatchThrowsArgumentException() {
 
-		string argumentValue = "a";
-		string name = "Name";
-		string pattern = @"\d";
+        string argumentValue = "a";
+        string name = "Name";
+        string pattern = @"\d";
 
-		ArgumentException excetion = Assert.Throws<ArgumentException>( name, () => {
-			ArgInfo<string> argInfo = new( argumentValue, name, null );
-			_ = argInfo.Matches( pattern );
-		} );
+        ArgumentException excetion = Assert.Throws<ArgumentException>( name, () => {
+            ArgInfo<string> argInfo = new( argumentValue, name, null );
+            _ = argInfo.Matches( pattern );
+        } );
 
-		string expectedMessage = $"Value \"{argumentValue}\" must match the regex \"{pattern}\".";
+        string expectedMessage = $"Value \"{argumentValue}\" must match the regex \"{pattern}\".";
 
-		Assert.StartsWith( expectedMessage, excetion.Message );
-	}
+        Assert.StartsWith( expectedMessage, excetion.Message );
+    }
 
-	[Fact]
-	public void WithNullPatternThrowsArgumentException() {
+    [Fact]
+    public void WithNullPatternThrowsArgumentException() {
 
-		string argumentValue = "a";
-		string name = "Name";
-		string pattern = null!;
+        string argumentValue = "a";
+        string name = "Name";
+        string pattern = null!;
 
-		ArgumentException excetion = Assert.Throws<ArgumentException>( name, () => {
-			ArgInfo<string> argInfo = new( argumentValue, name, null );
-			_ = argInfo.Matches( pattern );
-		} );
+        ArgumentException excetion = Assert.Throws<ArgumentException>( name, () => {
+            ArgInfo<string> argInfo = new( argumentValue, name, null );
+            _ = argInfo.Matches( pattern );
+        } );
 
-		string expectedMessage = $"Value \"{argumentValue}\" must match the regex <null>.";
+        string expectedMessage = $"Value \"{argumentValue}\" must match the regex <null>.";
 
-		Assert.StartsWith( expectedMessage, excetion.Message );
-	}
+        Assert.StartsWith( expectedMessage, excetion.Message );
+    }
 
-	[Fact]
-	public void WithValueNotMatchAndMessageThrowsArgumentException() {
+    [Fact]
+    public void WithValueNotMatchAndMessageThrowsArgumentException() {
 
-		string argumentValue = "a";
-		string name = "Name";
-		string message = "Message";
-		string pattern = @"\d";
+        string argumentValue = "a";
+        string name = "Name";
+        string message = "Message";
+        string pattern = @"\d";
 
-		ArgumentException excetion = Assert.Throws<ArgumentException>( name, () => {
-			ArgInfo<string> argInfo = new( argumentValue, name, message );
-			_ = argInfo.Matches( pattern );
-		} );
+        ArgumentException excetion = Assert.Throws<ArgumentException>( name, () => {
+            ArgInfo<string> argInfo = new( argumentValue, name, message );
+            _ = argInfo.Matches( pattern );
+        } );
 
-		Assert.StartsWith( message, excetion.Message );
-	}
+        Assert.StartsWith( message, excetion.Message );
+    }
 
-	[Fact]
-	public void WithOutMatchReturnsCorrectly() {
+    [Fact]
+    public void WithOutMatchReturnsCorrectly() {
 
-		string argumentValue = "1";
-		string pattern = @"\d";
+        string argumentValue = "1";
+        string pattern = @"\d";
 
-		ArgInfo<string> argInfo = new( argumentValue, "Name", null );
+        ArgInfo<string> argInfo = new( argumentValue, "Name", null );
 
-		ArgInfo<string> result = argInfo.Matches( pattern, out Match match );
+        ArgInfo<string> result = argInfo.Matches( pattern, out Match match );
 
-		ArgInfoAssertions.Equal( argInfo, result );
-		Assert.NotSame( Match.Empty, match );
-	}
+        ArgInfoAssertions.Equal( argInfo, result );
+        Assert.NotSame( Match.Empty, match );
+    }
 
-	[Fact]
-	public void WithOutMatchWithOptionsAndMatchTimeOutReturnsCorrectly() {
+    [Fact]
+    public void WithOutMatchWithOptionsAndMatchTimeOutReturnsCorrectly() {
 
-		string argumentValue = "A";
-		string pattern = "a";
-		RegexOptions options = RegexOptions.IgnoreCase;
-		var matchTimeout = TimeSpan.FromSeconds( 5 );
+        string argumentValue = "A";
+        string pattern = "a";
+        RegexOptions options = RegexOptions.IgnoreCase;
+        var matchTimeout = TimeSpan.FromSeconds( 5 );
 
-		ArgInfo<string> argInfo = new( argumentValue, null, null );
+        ArgInfo<string> argInfo = new( argumentValue, null, null );
 
-		ArgInfo<string> result = argInfo.Matches( pattern, out Match _, options, matchTimeout );
+        ArgInfo<string> result = argInfo.Matches( pattern, out Match _, options, matchTimeout );
 
-		ArgInfoAssertions.Equal( argInfo, result );
-	}
+        ArgInfoAssertions.Equal( argInfo, result );
+    }
 
-	[Fact]
-	public void WithOutMatchWithValueNotMatchThrowsArgumentException() {
+    [Fact]
+    public void WithOutMatchWithValueNotMatchThrowsArgumentException() {
 
-		string argumentValue = "a";
-		string name = "Name";
-		string pattern = @"\d";
+        string argumentValue = "a";
+        string name = "Name";
+        string pattern = @"\d";
 
-		ArgumentException excetion = Assert.Throws<ArgumentException>( name, () => {
-			ArgInfo<string> argInfo = new( argumentValue, name, null );
-			_ = argInfo.Matches( pattern, out Match _ );
-		} );
+        ArgumentException excetion = Assert.Throws<ArgumentException>( name, () => {
+            ArgInfo<string> argInfo = new( argumentValue, name, null );
+            _ = argInfo.Matches( pattern, out Match _ );
+        } );
 
-		string expectedMessage = $"Value \"{argumentValue}\" must match the regex \"{pattern}\".";
+        string expectedMessage = $"Value \"{argumentValue}\" must match the regex \"{pattern}\".";
 
-		Assert.StartsWith( expectedMessage, excetion.Message );
-	}
+        Assert.StartsWith( expectedMessage, excetion.Message );
+    }
 
-	[Fact]
-	public void WithOutMatchWithNullPatternThrowsArgumentException() {
+    [Fact]
+    public void WithOutMatchWithNullPatternThrowsArgumentException() {
 
-		string argumentValue = "a";
-		string name = "Name";
-		string pattern = null!;
+        string argumentValue = "a";
+        string name = "Name";
+        string pattern = null!;
 
-		ArgumentException excetion = Assert.Throws<ArgumentException>( name, () => {
-			ArgInfo<string> argInfo = new( argumentValue, name, null );
-			_ = argInfo.Matches( pattern, out Match _ );
-		} );
+        ArgumentException excetion = Assert.Throws<ArgumentException>( name, () => {
+            ArgInfo<string> argInfo = new( argumentValue, name, null );
+            _ = argInfo.Matches( pattern, out Match _ );
+        } );
 
-		string expectedMessage = $"Value \"{argumentValue}\" must match the regex <null>.";
+        string expectedMessage = $"Value \"{argumentValue}\" must match the regex <null>.";
 
-		Assert.StartsWith( expectedMessage, excetion.Message );
-	}
+        Assert.StartsWith( expectedMessage, excetion.Message );
+    }
 
-	[Fact]
-	public void WithOutMatchWithValueNotMatchAndMessageThrowsArgumentException() {
+    [Fact]
+    public void WithOutMatchWithValueNotMatchAndMessageThrowsArgumentException() {
 
-		string argumentValue = "a";
-		string name = "Name";
-		string message = "Message";
-		string pattern = @"\d";
+        string argumentValue = "a";
+        string name = "Name";
+        string message = "Message";
+        string pattern = @"\d";
 
-		ArgumentException excetion = Assert.Throws<ArgumentException>( name, () => {
-			ArgInfo<string> argInfo = new( argumentValue, name, message );
-			_ = argInfo.Matches( pattern, out Match _ );
-		} );
+        ArgumentException excetion = Assert.Throws<ArgumentException>( name, () => {
+            ArgInfo<string> argInfo = new( argumentValue, name, message );
+            _ = argInfo.Matches( pattern, out Match _ );
+        } );
 
-		Assert.StartsWith( message, excetion.Message );
-	}
+        Assert.StartsWith( message, excetion.Message );
+    }
 }

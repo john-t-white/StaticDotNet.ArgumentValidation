@@ -4,50 +4,50 @@ namespace StaticDotNet.ArgumentValidation.UnitTests.ReadOnlySpanCharParsingExten
 
 public sealed class Parse {
 
-	[Fact]
-	public void ReturnsCorrectly() {
+    [Fact]
+    public void ReturnsCorrectly() {
 
-		ReadOnlySpanArgInfo<char> argInfo = new( "1", "Name", "Message" );
+        ReadOnlySpanArgInfo<char> argInfo = new( "1", "Name", "Message" );
 
-		ArgInfo<int> result = argInfo.Parse<int>();
+        ArgInfo<int> result = argInfo.Parse<int>();
 
-		int expectedValue = int.Parse( argInfo.Value );
+        int expectedValue = int.Parse( argInfo.Value );
 
-		Assert.Equal( expectedValue, result.Value );
-		Assert.Equal( argInfo.Name, result.Name );
-		Assert.Equal( argInfo.Message, result.Message );
-	}
+        Assert.Equal( expectedValue, result.Value );
+        Assert.Equal( argInfo.Name, result.Name );
+        Assert.Equal( argInfo.Message, result.Message );
+    }
 
-	[Fact]
-	public void WithEmptyValueThrowsArgumentException() {
+    [Fact]
+    public void WithEmptyValueThrowsArgumentException() {
 
-		string argumentValue = "a";
-		string name = "Name";
+        string argumentValue = "a";
+        string name = "Name";
 
-		ArgumentException exception = Assert.Throws<ArgumentException>( name, () => {
-			ReadOnlySpanArgInfo<char> argInfo = new( argumentValue, name, null );
-			_ = argInfo.Parse<int>();
-		} );
+        ArgumentException exception = Assert.Throws<ArgumentException>( name, () => {
+            ReadOnlySpanArgInfo<char> argInfo = new( argumentValue, name, null );
+            _ = argInfo.Parse<int>();
+        } );
 
-		string expectedMessage = $"Value \"{argumentValue}\" must be parsable to \"{typeof( int ).FullName}\".";
+        string expectedMessage = $"Value \"{argumentValue}\" must be parsable to \"{typeof( int ).FullName}\".";
 
-		Assert.StartsWith( expectedMessage, exception.Message );
-	}
+        Assert.StartsWith( expectedMessage, exception.Message );
+    }
 
-	[Fact]
-	public void WithInvalidValueAndMessageThrowsArgumentException() {
+    [Fact]
+    public void WithInvalidValueAndMessageThrowsArgumentException() {
 
-		string argumentValue = "a";
-		string name = "Name";
-		string message = "Message";
+        string argumentValue = "a";
+        string name = "Name";
+        string message = "Message";
 
-		ArgumentException exception = Assert.Throws<ArgumentException>( name, () => {
-			ReadOnlySpanArgInfo<char> argInfo = new( argumentValue, name, message );
-			_ = argInfo.Parse<int>();
-		} );
+        ArgumentException exception = Assert.Throws<ArgumentException>( name, () => {
+            ReadOnlySpanArgInfo<char> argInfo = new( argumentValue, name, message );
+            _ = argInfo.Parse<int>();
+        } );
 
-		Assert.StartsWith( message, exception.Message );
-	}
+        Assert.StartsWith( message, exception.Message );
+    }
 }
 
 #endif

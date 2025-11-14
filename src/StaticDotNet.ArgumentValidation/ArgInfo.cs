@@ -14,38 +14,38 @@ namespace StaticDotNet.ArgumentValidation;
 /// <param name="message">The exception message.  Null for for default message.</param>
 [StructLayout( LayoutKind.Auto )]
 public readonly ref struct ArgInfo<T>( T value, string? name, string? message )
-	where T : notnull {
+    where T : notnull {
 
-	/// <summary>
-	/// Returns the value of the argument.
-	/// </summary>
-	public readonly T Value { get; } = value;
+    /// <summary>
+    /// Returns the value of the argument.
+    /// </summary>
+    public readonly T Value { get; } = value;
 
-	/// <summary>
-	/// Returns the name of the argument.
-	/// </summary>
-	public readonly string? Name { get; } = name;
+    /// <summary>
+    /// Returns the name of the argument.
+    /// </summary>
+    public readonly string? Name { get; } = name;
 
-	/// <summary>
-	/// Returns the exception message. If this is null, the default exception message should be used.
-	/// </summary>
-	public readonly string? Message { get; } = message;
+    /// <summary>
+    /// Returns the exception message. If this is null, the default exception message should be used.
+    /// </summary>
+    public readonly string? Message { get; } = message;
 
-	/// <summary>
-	/// Casts an argument to the type <typeparamref name="TType"/>, otherwise an <see cref="ArgumentException"/> is thrown.
-	/// </summary>
-	/// <typeparam name="TType">The type to cast to.</typeparam>
-	/// <returns>A new <typeparamref name="TType"/> <see cref="ArgInfo{TType}"/>.</returns>
-	/// <exception cref="ArgumentException">Thrown when <see cref="Value"/> is not able to be cast to <typeparamref name="TType"/>.</exception>
-	public ArgInfo<TType> As<TType>()
-		where TType : notnull {
+    /// <summary>
+    /// Casts an argument to the type <typeparamref name="TType"/>, otherwise an <see cref="ArgumentException"/> is thrown.
+    /// </summary>
+    /// <typeparam name="TType">The type to cast to.</typeparam>
+    /// <returns>A new <typeparamref name="TType"/> <see cref="ArgInfo{TType}"/>.</returns>
+    /// <exception cref="ArgumentException">Thrown when <see cref="Value"/> is not able to be cast to <typeparamref name="TType"/>.</exception>
+    public ArgInfo<TType> As<TType>()
+        where TType : notnull {
 
-		if( Value is TType asValue ) {
-			return new( asValue, Name, Message );
-		}
+        if( Value is TType asValue ) {
+            return new( asValue, Name, Message );
+        }
 
-		string message = Message ?? ExceptionMessageFormatter.Format( ExceptionMessages.VALUE_MUST_BE_ASSIGNABLE_TO, typeof( T ).FullName, typeof( TType ).FullName );
+        string message = Message ?? ExceptionMessageFormatter.Format( ExceptionMessages.VALUE_MUST_BE_ASSIGNABLE_TO, typeof( T ).FullName, typeof( TType ).FullName );
 
-		throw new ArgumentException( message, Name );
-	}
+        throw new ArgumentException( message, Name );
+    }
 }

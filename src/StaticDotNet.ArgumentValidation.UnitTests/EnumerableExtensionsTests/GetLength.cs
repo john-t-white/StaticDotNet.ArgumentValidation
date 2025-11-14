@@ -5,152 +5,152 @@ namespace StaticDotNet.ArgumentValidation.UnitTests.EnumerableExtensionsTests;
 
 public sealed class GetLength {
 
-	[Fact]
-	public void StringValueReturnsCorrectly() {
+    [Fact]
+    public void StringValueReturnsCorrectly() {
 
-		string value = "12345";
-		int maxEnumeratorIterations = 0;
+        string value = "12345";
+        int maxEnumeratorIterations = 0;
 
-		int result = EnumerableExtensions.GetLength( value, maxEnumeratorIterations );
+        int result = EnumerableExtensions.GetLength( value, maxEnumeratorIterations );
 
-		Assert.Equal( value.Length, result );
-	}
+        Assert.Equal( value.Length, result );
+    }
 
-	[Fact]
-	public void ArrayValueReturnsCorrectly() {
+    [Fact]
+    public void ArrayValueReturnsCorrectly() {
 
-		Array value = new int[] { 1, 2, 3 };
-		int maxEnumeratorIterations = 0;
+        Array value = new int[] { 1, 2, 3 };
+        int maxEnumeratorIterations = 0;
 
-		int result = EnumerableExtensions.GetLength( value, maxEnumeratorIterations );
+        int result = EnumerableExtensions.GetLength( value, maxEnumeratorIterations );
 
-		Assert.Equal( value.Length, result );
-	}
+        Assert.Equal( value.Length, result );
+    }
 
-	[Fact]
-	public void ClassArrayValueReturnsCorrectly() {
+    [Fact]
+    public void ClassArrayValueReturnsCorrectly() {
 
-		object[] value = new object[] { new(), new(), new() };
-		int maxEnumeratorIterations = 0;
+        object[] value = new object[] { new(), new(), new() };
+        int maxEnumeratorIterations = 0;
 
-		int result = EnumerableExtensions.GetLength( value, maxEnumeratorIterations );
+        int result = EnumerableExtensions.GetLength( value, maxEnumeratorIterations );
 
-		Assert.Equal( value.Length, result );
-	}
+        Assert.Equal( value.Length, result );
+    }
 
-	[Fact]
-	public void StructArrayValueReturnsCorrectly() {
+    [Fact]
+    public void StructArrayValueReturnsCorrectly() {
 
-		int[] value = new int[] { 1, 2, 3 };
-		int maxEnumeratorIterations = 0;
+        int[] value = new int[] { 1, 2, 3 };
+        int maxEnumeratorIterations = 0;
 
-		int result = EnumerableExtensions.GetLength( value, maxEnumeratorIterations );
+        int result = EnumerableExtensions.GetLength( value, maxEnumeratorIterations );
 
-		Assert.Equal( value.Length, result );
-	}
+        Assert.Equal( value.Length, result );
+    }
 
-	[Fact]
-	public void IListValueReturnsCorrectly() {
+    [Fact]
+    public void IListValueReturnsCorrectly() {
 
-		IList<int> value = new List<int>() { 1, 2, 3 };
-		int maxEnumeratorIterations = 0;
+        IList<int> value = new List<int>() { 1, 2, 3 };
+        int maxEnumeratorIterations = 0;
 
-		int result = EnumerableExtensions.GetLength( value, maxEnumeratorIterations );
+        int result = EnumerableExtensions.GetLength( value, maxEnumeratorIterations );
 
-		Assert.Equal( value.Count, result );
-	}
+        Assert.Equal( value.Count, result );
+    }
 
-	[Fact]
-	public void IDictionaryValueReturnsCorrectly() {
+    [Fact]
+    public void IDictionaryValueReturnsCorrectly() {
 
-		IDictionary<string, object> value = new Dictionary<string, object>() {
-			{ "1", new() },
-			{ "2", new() },
-			{ "3", new() }
-		};
-		int maxEnumeratorIterations = 0;
+        IDictionary<string, object> value = new Dictionary<string, object>() {
+            { "1", new() },
+            { "2", new() },
+            { "3", new() }
+        };
+        int maxEnumeratorIterations = 0;
 
-		int result = EnumerableExtensions.GetLength( value, maxEnumeratorIterations );
+        int result = EnumerableExtensions.GetLength( value, maxEnumeratorIterations );
 
-		Assert.Equal( value.Count, result );
-	}
+        Assert.Equal( value.Count, result );
+    }
 
-	[Fact]
-	public void ICollectionValueReturnsCorrectly() {
+    [Fact]
+    public void ICollectionValueReturnsCorrectly() {
 
-		ICollection value = new StubCollection( new int[] { 1, 2, 3 } );
-		int maxEnumeratorIterations = 0;
+        ICollection value = new StubCollection( new int[] { 1, 2, 3 } );
+        int maxEnumeratorIterations = 0;
 
-		int result = EnumerableExtensions.GetLength( value, maxEnumeratorIterations );
+        int result = EnumerableExtensions.GetLength( value, maxEnumeratorIterations );
 
-		Assert.Equal( value.Count, result );
-	}
+        Assert.Equal( value.Count, result );
+    }
 
-	[Fact]
-	public void IReadOnlyCollectionValueReturnsCorrectly() {
+    [Fact]
+    public void IReadOnlyCollectionValueReturnsCorrectly() {
 
-		ReadOnlyCollection<int> value = ( new List<int>() { 1, 2, 3 } ).AsReadOnly();
-		int maxEnumeratorIterations = 0;
+        ReadOnlyCollection<int> value = ( new List<int>() { 1, 2, 3 } ).AsReadOnly();
+        int maxEnumeratorIterations = 0;
 
-		int result = EnumerableExtensions.GetLength( value, maxEnumeratorIterations );
+        int result = EnumerableExtensions.GetLength( value, maxEnumeratorIterations );
 
-		Assert.Equal( value.Count, result );
-	}
+        Assert.Equal( value.Count, result );
+    }
 
-	[Fact]
-	public void IEnumerableReturnsCorrectly() {
+    [Fact]
+    public void IEnumerableReturnsCorrectly() {
 
-		int[] enumerable = new int[] { 1, 2, 3 };
-		EnumerableTestClass value = new( enumerable );
-		int maxEnumeratorIterations = enumerable.Length;
+        int[] enumerable = new int[] { 1, 2, 3 };
+        EnumerableTestClass value = new( enumerable );
+        int maxEnumeratorIterations = enumerable.Length;
 
-		int result = EnumerableExtensions.GetLength( value, maxEnumeratorIterations );
+        int result = EnumerableExtensions.GetLength( value, maxEnumeratorIterations );
 
-		Assert.Equal( enumerable.Length, result );
-	}
+        Assert.Equal( enumerable.Length, result );
+    }
 
-	[Fact]
-	public void IEnumerableWithNullMaxEnumeratorIterationsReturnsCorrectly() {
+    [Fact]
+    public void IEnumerableWithNullMaxEnumeratorIterationsReturnsCorrectly() {
 
-		char[] enumerable = new string( 'A', 1000 ).ToCharArray();
-		EnumerableTestClass value = new( enumerable );
-		int? maxEnumeratorIterations = null;
+        char[] enumerable = new string( 'A', 1000 ).ToCharArray();
+        EnumerableTestClass value = new( enumerable );
+        int? maxEnumeratorIterations = null;
 
-		int result = EnumerableExtensions.GetLength( value, maxEnumeratorIterations );
+        int result = EnumerableExtensions.GetLength( value, maxEnumeratorIterations );
 
-		Assert.Equal( enumerable.Length, result );
-	}
+        Assert.Equal( enumerable.Length, result );
+    }
 
-	[Fact]
-	public void EnumeratorExceedsMaxEnumeratorIterationsReturnsCorrectly() {
+    [Fact]
+    public void EnumeratorExceedsMaxEnumeratorIterationsReturnsCorrectly() {
 
-		int[] enumerable = new int[] { 1, 2, 3 };
-		EnumerableTestClass value = new( enumerable );
-		int maxEnumeratorIterations = 1;
+        int[] enumerable = new int[] { 1, 2, 3 };
+        EnumerableTestClass value = new( enumerable );
+        int maxEnumeratorIterations = 1;
 
-		int result = EnumerableExtensions.GetLength( value, maxEnumeratorIterations );
+        int result = EnumerableExtensions.GetLength( value, maxEnumeratorIterations );
 
-		Assert.Equal( maxEnumeratorIterations, result );
-	}
+        Assert.Equal( maxEnumeratorIterations, result );
+    }
 
-	public class StubCollection
-		: ICollection {
+    public class StubCollection
+        : ICollection {
 
-		public StubCollection( Array array ) {
+        public StubCollection( Array array ) {
 
-			Array = array;
-		}
+            Array = array;
+        }
 
-		public Array Array { get; }
+        public Array Array { get; }
 
-		public int Count => Array.Length;
+        public int Count => Array.Length;
 
-		public bool IsSynchronized => Array.IsSynchronized;
+        public bool IsSynchronized => Array.IsSynchronized;
 
-		public object SyncRoot => Array.SyncRoot;
+        public object SyncRoot => Array.SyncRoot;
 
-		public void CopyTo( Array array, int index ) => Array.CopyTo( array, index );
+        public void CopyTo( Array array, int index ) => Array.CopyTo( array, index );
 
-		public IEnumerator GetEnumerator() => Array.GetEnumerator();
-	}
+        public IEnumerator GetEnumerator() => Array.GetEnumerator();
+    }
 }

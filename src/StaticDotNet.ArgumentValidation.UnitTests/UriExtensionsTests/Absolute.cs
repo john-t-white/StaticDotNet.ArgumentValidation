@@ -2,74 +2,74 @@
 
 public sealed class Absolute {
 
-	[Fact]
-	public void ReturnsCorrectly() {
+    [Fact]
+    public void ReturnsCorrectly() {
 
-		Uri argumentValue = new( "http://www.example.com/", UriKind.Absolute );
-		ArgInfo<Uri> argInfo = new( argumentValue, null, null );
+        Uri argumentValue = new( "http://www.example.com/", UriKind.Absolute );
+        ArgInfo<Uri> argInfo = new( argumentValue, null, null );
 
-		ArgInfo<Uri> result = argInfo.Absolute();
+        ArgInfo<Uri> result = argInfo.Absolute();
 
-		ArgInfoAssertions.Equal( argInfo, result );
-	}
+        ArgInfoAssertions.Equal( argInfo, result );
+    }
 
-	[Fact]
-	public void WithSchemeReturnsCorrectly() {
+    [Fact]
+    public void WithSchemeReturnsCorrectly() {
 
-		string scheme = Uri.UriSchemeHttp;
-		Uri argumentValue = new( "http://www.example.com/", UriKind.Absolute );
-		ArgInfo<Uri> argInfo = new( argumentValue, null, null );
+        string scheme = Uri.UriSchemeHttp;
+        Uri argumentValue = new( "http://www.example.com/", UriKind.Absolute );
+        ArgInfo<Uri> argInfo = new( argumentValue, null, null );
 
-		ArgInfo<Uri> result = argInfo.Absolute( scheme );
+        ArgInfo<Uri> result = argInfo.Absolute( scheme );
 
-		ArgInfoAssertions.Equal( argInfo, result );
-	}
+        ArgInfoAssertions.Equal( argInfo, result );
+    }
 
-	[Fact]
-	public void WithNotAbsoluteThrowsArgumentException() {
+    [Fact]
+    public void WithNotAbsoluteThrowsArgumentException() {
 
-		Uri argumentValue = new( "relative", UriKind.Relative );
-		string name = "Name";
+        Uri argumentValue = new( "relative", UriKind.Relative );
+        string name = "Name";
 
-		ArgumentException exception = Assert.Throws<ArgumentException>( name, () => {
-			ArgInfo<Uri> argInfo = new( argumentValue, name, null );
-			_ = argInfo.Absolute();
-		} );
+        ArgumentException exception = Assert.Throws<ArgumentException>( name, () => {
+            ArgInfo<Uri> argInfo = new( argumentValue, name, null );
+            _ = argInfo.Absolute();
+        } );
 
-		string expectedMessage = $"\"{argumentValue}\" must be an absolute uri.";
+        string expectedMessage = $"\"{argumentValue}\" must be an absolute uri.";
 
-		Assert.StartsWith( expectedMessage, exception.Message );
-	}
+        Assert.StartsWith( expectedMessage, exception.Message );
+    }
 
-	[Fact]
-	public void WithNotSchemeThrowsArgumentException() {
+    [Fact]
+    public void WithNotSchemeThrowsArgumentException() {
 
-		string scheme = Uri.UriSchemeHttps;
-		Uri argumentValue = new( "http://www.example.com/", UriKind.Absolute );
-		string name = "Name";
+        string scheme = Uri.UriSchemeHttps;
+        Uri argumentValue = new( "http://www.example.com/", UriKind.Absolute );
+        string name = "Name";
 
-		ArgumentException exception = Assert.Throws<ArgumentException>( name, () => {
-			ArgInfo<Uri> argInfo = new( argumentValue, name, null );
-			_ = argInfo.Absolute( scheme );
-		} );
+        ArgumentException exception = Assert.Throws<ArgumentException>( name, () => {
+            ArgInfo<Uri> argInfo = new( argumentValue, name, null );
+            _ = argInfo.Absolute( scheme );
+        } );
 
-		string expectedMessage = $"\"{argumentValue}\" must be an absolute uri with scheme \"{scheme}\".";
+        string expectedMessage = $"\"{argumentValue}\" must be an absolute uri with scheme \"{scheme}\".";
 
-		Assert.StartsWith( expectedMessage, exception.Message );
-	}
+        Assert.StartsWith( expectedMessage, exception.Message );
+    }
 
-	[Fact]
-	public void WithNotAbsoluteAndMessageThrowsArgumentException() {
+    [Fact]
+    public void WithNotAbsoluteAndMessageThrowsArgumentException() {
 
-		Uri argumentValue = new( "relative", UriKind.Relative );
-		string name = "Name";
-		string message = "Message";
+        Uri argumentValue = new( "relative", UriKind.Relative );
+        string name = "Name";
+        string message = "Message";
 
-		ArgumentException exception = Assert.Throws<ArgumentException>( name, () => {
-			ArgInfo<Uri> argInfo = new( argumentValue, name, message );
-			_ = argInfo.Absolute();
-		} );
+        ArgumentException exception = Assert.Throws<ArgumentException>( name, () => {
+            ArgInfo<Uri> argInfo = new( argumentValue, name, message );
+            _ = argInfo.Absolute();
+        } );
 
-		Assert.StartsWith( message, exception.Message );
-	}
+        Assert.StartsWith( message, exception.Message );
+    }
 }

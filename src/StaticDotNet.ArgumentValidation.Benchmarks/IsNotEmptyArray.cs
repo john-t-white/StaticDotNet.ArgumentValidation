@@ -13,31 +13,31 @@ namespace StaticDotNet.ArgumentValidation.Benchmarks;
 [SimpleJob( RuntimeMoniker.Net481 )]
 public class IsNotEmptyArray {
 
-	public int[] argumentValue = new[] { 1, 2, 3 };
+    public int[] argumentValue = new[] { 1, 2, 3 };
 
-	[Benchmark( Baseline = true )]
-	public int[] Baseline() => argumentValue.Length > 0 ? argumentValue : throw new ArgumentException();
+    [Benchmark( Baseline = true )]
+    public int[] Baseline() => argumentValue.Length > 0 ? argumentValue : throw new ArgumentException();
 
-	[Benchmark]
-	public int[] ArgumentValidation() => Arg.IsNotNull( argumentValue ).NotEmpty().Value;
+    [Benchmark]
+    public int[] ArgumentValidation() => Arg.IsNotNull( argumentValue ).NotEmpty().Value;
 
-	[Benchmark]
-	public int[] Dawn_Guard() => Dawn.Guard.Argument( argumentValue ).NotEmpty();
+    [Benchmark]
+    public int[] Dawn_Guard() => Dawn.Guard.Argument( argumentValue ).NotEmpty();
 
-	[Benchmark]
-	public int[] Ardalis_GuardClauses() => ( int[] )Ardalis.GuardClauses.Guard.Against.NullOrEmpty( argumentValue, nameof( argumentValue ) );
+    [Benchmark]
+    public int[] Ardalis_GuardClauses() => ( int[] )Ardalis.GuardClauses.Guard.Against.NullOrEmpty( argumentValue, nameof( argumentValue ) );
 
-	[Benchmark]
-	public int[] CommunityToolkit_Diagnostics() {
-		CommunityToolkit.Diagnostics.Guard.IsNotEmpty( argumentValue );
+    [Benchmark]
+    public int[] CommunityToolkit_Diagnostics() {
+        CommunityToolkit.Diagnostics.Guard.IsNotEmpty( argumentValue );
 
-		return argumentValue;
-	}
+        return argumentValue;
+    }
 
-	[Benchmark]
-	public int[] Ensure_That() {
-		Ensure.That( argumentValue ).HasItems();
+    [Benchmark]
+    public int[] Ensure_That() {
+        Ensure.That( argumentValue ).HasItems();
 
-		return argumentValue;
-	}
+        return argumentValue;
+    }
 }

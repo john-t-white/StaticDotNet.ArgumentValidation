@@ -4,49 +4,49 @@ namespace StaticDotNet.ArgumentValidation.UnitTests.StringExtensionsTests;
 
 public sealed class EndsWith_Char {
 
-	[Fact]
-	public void ReturnsCorrectly() {
+    [Fact]
+    public void ReturnsCorrectly() {
 
-		ArgInfo<string> argInfo = new( "Value", null, null );
-		char value = 'e';
+        ArgInfo<string> argInfo = new( "Value", null, null );
+        char value = 'e';
 
-		ArgInfo<string> result = argInfo.EndsWith( value );
+        ArgInfo<string> result = argInfo.EndsWith( value );
 
-		ArgInfoAssertions.Equal( argInfo, result );
-	}
+        ArgInfoAssertions.Equal( argInfo, result );
+    }
 
-	[Fact]
-	public void WithValueNotEqualToValueThrowsArgumentException() {
+    [Fact]
+    public void WithValueNotEqualToValueThrowsArgumentException() {
 
-		string argumentValue = "Value";
-		string name = "Name";
-		char value = 'm';
+        string argumentValue = "Value";
+        string name = "Name";
+        char value = 'm';
 
-		ArgumentException exception = Assert.Throws<ArgumentException>( name, () => {
-			ArgInfo<string> argInfo = new( argumentValue, name, null );
-			_ = argInfo.EndsWith( value );
-		} );
+        ArgumentException exception = Assert.Throws<ArgumentException>( name, () => {
+            ArgInfo<string> argInfo = new( argumentValue, name, null );
+            _ = argInfo.EndsWith( value );
+        } );
 
-		string expectedMessage = $"Value \"{argumentValue}\" must end with \"{value}\".";
+        string expectedMessage = $"Value \"{argumentValue}\" must end with \"{value}\".";
 
-		Assert.StartsWith( expectedMessage, exception.Message );
-	}
+        Assert.StartsWith( expectedMessage, exception.Message );
+    }
 
-	[Fact]
-	public void WithInvalidValueAndMessageThrowsArgumentException() {
+    [Fact]
+    public void WithInvalidValueAndMessageThrowsArgumentException() {
 
-		string argumentValue = "Value";
-		string name = "Name";
-		string message = "Message";
-		char value = 'm';
+        string argumentValue = "Value";
+        string name = "Name";
+        string message = "Message";
+        char value = 'm';
 
-		ArgumentException exception = Assert.Throws<ArgumentException>( name, () => {
-			ArgInfo<string> argInfo = new( argumentValue, name, message );
-			_ = argInfo.EndsWith( value );
-		} );
+        ArgumentException exception = Assert.Throws<ArgumentException>( name, () => {
+            ArgInfo<string> argInfo = new( argumentValue, name, message );
+            _ = argInfo.EndsWith( value );
+        } );
 
-		Assert.StartsWith( message, exception.Message );
-	}
+        Assert.StartsWith( message, exception.Message );
+    }
 }
 
 #endif

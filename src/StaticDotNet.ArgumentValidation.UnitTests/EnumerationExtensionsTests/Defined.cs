@@ -2,50 +2,50 @@
 
 public sealed class Defined {
 
-	[Fact]
-	public void ReturnsCorrectly() {
+    [Fact]
+    public void ReturnsCorrectly() {
 
-		ArgInfo<StubEnum> argInfo = new( StubEnum.Value1, null, null );
+        ArgInfo<StubEnum> argInfo = new( StubEnum.Value1, null, null );
 
-		ArgInfo<StubEnum> result = argInfo.Defined();
+        ArgInfo<StubEnum> result = argInfo.Defined();
 
-		ArgInfoAssertions.Equal( argInfo, result );
-	}
+        ArgInfoAssertions.Equal( argInfo, result );
+    }
 
-	[Fact]
-	public void WithNotDefinedThrowsArgumentException() {
+    [Fact]
+    public void WithNotDefinedThrowsArgumentException() {
 
-		StubEnum value = ( StubEnum )10;
-		string name = "Name";
+        StubEnum value = ( StubEnum )10;
+        string name = "Name";
 
-		ArgumentException exception = Assert.Throws<ArgumentException>( name, () => {
-			ArgInfo<StubEnum> argInfo = new( value, name, null );
-			_ = argInfo.Defined();
-		} );
+        ArgumentException exception = Assert.Throws<ArgumentException>( name, () => {
+            ArgInfo<StubEnum> argInfo = new( value, name, null );
+            _ = argInfo.Defined();
+        } );
 
-		string expectedMessage = "Value is not defined.";
+        string expectedMessage = "Value is not defined.";
 
-		Assert.StartsWith( expectedMessage, exception.Message );
-	}
+        Assert.StartsWith( expectedMessage, exception.Message );
+    }
 
-	[Fact]
-	public void WithNotDefinedAndMessageThrowsArgumentException() {
+    [Fact]
+    public void WithNotDefinedAndMessageThrowsArgumentException() {
 
-		StubEnum value = ( StubEnum )10;
-		string name = "Name";
-		string message = "Message";
+        StubEnum value = ( StubEnum )10;
+        string name = "Name";
+        string message = "Message";
 
-		ArgumentException exception = Assert.Throws<ArgumentException>( name, () => {
-			ArgInfo<StubEnum> argInfo = new( value, name, message );
-			_ = argInfo.Defined();
-		} );
+        ArgumentException exception = Assert.Throws<ArgumentException>( name, () => {
+            ArgInfo<StubEnum> argInfo = new( value, name, message );
+            _ = argInfo.Defined();
+        } );
 
-		Assert.StartsWith( message, exception.Message );
-	}
+        Assert.StartsWith( message, exception.Message );
+    }
 
-	public enum StubEnum {
-		Value1,
-		Value2,
-		Value3
-	}
+    public enum StubEnum {
+        Value1,
+        Value2,
+        Value3
+    }
 }

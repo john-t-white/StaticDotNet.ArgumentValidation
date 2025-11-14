@@ -7,95 +7,95 @@ namespace StaticDotNet.ArgumentValidation;
 /// </summary>
 public static class ReadOnlySpanCharExtensions {
 
-	/// <summary>
-	/// Ensures an argument is not white space, otherwise an <see cref="ArgumentException"/> is thrown.
-	/// </summary>
-	/// <param name="argInfo">The argument info.</param>
-	/// <returns>The <paramref name="argInfo"/>.</returns>
-	/// <exception cref="ArgumentException">Thrown when <paramref name="argInfo.Value"/> is white space.</exception>
-	public static ref readonly ReadOnlySpanArgInfo<char> NotWhiteSpace( in this ReadOnlySpanArgInfo<char> argInfo ) {
+    /// <summary>
+    /// Ensures an argument is not white space, otherwise an <see cref="ArgumentException"/> is thrown.
+    /// </summary>
+    /// <param name="argInfo">The argument info.</param>
+    /// <returns>The <paramref name="argInfo"/>.</returns>
+    /// <exception cref="ArgumentException">Thrown when <paramref name="argInfo.Value"/> is white space.</exception>
+    public static ref readonly ReadOnlySpanArgInfo<char> NotWhiteSpace( in this ReadOnlySpanArgInfo<char> argInfo ) {
 
-		for( int i = 0; i < argInfo.Value.Length; i++ ) {
-			if( !char.IsWhiteSpace( argInfo.Value[ i ] ) ) {
-				return ref argInfo;
-			}
-		}
+        for( int i = 0; i < argInfo.Value.Length; i++ ) {
+            if( !char.IsWhiteSpace( argInfo.Value[ i ] ) ) {
+                return ref argInfo;
+            }
+        }
 
-		string message = argInfo.Message ?? ExceptionMessages.VALUE_CANNOT_BE_WHITE_SPACE;
-		throw new ArgumentException( message, argInfo.Name );
-	}
+        string message = argInfo.Message ?? ExceptionMessages.VALUE_CANNOT_BE_WHITE_SPACE;
+        throw new ArgumentException( message, argInfo.Name );
+    }
 
-	/// <summary>
-	/// Ensures an argument is equal to <paramref name="value"/>, otherwise an <see cref="ArgumentException"/> is thrown.
-	/// </summary>
-	/// <param name="argInfo">The argument info.</param>
-	/// <param name="value">The value to compare against.</param>
-	/// <param name="comparisonType">The type of comparison.</param>
-	/// <returns>The <paramref name="argInfo"/>.</returns>
-	/// <exception cref="ArgumentException">Thrown when <paramref name="argInfo.Value"/> does not equal <paramref name="value"/>.</exception>
-	public static ref readonly ReadOnlySpanArgInfo<char> EqualTo( in this ReadOnlySpanArgInfo<char> argInfo, ReadOnlySpan<char> value, StringComparison comparisonType ) {
+    /// <summary>
+    /// Ensures an argument is equal to <paramref name="value"/>, otherwise an <see cref="ArgumentException"/> is thrown.
+    /// </summary>
+    /// <param name="argInfo">The argument info.</param>
+    /// <param name="value">The value to compare against.</param>
+    /// <param name="comparisonType">The type of comparison.</param>
+    /// <returns>The <paramref name="argInfo"/>.</returns>
+    /// <exception cref="ArgumentException">Thrown when <paramref name="argInfo.Value"/> does not equal <paramref name="value"/>.</exception>
+    public static ref readonly ReadOnlySpanArgInfo<char> EqualTo( in this ReadOnlySpanArgInfo<char> argInfo, ReadOnlySpan<char> value, StringComparison comparisonType ) {
 
-		if( argInfo.Value.Equals( value, comparisonType ) ) {
-			return ref argInfo;
-		}
+        if( argInfo.Value.Equals( value, comparisonType ) ) {
+            return ref argInfo;
+        }
 
-		string message = argInfo.Message ?? ExceptionMessageFormatter.Format( ExceptionMessages.VALUE_MUST_BE_EQUAL_TO, argInfo.Value.ToString(), value.ToString() );
-		throw new ArgumentException( message, argInfo.Name );
-	}
+        string message = argInfo.Message ?? ExceptionMessageFormatter.Format( ExceptionMessages.VALUE_MUST_BE_EQUAL_TO, argInfo.Value.ToString(), value.ToString() );
+        throw new ArgumentException( message, argInfo.Name );
+    }
 
-	/// <summary>
-	/// Ensures an argument starts with <paramref name="value"/>, otherwise an <see cref="ArgumentException"/> is thrown.
-	/// </summary>
-	/// <param name="argInfo">The argument info.</param>
-	/// <param name="value">The value it should start with.</param>
-	/// <param name="comparisonType">The type of comparison.</param>
-	/// <returns>The <paramref name="argInfo"/>.</returns>
-	/// <exception cref="ArgumentException">Thrown when <paramref name="argInfo.Value"/> does not start with <paramref name="value"/>.</exception>
-	public static ref readonly ReadOnlySpanArgInfo<char> StartsWith( in this ReadOnlySpanArgInfo<char> argInfo, ReadOnlySpan<char> value, StringComparison comparisonType ) {
+    /// <summary>
+    /// Ensures an argument starts with <paramref name="value"/>, otherwise an <see cref="ArgumentException"/> is thrown.
+    /// </summary>
+    /// <param name="argInfo">The argument info.</param>
+    /// <param name="value">The value it should start with.</param>
+    /// <param name="comparisonType">The type of comparison.</param>
+    /// <returns>The <paramref name="argInfo"/>.</returns>
+    /// <exception cref="ArgumentException">Thrown when <paramref name="argInfo.Value"/> does not start with <paramref name="value"/>.</exception>
+    public static ref readonly ReadOnlySpanArgInfo<char> StartsWith( in this ReadOnlySpanArgInfo<char> argInfo, ReadOnlySpan<char> value, StringComparison comparisonType ) {
 
-		if( argInfo.Value.StartsWith( value, comparisonType ) ) {
-			return ref argInfo;
-		}
+        if( argInfo.Value.StartsWith( value, comparisonType ) ) {
+            return ref argInfo;
+        }
 
-		string message = argInfo.Message ?? ExceptionMessageFormatter.Format( ExceptionMessages.STRING_MUST_START_WITH, argInfo.Value.ToString(), value.ToString() );
-		throw new ArgumentException( message, argInfo.Name );
-	}
+        string message = argInfo.Message ?? ExceptionMessageFormatter.Format( ExceptionMessages.STRING_MUST_START_WITH, argInfo.Value.ToString(), value.ToString() );
+        throw new ArgumentException( message, argInfo.Name );
+    }
 
-	/// <summary>
-	/// Ensures an argument ends with <paramref name="value"/>, otherwise an <see cref="ArgumentException"/> is thrown.
-	/// </summary>
-	/// <param name="argInfo">The argument info.</param>
-	/// <param name="value">The value it should start with.</param>
-	/// <param name="comparisonType">The type of comparison.</param>
-	/// <returns>The <paramref name="argInfo"/>.</returns>
-	/// <exception cref="ArgumentException">Thrown when <paramref name="argInfo.Value"/> does not end with <paramref name="value"/>.</exception>
-	public static ref readonly ReadOnlySpanArgInfo<char> EndsWith( in this ReadOnlySpanArgInfo<char> argInfo, ReadOnlySpan<char> value, StringComparison comparisonType ) {
+    /// <summary>
+    /// Ensures an argument ends with <paramref name="value"/>, otherwise an <see cref="ArgumentException"/> is thrown.
+    /// </summary>
+    /// <param name="argInfo">The argument info.</param>
+    /// <param name="value">The value it should start with.</param>
+    /// <param name="comparisonType">The type of comparison.</param>
+    /// <returns>The <paramref name="argInfo"/>.</returns>
+    /// <exception cref="ArgumentException">Thrown when <paramref name="argInfo.Value"/> does not end with <paramref name="value"/>.</exception>
+    public static ref readonly ReadOnlySpanArgInfo<char> EndsWith( in this ReadOnlySpanArgInfo<char> argInfo, ReadOnlySpan<char> value, StringComparison comparisonType ) {
 
-		if( argInfo.Value.EndsWith( value, comparisonType ) ) {
-			return ref argInfo;
-		}
+        if( argInfo.Value.EndsWith( value, comparisonType ) ) {
+            return ref argInfo;
+        }
 
-		string message = argInfo.Message ?? ExceptionMessageFormatter.Format( ExceptionMessages.STRING_MUST_END_WITH, argInfo.Value.ToString(), value.ToString() );
-		throw new ArgumentException( message, argInfo.Name );
-	}
+        string message = argInfo.Message ?? ExceptionMessageFormatter.Format( ExceptionMessages.STRING_MUST_END_WITH, argInfo.Value.ToString(), value.ToString() );
+        throw new ArgumentException( message, argInfo.Name );
+    }
 
-	/// <summary>
-	/// Ensures an argument contains <paramref name="value"/>, otherwise an <see cref="ArgumentException"/> is thrown.
-	/// </summary>
-	/// <param name="argInfo">The argument info.</param>
-	/// <param name="value">The value it should contain.</param>
-	/// <param name="comparisonType">The type of comparison.</param>
-	/// <returns>The <paramref name="argInfo"/>.</returns>
-	/// <exception cref="ArgumentException">Thrown when <paramref name="argInfo.Value"/> does not end with <paramref name="value"/>.</exception>
-	public static ref readonly ReadOnlySpanArgInfo<char> Contains( in this ReadOnlySpanArgInfo<char> argInfo, ReadOnlySpan<char> value, StringComparison comparisonType ) {
+    /// <summary>
+    /// Ensures an argument contains <paramref name="value"/>, otherwise an <see cref="ArgumentException"/> is thrown.
+    /// </summary>
+    /// <param name="argInfo">The argument info.</param>
+    /// <param name="value">The value it should contain.</param>
+    /// <param name="comparisonType">The type of comparison.</param>
+    /// <returns>The <paramref name="argInfo"/>.</returns>
+    /// <exception cref="ArgumentException">Thrown when <paramref name="argInfo.Value"/> does not end with <paramref name="value"/>.</exception>
+    public static ref readonly ReadOnlySpanArgInfo<char> Contains( in this ReadOnlySpanArgInfo<char> argInfo, ReadOnlySpan<char> value, StringComparison comparisonType ) {
 
-		if( argInfo.Value.Contains( value, comparisonType ) ) {
-			return ref argInfo;
-		}
+        if( argInfo.Value.Contains( value, comparisonType ) ) {
+            return ref argInfo;
+        }
 
-		string message = argInfo.Message ?? ExceptionMessageFormatter.Format( ExceptionMessages.STRING_MUST_CONTAIN, argInfo.Value.ToString(), value.ToString() );
-		throw new ArgumentException( message, argInfo.Name );
-	}
+        string message = argInfo.Message ?? ExceptionMessageFormatter.Format( ExceptionMessages.STRING_MUST_CONTAIN, argInfo.Value.ToString(), value.ToString() );
+        throw new ArgumentException( message, argInfo.Name );
+    }
 }
 
 #endif

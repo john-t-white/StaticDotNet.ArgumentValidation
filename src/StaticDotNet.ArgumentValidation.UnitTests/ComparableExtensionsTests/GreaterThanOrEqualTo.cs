@@ -2,101 +2,101 @@
 
 public sealed class GreaterThanOrEqualTo {
 
-	[Theory]
-	[InlineData( 2 )]
-	[InlineData( 3 )]
-	public void ReturnsCorrectly( int argumentValue ) {
+    [Theory]
+    [InlineData( 2 )]
+    [InlineData( 3 )]
+    public void ReturnsCorrectly( int argumentValue ) {
 
-		int value = 2;
+        int value = 2;
 
-		ArgInfo<int> argInfo = new( argumentValue, null, null );
+        ArgInfo<int> argInfo = new( argumentValue, null, null );
 
-		ArgInfo<int> result = argInfo.GreaterThanOrEqualTo( value );
+        ArgInfo<int> result = argInfo.GreaterThanOrEqualTo( value );
 
-		ArgInfoAssertions.Equal( argInfo, result );
-	}
+        ArgInfoAssertions.Equal( argInfo, result );
+    }
 
-	[Fact]
-	public void WithValueNotGreaterThanOrEqualToThrowsArgumentOutOfRangeException() {
+    [Fact]
+    public void WithValueNotGreaterThanOrEqualToThrowsArgumentOutOfRangeException() {
 
-		int argumentValue = 1;
-		string name = "Name";
-		int value = 2;
+        int argumentValue = 1;
+        string name = "Name";
+        int value = 2;
 
-		ArgumentOutOfRangeException exception = Assert.Throws<ArgumentOutOfRangeException>( name, () => {
-			ArgInfo<int> argInfo = new( argumentValue, name, null );
-			_ = argInfo.GreaterThanOrEqualTo( value );
-		} );
+        ArgumentOutOfRangeException exception = Assert.Throws<ArgumentOutOfRangeException>( name, () => {
+            ArgInfo<int> argInfo = new( argumentValue, name, null );
+            _ = argInfo.GreaterThanOrEqualTo( value );
+        } );
 
-		string expectedMessage = $"Value {argumentValue} must be greater than or equal to {value}.";
+        string expectedMessage = $"Value {argumentValue} must be greater than or equal to {value}.";
 
-		Assert.StartsWith( expectedMessage, exception.Message );
-	}
+        Assert.StartsWith( expectedMessage, exception.Message );
+    }
 
-	[Fact]
-	public void WithStringNotGreaterThanOrEqualToThrowsArgumentOutOfRangeException() {
+    [Fact]
+    public void WithStringNotGreaterThanOrEqualToThrowsArgumentOutOfRangeException() {
 
-		string argumentValue = "1";
-		string name = "Name";
-		string value = "2";
+        string argumentValue = "1";
+        string name = "Name";
+        string value = "2";
 
-		ArgumentOutOfRangeException exception = Assert.Throws<ArgumentOutOfRangeException>( name, () => {
-			ArgInfo<string> argInfo = new( argumentValue, name, null );
-			_ = argInfo.GreaterThanOrEqualTo( value );
-		} );
+        ArgumentOutOfRangeException exception = Assert.Throws<ArgumentOutOfRangeException>( name, () => {
+            ArgInfo<string> argInfo = new( argumentValue, name, null );
+            _ = argInfo.GreaterThanOrEqualTo( value );
+        } );
 
-		string expectedMessage = $"Value \"{argumentValue}\" must be greater than or equal to \"{value}\".";
+        string expectedMessage = $"Value \"{argumentValue}\" must be greater than or equal to \"{value}\".";
 
-		Assert.StartsWith( expectedMessage, exception.Message );
-	}
+        Assert.StartsWith( expectedMessage, exception.Message );
+    }
 
-	[Fact]
-	public void WithCharNotGreaterThanOrEqualToThrowsArgumentOutOfRangeException() {
+    [Fact]
+    public void WithCharNotGreaterThanOrEqualToThrowsArgumentOutOfRangeException() {
 
-		char argumentValue = '1';
-		string name = "Name";
-		char value = '2';
+        char argumentValue = '1';
+        string name = "Name";
+        char value = '2';
 
-		ArgumentOutOfRangeException exception = Assert.Throws<ArgumentOutOfRangeException>( name, () => {
-			ArgInfo<char> argInfo = new( argumentValue, name, null );
-			_ = argInfo.GreaterThanOrEqualTo( value );
-		} );
+        ArgumentOutOfRangeException exception = Assert.Throws<ArgumentOutOfRangeException>( name, () => {
+            ArgInfo<char> argInfo = new( argumentValue, name, null );
+            _ = argInfo.GreaterThanOrEqualTo( value );
+        } );
 
-		string expectedMessage = $"Value \"{argumentValue}\" must be greater than or equal to \"{value}\".";
+        string expectedMessage = $"Value \"{argumentValue}\" must be greater than or equal to \"{value}\".";
 
-		Assert.StartsWith( expectedMessage, exception.Message );
-	}
+        Assert.StartsWith( expectedMessage, exception.Message );
+    }
 
-	[Fact]
-	public void WithNullValueThrowsArgumentOutOfRangeException() {
+    [Fact]
+    public void WithNullValueThrowsArgumentOutOfRangeException() {
 
-		string argumentValue = "1";
-		string name = "Name";
-		string value = null!;
+        string argumentValue = "1";
+        string name = "Name";
+        string value = null!;
 
-		ArgumentOutOfRangeException exception = Assert.Throws<ArgumentOutOfRangeException>( name, () => {
-			ArgInfo<string> argInfo = new( argumentValue, name, null );
-			_ = argInfo.GreaterThanOrEqualTo( value );
-		} );
+        ArgumentOutOfRangeException exception = Assert.Throws<ArgumentOutOfRangeException>( name, () => {
+            ArgInfo<string> argInfo = new( argumentValue, name, null );
+            _ = argInfo.GreaterThanOrEqualTo( value );
+        } );
 
-		string expectedMessage = $"Value \"{argumentValue}\" must be greater than or equal to <null>.";
+        string expectedMessage = $"Value \"{argumentValue}\" must be greater than or equal to <null>.";
 
-		Assert.StartsWith( expectedMessage, exception.Message );
-	}
+        Assert.StartsWith( expectedMessage, exception.Message );
+    }
 
-	[Fact]
-	public void WithValueNotGreaterThanOrEqualToToAndMessageThrowsArgumentOutOfRangeException() {
+    [Fact]
+    public void WithValueNotGreaterThanOrEqualToToAndMessageThrowsArgumentOutOfRangeException() {
 
-		int argumentValue = 1;
-		string name = "Name";
-		string message = "Message";
-		int value = 2;
+        int argumentValue = 1;
+        string name = "Name";
+        string message = "Message";
+        int value = 2;
 
-		ArgumentOutOfRangeException exception = Assert.Throws<ArgumentOutOfRangeException>( name, () => {
-			ArgInfo<int> argInfo = new( argumentValue, name, message );
-			_ = argInfo.GreaterThanOrEqualTo( value );
-		} );
+        ArgumentOutOfRangeException exception = Assert.Throws<ArgumentOutOfRangeException>( name, () => {
+            ArgInfo<int> argInfo = new( argumentValue, name, message );
+            _ = argInfo.GreaterThanOrEqualTo( value );
+        } );
 
-		Assert.StartsWith( message, exception.Message );
-	}
+        Assert.StartsWith( message, exception.Message );
+    }
 }

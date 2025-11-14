@@ -2,57 +2,57 @@
 
 public sealed class IsNotNull_Class {
 
-	[Fact]
-	public void ReturnsCorrectly() {
+    [Fact]
+    public void ReturnsCorrectly() {
 
-		object value = new();
+        object value = new();
 
-		ArgInfo<object> result = Arg.IsNotNull( value );
+        ArgInfo<object> result = Arg.IsNotNull( value );
 
-		Assert.Same( value, result.Value );
-		Assert.Equal( nameof( value ), result.Name );
-		Assert.Null( result.Message );
-	}
+        Assert.Same( value, result.Value );
+        Assert.Equal( nameof( value ), result.Name );
+        Assert.Null( result.Message );
+    }
 
-	[Fact]
-	public void WithNameAndMessageReturnsCorrectly() {
+    [Fact]
+    public void WithNameAndMessageReturnsCorrectly() {
 
-		object value = new();
-		string name = "Name";
-		string message = "Message";
+        object value = new();
+        string name = "Name";
+        string message = "Message";
 
-		ArgInfo<object> result = Arg.IsNotNull( value, name, message );
+        ArgInfo<object> result = Arg.IsNotNull( value, name, message );
 
-		Assert.Same( value, result.Value );
-		Assert.Equal( name, result.Name );
-		Assert.Equal( message, result.Message );
-	}
+        Assert.Same( value, result.Value );
+        Assert.Equal( name, result.Name );
+        Assert.Equal( message, result.Message );
+    }
 
-	[Fact]
-	public void WithNullValueThrowsArgumentNullException() {
+    [Fact]
+    public void WithNullValueThrowsArgumentNullException() {
 
-		object? value = null;
+        object? value = null;
 
-		_ = Assert.Throws<ArgumentNullException>( nameof( value ), () => Arg.IsNotNull( value ) );
-	}
+        _ = Assert.Throws<ArgumentNullException>( nameof( value ), () => Arg.IsNotNull( value ) );
+    }
 
-	[Fact]
-	public void WithNullValueAndNameThrowsArgumentNullException() {
+    [Fact]
+    public void WithNullValueAndNameThrowsArgumentNullException() {
 
-		object? value = null;
-		string name = "Name";
+        object? value = null;
+        string name = "Name";
 
-		_ = Assert.Throws<ArgumentNullException>( name, () => Arg.IsNotNull( value, name ) );
-	}
+        _ = Assert.Throws<ArgumentNullException>( name, () => Arg.IsNotNull( value, name ) );
+    }
 
-	[Fact]
-	public void WithNullValueAndMessageThrowsArgumentNullException() {
+    [Fact]
+    public void WithNullValueAndMessageThrowsArgumentNullException() {
 
-		object? value = null;
-		string message = "Message";
+        object? value = null;
+        string message = "Message";
 
-		ArgumentNullException exception = Assert.Throws<ArgumentNullException>( nameof( value ), () => Arg.IsNotNull( value, message: message ) );
+        ArgumentNullException exception = Assert.Throws<ArgumentNullException>( nameof( value ), () => Arg.IsNotNull( value, message: message ) );
 
-		Assert.StartsWith( message, exception.Message );
-	}
+        Assert.StartsWith( message, exception.Message );
+    }
 }

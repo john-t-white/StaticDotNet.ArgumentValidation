@@ -6,166 +6,166 @@ namespace StaticDotNet.ArgumentValidation.UnitTests.ReadOnlySpanExtensionsTests;
 
 public sealed class ParseDateOnlyExact {
 
-	[Fact]
-	public void ReturnsCorrectly() {
+    [Fact]
+    public void ReturnsCorrectly() {
 
-		DateOnly expectedResult = new( 2000, 1, 2 );
-		string format = "yyyy-MM-dd";
-		ReadOnlySpanArgInfo<char> argInfo = new( expectedResult.ToString( format ), null, null );
+        DateOnly expectedResult = new( 2000, 1, 2 );
+        string format = "yyyy-MM-dd";
+        ReadOnlySpanArgInfo<char> argInfo = new( expectedResult.ToString( format ), null, null );
 
-		ArgInfo<DateOnly> result = ReadOnlySpanCharParsingExtensions.ParseDateOnlyExact( argInfo, format );
+        ArgInfo<DateOnly> result = ReadOnlySpanCharParsingExtensions.ParseDateOnlyExact( argInfo, format );
 
-		Assert.Equal( expectedResult, result.Value );
-	}
+        Assert.Equal( expectedResult, result.Value );
+    }
 
-	[Fact]
-	public void WithProviderReturnsCorrectly() {
+    [Fact]
+    public void WithProviderReturnsCorrectly() {
 
-		DateOnly expectedResult = new( 2000, 1, 2 );
-		string format = "yyyy-MM-dd";
-		ReadOnlySpanArgInfo<char> argInfo = new( expectedResult.ToString( format ), null, null );
-		IFormatProvider provider = DateTimeFormatInfo.CurrentInfo;
+        DateOnly expectedResult = new( 2000, 1, 2 );
+        string format = "yyyy-MM-dd";
+        ReadOnlySpanArgInfo<char> argInfo = new( expectedResult.ToString( format ), null, null );
+        IFormatProvider provider = DateTimeFormatInfo.CurrentInfo;
 
-		ArgInfo<DateOnly> result = ReadOnlySpanCharParsingExtensions.ParseDateOnlyExact( argInfo, format, provider );
+        ArgInfo<DateOnly> result = ReadOnlySpanCharParsingExtensions.ParseDateOnlyExact( argInfo, format, provider );
 
-		Assert.Equal( expectedResult, result.Value );
-	}
+        Assert.Equal( expectedResult, result.Value );
+    }
 
-	[Fact]
-	public void WithStylesReturnsCorrectly() {
+    [Fact]
+    public void WithStylesReturnsCorrectly() {
 
-		DateOnly expectedResult = new( 2000, 1, 2 );
-		string format = "yyyy-MM-dd";
-		ReadOnlySpanArgInfo<char> argInfo = new( expectedResult.ToString( format ), null, null );
-		DateTimeStyles styles = DateTimeStyles.None;
+        DateOnly expectedResult = new( 2000, 1, 2 );
+        string format = "yyyy-MM-dd";
+        ReadOnlySpanArgInfo<char> argInfo = new( expectedResult.ToString( format ), null, null );
+        DateTimeStyles styles = DateTimeStyles.None;
 
-		ArgInfo<DateOnly> result = ReadOnlySpanCharParsingExtensions.ParseDateOnlyExact( argInfo, format, styles: styles );
+        ArgInfo<DateOnly> result = ReadOnlySpanCharParsingExtensions.ParseDateOnlyExact( argInfo, format, styles: styles );
 
-		Assert.Equal( expectedResult, result.Value );
-	}
+        Assert.Equal( expectedResult, result.Value );
+    }
 
-	[Fact]
-	public void WithInvalidValueThrowsArgumentException() {
+    [Fact]
+    public void WithInvalidValueThrowsArgumentException() {
 
-		string argumentValue = "Not valid";
-		string name = "Name";
-		string format = "yyyy-MM-dd";
+        string argumentValue = "Not valid";
+        string name = "Name";
+        string format = "yyyy-MM-dd";
 
-		ArgumentException exception = Assert.Throws<ArgumentException>( name, () => {
+        ArgumentException exception = Assert.Throws<ArgumentException>( name, () => {
 
-			ReadOnlySpanArgInfo<char> argInfo = new( argumentValue, name, null );
-			_ = ReadOnlySpanCharParsingExtensions.ParseDateOnlyExact( argInfo, format );
-		} );
+            ReadOnlySpanArgInfo<char> argInfo = new( argumentValue, name, null );
+            _ = ReadOnlySpanCharParsingExtensions.ParseDateOnlyExact( argInfo, format );
+        } );
 
-		string expectedMessage = $"Value \"{argumentValue}\" must be parsable to \"System.DateOnly\".";
+        string expectedMessage = $"Value \"{argumentValue}\" must be parsable to \"System.DateOnly\".";
 
-		Assert.StartsWith( expectedMessage, exception.Message );
-	}
+        Assert.StartsWith( expectedMessage, exception.Message );
+    }
 
-	[Fact]
-	public void WithInvalidValueAndMessageThrowsArgumentException() {
+    [Fact]
+    public void WithInvalidValueAndMessageThrowsArgumentException() {
 
-		string argumentValue = "Not valid";
-		string name = "Name";
-		string message = "Message";
-		string format = "yyyy-MM-dd";
+        string argumentValue = "Not valid";
+        string name = "Name";
+        string message = "Message";
+        string format = "yyyy-MM-dd";
 
-		ArgumentException exception = Assert.Throws<ArgumentException>( name, () => {
+        ArgumentException exception = Assert.Throws<ArgumentException>( name, () => {
 
-			ReadOnlySpanArgInfo<char> argInfo = new( argumentValue, name, message );
-			_ = ReadOnlySpanCharParsingExtensions.ParseDateOnlyExact( argInfo, format );
-		} );
+            ReadOnlySpanArgInfo<char> argInfo = new( argumentValue, name, message );
+            _ = ReadOnlySpanCharParsingExtensions.ParseDateOnlyExact( argInfo, format );
+        } );
 
-		Assert.StartsWith( message, exception.Message );
-	}
+        Assert.StartsWith( message, exception.Message );
+    }
 
-	[Fact]
-	public void WithMultipleFormatsReturnsCorrectly() {
+    [Fact]
+    public void WithMultipleFormatsReturnsCorrectly() {
 
-		DateOnly expectedResult = new( 2000, 1, 2 );
-		string[] formats = new[] {
-			"yyyy-MM-dd",
-			"MM/dd/yyyy"
-		};
-		ReadOnlySpanArgInfo<char> argInfo = new( expectedResult.ToString( formats[ 0 ] ), null, null );
+        DateOnly expectedResult = new( 2000, 1, 2 );
+        string[] formats = new[] {
+            "yyyy-MM-dd",
+            "MM/dd/yyyy"
+        };
+        ReadOnlySpanArgInfo<char> argInfo = new( expectedResult.ToString( formats[ 0 ] ), null, null );
 
-		ArgInfo<DateOnly> result = ReadOnlySpanCharParsingExtensions.ParseDateOnlyExact( argInfo, formats );
+        ArgInfo<DateOnly> result = ReadOnlySpanCharParsingExtensions.ParseDateOnlyExact( argInfo, formats );
 
-		Assert.Equal( expectedResult, result.Value );
-	}
+        Assert.Equal( expectedResult, result.Value );
+    }
 
-	[Fact]
-	public void WithMultipleFormatsAndProviderReturnsCorrectly() {
+    [Fact]
+    public void WithMultipleFormatsAndProviderReturnsCorrectly() {
 
-		DateOnly expectedResult = new( 2000, 1, 2 );
-		string[] formats = new[] {
-			"yyyy-MM-dd",
-			"MM/dd/yyyy"
-		};
-		ReadOnlySpanArgInfo<char> argInfo = new( expectedResult.ToString( formats[ 0 ] ), null, null );
-		IFormatProvider provider = DateTimeFormatInfo.CurrentInfo;
+        DateOnly expectedResult = new( 2000, 1, 2 );
+        string[] formats = new[] {
+            "yyyy-MM-dd",
+            "MM/dd/yyyy"
+        };
+        ReadOnlySpanArgInfo<char> argInfo = new( expectedResult.ToString( formats[ 0 ] ), null, null );
+        IFormatProvider provider = DateTimeFormatInfo.CurrentInfo;
 
-		ArgInfo<DateOnly> result = ReadOnlySpanCharParsingExtensions.ParseDateOnlyExact( argInfo, formats, provider );
+        ArgInfo<DateOnly> result = ReadOnlySpanCharParsingExtensions.ParseDateOnlyExact( argInfo, formats, provider );
 
-		Assert.Equal( expectedResult, result.Value );
-	}
+        Assert.Equal( expectedResult, result.Value );
+    }
 
-	[Fact]
-	public void WithMultipleFormatsAndStylesReturnsCorrectly() {
+    [Fact]
+    public void WithMultipleFormatsAndStylesReturnsCorrectly() {
 
-		DateOnly expectedResult = new( 2000, 1, 2 );
-		string[] formats = new[] {
-			"yyyy-MM-dd",
-			"MM/dd/yyyy"
-		};
-		ReadOnlySpanArgInfo<char> argInfo = new( expectedResult.ToString( formats[ 0 ] ), null, null );
-		DateTimeStyles styles = DateTimeStyles.None;
+        DateOnly expectedResult = new( 2000, 1, 2 );
+        string[] formats = new[] {
+            "yyyy-MM-dd",
+            "MM/dd/yyyy"
+        };
+        ReadOnlySpanArgInfo<char> argInfo = new( expectedResult.ToString( formats[ 0 ] ), null, null );
+        DateTimeStyles styles = DateTimeStyles.None;
 
-		ArgInfo<DateOnly> result = ReadOnlySpanCharParsingExtensions.ParseDateOnlyExact( argInfo, formats, styles: styles );
+        ArgInfo<DateOnly> result = ReadOnlySpanCharParsingExtensions.ParseDateOnlyExact( argInfo, formats, styles: styles );
 
-		Assert.Equal( expectedResult, result.Value );
-	}
+        Assert.Equal( expectedResult, result.Value );
+    }
 
-	[Fact]
-	public void WithMultipleFormatsAndInvalidValueThrowsArgumentException() {
+    [Fact]
+    public void WithMultipleFormatsAndInvalidValueThrowsArgumentException() {
 
-		string argumentValue = "Not valid";
-		string name = "Name";
-		string[] formats = new[] {
-			"yyyy-MM-dd",
-			"MM/dd/yyyy"
-		};
+        string argumentValue = "Not valid";
+        string name = "Name";
+        string[] formats = new[] {
+            "yyyy-MM-dd",
+            "MM/dd/yyyy"
+        };
 
-		ArgumentException exception = Assert.Throws<ArgumentException>( name, () => {
+        ArgumentException exception = Assert.Throws<ArgumentException>( name, () => {
 
-			ReadOnlySpanArgInfo<char> argInfo = new( argumentValue, name, null );
-			_ = ReadOnlySpanCharParsingExtensions.ParseDateOnlyExact( argInfo, formats );
-		} );
+            ReadOnlySpanArgInfo<char> argInfo = new( argumentValue, name, null );
+            _ = ReadOnlySpanCharParsingExtensions.ParseDateOnlyExact( argInfo, formats );
+        } );
 
-		string expectedMessage = $"Value \"{argumentValue}\" must be parsable to \"System.DateOnly\".";
+        string expectedMessage = $"Value \"{argumentValue}\" must be parsable to \"System.DateOnly\".";
 
-		Assert.StartsWith( expectedMessage, exception.Message );
-	}
+        Assert.StartsWith( expectedMessage, exception.Message );
+    }
 
-	[Fact]
-	public void WithMultipleFormatsAndInvalidValueAndMessageThrowsArgumentException() {
+    [Fact]
+    public void WithMultipleFormatsAndInvalidValueAndMessageThrowsArgumentException() {
 
-		string argumentValue = "Not valid";
-		string name = "Name";
-		string message = "Message";
-		string[] formats = new[] {
-			"yyyy-MM-dd",
-			"MM/dd/yyyy"
-		};
+        string argumentValue = "Not valid";
+        string name = "Name";
+        string message = "Message";
+        string[] formats = new[] {
+            "yyyy-MM-dd",
+            "MM/dd/yyyy"
+        };
 
-		ArgumentException exception = Assert.Throws<ArgumentException>( name, () => {
+        ArgumentException exception = Assert.Throws<ArgumentException>( name, () => {
 
-			ReadOnlySpanArgInfo<char> argInfo = new( argumentValue, name, message );
-			_ = ReadOnlySpanCharParsingExtensions.ParseDateOnlyExact( argInfo, formats );
-		} );
+            ReadOnlySpanArgInfo<char> argInfo = new( argumentValue, name, message );
+            _ = ReadOnlySpanCharParsingExtensions.ParseDateOnlyExact( argInfo, formats );
+        } );
 
-		Assert.StartsWith( message, exception.Message );
-	}
+        Assert.StartsWith( message, exception.Message );
+    }
 }
 
 #endif
