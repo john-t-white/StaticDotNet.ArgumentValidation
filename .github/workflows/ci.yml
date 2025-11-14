@@ -1,6 +1,6 @@
-name: CI
+name: Pull Request
 
-run-name: PR to merge ${{ github.head-ref }} into ${{ github.base-ref }}
+run-name: Pull Request from ${{ github.ref_name }} into ${{ github.base_ref }}
 
 on:
   pull_request:
