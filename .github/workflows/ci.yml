@@ -1,6 +1,6 @@
 name: CI
 
-run-name: ${{ github.actor }} is learning GitHub Actions
+run-name: PR to merge ${{ github.head-ref }} into ${{ github.base-ref }}
 
 on:
   pull_request:
@@ -11,10 +11,10 @@ on:
 jobs:
   build-and-test:
     name: Build and Test
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
     steps:
 
-      - name: Checkout $${{ github.head_ref }}
+      - name: Checkout ${{ github.head_ref }}
         uses: actions/checkout@v5
   
       - name: Setup DotNet
