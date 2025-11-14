@@ -26,7 +26,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Github", "Github", "{578166
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Workflows", "Workflows", "{32CC457C-EC25-4C6A-901E-AECE283F63AB}"
 	ProjectSection(SolutionItems) = preProject
-		..\.github\workflows\ci.yml = ..\.github\workflows\ci.yml
+		..\.github\workflows\pull-request.yml = ..\.github\workflows\pull-request.yml
 	EndProjectSection
 EndProject
 Global
