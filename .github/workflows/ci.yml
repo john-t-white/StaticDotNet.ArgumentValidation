@@ -1,6 +1,6 @@
 name: Pull Request
 
-run-name: Pull Request from ${{ github.ref_name }} into ${{ github.base_ref }}
+run-name: Pull Request from ${{ github.head_ref }} into ${{ github.base_ref }}
 
 on:
   pull_request:
