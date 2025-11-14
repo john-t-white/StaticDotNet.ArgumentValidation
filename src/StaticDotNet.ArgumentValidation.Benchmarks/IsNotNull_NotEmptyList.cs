@@ -7,8 +7,10 @@ using EnsureThat;
 namespace StaticDotNet.ArgumentValidation.Benchmarks;
 
 [MemoryDiagnoser( false )]
-[SimpleJob( RuntimeMoniker.Net70 )]
-[SimpleJob( RuntimeMoniker.Net60 )]
+[SimpleJob( RuntimeMoniker.Net10_0 )]
+[SimpleJob( RuntimeMoniker.Net90 )]
+[SimpleJob( RuntimeMoniker.Net80 )]
+[SimpleJob( RuntimeMoniker.Net481 )]
 public class IsNotNull_NotEmptyList {
 
 	public IList<int> argumentValue = new List<int>() { 1, 2, 3 };
