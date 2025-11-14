@@ -1,0 +1,84 @@
+name: Pull Request
+
+run-name: Pull Request from ${{ github.head_ref }} into ${{ github.base_ref }}
+
+on:
+  pull_request:
+    branches: [ main ]
+    
+  workflow_dispatch:
+
+jobs:
+  build-and-test:
+    name: Build and Test
+    runs-on: windows-latest
+    steps:
+
+      - name: Checkout ${{ github.head_ref }}
+        uses: actions/checkout@v5
+  
+      - name: Setup DotNet
+        uses: actions/setup-dotnet@v5
+        with:
+          dotnet-version: |
+            9.0
+            8.0
+            7.0
+            6.0
+
+      - name: Restore Packages
+        run: dotnet restore ./src
+
+      - name: Build
+        run: dotnet build ./src --no-restore
+
+      - name: Test
+        run: dotnet test ./src --no-build --logger trx --collect:"XPlat Code Coverage"
+
+        # https://github.com/SeanKilleen/ExampleTestResultsWithGithubActions/blob/main/.github/workflows/build.yaml
+      - name: Combine Coverage Reports
+        uses: danielpalme/ReportGenerator-GitHub-Action@v5.5.0
+        with:
+          reports: "**/*.cobertura.xml"
+          targetdir: "${{ github.workspace }}"
+          reporttypes: "Cobertura"
+          title: "Code Coverage"
+          toolpath: "reportgeneratortool"
+      
+      - name: Upload Combined Coverage XML
+        uses: actions/upload-artifact@v5
+        with:
+          name: coverage
+          path: ${{ github.workspace }}/Cobertura.xml
+
+      - name: Publish Code Coverage Report
+        uses: irongut/CodeCoverageSummary@v1.3.0
+        with:
+          filename: "Cobertura.xml"
+          badge: true
+          fail_below_min: true
+          format: markdown
+          hide_branch_rate: false
+          hide_complexity: false
+          indicators: true
+          output: both
+          thresholds: "80 90"
+          
+      - name: Add Coverage PR Comment
+        uses: marocchino/sticky-pull-request-comment@v2
+        if: github.event_name == 'pull_request'
+        with:
+          recreate: true
+          path: code-coverage-results.md
+      
+      - name: Upload Test Result Files
+        uses: actions/upload-artifact@v5
+        with:
+          name: test-results
+          path: ${{ github.workspace }}/**/TestResults/**/*
+          
+      - name: Publish Test Results
+        uses: EnricoMi/publish-unit-test-result-action@v2.20.0
+        if: always()
+        with:
+          trx_files: "${{ github.workspace }}/**/*.trx"
